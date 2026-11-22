@@ -1,0 +1,18 @@
+- type: surgeryStep
+  parent: HemostatSurgery
+  id: SurgerySlimeClampBleeding
+  name: Coagulate Jelly Flow
+  baseTime: 1
+  popup: surgery-slime-clamp-bleed-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectBleedI
+        - LimbStatusEffectBleedII
+        - LimbStatusEffectBleedIII
+  effects:
+    - !type:SurgeryRemoveLimbStatus
+      statuses:
+        - LimbStatusEffectBleedI
+        - LimbStatusEffectBleedII
+        - LimbStatusEffectBleedIII

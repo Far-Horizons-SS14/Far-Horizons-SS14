@@ -1,0 +1,161 @@
+# region Eyes
+
+- type: surgeryStep
+  parent: BoneSetterSurgery
+  id: SurgeryRemoveEyeImplant
+  name: Remove Eye Implant
+  baseTime: 4
+  popup: surgery-remove-eye-implant-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalCutOpticNerve
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses:
+        - LimbStatusEffectBleedI
+        - LimbStatusEffectBleedII
+        - LimbStatusEffectBleedIII
+    - !type:SurgeryHasOrgan
+      category: EyeImplant
+  effects:
+    - !type:SurgeryRemoveOrgan
+      category: EyeImplant
+    - !type:SurgeryProgressStatusChain
+      chain: Bleed
+    - !type:SurgeryPainEffect
+
+- type: surgeryStep
+  id: SurgeryImplantEyeImplant
+  name: Implant Eye Implant
+  baseTime: 3
+  popup: surgery-implant-eye-implant-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalCutOpticNerve
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: EyeImplant
+  softConditions:
+    - !type:SurgeryOrganHeld
+      category: EyeImplant
+  effects:
+    - !type:SurgeryInsertOrgan
+
+# region Brain
+
+- type: surgeryStep
+  parent: BoneSetterSurgery
+  id: SurgeryRemoveBrainImplant
+  name: Remove Brain Implant
+  baseTime: 4
+  popup: surgery-remove-brain-implant-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalSkullDrilled
+    - !type:SurgeryHasOrgan
+      category: BrainImplant
+  effects:
+    - !type:SurgeryRemoveOrgan
+      category: BrainImplant
+    - !type:SurgeryProgressStatusChain
+      chain: Bleed
+    - !type:SurgeryPainEffect
+
+- type: surgeryStep
+  id: SurgeryImplantBrainImplant
+  name: Implant Brain Implant
+  baseTime: 3
+  popup: surgery-implant-brain-implant-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalSkullDrilled
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: BrainImplant
+  softConditions:
+    - !type:SurgeryOrganHeld
+      category: BrainImplant
+  effects:
+    - !type:SurgeryInsertOrgan
+
+# region Left Hand
+
+- type: surgeryStep
+  parent: BoneSetterSurgery
+  id: SurgeryRemoveLeftHandImplant
+  name: Remove Left Hand Implant
+  baseTime: 4
+  popup: surgery-remove-hand-implant-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalMuscleDetached
+    - !type:SurgeryHasOrgan
+      category: HandLeftImplant
+  effects:
+    - !type:SurgeryRemoveOrgan
+      category: HandLeftImplant
+    - !type:SurgeryProgressStatusChain
+      chain: Bleed
+    - !type:SurgeryPainEffect
+
+- type: surgeryStep
+  id: SurgeryImplantLeftHandImplant
+  name: Implant Left Hand Implant
+  baseTime: 3
+  popup: surgery-implant-hand-implant-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalMuscleDetached
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: HandLeftImplant
+  softConditions:
+    - !type:SurgeryOrganHeld
+      category: HandLeftImplant
+  effects:
+    - !type:SurgeryInsertOrgan
+
+# region Right Hand
+
+- type: surgeryStep
+  parent: BoneSetterSurgery
+  id: SurgeryRemoveRightHandImplant
+  name: Remove Right Hand Implant
+  baseTime: 4
+  popup: surgery-remove-hand-implant-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalMuscleDetached
+    - !type:SurgeryHasOrgan
+      category: HandRightImplant
+  effects:
+    - !type:SurgeryRemoveOrgan
+      category: HandRightImplant
+    - !type:SurgeryProgressStatusChain
+      chain: Bleed
+    - !type:SurgeryPainEffect
+
+- type: surgeryStep
+  id: SurgeryImplantRightHandImplant
+  name: Implant Right Hand Implant
+  baseTime: 3
+  popup: surgery-implant-hand-implant-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalMuscleDetached
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: HandRightImplant
+  softConditions:
+    - !type:SurgeryOrganHeld
+      category: HandRightImplant
+  effects:
+    - !type:SurgeryInsertOrgan

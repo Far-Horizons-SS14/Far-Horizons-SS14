@@ -51,6 +51,15 @@ public sealed partial class LimbTargettingSystem : EntitySystem
     public void SetTarget(ProtoId<OrganCategoryPrototype> target) => 
         RaiseNetworkEvent(new ChangeLimbTargetMessage(target));
     
+    public ProtoId<OrganCategoryPrototype>? GetTarget()
+    {
+        if (_player.LocalEntity is not {} playerEnt ||
+            !TryComp<LimbTargettingComponent>(playerEnt, out var target))
+            return null;
+        
+        return target.Target;
+    }
+
     public ProtoId<LimbTargettingPrototype> GetTargetterStyle()
     {
         var style = _cfg.GetCVar(FHCCVars.LimbTargettingStyle);

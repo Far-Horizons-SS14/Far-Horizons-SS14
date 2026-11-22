@@ -1,0 +1,560 @@
+# region Limbs
+
+# Amputation
+
+- type: surgeryTutorial
+  id: SurgeryTutorialCyberneticAmputateLimb
+  name: Limb Amputation
+  steps:
+    - &unscrewPlating
+      step: SurgeryUnscrewPlating
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          statuses:
+            - LimbStatusEffectPlatingUnscrewed
+    - &weldLeakPlating
+      step: SurgeryWeldLeaks
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          statuses:
+            - LimbStatusEffectPlatingUnscrewed
+        - !type:SurgeryConditionOr
+          conditions:
+            - &noLeaks
+              !type:SurgeryLimbHasStatus
+              inverse: true
+              statuses:
+                - LimbStatusEffectLeakingOilI
+                - LimbStatusEffectLeakingOilII
+                - LimbStatusEffectLeakingOilIII
+            - !type:SurgeryLimbHasStatus
+              statuses:
+                - LimbStatusEffectSurgicalPlatingPried
+    - &pryPlatingOpen
+      step: SurgeryPryPlating
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          statuses:
+            - LimbStatusEffectSurgicalPlatingPried
+    - &unscrewStructure
+      step: SurgeryUnscrewStructure
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          statuses:
+            - LimbStatusEffectSurgicalStructureUnscrewed
+    - &weldLeakStructure
+      step: SurgeryWeldLeaks
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          statuses:
+            - LimbStatusEffectSurgicalStructureUnscrewed
+        - !type:SurgeryConditionOr
+          conditions:
+            - *noLeaks
+            - !type:SurgeryLimbHasStatus
+              statuses:
+                - LimbStatusEffectSurgicalLimbPoweredDown
+    - &powerDownLimb
+      step: SurgeryPowerDownLimb
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          statuses:
+            - LimbStatusEffectSurgicalLimbPoweredDown
+    - step: SurgeryAmputateLimbCyber
+      conditionComplete:
+        - !type:ConditionNever
+
+# Hand Implants
+
+- type: surgeryTutorial
+  id: SurgeryTutorialCyberneticImplantLeftHandImplant
+  name: Implant Left Hand Implant
+  finishers:
+    - SurgeryTutorialFinisherCyberneticHandImplant
+  conditions:
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: HandLeftImplant
+  steps:
+    - *unscrewPlating
+    - *weldLeakPlating
+    - *pryPlatingOpen
+    - *unscrewStructure
+    - *weldLeakStructure
+    - *powerDownLimb
+    - step: SurgeryImplantLeftHandImplantCyber
+      conditionComplete:
+        - !type:SurgeryHasOrgan
+          category: HandLeftImplant
+
+- type: surgeryTutorial
+  id: SurgeryTutorialCyberneticImplantRightHandImplant
+  name: Implant Right Hand Implant
+  finishers:
+    - SurgeryTutorialFinisherCyberneticHandImplant
+  conditions:
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: HandRightImplant
+  steps:
+    - *unscrewPlating
+    - *weldLeakPlating
+    - *pryPlatingOpen
+    - *unscrewStructure
+    - *weldLeakStructure
+    - *powerDownLimb
+    - step: SurgeryImplantRightHandImplantCyber
+      conditionComplete:
+        - !type:SurgeryHasOrgan
+          category: HandRightImplant
+
+- type: surgeryTutorial
+  id: SurgeryTutorialCyberneticRemoveLeftHandImplant
+  name: Remove Left Hand Implant
+  finishers:
+    - SurgeryTutorialFinisherCyberneticHandImplant
+  conditions:
+    - !type:SurgeryHasOrgan
+      category: HandLeftImplant
+  steps:
+    - *unscrewPlating
+    - *weldLeakPlating
+    - *pryPlatingOpen
+    - *unscrewStructure
+    - *weldLeakStructure
+    - *powerDownLimb
+    - step: SurgeryRemoveLeftHandImplantCyber
+      conditionComplete:
+        - !type:SurgeryHasOrgan
+          inverse: true
+          category: HandLeftImplant
+
+- type: surgeryTutorial
+  id: SurgeryTutorialCyberneticRemoveRightHandImplant
+  name: Remove Right Hand Implant
+  finishers:
+    - SurgeryTutorialFinisherCyberneticHandImplant
+  conditions:
+    - !type:SurgeryHasOrgan
+      category: HandRightImplant
+  steps:
+    - *unscrewPlating
+    - *weldLeakPlating
+    - *pryPlatingOpen
+    - *unscrewStructure
+    - *weldLeakStructure
+    - *powerDownLimb
+    - step: SurgeryRemoveRightHandImplantCyber
+      conditionComplete:
+        - !type:SurgeryHasOrgan
+          inverse: true
+          category: HandRightImplant
+
+# Attachment
+
+- type: surgeryTutorial
+  id: SurgeryTutorialCyberneticAttachLeftArm
+  name: Attach Left Arm
+  finishers:
+    - SurgeryTutorialFinisherCyberneticBasic
+  conditions:
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: ArmLeft
+  steps:
+    - *unscrewPlating
+    - *weldLeakPlating
+    - *pryPlatingOpen
+    - &loosenBolts
+      step: SurgeryLoosenBolts
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          statuses:
+            - LimbStatusEffectSurgicalBoltsLoosened
+    - &weldLeakBolts
+      step: SurgeryWeldLeaks
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          statuses:
+            - LimbStatusEffectSurgicalBoltsLoosened
+        - !type:SurgeryConditionOr
+          conditions:
+            - *noLeaks
+            - !type:SurgeryLimbHasStatus
+              statuses:
+                - LimbStatusEffectSurgicalJointsWelded
+    - &weldJoints
+      step: SurgeryWeldJoints
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          statuses:
+            - LimbStatusEffectSurgicalJointsWelded
+    - step: SurgeryAttachLeftArmCyber
+      conditionComplete:
+        - !type:SurgeryHasOrgan
+          category: ArmLeft
+
+- type: surgeryTutorial
+  id: SurgeryTutorialCyberneticAttachRightArm
+  name: Attach Right Arm
+  finishers:
+    - SurgeryTutorialFinisherCyberneticBasic
+  conditions:
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: ArmRight
+  steps:
+    - *unscrewPlating
+    - *weldLeakPlating
+    - *pryPlatingOpen
+    - *loosenBolts
+    - *weldLeakBolts
+    - *weldJoints
+    - step: SurgeryAttachRightArmCyber
+      conditionComplete:
+        - !type:SurgeryHasOrgan
+          category: ArmRight
+
+- type: surgeryTutorial
+  id: SurgeryTutorialCyberneticAttachLeftHand
+  name: Attach Left Hand
+  finishers:
+    - SurgeryTutorialFinisherCyberneticBasic
+  conditions:
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: HandLeft
+  steps:
+    - *unscrewPlating
+    - *weldLeakPlating
+    - *pryPlatingOpen
+    - *loosenBolts
+    - *weldLeakBolts
+    - *weldJoints
+    - step: SurgeryAttachLeftHandCyber
+      conditionComplete:
+        - !type:SurgeryHasOrgan
+          category: HandLeft
+
+- type: surgeryTutorial
+  id: SurgeryTutorialCyberneticAttachRightHand
+  name: Attach Right Hand
+  finishers:
+    - SurgeryTutorialFinisherCyberneticBasic
+  conditions:
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: HandRight
+  steps:
+    - *unscrewPlating
+    - *weldLeakPlating
+    - *pryPlatingOpen
+    - *loosenBolts
+    - *weldLeakBolts
+    - *weldJoints
+    - step: SurgeryAttachRightHandCyber
+      conditionComplete:
+        - !type:SurgeryHasOrgan
+          category: HandRight
+
+- type: surgeryTutorial
+  id: SurgeryTutorialCyberneticAttachLeftLeg
+  name: Attach Left Leg
+  finishers:
+    - SurgeryTutorialFinisherCyberneticBasic
+  conditions:
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: LegLeft
+  steps:
+    - *unscrewPlating
+    - *weldLeakPlating
+    - *pryPlatingOpen
+    - *loosenBolts
+    - *weldLeakBolts
+    - *weldJoints
+    - step: SurgeryAttachLeftLegCyber
+      conditionComplete:
+        - !type:SurgeryHasOrgan
+          category: LegLeft
+
+- type: surgeryTutorial
+  id: SurgeryTutorialCyberneticAttachRightLeg
+  name: Attach Right Leg
+  finishers:
+    - SurgeryTutorialFinisherCyberneticBasic
+  conditions:
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: LegRight
+  steps:
+    - *unscrewPlating
+    - *weldLeakPlating
+    - *pryPlatingOpen
+    - *loosenBolts
+    - *weldLeakBolts
+    - *weldJoints
+    - step: SurgeryAttachRightLegCyber
+      conditionComplete:
+        - !type:SurgeryHasOrgan
+          category: LegRight
+
+- type: surgeryTutorial
+  id: SurgeryTutorialCyberneticAttachLeftFoot
+  name: Attach Left Foot
+  finishers:
+    - SurgeryTutorialFinisherCyberneticBasic
+  conditions:
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: FootLeft
+  steps:
+    - *unscrewPlating
+    - *weldLeakPlating
+    - *pryPlatingOpen
+    - *loosenBolts
+    - *weldLeakBolts
+    - *weldJoints
+    - step: SurgeryAttachLeftFootCyber
+      conditionComplete:
+        - !type:SurgeryHasOrgan
+          category: FootLeft
+
+- type: surgeryTutorial
+  id: SurgeryTutorialCyberneticAttachRightFoot
+  name: Attach Right Foot
+  finishers:
+    - SurgeryTutorialFinisherCyberneticBasic
+  conditions:
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: FootRight
+  steps:
+    - *unscrewPlating
+    - *weldLeakPlating
+    - *pryPlatingOpen
+    - *loosenBolts
+    - *weldLeakBolts
+    - *weldJoints
+    - step: SurgeryAttachRightFootCyber
+      conditionComplete:
+        - !type:SurgeryHasOrgan
+          category: FootRight
+
+- type: surgeryTutorial
+  id: SurgeryTutorialCyberneticAttachHead
+  name: Attach Head
+  finishers:
+    - SurgeryTutorialFinisherCyberneticBasic
+  conditions:
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: Head
+  steps:
+    - *unscrewPlating
+    - *weldLeakPlating
+    - *pryPlatingOpen
+    - *loosenBolts
+    - *weldLeakBolts
+    - *weldJoints
+    - step: SurgeryAttachHeadCyber
+      conditionComplete:
+        - !type:SurgeryHasOrgan
+          category: Head
+
+# region Head Organs
+
+# Tongue
+
+- type: surgeryTutorial
+  id: SurgeryTutorialCyberneticRemoveVocalizer
+  name: Remove Vocalizer
+  finishers:
+    - SurgeryTutorialFinisherCyberneticVocalizer
+  conditions:
+    - !type:SurgeryHasOrgan
+      category: Tongue
+  steps:
+    - *unscrewPlating
+    - *weldLeakPlating
+    - *pryPlatingOpen
+    - &cutVocalizerWires
+      step: SurgeryCutVocalizerWires
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          statuses:
+            - LimbStatusEffectSurgicalVocalizerWiresCut
+    - step: SurgeryRemoveVocalizer
+      conditionComplete:
+        - !type:SurgeryHasOrgan
+          inverse: true
+          category: Tongue
+
+- type: surgeryTutorial
+  id: SurgeryTutorialCyberneticImplantVocalizer
+  name: Install Vocalizer
+  finishers:
+    - SurgeryTutorialFinisherCyberneticVocalizer
+  conditions:
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: Tongue
+  steps:
+    - *unscrewPlating
+    - *weldLeakPlating
+    - *pryPlatingOpen
+    - *cutVocalizerWires
+    - step: SurgeryImplantVocalizer
+      conditionComplete:
+        - !type:SurgeryHasOrgan
+          category: Tongue
+
+# Eyes
+
+- type: surgeryTutorial
+  id: SurgeryTutorialCyberneticRemoveOptics
+  name: Remove Optics
+  finishers:
+    - SurgeryTutorialFinisherCyberneticOptics
+  conditions:
+    - !type:SurgeryHasOrgan
+      category: Eyes
+  steps:
+    - *unscrewPlating
+    - *weldLeakPlating
+    - *pryPlatingOpen
+    - &powerDownOptics
+      step: SurgeryPowerDownOptics
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          statuses:
+            - LimbStatusEffectSurgicalOpticsPoweredDown
+    - step: SurgeryRemoveOptics
+      conditionComplete:
+        - !type:SurgeryHasOrgan
+          inverse: true
+          category: Eyes
+
+- type: surgeryTutorial
+  id: SurgeryTutorialCyberneticImplantOptics
+  name: Install Optics
+  finishers:
+    - SurgeryTutorialFinisherCyberneticOptics
+  conditions:
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: Eyes
+  steps:
+    - *unscrewPlating
+    - *weldLeakPlating
+    - *pryPlatingOpen
+    - *powerDownOptics
+    - step: SurgeryImplantOptics
+      conditionComplete:
+        - !type:SurgeryHasOrgan
+          category: Eyes
+
+- type: surgeryTutorial
+  id: SurgeryTutorialCyberneticRemoveEyeImplant
+  name: Remove Eye Implant
+  finishers:
+    - SurgeryTutorialFinisherCyberneticOptics
+  conditions:
+    - !type:SurgeryHasOrgan
+      category: EyeImplant
+  steps:
+    - *unscrewPlating
+    - *weldLeakPlating
+    - *pryPlatingOpen
+    - *powerDownOptics
+    - step: SurgeryRemoveEyeImplantCyber
+      conditionComplete:
+        - !type:SurgeryHasOrgan
+          inverse: true
+          category: EyeImplant
+
+- type: surgeryTutorial
+  id: SurgeryTutorialCyberneticImplantEyeImplant
+  name: Implant Eye Implant
+  finishers:
+    - SurgeryTutorialFinisherCyberneticOptics
+  conditions:
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: EyeImplant
+  steps:
+    - *unscrewPlating
+    - *weldLeakPlating
+    - *pryPlatingOpen
+    - *powerDownOptics
+    - step: SurgeryImplantEyeImplantCyber
+      conditionComplete:
+        - !type:SurgeryHasOrgan
+          category: EyeImplant
+
+# region Torso Organs
+
+# Heart
+
+- type: surgeryTutorial
+  id: SurgeryTutorialCyberneticRemovePump
+  name: Remove Pump
+  finishers:
+    - SurgeryTutorialFinisherCyberneticPump
+  conditions:
+    - !type:SurgeryHasOrgan
+      category: Heart
+  steps:
+    - *unscrewPlating
+    - *weldLeakPlating
+    - *pryPlatingOpen
+    - &disconnectHydraulics
+      step: SurgeryDisconnectHydraulics
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          statuses:
+            - LimbStatusEffectSurgicalHydraulicsCut
+    - &weldLeakHydraulics
+      step: SurgeryWeldLeaks
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          statuses:
+            - LimbStatusEffectSurgicalHydraulicsCut
+        - !type:SurgeryConditionOr
+          conditions:
+            - *noLeaks
+            - !type:SurgeryLimbHasStatus
+              statuses:
+                - LimbStatusEffectSurgicalPumpPoweredDown
+    - &powerDownPump
+      step: SurgeryPowerDownPump
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          statuses:
+            - LimbStatusEffectSurgicalPumpPoweredDown
+    - step: SurgeryRemovePump
+      conditionComplete:
+        - !type:SurgeryHasOrgan
+          inverse: true
+          category: Heart
+
+- type: surgeryTutorial
+  id: SurgeryTutorialCyberneticImplantPump
+  name: Install Pump
+  finishers:
+    - SurgeryTutorialFinisherCyberneticPump
+  conditions:
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: Heart
+  steps:
+    - *unscrewPlating
+    - *weldLeakPlating
+    - *pryPlatingOpen
+    - *disconnectHydraulics
+    - *weldLeakHydraulics
+    - *powerDownPump
+    - step: SurgeryImplantPump
+      conditionComplete:
+        - !type:SurgeryHasOrgan
+          category: Heart

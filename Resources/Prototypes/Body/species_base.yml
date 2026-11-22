@@ -139,8 +139,6 @@
         type: StrippableBoundUserInterface
       enum.StoreUiKey.Key:
         type: StoreBoundUserInterface
-      enum.SurgeryUIKey.Key:
-        type: SurgeryBui
       enum.VampireMutationUiKey.Key:
         type: VampireMutationBoundUserInterface
       enum.ThavenMoodsUiKey.Key: # impstation edit
@@ -148,6 +146,8 @@
         requireInputValidation: false
       enum.BackgroundTraitsUiKey.Key: #Far Horizons
         type: BackgroundTraitsBoundUserInterface
+      enum.SurgeryOptionUiKey.Key: # Far Horizons
+        type: SurgeryOptionRadial
   - type: Puller
   - type: Speech
     speechSounds: Alto
@@ -192,6 +192,7 @@
   - MobAtmosStandard
   - MobFlammable
   - BaseSpeciesMob
+  - BaseSurgeryTargetOrganic # Far Horizons
   id: BaseSpeciesMobOrganic
   save: false
   components:
@@ -272,4 +273,5 @@
     footprint: Human
     stepSpacing: 0.2
     lateralOffset: 0.15
+  - type: LimbStatusEffectManager
   # Far Horizons end

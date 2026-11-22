@@ -4,10 +4,10 @@ using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 namespace Content.Shared.Starlight.Medical.Surgery.Steps.Parts;
 
-[RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))] public sealed partial class EyeImplantComponent : Component;
-[RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))] public sealed partial class HandImplantComponent : Component;
-[RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))] public sealed partial class BrainImplantComponent : Component;
-[RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))] public sealed partial class OrganHeartComponent : Component;
+[RegisterComponent, NetworkedComponent] public sealed partial class EyeImplantComponent : Component;
+[RegisterComponent, NetworkedComponent] public sealed partial class HandImplantComponent : Component;
+[RegisterComponent, NetworkedComponent] public sealed partial class BrainImplantComponent : Component;
+[RegisterComponent, NetworkedComponent] public sealed partial class OrganHeartComponent : Component;
 [RegisterComponent, NetworkedComponent]
 public sealed partial class OrganTongueComponent : Component
 {
@@ -15,7 +15,7 @@ public sealed partial class OrganTongueComponent : Component
     public bool IsMuted;
 }
 
-[RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))]
+[RegisterComponent, NetworkedComponent]
 public sealed partial class FunctionalOrganComponent : Component
 {
     [DataField]

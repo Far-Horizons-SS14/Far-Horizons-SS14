@@ -1,0 +1,403 @@
+# region Organic
+
+- type: limbStatusEffect
+  id: LimbStatusEffectSurgicalIncision
+  name: limb-status-incision
+  detectable: true
+  visible: true
+  inspectText: limb-status-incision-inspect
+
+- type: limbStatusEffect
+  id: LimbStatusEffectSurgicalIncisionHeldOpen
+  name: limb-status-incision-open
+  detectable: true
+  visible: true
+  inspectText: limb-status-incision-open-inspect
+  hides:
+    - LimbStatusEffectSurgicalIncision
+  effects:
+    - !type:LimbStatusEffectDamageOnMove
+      damage:
+        types:
+          Blunt: 1
+
+- type: limbStatusEffect
+  id: LimbStatusEffectSurgicalVesselsDetached
+  name: limb-status-vessels-detached
+  detectable: true
+  visible: false
+  effects:
+    - !type:LimbStatusEffectMinDamageCap
+      minDamageCap:
+        types:
+          Slash: 10
+
+- type: limbStatusEffect
+  id: LimbStatusEffectSurgicalMuscleDetached
+  name: limb-status-muscle-detached
+  detectable: true
+  visible: true
+  inspectText: limb-status-muscle-detached-inspect
+  effects:
+    - !type:LimbStatusEffectDisableLimb # Says limb, but only disables hands right now
+
+- type: limbStatusEffect
+  id: LimbStatusEffectSurgicalDislocatedBone
+  name: limb-status-dislocated-bone
+  detectable: true
+  visible: false
+  effects:
+    - !type:LimbStatusEffectMinDamageCap
+      minDamageCap:
+        types:
+          Blunt: 10
+
+- type: limbStatusEffect
+  id: LimbStatusEffectSurgicalBoneGelApplied
+  detectable: false
+  visible: false
+
+- type: limbStatusEffect
+  id: LimbStatusEffectSurgicalAbdomenAccessed
+  name: limb-status-abdomen-accessed
+  detectable: true
+  visible: true
+  inspectText: limb-status-abdomen-accessed-inspect
+  hides:
+    - LimbStatusEffectSurgicalIncisionHeldOpen
+  effects:
+    - !type:LimbStatusEffectDamageOnMove
+      damage:
+        types:
+          Slash: 1
+
+- type: limbStatusEffect
+  id: LimbStatusEffectSurgicalHepaticArteryClamped
+  name: limb-status-hepatic-artery-clamped
+  detectable: true
+  visible: false
+  effects: [] # When liver does something, this could have some effect related to that
+
+- type: limbStatusEffect
+  id: LimbStatusEffectSurgicalKidneysAccessed
+  name: limb-status-kidneys-accessed
+  detectable: true
+  visible: false
+  effects:
+    - !type:LimbStatusEffectDamageOnMove
+      damage:
+        types:
+          Blunt: 1
+
+- type: limbStatusEffect
+  id: LimbStatusEffectSurgicalRibcageOpen
+  name: limb-status-ribcage-open
+  detectable: true
+  visible: true
+  inspectText: limb-status-ribcage-open-inspect
+  hides:
+    - LimbStatusEffectSurgicalIncisionHeldOpen
+  effects:
+    - !type:LimbStatusEffectMinDamageCap
+      minDamageCap:
+        types:
+          Blunt: 10
+
+- type: limbStatusEffect
+  id: LimbStatusEffectSurgicalAortaClamped
+  name: limb-status-aorta-clamped
+  detectable: true
+  visible: false
+  effects:
+    - !type:LimbStatusEffectMinDamageCap
+      minDamageCap:
+        types:
+          Bloodloss: 30
+
+- type: limbStatusEffect
+  id: LimbStatusEffectSurgicalLungsAccessed
+  name: limb-status-lungs-accessed
+  detectable: true
+  visible: false
+  effects:
+    - !type:LimbStatusEffectMinDamageCap
+      minDamageCap:
+        types:
+          Asphyxiation: 20
+
+- type: limbStatusEffect
+  id: LimbStatusEffectSurgicalEsophagusCut
+  name: limb-status-esophagus-cut
+  detectable: true
+  visible: false
+  # effects: [] # No clue what effect it would have
+
+- type: limbStatusEffect
+  id: LimbStatusEffectSurgicalClampedLingualArtery
+  name: limb-status-lingual-artery-clamped
+  detectable: true
+  visible: false
+  effects:
+    - !type:LimbStatusEffectMute
+
+- type: limbStatusEffect
+  id: LimbStatusEffectSurgicalCutOpticNerve
+  name: limb-status-optic-nerve-cut
+  detectable: true
+  visible: true
+  inspectText: limb-status-optic-nerve-cut-inspect
+  effects:
+    - !type:LimbStatusEffectBlind
+
+- type: limbStatusEffect
+  id: LimbStatusEffectSurgicalSkullDrilled
+  name: limb-status-skull-drilled
+  detectable: true
+  visible: false
+  effects:
+    - !type:LimbStatusEffectMinDamageCap
+      minDamageCap:
+        types:
+          Blunt: 10
+
+- type: limbStatusEffect
+  id: LimbStatusEffectSurgicalSkullOpen
+  name: limb-status-skull-open
+  detectable: true
+  visible: true
+  inspectText: limb-status-skull-open-inspect
+  hides:
+    - LimbStatusEffectSurgicalIncisionHeldOpen
+  effects:
+    - !type:LimbStatusEffectMinDamageCap
+      minDamageCap:
+        types:
+          Blunt: 20
+
+- type: limbStatusEffect
+  id: LimbStatusEffectSurgicalDeepIncision
+  name: limb-status-deep-incision
+  detectable: true
+  visible: true
+  inspectText: limb-status-deep-incision-inspect
+  hides:
+    - LimbStatusEffectSurgicalIncision
+  effects:
+    - !type:LimbStatusEffectDamageOnMove
+      damage:
+        types:
+          Slash: 2
+
+- type: limbStatusEffect
+  id: LimbStatusEffectSurgicalFacialBonesCut
+  name: limb-status-facial-bones-cut
+  detectable: true
+  visible: false
+  effects:
+    - !type:LimbStatusEffectMinDamageCap
+      minDamageCap:
+        types:
+          Blunt: 5
+
+- type: limbStatusEffect
+  id: LimbStatusEffectSurgicalFacialBonesRepositioned
+  name: limb-status-facial-bones-repositioned
+  detectable: true
+  visible: true
+  inspectText: limb-status-facial-bones-repositioned-inspect
+  hides:
+    - LimbStatusEffectSurgicalFacialBonesCut
+  effects:
+    - !type:LimbStatusEffectMinDamageCap
+      minDamageCap:
+        types:
+          Blunt: 5
+
+- type: limbStatusEffect
+  id: LimbStatusEffectSurgicalSlimeCoreAccessed
+  name: limb-status-slime-core-accessed
+  detectable: true
+  visible: true
+  inspectText: limb-status-slime-core-accessed-inspect
+  effects:
+    - !type:LimbStatusEffectDamageOnMove
+      damage:
+        types:
+          Slash: 2
+
+- type: limbStatusEffect
+  id: LimbStatusEffectSurgicalSlimeFaceStructureAltered
+  name: limb-status-slime-face-stucture-altered
+  detectable: true
+  visible: true
+  inspectText: limb-status-slime-face-stucture-altered-inspect
+  effects:
+    - !type:LimbStatusEffectMinDamageCap
+      minDamageCap:
+        types:
+          Blunt: 5
+
+- type: limbStatusEffect
+  id: LimbStatusEffectSurgicalShadekinCoreAccessed
+  name: limb-status-shadekin-core-accessed
+  detectable: true
+  visible: false
+  effects:
+    - !type:LimbStatusEffectDamageOnMove
+      damage:
+        types:
+          Slash: 2
+
+- type: limbStatusEffect
+  id: LimbStatusEffectSurgicalDionaCoreAccessed
+  name: limb-status-diona-core-accessed
+  detectable: true
+  visible: true
+  inspectText: limb-status-diona-core-accessed-inspect
+  effects:
+    - !type:LimbStatusEffectDamageOnMove
+      damage:
+        types:
+          Slash: 2
+
+# region Necrosis
+
+- type: limbStatusEffect
+  id: LimbStatusEffectNecrosisLimb
+  name: limb-status-necrosis-limb
+  defaultDuration: 3m
+  detectable: true
+  visible: false
+
+- type: limbStatusEffect
+  id: LimbStatusEffectNecrosisLiver
+  name: limb-status-necrosis-liver
+  defaultDuration: 3m
+  detectable: true
+  visible: false
+
+- type: limbStatusEffect
+  id: LimbStatusEffectNecrosisStomach
+  name: limb-status-necrosis-stomach
+  defaultDuration: 3m
+  detectable: true
+  visible: false
+
+- type: limbStatusEffect
+  id: LimbStatusEffectNecrosisKidneys
+  name: limb-status-necrosis-kidneys
+  defaultDuration: 3m
+  detectable: true
+  visible: false
+
+- type: limbStatusEffect
+  id: LimbStatusEffectNecrosisEyes
+  name: limb-status-necrosis-eyes
+  defaultDuration: 3m
+  detectable: true
+  visible: false
+
+- type: limbStatusEffect
+  id: LimbStatusEffectNecrosisTongue
+  name: limb-status-necrosis-tongue
+  defaultDuration: 3m
+  detectable: true
+  visible: false
+
+# region Inorganic
+
+- type: limbStatusEffect
+  id: LimbStatusEffectPlatingUnscrewed
+  name: limb-status-plating-unscrewed
+  detectable: true
+  visible: true
+  inspectText: limb-status-plating-unscrewed-inspect
+
+- type: limbStatusEffect
+  id: LimbStatusEffectSurgicalPlatingPried
+  name: limb-status-plating-pried
+  detectable: true
+  visible: true
+  inspectText: limb-status-plating-pried-inspect
+  hides:
+    - LimbStatusEffectPlatingUnscrewed
+  effects:
+    - !type:LimbStatusEffectDamageOnMove
+      damage:
+        types:
+          Blunt: 0.5
+
+- type: limbStatusEffect
+  id: LimbStatusEffectSurgicalHydraulicsCut
+  name: limb-status-hydraulics-cut
+  detectable: true
+  visible: false
+  effects:
+    - !type:LimbStatusEffectMinDamageCap
+      minDamageCap:
+        types:
+          Slash: 10
+
+- type: limbStatusEffect
+  id: LimbStatusEffectSurgicalPumpPoweredDown
+  name: limb-status-pump-powered-down
+  detectable: true
+  visible: false
+  effects:
+    - !type:LimbStatusEffectMinDamageCap
+      minDamageCap:
+        types:
+          Heat: 30
+
+- type: limbStatusEffect
+  id: LimbStatusEffectSurgicalBoltsLoosened
+  name: limb-status-bolts-loosened
+  detectable: true
+  visible: false
+  effects:
+    - !type:LimbStatusEffectDamageOnMove
+      damage:
+        types:
+          Blunt: 2
+
+- type: limbStatusEffect
+  id: LimbStatusEffectSurgicalJointsWelded
+  detectable: false
+  visible: false
+
+- type: limbStatusEffect
+  id: LimbStatusEffectSurgicalStructureUnscrewed
+  name: limb-status-structure-unscrewed
+  detectable: true
+  visible: false
+  effects:
+    - !type:LimbStatusEffectDamageOnMove
+      damage:
+        types:
+          Blunt: 2
+
+- type: limbStatusEffect
+  id: LimbStatusEffectSurgicalLimbPoweredDown
+  name: limb-status-limb-powered-down
+  detectable: true
+  visible: true
+  inspectText: limb-status-limb-powered-down-inspect
+  effects:
+    - !type:LimbStatusEffectDisableLimb # Says limb, but only disables hands right now
+
+- type: limbStatusEffect
+  id: LimbStatusEffectSurgicalOpticsPoweredDown
+  name: limb-status-optics-powered-down
+  detectable: true
+  visible: true
+  inspectText: limb-status-optics-powered-down-inspect
+  effects:
+    - !type:LimbStatusEffectBlind
+
+- type: limbStatusEffect
+  id: LimbStatusEffectSurgicalVocalizerWiresCut
+  name: limb-status-vocalizer-wires-cut
+  detectable: true
+  visible: false
+  effects:
+    - !type:LimbStatusEffectMute

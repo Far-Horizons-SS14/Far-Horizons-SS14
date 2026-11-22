@@ -20,6 +20,6 @@ public sealed partial class OrganComponent : Component
     /// <summary>
     /// What kind of organ is this, if any
     /// </summary>
-    [DataField]
+    [DataField, AutoNetworkedField] // Far Horizons - made networked
     public ProtoId<OrganCategoryPrototype>? Category;
 }

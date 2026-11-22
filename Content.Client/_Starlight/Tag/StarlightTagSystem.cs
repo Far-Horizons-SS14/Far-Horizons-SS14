@@ -8,7 +8,6 @@ using Content.Shared._Starlight.OnCollide;
 using Content.Shared._Starlight.Tag;
 using Content.Shared.Inventory;
 using Content.Shared.Silicons.StationAi;
-using Content.Shared.Starlight.Medical.Surgery;
 using Content.Shared.Tag;
 using Content.Shared.Whitelist;
 using Robust.Client.GameObjects;

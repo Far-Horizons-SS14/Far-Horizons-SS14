@@ -1,3 +1,4 @@
+using Content.Shared._FarHorizons.Medical.Trauma;
 using Content.Shared.Hands.EntitySystems;
 
 namespace Content.Shared.Body;
@@ -16,6 +17,11 @@ public sealed partial class HandOrganSystem : EntitySystem
 
     private void OnGotInserted(Entity<HandOrganComponent> ent, ref OrganGotInsertedEvent args)
     {
+        // Far Horizons start
+        if (HasComp<SurgeryLimbStatusLimbDisabledComponent>(ent))
+            return;
+        // Far Horizons end
+        
         _hands.AddHand(args.Target, ent.Comp.HandID, ent.Comp.Data);
     }
 

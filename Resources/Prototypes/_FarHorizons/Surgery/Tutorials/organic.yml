@@ -1,0 +1,1584 @@
+# region Healing
+
+- type: surgeryTutorial
+  id: SurgeryTutorialTendBruteWound
+  name: Tend Brute Wounds
+  finishers:
+    - SurgeryTutorialFinisherTendWounds
+  conditions:
+    - !type:SurgeryLimbHasDamage
+      types:
+        - Blunt
+        - Piercing
+        - Slash
+  steps:
+    - &makeIncision
+      step: SurgeryMakeIncision
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          statuses:
+            - LimbStatusEffectSurgicalIncision
+    - &clampAfterIncisionBeforeDeepIncision
+      step: SurgeryClampBleeding
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          statuses:
+            - LimbStatusEffectSurgicalIncision
+        - !type:SurgeryConditionOr
+          conditions:
+          - &noBleeding
+            !type:SurgeryLimbHasStatus
+            inverse: true
+            statuses:
+              - LimbStatusEffectBleedI
+              - LimbStatusEffectBleedII
+              - LimbStatusEffectBleedIII
+          - !type:SurgeryLimbHasStatus
+            statuses:
+              - LimbStatusEffectSurgicalDeepIncision
+    - &deepIncision
+      step: SurgeryDeepenIncision
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          statuses:
+            - LimbStatusEffectSurgicalDeepIncision
+    - step: SurgeryTendBrute
+      conditionComplete:
+        - !type:SurgeryLimbHasDamage
+          inverse: true
+          types:
+            - Blunt
+            - Piercing
+            - Slash
+
+- type: surgeryTutorial
+  id: SurgeryTutorialTendBurnWound
+  name: Tend Burn Wounds
+  finishers:
+    - SurgeryTutorialFinisherTendWounds
+  conditions:
+    - !type:SurgeryLimbHasDamage
+      types:
+        - Heat
+        - Cold
+        - Caustic
+  steps:
+    - *makeIncision
+    - *clampAfterIncisionBeforeDeepIncision
+    - *deepIncision
+    - step: SurgeryTendBurn
+      conditionComplete:
+        - !type:SurgeryLimbHasDamage
+          inverse: true
+          types:
+            - Heat
+            - Cold
+            - Caustic
+
+# region Limbs
+
+# Amputation
+
+- type: surgeryTutorial
+  id: SurgeryTutorialAmputateLimb
+  name: Limb Amputation
+  steps:
+    - *makeIncision
+    - &clampAfterIncisionBeforeIncisionOpen
+      step: SurgeryClampBleeding
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          statuses:
+            - LimbStatusEffectSurgicalIncision
+        - !type:SurgeryConditionOr
+          conditions:
+          - *noBleeding
+          - !type:SurgeryLimbHasStatus
+            statuses:
+              - LimbStatusEffectSurgicalIncisionHeldOpen
+    - &holdIncisionOpen
+      step: SurgeryHoldIncisionOpen
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          statuses:
+            - LimbStatusEffectSurgicalIncisionHeldOpen
+    - &detachVessels
+      step: SurgeryDetachVessels
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          statuses:
+            - LimbStatusEffectSurgicalVesselsDetached
+    - &clampAfterDetachVessels
+      step: SurgeryClampBleeding
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          statuses:
+            - LimbStatusEffectSurgicalVesselsDetached
+        - !type:SurgeryConditionOr
+          conditions:
+          - *noBleeding
+          - !type:SurgeryLimbHasStatus
+            statuses:
+              - LimbStatusEffectSurgicalMuscleDetached
+    - &detachMuscle
+      step: SurgeryDetachMuscles
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          statuses:
+            - LimbStatusEffectSurgicalMuscleDetached
+    - step: SurgeryAmputateLimb
+      conditionComplete:
+        - !type:ConditionNever
+
+# Hand Implants
+
+- type: surgeryTutorial
+  id: SurgeryTutorialImplantLeftHandImplant
+  name: Implant Left Hand Implant
+  finishers:
+    - SurgeryTutorialFinisherHandImplant
+  conditions:
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: HandLeftImplant
+  steps:
+    - *makeIncision
+    - *clampAfterIncisionBeforeIncisionOpen
+    - *holdIncisionOpen
+    - *detachVessels
+    - *clampAfterDetachVessels
+    - *detachMuscle
+    - step: SurgeryImplantLeftHandImplant
+      conditionComplete:
+        - !type:SurgeryHasOrgan
+          category: HandLeftImplant
+
+- type: surgeryTutorial
+  id: SurgeryTutorialImplantRightHandImplant
+  name: Implant Right Hand Implant
+  finishers:
+    - SurgeryTutorialFinisherHandImplant
+  conditions:
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: HandRightImplant
+  steps:
+    - *makeIncision
+    - *clampAfterIncisionBeforeIncisionOpen
+    - *holdIncisionOpen
+    - *detachVessels
+    - *clampAfterDetachVessels
+    - *detachMuscle
+    - step: SurgeryImplantRightHandImplant
+      conditionComplete:
+        - !type:SurgeryHasOrgan
+          category: HandRightImplant
+
+- type: surgeryTutorial
+  id: SurgeryTutorialRemoveLeftHandImplant
+  name: Remove Left Hand Implant
+  finishers:
+    - SurgeryTutorialFinisherHandImplant
+  conditions:
+    - !type:SurgeryHasOrgan
+      category: HandLeftImplant
+  steps:
+    - *makeIncision
+    - *clampAfterIncisionBeforeIncisionOpen
+    - *holdIncisionOpen
+    - *detachVessels
+    - *clampAfterDetachVessels
+    - *detachMuscle
+    - step: SurgeryRemoveLeftHandImplant
+      conditionComplete:
+        - !type:SurgeryHasOrgan
+          inverse: true
+          category: HandLeftImplant
+
+- type: surgeryTutorial
+  id: SurgeryTutorialRemoveRightHandImplant
+  name: Remove Right Hand Implant
+  finishers:
+    - SurgeryTutorialFinisherHandImplant
+  conditions:
+    - !type:SurgeryHasOrgan
+      category: HandRightImplant
+  steps:
+    - *makeIncision
+    - *clampAfterIncisionBeforeIncisionOpen
+    - *holdIncisionOpen
+    - *detachVessels
+    - *clampAfterDetachVessels
+    - *detachMuscle
+    - step: SurgeryRemoveRightHandImplant
+      conditionComplete:
+        - !type:SurgeryHasOrgan
+          inverse: true
+          category: HandRightImplant
+
+# Attachment
+
+- type: surgeryTutorial
+  id: SurgeryTutorialAttachLeftArm
+  name: Attach Left Arm
+  finishers:
+    - SurgeryTutorialFinisherBasic
+  conditions:
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: ArmLeft
+  steps:
+    - *makeIncision
+    - *clampAfterIncisionBeforeIncisionOpen
+    - *holdIncisionOpen
+    - &dislocate
+      step: SurgeryDislocateBones
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          statuses:
+            - LimbStatusEffectSurgicalDislocatedBone
+    - &clapAfterDislocate
+      step: SurgeryClampBleeding
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          statuses:
+            - LimbStatusEffectSurgicalDislocatedBone
+        - *noBleeding
+    - &boneGel
+      step: SurgeryApplyBoneGel
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          statuses:
+            - LimbStatusEffectSurgicalBoneGelApplied
+    - step: SurgeryAttachLeftArm
+      conditionComplete:
+        - !type:SurgeryHasOrgan
+          category: ArmLeft
+
+- type: surgeryTutorial
+  id: SurgeryTutorialAttachRightArm
+  name: Attach Right Arm
+  finishers:
+    - SurgeryTutorialFinisherBasic
+  conditions:
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: ArmRight
+  steps:
+    - *makeIncision
+    - *clampAfterIncisionBeforeIncisionOpen
+    - *holdIncisionOpen
+    - *dislocate
+    - *clapAfterDislocate
+    - *boneGel
+    - step: SurgeryAttachRightArm
+      conditionComplete:
+        - !type:SurgeryHasOrgan
+          category: ArmRight
+
+- type: surgeryTutorial
+  id: SurgeryTutorialAttachLeftHand
+  name: Attach Left Hand
+  finishers:
+    - SurgeryTutorialFinisherBasic
+  conditions:
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: HandLeft
+  steps:
+    - *makeIncision
+    - *clampAfterIncisionBeforeIncisionOpen
+    - *holdIncisionOpen
+    - *dislocate
+    - *clapAfterDislocate
+    - *boneGel
+    - step: SurgeryAttachLeftHand
+      conditionComplete:
+        - !type:SurgeryHasOrgan
+          category: HandLeft
+
+- type: surgeryTutorial
+  id: SurgeryTutorialAttachRightHand
+  name: Attach Right Hand
+  finishers:
+    - SurgeryTutorialFinisherBasic
+  conditions:
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: HandRight
+  steps:
+    - *makeIncision
+    - *clampAfterIncisionBeforeIncisionOpen
+    - *holdIncisionOpen
+    - *dislocate
+    - *clapAfterDislocate
+    - *boneGel
+    - step: SurgeryAttachRightHand
+      conditionComplete:
+        - !type:SurgeryHasOrgan
+          category: HandRight
+
+- type: surgeryTutorial
+  id: SurgeryTutorialAttachLeftLeg
+  name: Attach Left Leg
+  finishers:
+    - SurgeryTutorialFinisherBasic
+  conditions:
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: LegLeft
+  steps:
+    - *makeIncision
+    - *clampAfterIncisionBeforeIncisionOpen
+    - *holdIncisionOpen
+    - *dislocate
+    - *clapAfterDislocate
+    - *boneGel
+    - step: SurgeryAttachLeftLeg
+      conditionComplete:
+        - !type:SurgeryHasOrgan
+          category: LegLeft
+
+- type: surgeryTutorial
+  id: SurgeryTutorialAttachRightLeg
+  name: Attach Right Leg
+  finishers:
+    - SurgeryTutorialFinisherBasic
+  conditions:
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: LegRight
+  steps:
+    - *makeIncision
+    - *clampAfterIncisionBeforeIncisionOpen
+    - *holdIncisionOpen
+    - *dislocate
+    - *clapAfterDislocate
+    - *boneGel
+    - step: SurgeryAttachRightLeg
+      conditionComplete:
+        - !type:SurgeryHasOrgan
+          category: LegRight
+
+- type: surgeryTutorial
+  id: SurgeryTutorialAttachLeftFoot
+  name: Attach Left Foot
+  finishers:
+    - SurgeryTutorialFinisherBasic
+  conditions:
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: FootLeft
+  steps:
+    - *makeIncision
+    - *clampAfterIncisionBeforeIncisionOpen
+    - *holdIncisionOpen
+    - *dislocate
+    - *clapAfterDislocate
+    - *boneGel
+    - step: SurgeryAttachLeftFoot
+      conditionComplete:
+        - !type:SurgeryHasOrgan
+          category: FootLeft
+
+- type: surgeryTutorial
+  id: SurgeryTutorialAttachRightFoot
+  name: Attach Right Foot
+  finishers:
+    - SurgeryTutorialFinisherBasic
+  conditions:
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: FootRight
+  steps:
+    - *makeIncision
+    - *clampAfterIncisionBeforeIncisionOpen
+    - *holdIncisionOpen
+    - *dislocate
+    - *clapAfterDislocate
+    - *boneGel
+    - step: SurgeryAttachRightFoot
+      conditionComplete:
+        - !type:SurgeryHasOrgan
+          category: FootRight
+
+- type: surgeryTutorial
+  id: SurgeryTutorialAttachHead
+  name: Attach Head
+  finishers:
+    - SurgeryTutorialFinisherBasic
+  conditions:
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: Head
+  steps:
+    - *makeIncision
+    - *clampAfterIncisionBeforeIncisionOpen
+    - *holdIncisionOpen
+    - *dislocate
+    - *clapAfterDislocate
+    - *boneGel
+    - step: SurgeryAttachHead
+      conditionComplete:
+        - !type:SurgeryHasOrgan
+          category: Head
+
+# region Head Organs
+
+# Tongue
+
+- type: surgeryTutorial
+  id: SurgeryTutorialRemoveTongue
+  name: Remove Tongue
+  finishers:
+    - SurgeryTutorialFinisherTongue
+  conditions:
+    - !type:SurgeryHasOrgan
+      category: Tongue
+  steps:
+    - *makeIncision
+    - step: SurgeryClampBleeding
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          statuses:
+            - LimbStatusEffectSurgicalIncision
+        - *noBleeding
+    - &clampLingualArtery
+      step: SurgeryClampLingualArtery
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          statuses:
+            - LimbStatusEffectSurgicalClampedLingualArtery
+    - step: SurgeryRemoveTongue
+      conditionComplete:
+        - !type:SurgeryHasOrgan
+          inverse: true
+          category: Tongue
+
+- type: surgeryTutorial
+  id: SurgeryTutorialImplantTongue
+  name: Implant Tongue
+  finishers:
+    - SurgeryTutorialFinisherTongue
+  conditions:
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: Tongue
+  steps:
+    - *makeIncision
+    - *clampAfterIncisionBeforeIncisionOpen
+    - *clampLingualArtery
+    - step: SurgeryImplantTongue
+      conditionComplete:
+        - !type:SurgeryHasOrgan
+          category: Tongue
+
+# Eyes
+
+- type: surgeryTutorial
+  id: SurgeryTutorialRemoveEyes
+  name: Remove Eyes
+  finishers:
+    - SurgeryTutorialFinisherEyes
+  conditions:
+    - !type:SurgeryHasOrgan
+      category: Eyes
+  steps:
+    - *makeIncision
+    - *clampAfterIncisionBeforeIncisionOpen
+    - *holdIncisionOpen
+    - &cutOpticNerve
+      step: SurgeryCutOpticNerve
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          statuses:
+            - LimbStatusEffectSurgicalCutOpticNerve
+    - step: SurgeryClampBleeding
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          statuses:
+            - LimbStatusEffectSurgicalCutOpticNerve
+        - !type:SurgeryConditionOr
+          conditions:
+          - *noBleeding
+          - !type:SurgeryHasOrgan
+            inverse: true
+            category: Eyes
+    - step: SurgeryRemoveEyes
+      conditionComplete:
+        - !type:SurgeryHasOrgan
+          inverse: true
+          category: Eyes
+
+- type: surgeryTutorial
+  id: SurgeryTutorialImplantEyes
+  name: Implant Eyes
+  finishers:
+    - SurgeryTutorialFinisherEyes
+  conditions:
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: Eyes
+  steps:
+    - *makeIncision
+    - *clampAfterIncisionBeforeIncisionOpen
+    - *holdIncisionOpen
+    - *cutOpticNerve
+    - &clampAfterOpticNerve
+      step: SurgeryClampBleeding
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          statuses:
+            - LimbStatusEffectSurgicalCutOpticNerve
+        - *noBleeding
+    - step: SurgeryImplantEyes
+      conditionComplete:
+        - !type:SurgeryHasOrgan
+          category: Eyes
+
+- type: surgeryTutorial
+  id: SurgeryTutorialRemoveEyeImplant
+  name: Remove Eye Implant
+  finishers:
+    - SurgeryTutorialFinisherEyes
+  conditions:
+    - !type:SurgeryHasOrgan
+      category: EyeImplant
+  steps:
+    - *makeIncision
+    - *clampAfterIncisionBeforeIncisionOpen
+    - *holdIncisionOpen
+    - *cutOpticNerve
+    - step: SurgeryClampBleeding
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          statuses:
+            - LimbStatusEffectSurgicalCutOpticNerve
+        - !type:SurgeryConditionOr
+          conditions:
+          - *noBleeding
+          - !type:SurgeryHasOrgan
+            inverse: true
+            category: EyeImplant
+    - step: SurgeryRemoveEyeImplant
+      conditionComplete:
+        - !type:SurgeryHasOrgan
+          inverse: true
+          category: EyeImplant
+
+- type: surgeryTutorial
+  id: SurgeryTutorialImplantEyeImplant
+  name: Implant Eye Implant
+  finishers:
+    - SurgeryTutorialFinisherEyes
+  conditions:
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: EyeImplant
+  steps:
+    - *makeIncision
+    - *clampAfterIncisionBeforeIncisionOpen
+    - *holdIncisionOpen
+    - *cutOpticNerve
+    - *clampAfterOpticNerve
+    - step: SurgeryImplantEyeImplant
+      conditionComplete:
+        - !type:SurgeryHasOrgan
+          category: EyeImplant
+
+- type: surgeryTutorial
+  id: SurgeryTutorialTendEyeDamage
+  name: Tend Eye Damage
+  finishers:
+    - SurgeryTutorialFinisherEyes
+  conditions:
+    - !type:SurgeryEyeDamageGt
+      value: 0
+  steps:
+    - *makeIncision
+    - *clampAfterIncisionBeforeIncisionOpen
+    - *holdIncisionOpen
+    - *cutOpticNerve
+    - *clampAfterOpticNerve
+    - step: SurgeryTreatEyeDamage
+      conditionComplete:
+        - !type:SurgeryEyeDamageGt
+          inverse: true
+          value: 0
+
+# Brain
+
+- type: surgeryTutorial
+  id: SurgeryTutorialRemoveBrain
+  name: Remove Brain
+  finishers:
+    - SurgeryTutorialFinisherBrain
+  conditions:
+    - !type:SurgeryHasOrgan
+      category: Brain
+  steps:
+    - *makeIncision
+    - *clampAfterIncisionBeforeIncisionOpen
+    - *holdIncisionOpen
+    - &drillSkull
+      step: SurgeryDrillSkull
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          statuses:
+            - LimbStatusEffectSurgicalSkullDrilled
+    - &clampAfterDrillSkullBeforeSkullOpen
+      step: SurgeryClampBleeding
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          statuses:
+            - LimbStatusEffectSurgicalSkullDrilled
+        - !type:SurgeryConditionOr
+          conditions:
+            - *noBleeding
+            - !type:SurgeryLimbHasStatus
+              statuses:
+                - LimbStatusEffectSurgicalSkullOpen
+    - &openSkull
+      step: SurgeryOpenSkull
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          statuses:
+            - LimbStatusEffectSurgicalSkullOpen
+    - step: SurgeryClampBleeding
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          statuses:
+            - LimbStatusEffectSurgicalSkullDrilled
+        - !type:SurgeryConditionOr
+          conditions:
+            - *noBleeding
+            - !type:SurgeryHasOrgan
+              inverse: true
+              category: Brain
+    - step: SurgeryRemoveBrain
+      conditionComplete:
+        - !type:SurgeryHasOrgan
+          inverse: true
+          category: Brain
+
+- type: surgeryTutorial
+  id: SurgeryTutorialImplantBrain
+  name: Implant Brain
+  finishers:
+    - SurgeryTutorialFinisherBrain
+  conditions:
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: Brain
+  steps:
+    - *makeIncision
+    - *clampAfterIncisionBeforeIncisionOpen
+    - *holdIncisionOpen
+    - *drillSkull
+    - *clampAfterDrillSkullBeforeSkullOpen
+    - *openSkull
+    - step: SurgeryClampBleeding
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          statuses:
+            - LimbStatusEffectSurgicalSkullDrilled
+        - *noBleeding
+    - step: SurgeryImplantBrain
+      conditionComplete:
+        - !type:SurgeryHasOrgan
+          category: Brain
+
+- type: surgeryTutorial
+  id: SurgeryTutorialRemoveBrainImplant
+  name: Remove Brain Implant
+  finishers:
+    - SurgeryTutorialFinisherBrainImplant
+  conditions:
+    - !type:SurgeryHasOrgan
+      category: BrainImplant
+  steps:
+    - *makeIncision
+    - *clampAfterIncisionBeforeIncisionOpen
+    - *holdIncisionOpen
+    - *drillSkull
+    - step: SurgeryClampBleeding
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          statuses:
+            - LimbStatusEffectSurgicalSkullDrilled
+        - !type:SurgeryConditionOr
+          conditions:
+            - *noBleeding
+            - !type:SurgeryHasOrgan
+              inverse: true
+              category: BrainImplant
+    - step: SurgeryRemoveBrainImplant
+      conditionComplete:
+        - !type:SurgeryHasOrgan
+          inverse: true
+          category: BrainImplant
+
+- type: surgeryTutorial
+  id: SurgeryTutorialImplantBrainImplant
+  name: Implant Brain Implant
+  finishers:
+    - SurgeryTutorialFinisherBrainImplant
+  conditions:
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: BrainImplant
+  steps:
+    - *makeIncision
+    - *clampAfterIncisionBeforeIncisionOpen
+    - *holdIncisionOpen
+    - *drillSkull
+    - step: SurgeryClampBleeding
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          statuses:
+            - LimbStatusEffectSurgicalSkullDrilled
+        - *noBleeding
+    - step: SurgeryImplantBrainImplant
+      conditionComplete:
+        - !type:SurgeryHasOrgan
+          category: BrainImplant
+
+# region Torso Organs
+
+# Liver
+
+- type: surgeryTutorial
+  id: SurgeryTutorialRemoveLiver
+  name: Remove Liver
+  finishers:
+    - SurgeryTutorialFinisherLiver
+  conditions:
+    - !type:SurgeryHasOrgan
+      category: Liver
+  steps:
+    - *makeIncision
+    - *clampAfterIncisionBeforeIncisionOpen
+    - *holdIncisionOpen
+    - &accessAbdomen
+      step: SurgeryAccessAbdomen
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          statuses:
+            - LimbStatusEffectSurgicalAbdomenAccessed
+    - &clampAfterAccessAbdomenBeforeHepaticArtery
+      step: SurgeryClampBleeding
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          statuses:
+            - LimbStatusEffectSurgicalAbdomenAccessed
+        - !type:SurgeryConditionOr
+          conditions:
+            - *noBleeding
+            - !type:SurgeryLimbHasStatus
+              statuses:
+                - LimbStatusEffectSurgicalHepaticArteryClamped
+    - &clampHepaticArtery
+      step: SurgeryClampHepaticArtery
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          statuses:
+            - LimbStatusEffectSurgicalHepaticArteryClamped
+    - step: SurgeryRemoveLiver
+      conditionComplete:
+        - !type:SurgeryHasOrgan
+          inverse: true
+          category: Liver
+
+- type: surgeryTutorial
+  id: SurgeryTutorialImplantLiver
+  name: Implant Liver
+  finishers:
+    - SurgeryTutorialFinisherLiver
+  conditions:
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: Liver
+  steps:
+    - *makeIncision
+    - *clampAfterIncisionBeforeIncisionOpen
+    - *holdIncisionOpen
+    - *accessAbdomen
+    - *clampAfterAccessAbdomenBeforeHepaticArtery
+    - *clampHepaticArtery
+    - step: SurgeryImplantLiver
+      conditionComplete:
+        - !type:SurgeryHasOrgan
+          category: Liver
+
+# Kidneys
+
+- type: surgeryTutorial
+  id: SurgeryTutorialRemoveKidneys
+  name: Remove Kidneys
+  finishers:
+    - SurgeryTutorialFinisherKidneys
+  conditions:
+    - !type:SurgeryHasOrgan
+      category: Kidneys
+  steps:
+    - *makeIncision
+    - *clampAfterIncisionBeforeIncisionOpen
+    - *holdIncisionOpen
+    - *accessAbdomen
+    - &clampAfterAccessAbdomenBeforeKidneys
+      step: SurgeryClampBleeding
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          statuses:
+            - LimbStatusEffectSurgicalAbdomenAccessed
+        - !type:SurgeryConditionOr
+          conditions:
+            - *noBleeding
+            - !type:SurgeryLimbHasStatus
+              statuses:
+                - LimbStatusEffectSurgicalKidneysAccessed
+    - &accessKidneys
+      step: SurgeryAccessKidneys
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          statuses:
+            - LimbStatusEffectSurgicalKidneysAccessed
+    - step: SurgeryRemoveKidneys
+      conditionComplete:
+        - !type:SurgeryHasOrgan
+          inverse: true
+          category: Kidneys
+
+- type: surgeryTutorial
+  id: SurgeryTutorialImplantKidneys
+  name: Implant Kidneys
+  finishers:
+    - SurgeryTutorialFinisherKidneys
+  conditions:
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: Kidneys
+  steps:
+    - *makeIncision
+    - *clampAfterIncisionBeforeIncisionOpen
+    - *holdIncisionOpen
+    - *accessAbdomen
+    - *clampAfterAccessAbdomenBeforeKidneys
+    - *accessKidneys
+    - step: SurgeryImplantKidneys
+      conditionComplete:
+        - !type:SurgeryHasOrgan
+          category: Kidneys
+
+# Stomach
+
+- type: surgeryTutorial
+  id: SurgeryTutorialRemoveStomach
+  name: Remove Stomach
+  finishers:
+    - SurgeryTutorialFinisherStomach
+  conditions:
+    - !type:SurgeryHasOrgan
+      category: Stomach
+  steps:
+    - *makeIncision
+    - *clampAfterIncisionBeforeIncisionOpen
+    - *holdIncisionOpen
+    - *accessAbdomen
+    - &clampAfterAccessAbdomenBeforeEsophagus
+      step: SurgeryClampBleeding
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          statuses:
+            - LimbStatusEffectSurgicalAbdomenAccessed
+        - !type:SurgeryConditionOr
+          conditions:
+            - *noBleeding
+            - !type:SurgeryLimbHasStatus
+              statuses:
+                - LimbStatusEffectSurgicalEsophagusCut
+    - &cutEsophagus
+      step: SurgeryCutEsophagus
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          statuses:
+            - LimbStatusEffectSurgicalEsophagusCut
+    - step: SurgeryClampBleeding
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          statuses:
+            - LimbStatusEffectSurgicalEsophagusCut
+        - !type:SurgeryConditionOr
+          conditions:
+            - *noBleeding
+            - !type:SurgeryHasOrgan
+              inverse: true
+              category: Stomach
+    - step: SurgeryRemoveStomach
+      conditionComplete:
+        - !type:SurgeryHasOrgan
+          inverse: true
+          category: Stomach
+
+- type: surgeryTutorial
+  id: SurgeryTutorialImplantStomach
+  name: Implant Stomach
+  finishers:
+    - SurgeryTutorialFinisherStomach
+  conditions:
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: Stomach
+  steps:
+    - *makeIncision
+    - *clampAfterIncisionBeforeIncisionOpen
+    - *holdIncisionOpen
+    - *accessAbdomen
+    - *clampAfterAccessAbdomenBeforeEsophagus
+    - *cutEsophagus
+    - step: SurgeryClampBleeding
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          statuses:
+            - LimbStatusEffectSurgicalEsophagusCut
+        - *noBleeding
+    - step: SurgeryImplantStomach
+      conditionComplete:
+        - !type:SurgeryHasOrgan
+          category: Stomach
+
+# Heart
+
+- type: surgeryTutorial
+  id: SurgeryTutorialRemoveHeart
+  name: Remove Heart
+  finishers:
+    - SurgeryTutorialFinisherHeart
+  conditions:
+    - !type:SurgeryHasOrgan
+      category: Heart
+  steps:
+    - *makeIncision
+    - *clampAfterIncisionBeforeIncisionOpen
+    - *holdIncisionOpen
+    - &openRibcage
+      step: SurgeryOpenRibcage
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          statuses:
+            - LimbStatusEffectSurgicalRibcageOpen
+    - &clampAfterOpenRibcageBeforeAorta
+      step: SurgeryClampBleeding
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          statuses:
+            - LimbStatusEffectSurgicalRibcageOpen
+        - !type:SurgeryConditionOr
+          conditions:
+            - *noBleeding
+            - !type:SurgeryLimbHasStatus
+              statuses:
+                - LimbStatusEffectSurgicalAortaClamped
+    - &clampAorta
+      step: SurgeryClampAorta
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          statuses:
+            - LimbStatusEffectSurgicalAortaClamped
+    - step: SurgeryRemoveHeart
+      conditionComplete:
+        - !type:SurgeryHasOrgan
+          inverse: true
+          category: Heart
+
+- type: surgeryTutorial
+  id: SurgeryTutorialImplantHeart
+  name: Implant Heart
+  finishers:
+    - SurgeryTutorialFinisherHeart
+  conditions:
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: Heart
+  steps:
+    - *makeIncision
+    - *clampAfterIncisionBeforeIncisionOpen
+    - *holdIncisionOpen
+    - *openRibcage
+    - *clampAfterOpenRibcageBeforeAorta
+    - *clampAorta
+    - step: SurgeryImplantHeart
+      conditionComplete:
+        - !type:SurgeryHasOrgan
+          category: Heart
+
+# Lungs
+
+- type: surgeryTutorial
+  id: SurgeryTutorialRemoveLungs
+  name: Remove Lungs
+  finishers:
+    - SurgeryTutorialFinisherLung
+  conditions:
+    - !type:SurgeryHasOrgan
+      category: Lungs
+  steps:
+    - *makeIncision
+    - *clampAfterIncisionBeforeIncisionOpen
+    - *holdIncisionOpen
+    - *openRibcage
+    - &clampAfterOpenRibcageBeforeLungs
+      step: SurgeryClampBleeding
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          statuses:
+            - LimbStatusEffectSurgicalRibcageOpen
+        - !type:SurgeryConditionOr
+          conditions:
+            - *noBleeding
+            - !type:SurgeryLimbHasStatus
+              statuses:
+                - LimbStatusEffectSurgicalLungsAccessed
+    - &accessLungs
+      step: SurgeryAccessLungs
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          statuses:
+            - LimbStatusEffectSurgicalLungsAccessed
+    - step: SurgeryRemoveLungs
+      conditionComplete:
+        - !type:SurgeryHasOrgan
+          inverse: true
+          category: Lungs
+
+- type: surgeryTutorial
+  id: SurgeryTutorialImplantLungs
+  name: Implant Lungs
+  finishers:
+    - SurgeryTutorialFinisherLung
+  conditions:
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: Lungs
+  steps:
+    - *makeIncision
+    - *clampAfterIncisionBeforeIncisionOpen
+    - *holdIncisionOpen
+    - *openRibcage
+    - *clampAfterOpenRibcageBeforeLungs
+    - *accessLungs
+    - step: SurgeryImplantLungs
+      conditionComplete:
+        - !type:SurgeryHasOrgan
+          category: Lungs
+
+- type: surgeryTutorial
+  id: SurgeryTutorialTendLungWounds
+  name: Tend Lungs Wounds
+  finishers:
+    - SurgeryTutorialFinisherLung
+  conditions:
+    - !type:SurgeryLimbHasDamage
+      types:
+        - Asphyxiation
+  steps:
+    - *makeIncision
+    - *clampAfterIncisionBeforeIncisionOpen
+    - *holdIncisionOpen
+    - *openRibcage
+    - *clampAfterOpenRibcageBeforeLungs
+    - *accessLungs
+    - step: SurgeryTreatLungDamage
+      conditionComplete:
+        - !type:SurgeryLimbHasDamage
+          inverse: true
+          types:
+            - Asphyxiation
+
+# Shadekin Core
+
+- type: surgeryTutorial
+  id: SurgeryTutorialRemoveShadekinCore
+  name: Remove Core
+  finishers:
+    - SurgeryTutorialFinisherShadekinCore
+  conditions:
+    - !type:SurgeryHasOrgan
+      category: Lungs
+  steps:
+    - *makeIncision
+    - *clampAfterIncisionBeforeIncisionOpen
+    - *holdIncisionOpen
+    - *openRibcage
+    - &clampAfterOpenRibcageBeforeShadekinCore
+      step: SurgeryClampBleeding
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          statuses:
+            - LimbStatusEffectSurgicalRibcageOpen
+        - !type:SurgeryConditionOr
+          conditions:
+            - *noBleeding
+            - !type:SurgeryLimbHasStatus
+              statuses:
+                - LimbStatusEffectSurgicalShadekinCoreAccessed
+    - &accessShadekinCore
+      step: SurgeryShadekinAccessCore
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          statuses:
+            - LimbStatusEffectSurgicalShadekinCoreAccessed
+    - step: SurgeryShadekinRemoveCore
+      conditionComplete:
+        - !type:SurgeryHasOrgan
+          inverse: true
+          category: Lungs
+
+- type: surgeryTutorial
+  id: SurgeryTutorialImplantShadekinCore
+  name: Implant Core
+  finishers:
+    - SurgeryTutorialFinisherShadekinCore
+  conditions:
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: Lungs
+  steps:
+    - *makeIncision
+    - *clampAfterIncisionBeforeIncisionOpen
+    - *holdIncisionOpen
+    - *openRibcage
+    - *clampAfterOpenRibcageBeforeShadekinCore
+    - *accessShadekinCore
+    - step: SurgeryShadekinImplantCore
+      conditionComplete:
+        - !type:SurgeryHasOrgan
+          inverse: true
+          category: Lungs
+
+# Diona Core
+
+- type: surgeryTutorial
+  id: SurgeryTutorialRemoveDionaCore
+  name: Remove Brain
+  finishers:
+    - SurgeryTutorialFinisherDionaCore
+  conditions:
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: SentientCore
+  steps:
+    - *makeIncision
+    - *clampAfterIncisionBeforeIncisionOpen
+    - *holdIncisionOpen
+    - *openRibcage
+    - step: SurgeryClampBleeding
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          statuses:
+            - LimbStatusEffectSurgicalRibcageOpen
+        - !type:SurgeryConditionOr
+          conditions:
+            - *noBleeding
+            - !type:SurgeryLimbHasStatus
+              statuses:
+                - LimbStatusEffectSurgicalDionaCoreAccessed
+    - &accessDionaCore
+      step: SurgeryDionaAccessCore
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          statuses:
+            - LimbStatusEffectSurgicalDionaCoreAccessed
+    - step: SurgeryDionaRemoveCore
+      conditionComplete:
+        - !type:SurgeryHasOrgan
+          inverse: true
+          category: SentientCore
+
+# region Slime
+
+- type: surgeryTutorial
+  id: SurgeryTutorialSlimeAmputateLimb
+  name: Limb Amputation
+  steps:
+    - *makeIncision
+    - *clampAfterIncisionBeforeIncisionOpen
+    - *holdIncisionOpen
+    - step: SurgerySlimeAmputateLimb
+      conditionComplete:
+        - !type:ConditionNever
+
+# Hand Implants
+
+- type: surgeryTutorial
+  id: SurgeryTutorialSlimeImplantLeftHandImplant
+  name: Implant Left Hand Implant
+  finishers:
+    - SurgeryTutorialFinisherBasic
+  conditions:
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: HandLeftImplant
+  steps:
+    - *makeIncision
+    - *clampAfterIncisionBeforeIncisionOpen
+    - *holdIncisionOpen
+    - step: SurgerySlimeImplantLeftHandImplant
+      conditionComplete:
+        - !type:SurgeryHasOrgan
+          category: HandLeftImplant
+
+- type: surgeryTutorial
+  id: SurgeryTutorialSlimeImplantRightHandImplant
+  name: Implant Right Hand Implant
+  finishers:
+    - SurgeryTutorialFinisherBasic
+  conditions:
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: HandRightImplant
+  steps:
+    - *makeIncision
+    - *clampAfterIncisionBeforeIncisionOpen
+    - *holdIncisionOpen
+    - step: SurgerySlimeImplantRightHandImplant
+      conditionComplete:
+        - !type:SurgeryHasOrgan
+          category: HandRightImplant
+
+- type: surgeryTutorial
+  id: SurgeryTutorialSlimeRemoveLeftHandImplant
+  name: Remove Left Hand Implant
+  finishers:
+    - SurgeryTutorialFinisherBasic
+  conditions:
+    - !type:SurgeryHasOrgan
+      category: HandLeftImplant
+  steps:
+    - *makeIncision
+    - *clampAfterIncisionBeforeIncisionOpen
+    - *holdIncisionOpen
+    - step: SurgerySlimeRemoveLeftHandImplant
+      conditionComplete:
+        - !type:SurgeryHasOrgan
+          inverse: true
+          category: HandLeftImplant
+
+- type: surgeryTutorial
+  id: SurgeryTutorialSlimeRemoveRightHandImplant
+  name: Remove Right Hand Implant
+  finishers:
+    - SurgeryTutorialFinisherBasic
+  conditions:
+    - !type:SurgeryHasOrgan
+      category: HandRightImplant
+  steps:
+    - *makeIncision
+    - *clampAfterIncisionBeforeIncisionOpen
+    - *holdIncisionOpen
+    - step: SurgerySlimeRemoveRightHandImplant
+      conditionComplete:
+        - !type:SurgeryHasOrgan
+          inverse: true
+          category: HandRightImplant
+
+# Attachment
+
+- type: surgeryTutorial
+  id: SurgeryTutorialSlimeAttachLeftArm
+  name: Attach Left Arm
+  finishers:
+    - SurgeryTutorialFinisherBasic
+  conditions:
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: ArmLeft
+  steps:
+    - *makeIncision
+    - *clampAfterIncisionBeforeIncisionOpen
+    - *holdIncisionOpen
+    - step: SurgerySlimeAttachLeftArm
+      conditionComplete:
+        - !type:SurgeryHasOrgan
+          category: ArmLeft
+
+- type: surgeryTutorial
+  id: SurgeryTutorialSlimeAttachRightArm
+  name: Attach Right Arm
+  finishers:
+    - SurgeryTutorialFinisherBasic
+  conditions:
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: ArmRight
+  steps:
+    - *makeIncision
+    - *clampAfterIncisionBeforeIncisionOpen
+    - *holdIncisionOpen
+    - step: SurgerySlimeAttachRightArm
+      conditionComplete:
+        - !type:SurgeryHasOrgan
+          category: ArmRight
+
+- type: surgeryTutorial
+  id: SurgeryTutorialSlimeAttachLeftHand
+  name: Attach Left Hand
+  finishers:
+    - SurgeryTutorialFinisherBasic
+  conditions:
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: HandLeft
+  steps:
+    - *makeIncision
+    - *clampAfterIncisionBeforeIncisionOpen
+    - *holdIncisionOpen
+    - step: SurgerySlimeAttachLeftHand
+      conditionComplete:
+        - !type:SurgeryHasOrgan
+          category: HandLeft
+
+- type: surgeryTutorial
+  id: SurgeryTutorialSlimeAttachRightHand
+  name: Attach Right Hand
+  finishers:
+    - SurgeryTutorialFinisherBasic
+  conditions:
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: HandRight
+  steps:
+    - *makeIncision
+    - *clampAfterIncisionBeforeIncisionOpen
+    - *holdIncisionOpen
+    - step: SurgerySlimeAttachRightHand
+      conditionComplete:
+        - !type:SurgeryHasOrgan
+          category: HandRight
+
+- type: surgeryTutorial
+  id: SurgeryTutorialSlimeAttachLeftLeg
+  name: Attach Left Leg
+  finishers:
+    - SurgeryTutorialFinisherBasic
+  conditions:
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: LegLeft
+  steps:
+    - *makeIncision
+    - *clampAfterIncisionBeforeIncisionOpen
+    - *holdIncisionOpen
+    - step: SurgerySlimeAttachLeftLeg
+      conditionComplete:
+        - !type:SurgeryHasOrgan
+          category: LegLeft
+
+- type: surgeryTutorial
+  id: SurgeryTutorialSlimeAttachRightLeg
+  name: Attach Right Leg
+  finishers:
+    - SurgeryTutorialFinisherBasic
+  conditions:
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: LegRight
+  steps:
+    - *makeIncision
+    - *clampAfterIncisionBeforeIncisionOpen
+    - *holdIncisionOpen
+    - step: SurgerySlimeAttachRightLeg
+      conditionComplete:
+        - !type:SurgeryHasOrgan
+          category: LegRight
+
+- type: surgeryTutorial
+  id: SurgeryTutorialSlimeAttachLeftFoot
+  name: Attach Left Foot
+  finishers:
+    - SurgeryTutorialFinisherBasic
+  conditions:
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: FootLeft
+  steps:
+    - *makeIncision
+    - *clampAfterIncisionBeforeIncisionOpen
+    - *holdIncisionOpen
+    - step: SurgerySlimeAttachLeftFoot
+      conditionComplete:
+        - !type:SurgeryHasOrgan
+          category: FootLeft
+
+- type: surgeryTutorial
+  id: SurgeryTutorialSlimeAttachRightFoot
+  name: Attach Right Foot
+  finishers:
+    - SurgeryTutorialFinisherBasic
+  conditions:
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: FootRight
+  steps:
+    - *makeIncision
+    - *clampAfterIncisionBeforeIncisionOpen
+    - *holdIncisionOpen
+    - step: SurgerySlimeAttachRightFoot
+      conditionComplete:
+        - !type:SurgeryHasOrgan
+          category: FootRight
+
+- type: surgeryTutorial
+  id: SurgeryTutorialSlimeAttachHead
+  name: Attach Head
+  finishers:
+    - SurgeryTutorialFinisherBasic
+  conditions:
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: Head
+  steps:
+    - *makeIncision
+    - *clampAfterIncisionBeforeIncisionOpen
+    - *holdIncisionOpen
+    - step: SurgerySlimeAttachHead
+      conditionComplete:
+        - !type:SurgeryHasOrgan
+          category: Head
+
+# Eye Implant
+
+- type: surgeryTutorial
+  id: SurgeryTutorialSlimeRemoveEyeImplant
+  name: Remove Eye Implant
+  finishers:
+    - SurgeryTutorialFinisherBasic
+  conditions:
+    - !type:SurgeryHasOrgan
+      category: EyeImplant
+  steps:
+    - *makeIncision
+    - *clampAfterIncisionBeforeIncisionOpen
+    - *holdIncisionOpen
+    - step: SurgerySlimeRemoveEyeImplant
+      conditionComplete:
+        - !type:SurgeryHasOrgan
+          inverse: true
+          category: EyeImplant
+
+- type: surgeryTutorial
+  id: SurgeryTutorialSlimeImplantEyeImplant
+  name: Implant Eye Implant
+  finishers:
+    - SurgeryTutorialFinisherBasic
+  conditions:
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: EyeImplant
+  steps:
+    - *makeIncision
+    - *clampAfterIncisionBeforeIncisionOpen
+    - *holdIncisionOpen
+    - step: SurgerySlimeImplantEyeImplant
+      conditionComplete:
+        - !type:SurgeryHasOrgan
+          category: EyeImplant
+
+# Lungs
+
+- type: surgeryTutorial
+  id: SurgeryTutorialSlimeRemoveLungs
+  name: Remove Lungs
+  finishers:
+    - SurgeryTutorialFinisherBasic
+  conditions:
+    - !type:SurgeryHasOrgan
+      category: Lungs
+  steps:
+    - *makeIncision
+    - *clampAfterIncisionBeforeIncisionOpen
+    - *holdIncisionOpen
+    - step: SurgerySlimeRemoveLungs
+      conditionComplete:
+        - !type:SurgeryHasOrgan
+          inverse: true
+          category: Lungs
+
+- type: surgeryTutorial
+  id: SurgeryTutorialSlimeImplantLungs
+  name: Implant Lungs
+  finishers:
+    - SurgeryTutorialFinisherBasic
+  conditions:
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: Lungs
+  steps:
+    - *makeIncision
+    - *clampAfterIncisionBeforeIncisionOpen
+    - *holdIncisionOpen
+    - step: SurgerySlimeImplantLungs
+      conditionComplete:
+        - !type:SurgeryHasOrgan
+          category: Lungs
+
+# Slime Core
+
+- type: surgeryTutorial
+  id: SurgeryTutorialSlimeRemoveCore
+  name: Remove Core
+  conditions:
+    - !type:SurgeryHasOrgan
+      category: SentientCore
+  steps:
+    - *makeIncision
+    - *clampAfterIncisionBeforeIncisionOpen
+    - *holdIncisionOpen
+    - &accessSlimeCore
+      step: SurgerySlimeAccessCore
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          statuses:
+            - LimbStatusEffectSurgicalSlimeCoreAccessed
+    - step: SurgerySlimeRemoveCore
+      conditionComplete:
+        - !type:SurgeryHasOrgan
+          inverse: true
+          category: SentientCore
+
+- type: surgeryTutorial
+  id: SurgeryTutorialSlimeImplantCore
+  name: Implant Core
+  finishers:
+    - SurgeryTutorialFinisherSlimeCore
+  conditions:
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: SentientCore
+  steps:
+    - *makeIncision
+    - *clampAfterIncisionBeforeIncisionOpen
+    - *holdIncisionOpen
+    - *accessSlimeCore
+    - step: SurgerySlimeImplantCore
+      conditionComplete:
+        - !type:SurgeryHasOrgan
+          category: SentientCore
+
+# region Necrosis
+
+- type: surgeryTutorial
+  id: SurgeryTutorialNecrosisInspect
+  name: Inspect Necrosis
+  finishers:
+    - SurgeryTutorialFinisherTendWounds
+  conditions:
+    - !type:SurgeryHasUnadressedNecrosis
+  steps:
+    - *makeIncision
+    - *clampAfterIncisionBeforeDeepIncision
+    - *deepIncision
+    - step: SurgeryInspectNecrosis
+      conditionComplete:
+        - !type:SurgeryHasUnadressedNecrosis
+          inverse: true

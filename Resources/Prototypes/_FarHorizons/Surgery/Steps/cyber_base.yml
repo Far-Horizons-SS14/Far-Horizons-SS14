@@ -1,0 +1,101 @@
+- type: surgeryStep
+  parent: WelderSurgery
+  id: SurgeryWeldLeaks
+  name: Weld Leaks
+  baseTime: 1
+  popup: surgery-cyber-weld-leaks-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectLeakingOilI
+        - LimbStatusEffectLeakingOilII
+        - LimbStatusEffectLeakingOilIII
+  effects:
+    - !type:SurgeryRemoveLimbStatus
+      statuses:
+        - LimbStatusEffectLeakingOilI
+        - LimbStatusEffectLeakingOilII
+        - LimbStatusEffectLeakingOilIII
+
+- type: surgeryStep
+  parent: ScrewdriverSurgery
+  id: SurgeryUnscrewPlating
+  name: Unscrew Plating
+  baseTime: 2
+  popup: surgery-cyber-unscrew-plating-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses:
+        - LimbStatusEffectPlatingUnscrewed
+  effects:
+    - !type:SurgeryApplyLimbStatus
+      statuses:
+        - LimbStatusEffectPlatingUnscrewed
+    - !type:SurgeryProgressStatusChain
+      needsToBeAlive: false
+      chain: OilLeak
+
+- type: surgeryStep
+  parent: ScrewdriverSurgery
+  id: SurgeryScrewPlating
+  name: Fix Plating
+  baseTime: 1
+  popup: surgery-cyber-screw-plating-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectPlatingUnscrewed
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses:
+        - LimbStatusEffectSurgicalPlatingPried
+        - LimbStatusEffectLeakingOilI
+        - LimbStatusEffectLeakingOilII
+        - LimbStatusEffectLeakingOilIII
+  effects:
+    - !type:SurgeryRemoveLimbStatus
+      statuses:
+        - LimbStatusEffectPlatingUnscrewed
+
+- type: surgeryStep
+  parent: CrowbarSurgery
+  id: SurgeryPryPlating
+  name: Pry Plating Open
+  baseTime: 2
+  popup: surgery-cyber-pry-plating-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectPlatingUnscrewed
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses:
+        - LimbStatusEffectSurgicalPlatingPried
+  effects:
+    - !type:SurgeryApplyLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalPlatingPried
+
+- type: surgeryStep
+  parent: CrowbarSurgery
+  id: SurgeryRestorePlating
+  name: Restore Plating
+  baseTime: 1
+  popup: surgery-cyber-restore-plating-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalPlatingPried
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses:
+        - LimbStatusEffectSurgicalHydraulicsCut
+        - LimbStatusEffectSurgicalBoltsLoosened
+        - LimbStatusEffectSurgicalStructureUnscrewed
+        - LimbStatusEffectSurgicalOpticsPoweredDown
+        - LimbStatusEffectSurgicalVocalizerWiresCut
+  effects:
+    - !type:SurgeryRemoveLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalPlatingPried

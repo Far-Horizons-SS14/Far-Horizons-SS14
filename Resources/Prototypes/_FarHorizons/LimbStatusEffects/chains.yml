@@ -1,0 +1,13 @@
+- type: limbStatusChain
+  id: Bleed
+  steps:
+    - LimbStatusEffectBleedI
+    - LimbStatusEffectBleedII
+    - LimbStatusEffectBleedIII
+
+- type: limbStatusChain
+  id: OilLeak
+  steps:
+    - LimbStatusEffectLeakingOilI
+    - LimbStatusEffectLeakingOilII
+    - LimbStatusEffectLeakingOilIII

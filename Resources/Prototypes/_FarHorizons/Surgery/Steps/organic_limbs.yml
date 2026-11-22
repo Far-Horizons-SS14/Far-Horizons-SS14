@@ -1,0 +1,408 @@
+# region Amputation
+
+- type: surgeryStep
+  parent: HemostatSurgery
+  id: SurgeryDetachVessels
+  name: Detach Vessels
+  baseTime: 2
+  popup: surgery-detach-vessels-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalIncisionHeldOpen
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses:
+        - LimbStatusEffectBleedI
+        - LimbStatusEffectBleedII
+        - LimbStatusEffectBleedIII
+        - LimbStatusEffectSurgicalVesselsDetached
+        - LimbStatusEffectSurgicalCutOpticNerve
+        - LimbStatusEffectSurgicalFacialBonesCut
+        - LimbStatusEffectSurgicalFacialBonesRepositioned
+  effects:
+    - !type:SurgeryApplyLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalVesselsDetached
+    - !type:SurgeryProgressStatusChain
+      chain: Bleed
+
+- type: surgeryStep
+  parent: HemostatSurgery
+  id: SurgeryReattachVessels
+  name: Reattach Vessels
+  baseTime: 1
+  popup: surgery-reattach-vessels-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalVesselsDetached
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses:
+        - LimbStatusEffectBleedI
+        - LimbStatusEffectBleedII
+        - LimbStatusEffectBleedIII
+        - LimbStatusEffectSurgicalMuscleDetached
+  effects:
+    - !type:SurgeryRemoveLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalVesselsDetached
+
+- type: surgeryStep
+  parent: ScalpelSurgery
+  id: SurgeryDetachMuscles
+  name: Detach Muscles
+  baseTime: 2
+  popup: surgery-detach-muscles-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalVesselsDetached
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses:
+        - LimbStatusEffectSurgicalMuscleDetached
+  effects:
+    - !type:SurgeryApplyLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalMuscleDetached
+    - !type:SurgeryPainEffect
+
+- type: surgeryStep
+  parent: RetractorSurgery
+  id: SurgeryReattachMuscles
+  name: Reattach Muscles
+  baseTime: 1
+  popup: surgery-reattach-muscles-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalMuscleDetached
+  effects:
+    - !type:SurgeryRemoveLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalMuscleDetached
+
+- type: surgeryStep
+  parent: BoneSawSurgery
+  id: SurgeryAmputateLimb
+  name: Amputate Limb
+  baseTime: 4
+  popup: surgery-amputate-limb-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalMuscleDetached
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses:
+        - LimbStatusEffectNecrosisLimb
+  effects:
+    - !type:SurgeryRemoveLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalIncision
+        - LimbStatusEffectSurgicalIncisionHeldOpen
+        - LimbStatusEffectSurgicalVesselsDetached
+        - LimbStatusEffectSurgicalMuscleDetached
+        - LimbStatusEffectBleedI
+        - LimbStatusEffectBleedII
+        - LimbStatusEffectBleedIII
+    - !type:SurgeryDetachLimb
+    - !type:SurgeryPainEffect
+
+# region Attachment
+
+- type: surgeryStep
+  parent: BoneSetterSurgery
+  id: SurgeryDislocateBones
+  name: Dislocate Bones
+  baseTime: 2
+  popup: surgery-dislocate-bones-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalIncisionHeldOpen
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses:
+        - LimbStatusEffectSurgicalDislocatedBone
+        - LimbStatusEffectSurgicalAbdomenAccessed
+        - LimbStatusEffectSurgicalRibcageOpen
+  effects:
+    - !type:SurgeryApplyLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalDislocatedBone
+    - !type:SurgeryProgressStatusChain
+      chain: Bleed
+    - !type:SurgeryPainEffect
+
+- type: surgeryStep
+  parent: BoneSetterSurgery
+  id: SurgeryPositionBones
+  name: Position Bones
+  baseTime: 1
+  popup: surgery-position-bones-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalDislocatedBone
+  effects:
+    - !type:SurgeryRemoveLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalDislocatedBone
+
+- type: surgeryStep
+  parent: BoneGelSurgery
+  id: SurgeryApplyBoneGel
+  name: Apply Bone Gel
+  baseTime: 1
+  popup: surgery-apply-bone-gel-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalDislocatedBone
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses:
+        - LimbStatusEffectSurgicalBoneGelApplied
+  effects:
+    - !type:SurgeryApplyLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalBoneGelApplied
+
+# region Specific Limbs
+
+- type: surgeryStep
+  id: SurgeryAttachHead
+  name: Attach Head
+  baseTime: 3
+  popup: surgery-attach-head-popup-message
+  tool: []
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalDislocatedBone
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalBoneGelApplied
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: Head
+  softConditions:
+    - !type:SurgeryOrganHeld
+      category: Head
+  effects:
+    - !type:SurgeryRemoveLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalBoneGelApplied
+        - LimbStatusEffectSurgicalDislocatedBone
+    - !type:SurgeryInsertOrgan
+
+- type: surgeryStep
+  id: SurgeryAttachLeftArm
+  name: Attach Left Arm
+  baseTime: 3
+  popup: surgery-attach-left-arm-popup-message
+  tool: []
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalDislocatedBone
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalBoneGelApplied
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: ArmLeft
+  softConditions:
+    - !type:SurgeryOrganHeld
+      category: ArmLeft
+  effects:
+    - !type:SurgeryRemoveLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalBoneGelApplied
+        - LimbStatusEffectSurgicalDislocatedBone
+    - !type:SurgeryInsertOrgan
+
+- type: surgeryStep
+  id: SurgeryAttachRightArm
+  name: Attach Right Arm
+  baseTime: 3
+  popup: surgery-attach-right-arm-popup-message
+  tool: []
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalDislocatedBone
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalBoneGelApplied
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: ArmRight
+  softConditions:
+    - !type:SurgeryOrganHeld
+      category: ArmRight
+  effects:
+    - !type:SurgeryRemoveLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalBoneGelApplied
+        - LimbStatusEffectSurgicalDislocatedBone
+    - !type:SurgeryInsertOrgan
+
+- type: surgeryStep
+  id: SurgeryAttachLeftLeg
+  name: Attach Left Leg
+  baseTime: 3
+  popup: surgery-attach-left-leg-popup-message
+  tool: []
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalDislocatedBone
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalBoneGelApplied
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: LegLeft
+  softConditions:
+    - !type:SurgeryOrganHeld
+      category: LegLeft
+  effects:
+    - !type:SurgeryRemoveLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalBoneGelApplied
+        - LimbStatusEffectSurgicalDislocatedBone
+    - !type:SurgeryInsertOrgan
+
+- type: surgeryStep
+  id: SurgeryAttachRightLeg
+  name: Attach Right Leg
+  baseTime: 3
+  popup: surgery-attach-right-leg-popup-message
+  tool: []
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalDislocatedBone
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalBoneGelApplied
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: LegRight
+  softConditions:
+    - !type:SurgeryOrganHeld
+      category: LegRight
+  effects:
+    - !type:SurgeryRemoveLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalBoneGelApplied
+        - LimbStatusEffectSurgicalDislocatedBone
+    - !type:SurgeryInsertOrgan
+
+- type: surgeryStep
+  id: SurgeryAttachLeftHand
+  name: Attach Left Hand
+  baseTime: 3
+  popup: surgery-attach-left-hand-popup-message
+  tool: []
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalDislocatedBone
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalBoneGelApplied
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: HandLeft
+  softConditions:
+    - !type:SurgeryOrganHeld
+      category: HandLeft
+  effects:
+    - !type:SurgeryRemoveLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalBoneGelApplied
+        - LimbStatusEffectSurgicalDislocatedBone
+    - !type:SurgeryInsertOrgan
+
+- type: surgeryStep
+  id: SurgeryAttachRightHand
+  name: Attach Right Hand
+  baseTime: 3
+  popup: surgery-attach-right-hand-popup-message
+  tool: []
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalDislocatedBone
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalBoneGelApplied
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: HandRight
+  softConditions:
+    - !type:SurgeryOrganHeld
+      category: HandRight
+  effects:
+    - !type:SurgeryRemoveLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalBoneGelApplied
+        - LimbStatusEffectSurgicalDislocatedBone
+    - !type:SurgeryInsertOrgan
+
+- type: surgeryStep
+  id: SurgeryAttachLeftFoot
+  name: Attach Left Foot
+  baseTime: 3
+  popup: surgery-attach-left-foot-popup-message
+  tool: []
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalDislocatedBone
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalBoneGelApplied
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: FootLeft
+  softConditions:
+    - !type:SurgeryOrganHeld
+      category: FootLeft
+  effects:
+    - !type:SurgeryRemoveLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalBoneGelApplied
+        - LimbStatusEffectSurgicalDislocatedBone
+    - !type:SurgeryInsertOrgan
+
+- type: surgeryStep
+  id: SurgeryAttachRightFoot
+  name: Attach Right Foot
+  baseTime: 3
+  popup: surgery-attach-right-foot-popup-message
+  tool: []
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalDislocatedBone
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalBoneGelApplied
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: FootRight
+  softConditions:
+    - !type:SurgeryOrganHeld
+      category: FootRight
+  effects:
+    - !type:SurgeryRemoveLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalBoneGelApplied
+        - LimbStatusEffectSurgicalDislocatedBone
+    - !type:SurgeryInsertOrgan

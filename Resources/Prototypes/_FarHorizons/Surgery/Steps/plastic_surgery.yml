@@ -1,0 +1,115 @@
+- type: surgeryStep
+  parent: BoneSawSurgery
+  id: SurgeryCutFacialBones
+  name: Cut Facial Bones
+  baseTime: 4
+  popup: surgery-cut-facial-bones-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalIncisionHeldOpen
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses:
+        - LimbStatusEffectSurgicalSkullDrilled
+        - LimbStatusEffectSurgicalFacialBonesCut
+        - LimbStatusEffectSurgicalFacialBonesRepositioned
+        - LimbStatusEffectSurgicalCutOpticNerve
+        - LimbStatusEffectSurgicalMuscleDetached
+  effects:
+    - !type:SurgeryApplyLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalFacialBonesCut
+    - !type:SurgeryProgressStatusChain
+      chain: Bleed
+    - !type:SurgeryPainEffect
+
+- type: surgeryStep
+  parent: BoneGelSurgery
+  id: SurgeryPatchFacialBones
+  name: Patch Facial Bones
+  baseTime: 2
+  popup: surgery-patch-facial-bones-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalIncisionHeldOpen
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalFacialBonesCut
+  effects:
+    - !type:SurgeryRemoveLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalFacialBonesCut
+
+- type: surgeryStep
+  parent: BoneSetterSurgery
+  id: SurgeryRepositionFacialBones
+  name: Reposition Facial Bones
+  baseTime: 3
+  popup: surgery-reposition-facial-bones-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalFacialBonesCut
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses:
+        - LimbStatusEffectSurgicalFacialBonesRepositioned
+  effects:
+    - !type:SurgeryRemoveLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalFacialBonesCut
+    - !type:SurgeryApplyLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalFacialBonesRepositioned
+    - !type:SurgeryProgressStatusChain
+      chain: Bleed
+    - !type:SurgeryPainEffect
+
+- type: surgeryStep
+  parent: BoneSetterSurgery
+  id: SurgeryRevertFacialBones
+  name: Revert Facial Bones Position
+  baseTime: 3
+  popup: surgery-revert-facial-bones-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalFacialBonesRepositioned
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses:
+        - LimbStatusEffectSurgicalFacialBonesCut
+  effects:
+    - !type:SurgeryRemoveLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalFacialBonesRepositioned
+    - !type:SurgeryApplyLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalFacialBonesCut
+
+- type: surgeryStep
+  parent: HemostatSurgery
+  id: SurgeryChangeAppearance
+  name: Change Appearance
+  baseTime: 4
+  popup: surgery-change-appearance-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalFacialBonesRepositioned
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses:
+        - LimbStatusEffectBleedI
+        - LimbStatusEffectBleedII
+        - LimbStatusEffectBleedIII
+  effects:
+    - !type:SurgeryRemoveLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalFacialBonesRepositioned
+    - !type:SurgeryChangeAppearance
+    - !type:SurgeryProgressStatusChain
+      chain: Bleed
+    - !type:SurgeryPainEffect

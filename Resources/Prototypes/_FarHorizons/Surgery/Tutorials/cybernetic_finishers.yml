@@ -1,0 +1,102 @@
+- type: surgeryTutorial
+  id: SurgeryTutorialFinisherCyberneticHandImplant
+  name: Finish Hand Implant Refit
+  steps:
+    - &weldLeaks
+      step: SurgeryWeldLeaks
+      conditionComplete:
+        - &noLeaks
+          !type:SurgeryLimbHasStatus
+          inverse: true
+          statuses:
+            - LimbStatusEffectLeakingOilI
+            - LimbStatusEffectLeakingOilII
+            - LimbStatusEffectLeakingOilIII
+    - &powerLimbUp
+      step: SurgeryPowerUpLimb
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          inverse: true
+          statuses:
+            - LimbStatusEffectSurgicalLimbPoweredDown
+    - &screwStructure
+      step: SurgeryScrewStructure
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          inverse: true
+          statuses:
+            - LimbStatusEffectSurgicalStructureUnscrewed
+    - &restorePlating
+      step: SurgeryRestorePlating
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          inverse: true
+          statuses:
+            - LimbStatusEffectSurgicalPlatingPried
+    - &screwPlating
+      step: SurgeryScrewPlating
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          inverse: true
+          statuses:
+            - LimbStatusEffectPlatingUnscrewed
+
+- type: surgeryTutorial
+  id: SurgeryTutorialFinisherCyberneticBasic
+  name: Finish Refit
+  steps:
+    - *weldLeaks
+    - *restorePlating
+    - *screwPlating
+
+- type: surgeryTutorial
+  id: SurgeryTutorialFinisherCyberneticVocalizer
+  name: Finish Vocalizer Refit
+  steps:
+    - *weldLeaks
+    - &restoreVocalizer
+      step: SurgeryRestoreVocalizerWires
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          inverse: true
+          statuses:
+            - LimbStatusEffectSurgicalVocalizerWiresCut
+    - *restorePlating
+    - *screwPlating
+
+- type: surgeryTutorial
+  id: SurgeryTutorialFinisherCyberneticOptics
+  name: Finish Optics Refit
+  steps:
+    - *weldLeaks
+    - &restoreOptics
+      step: SurgeryPowerUpOptics
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          inverse: true
+          statuses:
+            - LimbStatusEffectSurgicalOpticsPoweredDown
+    - *restorePlating
+    - *screwPlating
+
+- type: surgeryTutorial
+  id: SurgeryTutorialFinisherCyberneticPump
+  name: Finish Pump Refit
+  steps:
+    - *weldLeaks
+    - &powerPumpUp
+      step: SurgeryPowerUpPump
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          inverse: true
+          statuses:
+            - LimbStatusEffectSurgicalPumpPoweredDown
+    - &restoreHydraulics
+      step: SurgeryReconnectHydraulics
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          inverse: true
+          statuses:
+            - LimbStatusEffectSurgicalHydraulicsCut
+    - *restorePlating
+    - *screwPlating

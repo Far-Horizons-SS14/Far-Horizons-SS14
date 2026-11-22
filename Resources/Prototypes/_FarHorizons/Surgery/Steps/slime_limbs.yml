@@ -1,0 +1,199 @@
+# region Amputation
+
+- type: surgeryStep
+  parent: ScalpelSurgery
+  id: SurgerySlimeAmputateLimb
+  name: Amputate Limb
+  baseTime: 4
+  popup: surgery-slime-amputate-limb-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalIncisionHeldOpen
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses:
+        - LimbStatusEffectNecrosisLimb
+  effects:
+    - !type:SurgeryRemoveLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalIncision
+        - LimbStatusEffectSurgicalIncisionHeldOpen
+        - LimbStatusEffectBleedI
+        - LimbStatusEffectBleedII
+        - LimbStatusEffectBleedIII
+    - !type:SurgeryDetachLimb
+    - !type:SurgeryPainEffect
+
+# region Specific Limbs Attachment
+
+- type: surgeryStep
+  id: SurgerySlimeAttachHead
+  name: Attach Head
+  baseTime: 3
+  popup: surgery-attach-head-popup-message
+  tool: []
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalIncisionHeldOpen
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: Head
+  softConditions:
+    - !type:SurgeryOrganHeld
+      category: Head
+  effects:
+    - !type:SurgeryInsertOrgan
+
+- type: surgeryStep
+  id: SurgerySlimeAttachLeftArm
+  name: Attach Left Arm
+  baseTime: 3
+  popup: surgery-attach-left-arm-popup-message
+  tool: []
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalIncisionHeldOpen
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: ArmLeft
+  softConditions:
+    - !type:SurgeryOrganHeld
+      category: ArmLeft
+  effects:
+    - !type:SurgeryInsertOrgan
+
+- type: surgeryStep
+  id: SurgerySlimeAttachRightArm
+  name: Attach Right Arm
+  baseTime: 3
+  popup: surgery-attach-right-arm-popup-message
+  tool: []
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalIncisionHeldOpen
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: ArmRight
+  softConditions:
+    - !type:SurgeryOrganHeld
+      category: ArmRight
+  effects:
+    - !type:SurgeryInsertOrgan
+
+- type: surgeryStep
+  id: SurgerySlimeAttachLeftLeg
+  name: Attach Left Leg
+  baseTime: 3
+  popup: surgery-attach-left-leg-popup-message
+  tool: []
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalIncisionHeldOpen
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: LegLeft
+  softConditions:
+    - !type:SurgeryOrganHeld
+      category: LegLeft
+  effects:
+    - !type:SurgeryInsertOrgan
+
+- type: surgeryStep
+  id: SurgerySlimeAttachRightLeg
+  name: Attach Right Leg
+  baseTime: 3
+  popup: surgery-attach-right-leg-popup-message
+  tool: []
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalIncisionHeldOpen
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: LegRight
+  softConditions:
+    - !type:SurgeryOrganHeld
+      category: LegRight
+  effects:
+    - !type:SurgeryInsertOrgan
+
+- type: surgeryStep
+  id: SurgerySlimeAttachLeftHand
+  name: Attach Left Hand
+  baseTime: 3
+  popup: surgery-attach-left-hand-popup-message
+  tool: []
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalIncisionHeldOpen
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: HandLeft
+  softConditions:
+    - !type:SurgeryOrganHeld
+      category: HandLeft
+  effects:
+    - !type:SurgeryInsertOrgan
+
+- type: surgeryStep
+  id: SurgerySlimeAttachRightHand
+  name: Attach Right Hand
+  baseTime: 3
+  popup: surgery-attach-right-hand-popup-message
+  tool: []
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalIncisionHeldOpen
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: HandRight
+  softConditions:
+    - !type:SurgeryOrganHeld
+      category: HandRight
+  effects:
+    - !type:SurgeryInsertOrgan
+
+- type: surgeryStep
+  id: SurgerySlimeAttachLeftFoot
+  name: Attach Left Foot
+  baseTime: 3
+  popup: surgery-attach-left-foot-popup-message
+  tool: []
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalIncisionHeldOpen
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: FootLeft
+  softConditions:
+    - !type:SurgeryOrganHeld
+      category: FootLeft
+  effects:
+    - !type:SurgeryInsertOrgan
+
+- type: surgeryStep
+  id: SurgerySlimeAttachRightFoot
+  name: Attach Right Foot
+  baseTime: 3
+  popup: surgery-attach-right-foot-popup-message
+  tool: []
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalIncisionHeldOpen
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: FootRight
+  softConditions:
+    - !type:SurgeryOrganHeld
+      category: FootRight
+  effects:
+    - !type:SurgeryInsertOrgan

@@ -93,7 +93,7 @@
 
 #FarHorizons Start
 - type: entity
-  parent: [ DamageableLimbBase, OrganBase]
+  parent: [ DamageableLimbBase, OrganBase, BaseSurgeryLimbTargetHeadOrganic]
   id: OrganBaseHeadNonVitalNonEdible #Far Horizons
   name: Head 
   abstract: true
@@ -175,7 +175,7 @@
   # Far Horizons end
 
 - type: entity
-  parent: [ DamageableLimbBase, OrganBase ]
+  parent: [ DamageableLimbBase, OrganBase, BaseSurgeryLimbTargetLeftArmOrganic ] # Far Horizons
   id: OrganBaseArmLeftNonEdible #Far Horizons
   name: Left Arm #FarHorizons Capitalization
   abstract: true
@@ -227,7 +227,7 @@
   # Far Horizons end
 
 - type: entity
-  parent: [ DamageableLimbBase, OrganBase ]
+  parent: [ DamageableLimbBase, OrganBase, BaseSurgeryLimbTargetRightArmOrganic ] # Far Horizons
   id: OrganBaseArmRightNonEdible #Far Horizons
   name: Right Arm #FarHorizons Capitalization
   abstract: true
@@ -279,7 +279,7 @@
   # Far Horizons end
 
 - type: entity
-  parent: [ DamageableLimbBaseNoVisuals, OrganBase ]
+  parent: [ DamageableLimbBaseNoVisuals, OrganBase, BaseSurgeryLimbTargetLeftHandOrganic ] # Far Horizons
   id: OrganBaseHandLeftNonEdible #Far Horizons
   name: Left Hand #FarHorizons Capitalization
   abstract: true
@@ -342,7 +342,7 @@
   # Far Horizons end
 
 - type: entity
-  parent: [ DamageableLimbBaseNoVisuals, OrganBase ]
+  parent: [ DamageableLimbBaseNoVisuals, OrganBase, BaseSurgeryLimbTargeRightHandOrganic ] # Far Horizons
   id: OrganBaseHandRightNonEdible #Far Horizons
   name: Right Hand #FarHorizons Capitalization
   abstract: true
@@ -405,7 +405,7 @@
   # Far Horizons end
 
 - type: entity
-  parent: [ DamageableLimbBase, OrganBase ]
+  parent: [ DamageableLimbBase, OrganBase, BaseSurgeryLimbTargetLeftLegOrganic ] # Far Horizons
   id: OrganBaseLegLeftNonEdible #Far Horizons
   name: Left Leg #FarHorizons Capitalization
   abstract: true
@@ -458,7 +458,7 @@
   # Far Horizons end
 
 - type: entity
-  parent: [ DamageableLimbBase, OrganBase ]
+  parent: [ DamageableLimbBase, OrganBase, BaseSurgeryLimbTargetRightLegOrganic ] # Far Horizons
   id: OrganBaseLegRightNonEdible #Far Horizons
   name: Right Leg #FarHorizons Capitalization
   abstract: true
@@ -511,7 +511,7 @@
   # Far Horizons end
 
 - type: entity
-  parent: [ DamageableLimbBaseNoVisuals, OrganBase ]
+  parent: [ DamageableLimbBaseNoVisuals, OrganBase, BaseSurgeryLimbTargetLeftFootOrganic ] # Far Horizons
   id: OrganBaseFootLeftNonEdible #Far Horizons
   name: Left Foot #FarHorizons Capitalization
   abstract: true
@@ -570,7 +570,7 @@
   # Far Horizons end
 
 - type: entity
-  parent: [ DamageableLimbBaseNoVisuals, OrganBase ]
+  parent: [ DamageableLimbBaseNoVisuals, OrganBase, BaseSurgeryLimbTargetRightFootOrganic ] # Far Horizons
   id: OrganBaseFootRightNonEdible
   name: Right Foot #FarHorizons Capitalization
   abstract: true

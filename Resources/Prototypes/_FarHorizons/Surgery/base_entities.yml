@@ -1,0 +1,558 @@
+# region Organic
+
+- type: entity
+  id: BaseSurgeryTargetOrganic
+  abstract: true
+  components:
+  - type: SurgeryTarget
+    blockingSlots:
+      - INNERCLOTHING
+      - OUTERCLOTHING
+    steps:
+      - BasicOrganicStepPack
+      - OrganicTorsoOrgansPack
+      - OrganicTorsoLimbAttachmentPack
+      - OrganicTendWoundPack
+      - OrganicTorsoNecrosisPack
+  - type: NecrosisSurgeryTarget
+    necrosisTarget:
+      Torso:
+        - LimbStatusEffectNecrosisLiver
+        - LimbStatusEffectNecrosisStomach
+        - LimbStatusEffectNecrosisKidneys
+      Head:
+        - LimbStatusEffectNecrosisEyes
+        - LimbStatusEffectNecrosisTongue
+      ArmLeft: [ LimbStatusEffectNecrosisLimb ]
+      ArmRight: [ LimbStatusEffectNecrosisLimb ]
+      HandLeft: [ LimbStatusEffectNecrosisLimb ]
+      HandRight: [ LimbStatusEffectNecrosisLimb ]
+      LegLeft: [ LimbStatusEffectNecrosisLimb ]
+      LegRight: [ LimbStatusEffectNecrosisLimb ]
+      FootLeft: [ LimbStatusEffectNecrosisLimb ]
+      FootRight: [ LimbStatusEffectNecrosisLimb ]
+    necrosisStatusCost: 5m
+    statusOrganDependency:
+      LimbStatusEffectNecrosisLiver: Liver
+      LimbStatusEffectNecrosisStomach: Stomach
+      LimbStatusEffectNecrosisKidneys: Kidneys
+      LimbStatusEffectNecrosisEyes: Eyes
+      LimbStatusEffectNecrosisTongue: Tongue
+
+# region Organic Limbs
+
+- type: entity
+  id: BaseSurgeryLimbTargetHeadOrganic
+  abstract: true
+  components:
+    - type: SurgeryLimbTarget
+      blockingSlots:
+        - MASK
+        - EYES
+        - EARS
+        - HEAD
+      steps:
+        - BasicOrganicStepPack
+        - OrganicAmputationStepPack
+        - OrganicHeadOrgansPack
+        - OrganicHeadImplantsPack
+        - OrganicTendWoundPack
+        - OrganicPlasticSurgeryPack
+        - OrganicHeadNecrosisPack
+
+- type: entity
+  id: BaseSurgeryLimbTargetLeftArmOrganic
+  abstract: true
+  components:
+    - type: SurgeryLimbTarget
+      blockingSlots:
+        - INNERCLOTHING
+        - OUTERCLOTHING
+      steps:
+        - BasicOrganicStepPack
+        - OrganicAmputationStepPack
+        - OrganicLeftHandAttachmentPack
+        - OrganicTendWoundPack
+        - OrganicLimbNecrosisPack
+
+- type: entity
+  id: BaseSurgeryLimbTargetRightArmOrganic
+  abstract: true
+  components:
+    - type: SurgeryLimbTarget
+      blockingSlots:
+        - INNERCLOTHING
+        - OUTERCLOTHING
+      steps:
+        - BasicOrganicStepPack
+        - OrganicAmputationStepPack
+        - OrganicRightHandAttachmentPack
+        - OrganicTendWoundPack
+        - OrganicLimbNecrosisPack
+
+- type: entity
+  id: BaseSurgeryLimbTargetLeftHandOrganic
+  abstract: true
+  components:
+    - type: SurgeryLimbTarget
+      blockingSlots: [ GLOVES ]
+      steps:
+        - BasicOrganicStepPack
+        - OrganicAmputationStepPack
+        - OrganicLeftHandImplantsPack
+        - OrganicTendWoundPack
+        - OrganicLimbNecrosisPack
+
+- type: entity
+  id: BaseSurgeryLimbTargeRightHandOrganic
+  abstract: true
+  components:
+    - type: SurgeryLimbTarget
+      blockingSlots: [ GLOVES ]
+      steps:
+        - BasicOrganicStepPack
+        - OrganicAmputationStepPack
+        - OrganicRightHandImplantsPack
+        - OrganicTendWoundPack
+        - OrganicLimbNecrosisPack
+
+- type: entity
+  id: BaseSurgeryLimbTargetLeftLegOrganic
+  abstract: true
+  components:
+    - type: SurgeryLimbTarget
+      blockingSlots:
+        - INNERCLOTHING
+        - OUTERCLOTHING
+      steps:
+        - BasicOrganicStepPack
+        - OrganicAmputationStepPack
+        - OrganicLeftFootAttachmentPack
+        - OrganicTendWoundPack
+        - OrganicLimbNecrosisPack
+
+- type: entity
+  id: BaseSurgeryLimbTargetRightLegOrganic
+  abstract: true
+  components:
+    - type: SurgeryLimbTarget
+      blockingSlots:
+        - INNERCLOTHING
+        - OUTERCLOTHING
+      steps:
+        - BasicOrganicStepPack
+        - OrganicAmputationStepPack
+        - OrganicRightFootAttachmentPack
+        - OrganicTendWoundPack
+        - OrganicLimbNecrosisPack
+
+- type: entity
+  id: BaseSurgeryLimbTargetLeftFootOrganic
+  abstract: true
+  components:
+    - type: SurgeryLimbTarget
+      blockingSlots: [ FEET ]
+      steps:
+        - BasicOrganicStepPack
+        - OrganicAmputationStepPack
+        - OrganicTendWoundPack
+        - OrganicLimbNecrosisPack
+
+- type: entity
+  id: BaseSurgeryLimbTargetRightFootOrganic
+  abstract: true
+  components:
+    - type: SurgeryLimbTarget
+      blockingSlots: [ FEET ]
+      steps:
+        - BasicOrganicStepPack
+        - OrganicAmputationStepPack
+        - OrganicTendWoundPack
+        - OrganicLimbNecrosisPack
+
+# region Slime
+
+- type: entity
+  id: BaseSurgeryTargetSlime
+  abstract: true
+  components:
+  - type: SurgeryTarget
+    blockingSlots:
+      - INNERCLOTHING
+      - OUTERCLOTHING
+    steps:
+      - BasicSlimeStepPack
+      - SlimeTorsoOrgansPack
+      - SlimeTorsoLimbAttachmentPack
+      - OrganicTendWoundPack
+      - OrganicTorsoNecrosisPack
+  - type: NecrosisSurgeryTarget
+    necrosisTarget:
+      ArmLeft: [ LimbStatusEffectNecrosisLimb ]
+      ArmRight: [ LimbStatusEffectNecrosisLimb ]
+      HandLeft: [ LimbStatusEffectNecrosisLimb ]
+      HandRight: [ LimbStatusEffectNecrosisLimb ]
+      LegLeft: [ LimbStatusEffectNecrosisLimb ]
+      LegRight: [ LimbStatusEffectNecrosisLimb ]
+      FootLeft: [ LimbStatusEffectNecrosisLimb ]
+      FootRight: [ LimbStatusEffectNecrosisLimb ]
+    necrosisStatusCost: 5m
+
+# region Slime Limbs
+
+- type: entity
+  id: BaseSurgeryLimbTargetHeadSlime
+  abstract: true
+  components:
+    - type: SurgeryLimbTarget
+      blockingSlots:
+        - MASK
+        - EYES
+        - EARS
+        - HEAD
+      steps:
+        - BasicSlimeStepPack
+        - SlimeAmputationStepPack
+        - SlimeHeadImplantsPack
+        - OrganicTendWoundPack
+        - SlimePlasticSurgeryPack
+
+- type: entity
+  id: BaseSurgeryLimbTargetLeftArmSlime
+  abstract: true
+  components:
+    - type: SurgeryLimbTarget
+      blockingSlots:
+        - INNERCLOTHING
+        - OUTERCLOTHING
+      steps:
+        - BasicSlimeStepPack
+        - SlimeAmputationStepPack
+        - SlimeLeftHandAttachmentPack
+        - OrganicTendWoundPack
+        - SlimeLimbNecrosisPack
+
+- type: entity
+  id: BaseSurgeryLimbTargetRightArmSlime
+  abstract: true
+  components:
+    - type: SurgeryLimbTarget
+      blockingSlots:
+        - INNERCLOTHING
+        - OUTERCLOTHING
+      steps:
+        - BasicSlimeStepPack
+        - SlimeAmputationStepPack
+        - SlimeRightHandAttachmentPack
+        - OrganicTendWoundPack
+        - SlimeLimbNecrosisPack
+
+- type: entity
+  id: BaseSurgeryLimbTargetLeftHandSlime
+  abstract: true
+  components:
+    - type: SurgeryLimbTarget
+      blockingSlots: [ GLOVES ]
+      steps:
+        - BasicSlimeStepPack
+        - SlimeAmputationStepPack
+        - SlimeLeftHandImplantsPack
+        - OrganicTendWoundPack
+        - SlimeLimbNecrosisPack
+
+- type: entity
+  id: BaseSurgeryLimbTargetRightHandSlime
+  abstract: true
+  components:
+    - type: SurgeryLimbTarget
+      blockingSlots: [ GLOVES ]
+      steps:
+        - BasicSlimeStepPack
+        - SlimeAmputationStepPack
+        - SlimeRightHandImplantsPack
+        - OrganicTendWoundPack
+        - SlimeLimbNecrosisPack
+
+- type: entity
+  id: BaseSurgeryLimbTargetLeftLegSlime
+  abstract: true
+  components:
+    - type: SurgeryLimbTarget
+      blockingSlots:
+        - INNERCLOTHING
+        - OUTERCLOTHING
+      steps:
+        - BasicSlimeStepPack
+        - SlimeAmputationStepPack
+        - SlimeLeftFootAttachmentPack
+        - OrganicTendWoundPack
+        - SlimeLimbNecrosisPack
+
+- type: entity
+  id: BaseSurgeryLimbTargetRightLegSlime
+  abstract: true
+  components:
+    - type: SurgeryLimbTarget
+      blockingSlots:
+        - INNERCLOTHING
+        - OUTERCLOTHING
+      steps:
+        - BasicSlimeStepPack
+        - SlimeAmputationStepPack
+        - SlimeRightFootAttachmentPack
+        - OrganicTendWoundPack
+        - SlimeLimbNecrosisPack
+
+- type: entity
+  id: BaseSurgeryLimbTargetLeftFootSlime
+  abstract: true
+  components:
+    - type: SurgeryLimbTarget
+      blockingSlots: [ FEET ]
+      steps:
+        - BasicSlimeStepPack
+        - SlimeAmputationStepPack
+        - OrganicTendWoundPack
+        - SlimeLimbNecrosisPack
+
+- type: entity
+  id: BaseSurgeryLimbTargetRightFootSlime
+  abstract: true
+  components:
+    - type: SurgeryLimbTarget
+      blockingSlots: [ FEET ]
+      steps:
+        - BasicSlimeStepPack
+        - SlimeAmputationStepPack
+        - OrganicTendWoundPack
+        - SlimeLimbNecrosisPack
+
+# region Shadekin
+
+- type: entity
+  id: BaseSurgeryTargetShadekin
+  abstract: true
+  components:
+  - type: SurgeryTarget
+    blockingSlots:
+      - INNERCLOTHING
+      - OUTERCLOTHING
+    steps:
+      - BasicOrganicStepPack
+      - ShadekinTorsoOrgansPack
+      - OrganicTorsoLimbAttachmentPack
+      - OrganicTendWoundPack
+      - OrganicTorsoNecrosisPack
+  - type: NecrosisSurgeryTarget
+    necrosisTarget:
+      Torso:
+        - LimbStatusEffectNecrosisLiver
+        - LimbStatusEffectNecrosisStomach
+        - LimbStatusEffectNecrosisKidneys
+      Head:
+        - LimbStatusEffectNecrosisEyes
+        - LimbStatusEffectNecrosisTongue
+      ArmLeft: [ LimbStatusEffectNecrosisLimb ]
+      ArmRight: [ LimbStatusEffectNecrosisLimb ]
+      HandLeft: [ LimbStatusEffectNecrosisLimb ]
+      HandRight: [ LimbStatusEffectNecrosisLimb ]
+      LegLeft: [ LimbStatusEffectNecrosisLimb ]
+      LegRight: [ LimbStatusEffectNecrosisLimb ]
+      FootLeft: [ LimbStatusEffectNecrosisLimb ]
+      FootRight: [ LimbStatusEffectNecrosisLimb ]
+    necrosisStatusCost: 5m
+    statusOrganDependency:
+      LimbStatusEffectNecrosisLiver: Liver
+      LimbStatusEffectNecrosisStomach: Stomach
+      LimbStatusEffectNecrosisKidneys: Kidneys
+      LimbStatusEffectNecrosisEyes: Eyes
+      LimbStatusEffectNecrosisTongue: Tongue
+
+# region Diona
+
+- type: entity
+  id: BaseSurgeryTargetDiona
+  abstract: true
+  components:
+  - type: SurgeryTarget
+    blockingSlots:
+      - INNERCLOTHING
+      - OUTERCLOTHING
+    steps:
+      - BasicOrganicStepPack
+      - DionaTorsoOrgansPack
+      - OrganicTorsoLimbAttachmentPack
+      - OrganicTendWoundPack
+      - OrganicTorsoNecrosisPack
+  - type: NecrosisSurgeryTarget
+    necrosisTarget:
+      Head:
+        - LimbStatusEffectNecrosisEyes
+      ArmLeft: [ LimbStatusEffectNecrosisLimb ]
+      ArmRight: [ LimbStatusEffectNecrosisLimb ]
+      HandLeft: [ LimbStatusEffectNecrosisLimb ]
+      HandRight: [ LimbStatusEffectNecrosisLimb ]
+      LegLeft: [ LimbStatusEffectNecrosisLimb ]
+      LegRight: [ LimbStatusEffectNecrosisLimb ]
+      FootLeft: [ LimbStatusEffectNecrosisLimb ]
+      FootRight: [ LimbStatusEffectNecrosisLimb ]
+    necrosisStatusCost: 5m
+    statusOrganDependency:
+      LimbStatusEffectNecrosisEyes: Eyes
+
+# region Diona Limbs
+
+- type: entity
+  id: BaseSurgeryLimbTargetHeadDiona
+  abstract: true
+  components:
+    - type: SurgeryLimbTarget
+      blockingSlots:
+        - MASK
+        - EYES
+        - EARS
+        - HEAD
+      steps:
+        - BasicOrganicStepPack
+        - OrganicAmputationStepPack
+        - DionaHeadOrgansPack
+        - DionaHeadImplantsPack
+        - OrganicTendWoundPack
+        - OrganicPlasticSurgeryPack
+
+# region Inorganic
+
+- type: entity
+  id: BaseSurgeryTargetInorganic
+  abstract: true
+  components:
+  - type: SurgeryTarget
+    surgeryType: Inorganic
+    blockingSlots:
+      - INNERCLOTHING
+      - OUTERCLOTHING
+    steps:
+      - BasicInorganicStepPack
+      - InorganicTorsoOrgansPack
+      - InorganicTorsoLimbAttachmentPack
+
+# region Inorganic Limbs
+
+- type: entity
+  id: BaseSurgeryLimbTargetHeadInorganic
+  abstract: true
+  components:
+    - type: SurgeryLimbTarget
+      surgeryType: Inorganic
+      blockingSlots:
+        - MASK
+        - EYES
+        - EARS
+        - HEAD
+      steps:
+        - BasicInorganicStepPack
+        - InorganicAmputationStepPack
+        - InorganicHeadOrgansPack
+        - InorganicHeadImplantsPack
+
+- type: entity
+  id: BaseSurgeryLimbTargetLeftArmInorganic
+  abstract: true
+  components:
+    - type: SurgeryLimbTarget
+      surgeryType: Inorganic
+      blockingSlots:
+        - INNERCLOTHING
+        - OUTERCLOTHING
+      steps:
+        - BasicInorganicStepPack
+        - InorganicAmputationStepPack
+        - InorganicLeftHandAttachmentPack
+
+- type: entity
+  id: BaseSurgeryLimbTargetRightArmInorganic
+  abstract: true
+  components:
+    - type: SurgeryLimbTarget
+      surgeryType: Inorganic
+      blockingSlots:
+        - INNERCLOTHING
+        - OUTERCLOTHING
+      steps:
+        - BasicInorganicStepPack
+        - InorganicAmputationStepPack
+        - InorganicRightHandAttachmentPack
+
+- type: entity
+  id: BaseSurgeryLimbTargetLeftHandInorganic
+  abstract: true
+  components:
+    - type: SurgeryLimbTarget
+      surgeryType: Inorganic
+      blockingSlots: [ GLOVES ]
+      steps:
+        - BasicInorganicStepPack
+        - InorganicAmputationStepPack
+        - InorganicLeftHandImplantsPack
+
+- type: entity
+  id: BaseSurgeryLimbTargeRightHandInorganic
+  abstract: true
+  components:
+    - type: SurgeryLimbTarget
+      surgeryType: Inorganic
+      blockingSlots: [ GLOVES ]
+      steps:
+        - BasicInorganicStepPack
+        - InorganicAmputationStepPack
+        - InorganicRightHandImplantsPack
+
+- type: entity
+  id: BaseSurgeryLimbTargetLeftLegInorganic
+  abstract: true
+  components:
+    - type: SurgeryLimbTarget
+      surgeryType: Inorganic
+      blockingSlots:
+        - INNERCLOTHING
+        - OUTERCLOTHING
+      steps:
+        - BasicInorganicStepPack
+        - InorganicAmputationStepPack
+        - InorganicLeftFootAttachmentPack
+
+- type: entity
+  id: BaseSurgeryLimbTargetRightLegInorganic
+  abstract: true
+  components:
+    - type: SurgeryLimbTarget
+      surgeryType: Inorganic
+      blockingSlots:
+        - INNERCLOTHING
+        - OUTERCLOTHING
+      steps:
+        - BasicInorganicStepPack
+        - InorganicAmputationStepPack
+        - InorganicRightFootAttachmentPack
+
+- type: entity
+  id: BaseSurgeryLimbTargetLeftFootInorganic
+  abstract: true
+  components:
+    - type: SurgeryLimbTarget
+      surgeryType: Inorganic
+      blockingSlots: [ FEET ]
+      steps:
+        - BasicInorganicStepPack
+        - InorganicAmputationStepPack
+
+- type: entity
+  id: BaseSurgeryLimbTargetRightFootInorganic
+  abstract: true
+  components:
+    - type: SurgeryLimbTarget
+      surgeryType: Inorganic
+      blockingSlots: [ FEET ]
+      steps:
+        - BasicInorganicStepPack
+        - InorganicAmputationStepPack

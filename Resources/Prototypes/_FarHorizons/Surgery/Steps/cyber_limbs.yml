@@ -1,0 +1,329 @@
+# region Amputation
+
+- type: surgeryStep
+  parent: ScrewdriverSurgery
+  id: SurgeryUnscrewStructure
+  name: Unscrew Internal Structure
+  baseTime: 2
+  popup: surgery-cyber-unscrew-structure-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalPlatingPried
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses:
+        - LimbStatusEffectSurgicalStructureUnscrewed
+  effects:
+    - !type:SurgeryApplyLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalStructureUnscrewed
+    - !type:SurgeryProgressStatusChain
+      needsToBeAlive: false
+      chain: OilLeak
+
+- type: surgeryStep
+  parent: ScrewdriverSurgery
+  id: SurgeryScrewStructure
+  name: Fix Internal Structure
+  baseTime: 1
+  popup: surgery-cyber-screw-structure-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalPlatingPried
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalStructureUnscrewed
+  effects:
+    - !type:SurgeryRemoveLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalStructureUnscrewed
+
+- type: surgeryStep
+  parent: MultitoolSurgery
+  id: SurgeryPowerDownLimb
+  name: Power Limb Down
+  baseTime: 2
+  popup: surgery-cyber-power-down-limb-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalStructureUnscrewed
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses:
+        - LimbStatusEffectSurgicalLimbPoweredDown
+  effects:
+    - !type:SurgeryApplyLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalLimbPoweredDown
+
+- type: surgeryStep
+  parent: MultitoolSurgery
+  id: SurgeryPowerUpLimb
+  name: Power Limb Up
+  baseTime: 1
+  popup: surgery-cyber-power-up-limb-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalStructureUnscrewed
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalLimbPoweredDown
+  effects:
+    - !type:SurgeryRemoveLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalLimbPoweredDown
+
+- type: surgeryStep
+  parent: WelderSurgery
+  id: SurgeryAmputateLimbCyber
+  name: Remove Limb
+  baseTime: 4
+  popup: surgery-cyber-amputate-limb-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalLimbPoweredDown
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses:
+        - LimbStatusEffectLeakingOilI
+        - LimbStatusEffectLeakingOilII
+        - LimbStatusEffectLeakingOilIII
+  effects:
+    - !type:SurgeryRemoveLimbStatus
+      statuses:
+        - LimbStatusEffectPlatingUnscrewed
+        - LimbStatusEffectSurgicalPlatingPried
+        - LimbStatusEffectSurgicalStructureUnscrewed
+        - LimbStatusEffectSurgicalLimbPoweredDown
+        - LimbStatusEffectLeakingOilI
+        - LimbStatusEffectLeakingOilII
+        - LimbStatusEffectLeakingOilIII
+    - !type:SurgeryDetachLimb
+
+# region Attachment
+
+- type: surgeryStep
+  parent: WrenchSurgery
+  id: SurgeryLoosenBolts
+  name: Loosen Bolts
+  baseTime: 2
+  popup: surgery-cyber-loosen-bolts-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalPlatingPried
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses:
+        - LimbStatusEffectSurgicalBoltsLoosened
+        - LimbStatusEffectSurgicalHydraulicsCut
+  effects:
+    - !type:SurgeryApplyLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalBoltsLoosened
+    - !type:SurgeryProgressStatusChain
+      needsToBeAlive: false
+      chain: OilLeak
+
+- type: surgeryStep
+  parent: WrenchSurgery
+  id: SurgeryTightenBolts
+  name: Tighten Bolts
+  baseTime: 1
+  popup: surgery-cyber-tighten-bolts-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalPlatingPried
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalBoltsLoosened
+  effects:
+    - !type:SurgeryRemoveLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalBoltsLoosened
+
+- type: surgeryStep
+  parent: WelderSurgery
+  id: SurgeryWeldJoints
+  name: Weld Joints
+  baseTime: 2
+  popup: surgery-cyber-weld-joints-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalBoltsLoosened
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses:
+        - LimbStatusEffectLeakingOilI
+        - LimbStatusEffectLeakingOilII
+        - LimbStatusEffectLeakingOilIII
+        - LimbStatusEffectSurgicalJointsWelded
+  effects:
+    - !type:SurgeryApplyLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalJointsWelded
+    - !type:SurgeryProgressStatusChain
+      needsToBeAlive: false
+      chain: OilLeak
+
+# region Specific Limbs
+
+- type: surgeryStep
+  parent: SurgeryAttachHead
+  id: SurgeryAttachHeadCyber
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalJointsWelded
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: Head
+  effects:
+    - !type:SurgeryRemoveLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalJointsWelded
+        - LimbStatusEffectSurgicalBoltsLoosened
+    - !type:SurgeryInsertOrgan
+
+- type: surgeryStep
+  parent: SurgeryAttachLeftArm
+  id: SurgeryAttachLeftArmCyber
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalJointsWelded
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: ArmLeft
+  effects:
+    - !type:SurgeryRemoveLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalJointsWelded
+        - LimbStatusEffectSurgicalBoltsLoosened
+    - !type:SurgeryInsertOrgan
+
+- type: surgeryStep
+  parent: SurgeryAttachRightArm
+  id: SurgeryAttachRightArmCyber
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalJointsWelded
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: ArmRight
+  effects:
+    - !type:SurgeryRemoveLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalJointsWelded
+        - LimbStatusEffectSurgicalBoltsLoosened
+    - !type:SurgeryInsertOrgan
+
+- type: surgeryStep
+  parent: SurgeryAttachLeftLeg
+  id: SurgeryAttachLeftLegCyber
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalJointsWelded
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: LegLeft
+  effects:
+    - !type:SurgeryRemoveLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalJointsWelded
+        - LimbStatusEffectSurgicalBoltsLoosened
+    - !type:SurgeryInsertOrgan
+
+- type: surgeryStep
+  parent: SurgeryAttachRightLeg
+  id: SurgeryAttachRightLegCyber
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalJointsWelded
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: LegRight
+  effects:
+    - !type:SurgeryRemoveLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalJointsWelded
+        - LimbStatusEffectSurgicalBoltsLoosened
+    - !type:SurgeryInsertOrgan
+
+- type: surgeryStep
+  parent: SurgeryAttachLeftHand
+  id: SurgeryAttachLeftHandCyber
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalJointsWelded
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: HandLeft
+  effects:
+    - !type:SurgeryRemoveLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalJointsWelded
+        - LimbStatusEffectSurgicalBoltsLoosened
+    - !type:SurgeryInsertOrgan
+
+- type: surgeryStep
+  parent: SurgeryAttachRightHand
+  id: SurgeryAttachRightHandCyber
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalJointsWelded
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: HandRight
+  effects:
+    - !type:SurgeryRemoveLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalJointsWelded
+        - LimbStatusEffectSurgicalBoltsLoosened
+    - !type:SurgeryInsertOrgan
+
+- type: surgeryStep
+  parent: SurgeryAttachLeftFoot
+  id: SurgeryAttachLeftFootCyber
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalJointsWelded
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: FootLeft
+  effects:
+    - !type:SurgeryRemoveLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalJointsWelded
+        - LimbStatusEffectSurgicalBoltsLoosened
+    - !type:SurgeryInsertOrgan
+
+- type: surgeryStep
+  parent: SurgeryAttachRightFoot
+  id: SurgeryAttachRightFootCyber
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalJointsWelded
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: FootRight
+  effects:
+    - !type:SurgeryRemoveLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalJointsWelded
+        - LimbStatusEffectSurgicalBoltsLoosened
+    - !type:SurgeryInsertOrgan

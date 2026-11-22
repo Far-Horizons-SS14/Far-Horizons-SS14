@@ -1,0 +1,592 @@
+# region Organic
+
+- type: surgeryStepPack
+  id: BasicOrganicStepPack
+  steps:
+    - SurgeryClampBleeding
+    - SurgeryMakeIncision
+    - SurgeryCloseIncision
+    - SurgeryHoldIncisionOpen
+    - SurgeryReleaseOpenIncision
+
+- type: surgeryStepPack
+  id: OrganicTorsoOrgansPack
+  steps:
+    - SurgeryAccessAbdomen
+    - SurgeryCloseAbdomen
+    - SurgeryRemoveCavityItem
+    - SurgeryImplantCavityItem
+    - SurgeryClampHepaticArtery
+    - SurgeryReleaseHepaticArtery
+    - SurgeryRemoveLiver
+    - SurgeryImplantLiver
+    - SurgeryAccessKidneys
+    - SurgeryCloseKidneys
+    - SurgeryRemoveKidneys
+    - SurgeryImplantKidneys
+    - SurgeryCutEsophagus
+    - SurgeryConnectEsophagus
+    - SurgeryRemoveStomach
+    - SurgeryImplantStomach
+    - SurgeryOpenRibcage
+    - SurgeryCloseRibcage
+    - SurgeryClampAorta
+    - SurgeryReleaseAorta
+    - SurgeryRemoveHeart
+    - SurgeryImplantHeart
+    - SurgeryAccessLungs
+    - SurgeryCloseLungs
+    - SurgeryRemoveLungs
+    - SurgeryImplantLungs
+    - SurgeryTreatLungDamage
+  tutorials:
+    - SurgeryTutorialRemoveLiver
+    - SurgeryTutorialImplantLiver
+    - SurgeryTutorialRemoveKidneys
+    - SurgeryTutorialImplantKidneys
+    - SurgeryTutorialRemoveStomach
+    - SurgeryTutorialImplantStomach
+    - SurgeryTutorialRemoveHeart
+    - SurgeryTutorialImplantHeart
+    - SurgeryTutorialRemoveLungs
+    - SurgeryTutorialImplantLungs
+    - SurgeryTutorialTendLungWounds
+
+- type: surgeryStepPack
+  id: OrganicHeadOrgansPack
+  steps:
+    - SurgeryClampLingualArtery
+    - SurgeryReleaseLingualArtery
+    - SurgeryRemoveTongue
+    - SurgeryImplantTongue
+    - SurgeryCutOpticNerve
+    - SurgeryRestoreOpticNerve
+    - SurgeryRemoveEyes
+    - SurgeryImplantEyes
+    - SurgeryDrillSkull
+    - SurgeryPatchSkull
+    - SurgeryOpenSkull
+    - SurgeryCloseSkull
+    - SurgeryRemoveBrain
+    - SurgeryImplantBrain
+    - SurgeryTreatEyeDamage
+  tutorials:
+    - SurgeryTutorialRemoveTongue
+    - SurgeryTutorialImplantTongue
+    - SurgeryTutorialRemoveEyes
+    - SurgeryTutorialImplantEyes
+    - SurgeryTutorialRemoveBrain
+    - SurgeryTutorialImplantBrain
+    - SurgeryTutorialTendEyeDamage
+
+- type: surgeryStepPack
+  id: OrganicHeadImplantsPack
+  steps:
+    - SurgeryRemoveEyeImplant
+    - SurgeryImplantEyeImplant
+    - SurgeryRemoveBrainImplant
+    - SurgeryImplantBrainImplant
+  tutorials:
+    - SurgeryTutorialRemoveEyeImplant
+    - SurgeryTutorialImplantEyeImplant
+    - SurgeryTutorialRemoveBrainImplant
+    - SurgeryTutorialImplantBrainImplant
+
+- type: surgeryStepPack
+  id: OrganicLeftHandImplantsPack
+  steps:
+    - SurgeryRemoveLeftHandImplant
+    - SurgeryImplantLeftHandImplant
+  tutorials:
+    - SurgeryTutorialImplantLeftHandImplant
+    - SurgeryTutorialRemoveLeftHandImplant
+
+- type: surgeryStepPack
+  id: OrganicRightHandImplantsPack
+  steps:
+    - SurgeryRemoveRightHandImplant
+    - SurgeryImplantRightHandImplant
+  tutorials:
+    - SurgeryTutorialImplantRightHandImplant
+    - SurgeryTutorialRemoveRightHandImplant
+
+- type: surgeryStepPack
+  id: OrganicTendWoundPack
+  steps:
+    - SurgeryDeepenIncision
+    - SurgeryCloseDeepIncision
+    - SurgeryTendBrute
+    - SurgeryTendBurn
+  tutorials:
+    - SurgeryTutorialTendBruteWound
+    - SurgeryTutorialTendBurnWound
+
+- type: surgeryStepPack
+  id: OrganicAmputationStepPack
+  steps:
+    - SurgeryDetachVessels
+    - SurgeryReattachVessels
+    - SurgeryDetachMuscles
+    - SurgeryReattachMuscles
+    - SurgeryAmputateLimb
+  tutorials:
+    - SurgeryTutorialAmputateLimb
+
+- type: surgeryStepPack
+  id: OrganicTorsoLimbAttachmentPack
+  steps:
+    - SurgeryDislocateBones
+    - SurgeryPositionBones
+    - SurgeryApplyBoneGel
+    - SurgeryAttachHead
+    - SurgeryAttachLeftArm
+    - SurgeryAttachRightArm
+    - SurgeryAttachLeftLeg
+    - SurgeryAttachRightLeg
+  tutorials:
+    - SurgeryTutorialAttachLeftArm
+    - SurgeryTutorialAttachRightArm
+    - SurgeryTutorialAttachLeftLeg
+    - SurgeryTutorialAttachRightLeg
+    - SurgeryTutorialAttachHead
+
+- type: surgeryStepPack
+  id: OrganicLeftHandAttachmentPack
+  steps:
+    - SurgeryDislocateBones
+    - SurgeryPositionBones
+    - SurgeryApplyBoneGel
+    - SurgeryAttachLeftHand
+  tutorials:
+    - SurgeryTutorialAttachLeftHand
+
+- type: surgeryStepPack
+  id: OrganicRightHandAttachmentPack
+  steps:
+    - SurgeryDislocateBones
+    - SurgeryPositionBones
+    - SurgeryApplyBoneGel
+    - SurgeryAttachRightHand
+  tutorials:
+    - SurgeryTutorialAttachRightHand
+
+- type: surgeryStepPack
+  id: OrganicLeftFootAttachmentPack
+  steps:
+    - SurgeryDislocateBones
+    - SurgeryPositionBones
+    - SurgeryApplyBoneGel
+    - SurgeryAttachLeftFoot
+  tutorials:
+    - SurgeryTutorialAttachLeftFoot
+
+- type: surgeryStepPack
+  id: OrganicRightFootAttachmentPack
+  steps:
+    - SurgeryDislocateBones
+    - SurgeryPositionBones
+    - SurgeryApplyBoneGel
+    - SurgeryAttachRightFoot
+  tutorials:
+    - SurgeryTutorialAttachLeftFoot
+
+- type: surgeryStepPack
+  id: OrganicPlasticSurgeryPack
+  steps:
+    - SurgeryCutFacialBones
+    - SurgeryPatchFacialBones
+    - SurgeryRepositionFacialBones
+    - SurgeryRevertFacialBones
+    - SurgeryChangeAppearance
+
+# region Slime
+
+- type: surgeryStepPack
+  id: BasicSlimeStepPack
+  steps:
+    - SurgerySlimeClampBleeding
+    - SurgeryMakeIncision
+    - SurgeryCloseIncision
+    - SurgeryHoldIncisionOpen
+    - SurgeryReleaseOpenIncision
+
+- type: surgeryStepPack
+  id: SlimeAmputationStepPack
+  steps:
+    - SurgerySlimeAmputateLimb
+  tutorials:
+    - SurgeryTutorialSlimeAmputateLimb
+
+- type: surgeryStepPack
+  id: SlimeTorsoLimbAttachmentPack
+  steps:
+    - SurgerySlimeAttachHead
+    - SurgerySlimeAttachLeftArm
+    - SurgerySlimeAttachRightArm
+    - SurgerySlimeAttachLeftLeg
+    - SurgerySlimeAttachRightLeg
+  tutorials:
+    - SurgeryTutorialSlimeAttachLeftArm
+    - SurgeryTutorialSlimeAttachRightArm
+    - SurgeryTutorialSlimeAttachLeftLeg
+    - SurgeryTutorialSlimeAttachRightLeg
+    - SurgeryTutorialSlimeAttachHead
+
+- type: surgeryStepPack
+  id: SlimeLeftHandAttachmentPack
+  steps:
+    - SurgerySlimeAttachLeftHand
+  tutorials:
+    - SurgeryTutorialSlimeAttachLeftHand
+
+- type: surgeryStepPack
+  id: SlimeRightHandAttachmentPack
+  steps:
+    - SurgerySlimeAttachRightHand
+  tutorials:
+    - SurgeryTutorialSlimeAttachRightHand
+
+- type: surgeryStepPack
+  id: SlimeLeftFootAttachmentPack
+  steps:
+    - SurgerySlimeAttachLeftFoot
+  tutorials:
+    - SurgeryTutorialSlimeAttachLeftFoot
+
+- type: surgeryStepPack
+  id: SlimeRightFootAttachmentPack
+  steps:
+    - SurgerySlimeAttachRightFoot
+  tutorials:
+    - SurgeryTutorialSlimeAttachRightFoot
+
+- type: surgeryStepPack
+  id: SlimeHeadImplantsPack
+  steps:
+    - SurgerySlimeRemoveEyeImplant
+    - SurgerySlimeImplantEyeImplant
+  tutorials:
+    - SurgeryTutorialSlimeRemoveEyeImplant
+    - SurgeryTutorialSlimeImplantEyeImplant
+
+- type: surgeryStepPack
+  id: SlimeLeftHandImplantsPack
+  steps:
+    - SurgerySlimeRemoveLeftHandImplant
+    - SurgerySlimeImplantLeftHandImplant
+  tutorials:
+    - SurgeryTutorialSlimeImplantLeftHandImplant
+    - SurgeryTutorialSlimeRemoveLeftHandImplant
+
+- type: surgeryStepPack
+  id: SlimeRightHandImplantsPack
+  steps:
+    - SurgerySlimeRemoveRightHandImplant
+    - SurgerySlimeImplantRightHandImplant
+  tutorials:
+    - SurgeryTutorialSlimeImplantRightHandImplant
+    - SurgeryTutorialSlimeRemoveRightHandImplant
+
+- type: surgeryStepPack
+  id: SlimeTorsoOrgansPack
+  steps:
+    - SurgerySlimeRemoveLungs
+    - SurgerySlimeImplantLungs
+    - SurgerySlimeAccessCore
+    - SurgerySlimeCloseCore
+    - SurgerySlimeRemoveCore
+    - SurgerySlimeImplantCore
+  tutorials:
+    - SurgeryTutorialSlimeRemoveLungs
+    - SurgeryTutorialSlimeImplantLungs
+    - SurgeryTutorialSlimeRemoveCore
+    - SurgeryTutorialSlimeImplantCore
+
+- type: surgeryStepPack
+  id: SlimePlasticSurgeryPack
+  steps:
+    - SurgerySlimeAlterFacialStructure
+    - SurgerySlimeRevertFacialStructure
+    - SurgerySlimeChangeAppearance
+
+# region Shadekin
+
+- type: surgeryStepPack
+  id: ShadekinTorsoOrgansPack
+  steps:
+    - SurgeryAccessAbdomen
+    - SurgeryCloseAbdomen
+    - SurgeryRemoveCavityItem
+    - SurgeryImplantCavityItem
+    - SurgeryClampHepaticArtery
+    - SurgeryReleaseHepaticArtery
+    - SurgeryRemoveLiver
+    - SurgeryImplantLiver
+    - SurgeryAccessKidneys
+    - SurgeryCloseKidneys
+    - SurgeryRemoveKidneys
+    - SurgeryImplantKidneys
+    - SurgeryCutEsophagus
+    - SurgeryConnectEsophagus
+    - SurgeryRemoveStomach
+    - SurgeryImplantStomach
+    - SurgeryOpenRibcage
+    - SurgeryCloseRibcage
+    - SurgeryClampAorta
+    - SurgeryReleaseAorta
+    - SurgeryRemoveHeart
+    - SurgeryImplantHeart
+    - SurgeryShadekinAccessCore
+    - SurgeryShadekinCloseCore
+    - SurgeryShadekinRemoveCore
+    - SurgeryShadekinImplantCore
+  tutorials:
+    - SurgeryTutorialRemoveLiver
+    - SurgeryTutorialImplantLiver
+    - SurgeryTutorialRemoveKidneys
+    - SurgeryTutorialImplantKidneys
+    - SurgeryTutorialRemoveStomach
+    - SurgeryTutorialImplantStomach
+    - SurgeryTutorialRemoveHeart
+    - SurgeryTutorialImplantHeart
+    - SurgeryTutorialRemoveShadekinCore
+    - SurgeryTutorialImplantShadekinCore
+
+# region Diona
+
+- type: surgeryStepPack
+  id: DionaTorsoOrgansPack
+  steps:
+    - SurgeryAccessAbdomen
+    - SurgeryCloseAbdomen
+    - SurgeryRemoveCavityItem
+    - SurgeryImplantCavityItem
+    - SurgeryClampHepaticArtery
+    - SurgeryReleaseHepaticArtery
+    - SurgeryRemoveLiver
+    - SurgeryImplantLiver
+    - SurgeryAccessKidneys
+    - SurgeryCloseKidneys
+    - SurgeryRemoveKidneys
+    - SurgeryImplantKidneys
+    - SurgeryCutEsophagus
+    - SurgeryConnectEsophagus
+    - SurgeryRemoveStomach
+    - SurgeryImplantStomach
+    - SurgeryOpenRibcage
+    - SurgeryCloseRibcage
+    - SurgeryClampAorta
+    - SurgeryReleaseAorta
+    - SurgeryRemoveHeart
+    - SurgeryImplantHeart
+    - SurgeryAccessLungs
+    - SurgeryCloseLungs
+    - SurgeryRemoveLungs
+    - SurgeryImplantLungs
+    - SurgeryTreatLungDamage
+    - SurgeryDionaAccessCore
+    - SurgeryDionaCloseCore
+    - SurgeryDionaRemoveCore
+    # - SurgeryDionaImplantCore # you can't hold them...
+  tutorials:
+    - SurgeryTutorialRemoveLiver
+    - SurgeryTutorialImplantLiver
+    - SurgeryTutorialRemoveKidneys
+    - SurgeryTutorialImplantKidneys
+    - SurgeryTutorialRemoveStomach
+    - SurgeryTutorialImplantStomach
+    - SurgeryTutorialRemoveHeart
+    - SurgeryTutorialImplantHeart
+    - SurgeryTutorialRemoveLungs
+    - SurgeryTutorialImplantLungs
+    - SurgeryTutorialTendLungWounds
+    - SurgeryTutorialRemoveDionaCore
+
+- type: surgeryStepPack
+  id: DionaHeadOrgansPack
+  steps:
+    - SurgeryCutOpticNerve
+    - SurgeryRestoreOpticNerve
+    - SurgeryRemoveEyes
+    - SurgeryImplantEyes
+    - SurgeryTreatEyeDamage
+  tutorials:
+    - SurgeryTutorialRemoveEyes
+    - SurgeryTutorialImplantEyes
+    - SurgeryTutorialTendEyeDamage
+
+- type: surgeryStepPack
+  id: DionaHeadImplantsPack
+  steps:
+    - SurgeryRemoveEyeImplant
+    - SurgeryImplantEyeImplant
+  tutorials:
+    - SurgeryTutorialRemoveEyeImplant
+    - SurgeryTutorialImplantEyeImplant
+
+# region Necrosis
+
+- type: surgeryStepPack
+  id: OrganicTorsoNecrosisPack
+  steps:
+    - SurgeryInspectNecrosis
+    - SurgeryNecrosisRemoveLiver
+    - SurgeryNecrosisRemoveStomach
+    - SurgeryNecrosisRemoveKidneys
+  tutorials:
+    - SurgeryTutorialNecrosisInspect
+
+- type: surgeryStepPack
+  id: OrganicHeadNecrosisPack
+  steps:
+    - SurgeryNecrosisRemoveEyes
+    - SurgeryNecrosisRemoveTongue
+
+- type: surgeryStepPack
+  id: OrganicLimbNecrosisPack
+  steps:
+    - SurgeryNecrosisAmputateLimb
+
+- type: surgeryStepPack
+  id: SlimeLimbNecrosisPack
+  steps:
+    - SurgerySlimeNecrosisAmputateLimb
+
+# region Inorganic
+
+- type: surgeryStepPack
+  id: BasicInorganicStepPack
+  steps:
+    - SurgeryWeldLeaks
+    - SurgeryUnscrewPlating
+    - SurgeryScrewPlating
+    - SurgeryPryPlating
+    - SurgeryRestorePlating
+
+- type: surgeryStepPack
+  id: InorganicTorsoOrgansPack
+  steps:
+    - SurgeryDisconnectHydraulics
+    - SurgeryReconnectHydraulics
+    - SurgeryRemoveCavityItemCyber
+    - SurgeryImplantCavityItemCyber
+    - SurgeryPowerDownPump
+    - SurgeryPowerUpPump
+    - SurgeryRemovePump
+    - SurgeryImplantPump
+  tutorials:
+    - SurgeryTutorialCyberneticRemovePump
+    - SurgeryTutorialCyberneticImplantPump
+
+- type: surgeryStepPack
+  id: InorganicHeadOrgansPack
+  steps:
+    - SurgeryPowerDownOptics
+    - SurgeryPowerUpOptics
+    - SurgeryRemoveOptics
+    - SurgeryImplantOptics
+    - SurgeryCutVocalizerWires
+    - SurgeryRestoreVocalizerWires
+    - SurgeryRemoveVocalizer
+    - SurgeryImplantVocalizer
+  tutorials:
+    - SurgeryTutorialCyberneticRemoveVocalizer
+    - SurgeryTutorialCyberneticImplantVocalizer
+    - SurgeryTutorialCyberneticRemoveOptics
+    - SurgeryTutorialCyberneticImplantOptics
+
+- type: surgeryStepPack
+  id: InorganicAmputationStepPack
+  steps:
+    - SurgeryUnscrewStructure
+    - SurgeryScrewStructure
+    - SurgeryPowerDownLimb
+    - SurgeryPowerUpLimb
+    - SurgeryAmputateLimbCyber
+  tutorials:
+    - SurgeryTutorialCyberneticAmputateLimb
+
+- type: surgeryStepPack
+  id: InorganicTorsoLimbAttachmentPack
+  steps:
+    - SurgeryLoosenBolts
+    - SurgeryTightenBolts
+    - SurgeryWeldJoints
+    - SurgeryAttachHeadCyber
+    - SurgeryAttachLeftArmCyber
+    - SurgeryAttachRightArmCyber
+    - SurgeryAttachLeftLegCyber
+    - SurgeryAttachRightLegCyber
+  tutorials:
+    - SurgeryTutorialCyberneticAttachLeftArm
+    - SurgeryTutorialCyberneticAttachRightArm
+    - SurgeryTutorialCyberneticAttachLeftLeg
+    - SurgeryTutorialCyberneticAttachRightLeg
+    - SurgeryTutorialCyberneticAttachHead
+
+- type: surgeryStepPack
+  id: InorganicLeftHandAttachmentPack
+  steps:
+    - SurgeryLoosenBolts
+    - SurgeryTightenBolts
+    - SurgeryWeldJoints
+    - SurgeryAttachLeftHandCyber
+  tutorials:
+    - SurgeryTutorialCyberneticAttachLeftHand
+
+- type: surgeryStepPack
+  id: InorganicRightHandAttachmentPack
+  steps:
+    - SurgeryLoosenBolts
+    - SurgeryTightenBolts
+    - SurgeryWeldJoints
+    - SurgeryAttachRightHandCyber
+  tutorials:
+    - SurgeryTutorialCyberneticAttachRightHand
+
+- type: surgeryStepPack
+  id: InorganicLeftFootAttachmentPack
+  steps:
+    - SurgeryLoosenBolts
+    - SurgeryTightenBolts
+    - SurgeryWeldJoints
+    - SurgeryAttachLeftFootCyber
+  tutorials:
+    - SurgeryTutorialCyberneticAttachLeftFoot
+
+- type: surgeryStepPack
+  id: InorganicRightFootAttachmentPack
+  steps:
+    - SurgeryLoosenBolts
+    - SurgeryTightenBolts
+    - SurgeryWeldJoints
+    - SurgeryAttachRightFootCyber
+  tutorials:
+    - SurgeryTutorialCyberneticAttachRightFoot
+
+- type: surgeryStepPack
+  id: InorganicHeadImplantsPack
+  steps:
+    - SurgeryRemoveEyeImplantCyber
+    - SurgeryImplantEyeImplantCyber
+  tutorials:
+    - SurgeryTutorialCyberneticRemoveEyeImplant
+    - SurgeryTutorialCyberneticImplantEyeImplant
+
+- type: surgeryStepPack
+  id: InorganicLeftHandImplantsPack
+  steps:
+    - SurgeryRemoveLeftHandImplantCyber
+    - SurgeryImplantLeftHandImplantCyber
+  tutorials:
+    - SurgeryTutorialCyberneticRemoveLeftHandImplant
+    - SurgeryTutorialCyberneticImplantLeftHandImplant
+
+- type: surgeryStepPack
+  id: InorganicRightHandImplantsPack
+  steps:
+    - SurgeryRemoveRightHandImplantCyber
+    - SurgeryImplantRightHandImplantCyber
+  tutorials:
+    - SurgeryTutorialCyberneticRemoveRightHandImplant
+    - SurgeryTutorialCyberneticImplantRightHandImplant

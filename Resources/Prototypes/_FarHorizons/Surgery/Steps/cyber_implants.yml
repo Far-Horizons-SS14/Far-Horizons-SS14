@@ -1,0 +1,122 @@
+# region Eyes
+
+- type: surgeryStep
+  parent: WrenchSurgery
+  id: SurgeryRemoveEyeImplantCyber
+  name: Remove Eye Implant
+  baseTime: 4
+  popup: surgery-remove-eye-implant-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalOpticsPoweredDown
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses:
+        - LimbStatusEffectLeakingOilI
+        - LimbStatusEffectLeakingOilII
+        - LimbStatusEffectLeakingOilIII
+    - !type:SurgeryHasOrgan
+      category: EyeImplant
+  effects:
+    - !type:SurgeryRemoveOrgan
+      category: EyeImplant
+    - !type:SurgeryProgressStatusChain
+      needsToBeAlive: false
+      chain: OilLeak
+
+- type: surgeryStep
+  id: SurgeryImplantEyeImplantCyber
+  name: Implant Eye Implant
+  baseTime: 3
+  popup: surgery-implant-eye-implant-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalOpticsPoweredDown
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: EyeImplant
+  softConditions:
+    - !type:SurgeryOrganHeld
+      category: EyeImplant
+  effects:
+    - !type:SurgeryInsertOrgan
+
+# region Left Hand
+
+- type: surgeryStep
+  parent: WrenchSurgery
+  id: SurgeryRemoveLeftHandImplantCyber
+  name: Remove Left Hand Implant
+  baseTime: 4
+  popup: surgery-remove-hand-implant-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalLimbPoweredDown
+    - !type:SurgeryHasOrgan
+      category: HandLeftImplant
+  effects:
+    - !type:SurgeryRemoveOrgan
+      category: HandLeftImplant
+    - !type:SurgeryProgressStatusChain
+      needsToBeAlive: false
+      chain: OilLeak
+
+- type: surgeryStep
+  id: SurgeryImplantLeftHandImplantCyber
+  name: Implant Left Hand Implant
+  baseTime: 3
+  popup: surgery-implant-hand-implant-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalLimbPoweredDown
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: HandLeftImplant
+  softConditions:
+    - !type:SurgeryOrganHeld
+      category: HandLeftImplant
+  effects:
+    - !type:SurgeryInsertOrgan
+
+# region Right Hand
+
+- type: surgeryStep
+  parent: BoneSetterSurgery
+  id: SurgeryRemoveRightHandImplantCyber
+  name: Remove Right Hand Implant
+  baseTime: 4
+  popup: surgery-remove-hand-implant-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalLimbPoweredDown
+    - !type:SurgeryHasOrgan
+      category: HandRightImplant
+  effects:
+    - !type:SurgeryRemoveOrgan
+      category: HandRightImplant
+    - !type:SurgeryProgressStatusChain
+      needsToBeAlive: false
+      chain: OilLeak
+
+- type: surgeryStep
+  id: SurgeryImplantRightHandImplantCyber
+  name: Implant Right Hand Implant
+  baseTime: 3
+  popup: surgery-implant-hand-implant-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalLimbPoweredDown
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: HandRightImplant
+  softConditions:
+    - !type:SurgeryOrganHeld
+      category: HandRightImplant
+  effects:
+    - !type:SurgeryInsertOrgan

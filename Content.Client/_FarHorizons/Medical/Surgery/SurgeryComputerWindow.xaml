@@ -1,0 +1,78 @@
+<controls:FancyWindow xmlns="https://spacestation14.io"
+                      xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+                      xmlns:health="clr-namespace:Content.Client.HealthAnalyzer.UI"
+                      xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+                      Title="{Loc 'surgery-computer-window-title'}"
+                      MinSize="250 500"
+                      Resizable="True">
+
+    <BoxContainer Orientation="Horizontal"
+                  Margin="10"
+                  SeparationOverride="16">
+
+        <!-- Left: health analyzer -->
+        <BoxContainer Name="HealthSection"
+                      VerticalExpand="True"
+                      Orientation="Vertical">
+            <health:HealthAnalyzerControl Name="HealthAnalyzer"/>
+            <Control VerticalExpand="True"/>
+        </BoxContainer>
+
+        <!-- Right: surgery list / step list -->
+        <BoxContainer Name="SurgerySection"
+                      VerticalExpand="True"
+                      Orientation="Vertical"
+                      MinWidth="250"
+                      MaxWidth="250">
+
+            <!-- Surgery list view -->
+            <BoxContainer Name="SurgeryListView"
+                          Orientation="Vertical"
+                          VerticalExpand="True"
+                          SeparationOverride="6"
+                          Visible="False">
+                <Label Text="{Loc 'surgery-computer-window-surgeries'}"
+                       StyleClasses="LabelHeading"/>
+                <Label Name="TargetLimbLabel"
+                       Text="{Loc 'surgery-computer-window-no-target'}"
+                       StyleClasses="LabelSubText"/>
+                <controls:HLine/>
+
+                <ScrollContainer VerticalExpand="True"
+                                 HScrollEnabled="False">
+                    <!-- Populated from code -->
+                    <BoxContainer Name="SurgeryList"
+                                  Orientation="Vertical"
+                                  SeparationOverride="4">
+                    </BoxContainer>
+                </ScrollContainer>
+            </BoxContainer>
+
+            <!-- Steps view -->
+            <BoxContainer Name="StepsView"
+                          Orientation="Vertical"
+                          VerticalExpand="True"
+                          Visible="True"
+                          SeparationOverride="6">
+                <Label Name="SurgeryNameLabel"
+                       Text="Surgery name"
+                       StyleClasses="LabelHeading"/>
+                <controls:HLine/>
+
+                <ScrollContainer VerticalExpand="True"
+                                 HScrollEnabled="False">
+                    <!-- Populated from code -->
+                    <BoxContainer Name="StepList"
+                                  Orientation="Vertical"
+                                  SeparationOverride="4">
+                    </BoxContainer>
+                </ScrollContainer>
+
+                <Button Name="BackButton"
+                        Text="{Loc 'surgery-computer-window-back'}"
+                        HorizontalExpand="True"/>
+            </BoxContainer>
+
+        </BoxContainer>
+    </BoxContainer>
+</controls:FancyWindow>

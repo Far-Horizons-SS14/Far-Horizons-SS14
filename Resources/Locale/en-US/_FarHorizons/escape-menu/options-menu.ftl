@@ -21,6 +21,7 @@ ui-options-function-focus-mentor-chat-window = Focus chat (Mentor)
 ui-options-general-limb-targetting = Limb Targetting
 ui-options-limb-targetting-species = Targetter Style
 ui-options-limb-targetting-match-species = Match to played character
+ui-options-limb-targetting-sync-health-analyzer = Sync limb target with health analyzer
 
 ui-options-limb-targetting-species-human = Human
 ui-options-limb-targetting-species-shadekin = Shadekin

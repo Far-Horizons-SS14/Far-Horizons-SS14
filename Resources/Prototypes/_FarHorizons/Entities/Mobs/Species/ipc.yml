@@ -1,5 +1,5 @@
 - type: entity
-  parent: [MobBloodstream, MobFlammable, BaseSpeciesMob, BaseSpeciesPickupableLarge]
+  parent: [MobBloodstream, MobFlammable, BaseSpeciesMob, BaseSpeciesPickupableLarge, BaseSurgeryTargetInorganic]
   id: BaseMobIPC
   name: Urist McRobot
   abstract: true
@@ -263,8 +263,6 @@
         type: HumanoidMarkingModifierBoundUserInterface
       enum.StoreUiKey.Key:
         type: StoreBoundUserInterface
-      enum.SurgeryUIKey.Key:
-        type: SurgeryBui
       enum.VampireMutationUiKey.Key:
         type: VampireMutationBoundUserInterface
       enum.ThavenMoodsUiKey.Key: # impstation edit
@@ -272,6 +270,8 @@
         requireInputValidation: false
       enum.BackgroundTraitsUiKey.Key:
         type: BackgroundTraitsBoundUserInterface
+      enum.SurgeryOptionUiKey.Key:
+        type: SurgeryOptionRadial
   - type: ActivatableUI
     key: enum.IPCUiKey.Key
   - type: UIRequiresLock
@@ -355,6 +355,7 @@
       - shoes
   - type: LimbDamageable # Far Horizons
     proto: LimbTargetIPC
+  - type: LimbStatusEffectManager
 
 - type: entity
   parent: Solution

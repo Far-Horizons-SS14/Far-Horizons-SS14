@@ -1,0 +1,131 @@
+# region Organic
+
+- type: surgeryStep
+  abstract: true
+  id: ScalpelSurgery
+  icon: 
+    sprite: Objects/Specific/Medical/Surgery/scalpel.rsi
+    state: scalpel
+  tool:
+    - type: Scalpel
+
+- type: surgeryStep
+  abstract: true
+  id: HemostatSurgery
+  icon: 
+    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
+    state: hemostat
+  tool:
+    - type: Hemostat
+
+- type: surgeryStep
+  abstract: true
+  id: CauterySurgery
+  icon: 
+    sprite: Objects/Specific/Medical/Surgery/cautery.rsi
+    state: cautery
+  tool:
+    - type: Cautery
+
+- type: surgeryStep
+  abstract: true
+  id: RetractorSurgery
+  icon: 
+    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
+    state: retractor
+  tool:
+    - type: Retractor
+
+- type: surgeryStep
+  abstract: true
+  id: BoneSawSurgery
+  icon: 
+    sprite: Objects/Specific/Medical/Surgery/saw.rsi
+    state: saw
+  tool:
+    - type: BoneSaw
+
+- type: surgeryStep
+  abstract: true
+  id: BoneSetterSurgery
+  icon: 
+    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
+    state: setter
+  tool:
+    - type: BoneSetter
+
+- type: surgeryStep
+  abstract: true
+  id: BoneGelSurgery
+  icon: 
+    sprite: Objects/Specific/Medical/Surgery/bone_gel.rsi
+    state: bone-gel
+  tool:
+    - type: BoneGel
+
+- type: surgeryStep
+  abstract: true
+  id: SurgicalDrillSurgery
+  icon: 
+    sprite: Objects/Specific/Medical/Surgery/drill.rsi
+    state: drill
+  tool:
+    - type: SurgicalDrill
+
+# region Inorganic
+
+- type: surgeryStep
+  abstract: true
+  id: ScrewdriverSurgery
+  icon: 
+    sprite: Objects/Tools/screwdriver.rsi
+    state: screwdriver-map
+  tool:
+    - type: ScrewdriverSurgery
+
+- type: surgeryStep
+  abstract: true
+  id: CrowbarSurgery
+  icon: 
+    sprite: Objects/Tools/crowbar.rsi
+    state: icon
+  tool:
+    - type: CrowbarSurgery
+
+- type: surgeryStep
+  abstract: true
+  id: WrenchSurgery
+  icon: 
+    sprite: Objects/Tools/wrench.rsi
+    state: icon
+  tool:
+    - type: WrenchSurgery
+
+- type: surgeryStep
+  abstract: true
+  id: MultitoolSurgery
+  icon: 
+    sprite: Objects/Tools/multitool.rsi
+    state: icon
+  tool:
+    - type: MultitoolSurgery
+
+- type: surgeryStep
+  abstract: true
+  id: WelderSurgery
+  icon: 
+    sprite: Objects/Tools/welder.rsi
+    state: icon
+  tool:
+    - type: WelderSurgery
+  softConditions:
+    - !type:WeldingToolEnabledCondition
+
+- type: surgeryStep
+  abstract: true
+  id: WirecutterSurgery
+  icon: 
+    sprite: Objects/Tools/wirecutters.rsi
+    state: cutters-map
+  tool:
+    - type: WirecutterSurgery
