@@ -18,19 +18,24 @@
         - !type:SurgeryLimbHasStatus
           statuses:
             - LimbStatusEffectSurgicalIncision
-    - &clampAfterIncision
+    - &clampAfterIncisionBeforeDeepIncision
       step: SurgeryClampBleeding
       conditionComplete:
         - !type:SurgeryLimbHasStatus
           statuses:
             - LimbStatusEffectSurgicalIncision
-        - &noBleeding
-          !type:SurgeryLimbHasStatus
-          inverse: true
-          statuses:
-            - LimbStatusEffectBleedI
-            - LimbStatusEffectBleedII
-            - LimbStatusEffectBleedIII
+        - !type:SurgeryConditionOr
+          conditions:
+          - &noBleeding
+            !type:SurgeryLimbHasStatus
+            inverse: true
+            statuses:
+              - LimbStatusEffectBleedI
+              - LimbStatusEffectBleedII
+              - LimbStatusEffectBleedIII
+          - !type:SurgeryLimbHasStatus
+            statuses:
+              - LimbStatusEffectSurgicalDeepIncision
     - &deepIncision
       step: SurgeryDeepenIncision
       conditionComplete:
@@ -59,7 +64,7 @@
         - Caustic
   steps:
     - *makeIncision
-    - *clampAfterIncision
+    - *clampAfterIncisionBeforeDeepIncision
     - *deepIncision
     - step: SurgeryTendBurn
       conditionComplete:
@@ -79,7 +84,18 @@
   name: Limb Amputation
   steps:
     - *makeIncision
-    - *clampAfterIncision
+    - &clampAfterIncisionBeforeIncisionOpen
+      step: SurgeryClampBleeding
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          statuses:
+            - LimbStatusEffectSurgicalIncision
+        - !type:SurgeryConditionOr
+          conditions:
+          - *noBleeding
+          - !type:SurgeryLimbHasStatus
+            statuses:
+              - LimbStatusEffectSurgicalIncisionHeldOpen
     - &holdIncisionOpen
       step: SurgeryHoldIncisionOpen
       conditionComplete:
@@ -98,7 +114,12 @@
         - !type:SurgeryLimbHasStatus
           statuses:
             - LimbStatusEffectSurgicalVesselsDetached
-        - *noBleeding
+        - !type:SurgeryConditionOr
+          conditions:
+          - *noBleeding
+          - !type:SurgeryLimbHasStatus
+            statuses:
+              - LimbStatusEffectSurgicalMuscleDetached
     - &detachMuscle
       step: SurgeryDetachMuscles
       conditionComplete:
@@ -122,7 +143,7 @@
       category: HandLeftImplant
   steps:
     - *makeIncision
-    - *clampAfterIncision
+    - *clampAfterIncisionBeforeIncisionOpen
     - *holdIncisionOpen
     - *detachVessels
     - *clampAfterDetachVessels
@@ -143,7 +164,7 @@
       category: HandRightImplant
   steps:
     - *makeIncision
-    - *clampAfterIncision
+    - *clampAfterIncisionBeforeIncisionOpen
     - *holdIncisionOpen
     - *detachVessels
     - *clampAfterDetachVessels
@@ -163,7 +184,7 @@
       category: HandLeftImplant
   steps:
     - *makeIncision
-    - *clampAfterIncision
+    - *clampAfterIncisionBeforeIncisionOpen
     - *holdIncisionOpen
     - *detachVessels
     - *clampAfterDetachVessels
@@ -184,7 +205,7 @@
       category: HandRightImplant
   steps:
     - *makeIncision
-    - *clampAfterIncision
+    - *clampAfterIncisionBeforeIncisionOpen
     - *holdIncisionOpen
     - *detachVessels
     - *clampAfterDetachVessels
@@ -208,7 +229,7 @@
       category: ArmLeft
   steps:
     - *makeIncision
-    - *clampAfterIncision
+    - *clampAfterIncisionBeforeIncisionOpen
     - *holdIncisionOpen
     - &dislocate
       step: SurgeryDislocateBones
@@ -245,7 +266,7 @@
       category: ArmRight
   steps:
     - *makeIncision
-    - *clampAfterIncision
+    - *clampAfterIncisionBeforeIncisionOpen
     - *holdIncisionOpen
     - *dislocate
     - *clapAfterDislocate
@@ -266,7 +287,7 @@
       category: HandLeft
   steps:
     - *makeIncision
-    - *clampAfterIncision
+    - *clampAfterIncisionBeforeIncisionOpen
     - *holdIncisionOpen
     - *dislocate
     - *clapAfterDislocate
@@ -287,7 +308,7 @@
       category: HandRight
   steps:
     - *makeIncision
-    - *clampAfterIncision
+    - *clampAfterIncisionBeforeIncisionOpen
     - *holdIncisionOpen
     - *dislocate
     - *clapAfterDislocate
@@ -308,7 +329,7 @@
       category: LegLeft
   steps:
     - *makeIncision
-    - *clampAfterIncision
+    - *clampAfterIncisionBeforeIncisionOpen
     - *holdIncisionOpen
     - *dislocate
     - *clapAfterDislocate
@@ -329,7 +350,7 @@
       category: LegRight
   steps:
     - *makeIncision
-    - *clampAfterIncision
+    - *clampAfterIncisionBeforeIncisionOpen
     - *holdIncisionOpen
     - *dislocate
     - *clapAfterDislocate
@@ -350,7 +371,7 @@
       category: FootLeft
   steps:
     - *makeIncision
-    - *clampAfterIncision
+    - *clampAfterIncisionBeforeIncisionOpen
     - *holdIncisionOpen
     - *dislocate
     - *clapAfterDislocate
@@ -371,7 +392,7 @@
       category: FootRight
   steps:
     - *makeIncision
-    - *clampAfterIncision
+    - *clampAfterIncisionBeforeIncisionOpen
     - *holdIncisionOpen
     - *dislocate
     - *clapAfterDislocate
@@ -392,7 +413,7 @@
       category: Head
   steps:
     - *makeIncision
-    - *clampAfterIncision
+    - *clampAfterIncisionBeforeIncisionOpen
     - *holdIncisionOpen
     - *dislocate
     - *clapAfterDislocate
@@ -416,7 +437,12 @@
       category: Tongue
   steps:
     - *makeIncision
-    - *clampAfterIncision
+    - step: SurgeryClampBleeding
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          statuses:
+            - LimbStatusEffectSurgicalIncision
+        - *noBleeding
     - &clampLingualArtery
       step: SurgeryClampLingualArtery
       conditionComplete:
@@ -440,7 +466,7 @@
       category: Tongue
   steps:
     - *makeIncision
-    - *clampAfterIncision
+    - *clampAfterIncisionBeforeIncisionOpen
     - *clampLingualArtery
     - step: SurgeryImplantTongue
       conditionComplete:
@@ -459,7 +485,7 @@
       category: Eyes
   steps:
     - *makeIncision
-    - *clampAfterIncision
+    - *clampAfterIncisionBeforeIncisionOpen
     - *holdIncisionOpen
     - &cutOpticNerve
       step: SurgeryCutOpticNerve
@@ -467,13 +493,17 @@
         - !type:SurgeryLimbHasStatus
           statuses:
             - LimbStatusEffectSurgicalCutOpticNerve
-    - &clampAfterOpticNerve
-      step: SurgeryClampBleeding
+    - step: SurgeryClampBleeding
       conditionComplete:
         - !type:SurgeryLimbHasStatus
           statuses:
             - LimbStatusEffectSurgicalCutOpticNerve
-        - *noBleeding
+        - !type:SurgeryConditionOr
+          conditions:
+          - *noBleeding
+          - !type:SurgeryHasOrgan
+            inverse: true
+            category: Eyes
     - step: SurgeryRemoveEyes
       conditionComplete:
         - !type:SurgeryHasOrgan
@@ -491,10 +521,16 @@
       category: Eyes
   steps:
     - *makeIncision
-    - *clampAfterIncision
+    - *clampAfterIncisionBeforeIncisionOpen
     - *holdIncisionOpen
     - *cutOpticNerve
-    - *clampAfterOpticNerve
+    - &clampAfterOpticNerve
+      step: SurgeryClampBleeding
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          statuses:
+            - LimbStatusEffectSurgicalCutOpticNerve
+        - *noBleeding
     - step: SurgeryImplantEyes
       conditionComplete:
         - !type:SurgeryHasOrgan
@@ -510,10 +546,20 @@
       category: EyeImplant
   steps:
     - *makeIncision
-    - *clampAfterIncision
+    - *clampAfterIncisionBeforeIncisionOpen
     - *holdIncisionOpen
     - *cutOpticNerve
-    - *clampAfterOpticNerve
+    - step: SurgeryClampBleeding
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          statuses:
+            - LimbStatusEffectSurgicalCutOpticNerve
+        - !type:SurgeryConditionOr
+          conditions:
+          - *noBleeding
+          - !type:SurgeryHasOrgan
+            inverse: true
+            category: EyeImplant
     - step: SurgeryRemoveEyeImplant
       conditionComplete:
         - !type:SurgeryHasOrgan
@@ -531,7 +577,7 @@
       category: EyeImplant
   steps:
     - *makeIncision
-    - *clampAfterIncision
+    - *clampAfterIncisionBeforeIncisionOpen
     - *holdIncisionOpen
     - *cutOpticNerve
     - *clampAfterOpticNerve
@@ -550,7 +596,7 @@
       value: 0
   steps:
     - *makeIncision
-    - *clampAfterIncision
+    - *clampAfterIncisionBeforeIncisionOpen
     - *holdIncisionOpen
     - *cutOpticNerve
     - *clampAfterOpticNerve
@@ -572,7 +618,7 @@
       category: Brain
   steps:
     - *makeIncision
-    - *clampAfterIncision
+    - *clampAfterIncisionBeforeIncisionOpen
     - *holdIncisionOpen
     - &drillSkull
       step: SurgeryDrillSkull
@@ -580,26 +626,35 @@
         - !type:SurgeryLimbHasStatus
           statuses:
             - LimbStatusEffectSurgicalSkullDrilled
-    - &clampAfterDrillSkull
+    - &clampAfterDrillSkullBeforeSkullOpen
       step: SurgeryClampBleeding
       conditionComplete:
         - !type:SurgeryLimbHasStatus
           statuses:
             - LimbStatusEffectSurgicalSkullDrilled
-        - *noBleeding
+        - !type:SurgeryConditionOr
+          conditions:
+            - *noBleeding
+            - !type:SurgeryLimbHasStatus
+              statuses:
+                - LimbStatusEffectSurgicalSkullOpen
     - &openSkull
       step: SurgeryOpenSkull
       conditionComplete:
         - !type:SurgeryLimbHasStatus
           statuses:
             - LimbStatusEffectSurgicalSkullOpen
-    - &clampAfterOpenSkull
-      step: SurgeryClampBleeding
+    - step: SurgeryClampBleeding
       conditionComplete:
         - !type:SurgeryLimbHasStatus
           statuses:
             - LimbStatusEffectSurgicalSkullDrilled
-        - *noBleeding
+        - !type:SurgeryConditionOr
+          conditions:
+            - *noBleeding
+            - !type:SurgeryHasOrgan
+              inverse: true
+              category: Brain
     - step: SurgeryRemoveBrain
       conditionComplete:
         - !type:SurgeryHasOrgan
@@ -617,12 +672,17 @@
       category: Brain
   steps:
     - *makeIncision
-    - *clampAfterIncision
+    - *clampAfterIncisionBeforeIncisionOpen
     - *holdIncisionOpen
     - *drillSkull
-    - *clampAfterDrillSkull
+    - *clampAfterDrillSkullBeforeSkullOpen
     - *openSkull
-    - *clampAfterOpenSkull
+    - step: SurgeryClampBleeding
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          statuses:
+            - LimbStatusEffectSurgicalSkullDrilled
+        - *noBleeding
     - step: SurgeryImplantBrain
       conditionComplete:
         - !type:SurgeryHasOrgan
@@ -638,10 +698,20 @@
       category: BrainImplant
   steps:
     - *makeIncision
-    - *clampAfterIncision
+    - *clampAfterIncisionBeforeIncisionOpen
     - *holdIncisionOpen
     - *drillSkull
-    - *clampAfterDrillSkull
+    - step: SurgeryClampBleeding
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          statuses:
+            - LimbStatusEffectSurgicalSkullDrilled
+        - !type:SurgeryConditionOr
+          conditions:
+            - *noBleeding
+            - !type:SurgeryHasOrgan
+              inverse: true
+              category: BrainImplant
     - step: SurgeryRemoveBrainImplant
       conditionComplete:
         - !type:SurgeryHasOrgan
@@ -659,10 +729,15 @@
       category: BrainImplant
   steps:
     - *makeIncision
-    - *clampAfterIncision
+    - *clampAfterIncisionBeforeIncisionOpen
     - *holdIncisionOpen
     - *drillSkull
-    - *clampAfterDrillSkull
+    - step: SurgeryClampBleeding
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          statuses:
+            - LimbStatusEffectSurgicalSkullDrilled
+        - *noBleeding
     - step: SurgeryImplantBrainImplant
       conditionComplete:
         - !type:SurgeryHasOrgan
@@ -682,7 +757,7 @@
       category: Liver
   steps:
     - *makeIncision
-    - *clampAfterIncision
+    - *clampAfterIncisionBeforeIncisionOpen
     - *holdIncisionOpen
     - &accessAbdomen
       step: SurgeryAccessAbdomen
@@ -690,13 +765,18 @@
         - !type:SurgeryLimbHasStatus
           statuses:
             - LimbStatusEffectSurgicalAbdomenAccessed
-    - &clampAfterAccessAbdomen
+    - &clampAfterAccessAbdomenBeforeHepaticArtery
       step: SurgeryClampBleeding
       conditionComplete:
         - !type:SurgeryLimbHasStatus
           statuses:
             - LimbStatusEffectSurgicalAbdomenAccessed
-        - *noBleeding
+        - !type:SurgeryConditionOr
+          conditions:
+            - *noBleeding
+            - !type:SurgeryLimbHasStatus
+              statuses:
+                - LimbStatusEffectSurgicalHepaticArteryClamped
     - &clampHepaticArtery
       step: SurgeryClampHepaticArtery
       conditionComplete:
@@ -720,10 +800,10 @@
       category: Liver
   steps:
     - *makeIncision
-    - *clampAfterIncision
+    - *clampAfterIncisionBeforeIncisionOpen
     - *holdIncisionOpen
     - *accessAbdomen
-    - *clampAfterAccessAbdomen
+    - *clampAfterAccessAbdomenBeforeHepaticArtery
     - *clampHepaticArtery
     - step: SurgeryImplantLiver
       conditionComplete:
@@ -742,10 +822,21 @@
       category: Kidneys
   steps:
     - *makeIncision
-    - *clampAfterIncision
+    - *clampAfterIncisionBeforeIncisionOpen
     - *holdIncisionOpen
     - *accessAbdomen
-    - *clampAfterAccessAbdomen
+    - &clampAfterAccessAbdomenBeforeKidneys
+      step: SurgeryClampBleeding
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          statuses:
+            - LimbStatusEffectSurgicalAbdomenAccessed
+        - !type:SurgeryConditionOr
+          conditions:
+            - *noBleeding
+            - !type:SurgeryLimbHasStatus
+              statuses:
+                - LimbStatusEffectSurgicalKidneysAccessed
     - &accessKidneys
       step: SurgeryAccessKidneys
       conditionComplete:
@@ -769,10 +860,10 @@
       category: Kidneys
   steps:
     - *makeIncision
-    - *clampAfterIncision
+    - *clampAfterIncisionBeforeIncisionOpen
     - *holdIncisionOpen
     - *accessAbdomen
-    - *clampAfterAccessAbdomen
+    - *clampAfterAccessAbdomenBeforeKidneys
     - *accessKidneys
     - step: SurgeryImplantKidneys
       conditionComplete:
@@ -791,23 +882,38 @@
       category: Stomach
   steps:
     - *makeIncision
-    - *clampAfterIncision
+    - *clampAfterIncisionBeforeIncisionOpen
     - *holdIncisionOpen
     - *accessAbdomen
-    - *clampAfterAccessAbdomen
+    - &clampAfterAccessAbdomenBeforeEsophagus
+      step: SurgeryClampBleeding
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          statuses:
+            - LimbStatusEffectSurgicalAbdomenAccessed
+        - !type:SurgeryConditionOr
+          conditions:
+            - *noBleeding
+            - !type:SurgeryLimbHasStatus
+              statuses:
+                - LimbStatusEffectSurgicalEsophagusCut
     - &cutEsophagus
       step: SurgeryCutEsophagus
       conditionComplete:
         - !type:SurgeryLimbHasStatus
           statuses:
             - LimbStatusEffectSurgicalEsophagusCut
-    - &clampAfterCutEsophagus
-      step: SurgeryClampBleeding
+    - step: SurgeryClampBleeding
       conditionComplete:
         - !type:SurgeryLimbHasStatus
           statuses:
             - LimbStatusEffectSurgicalEsophagusCut
-        - *noBleeding
+        - !type:SurgeryConditionOr
+          conditions:
+            - *noBleeding
+            - !type:SurgeryHasOrgan
+              inverse: true
+              category: Stomach
     - step: SurgeryRemoveStomach
       conditionComplete:
         - !type:SurgeryHasOrgan
@@ -825,12 +931,17 @@
       category: Stomach
   steps:
     - *makeIncision
-    - *clampAfterIncision
+    - *clampAfterIncisionBeforeIncisionOpen
     - *holdIncisionOpen
     - *accessAbdomen
-    - *clampAfterAccessAbdomen
+    - *clampAfterAccessAbdomenBeforeEsophagus
     - *cutEsophagus
-    - *clampAfterCutEsophagus
+    - step: SurgeryClampBleeding
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          statuses:
+            - LimbStatusEffectSurgicalEsophagusCut
+        - *noBleeding
     - step: SurgeryImplantStomach
       conditionComplete:
         - !type:SurgeryHasOrgan
@@ -848,7 +959,7 @@
       category: Heart
   steps:
     - *makeIncision
-    - *clampAfterIncision
+    - *clampAfterIncisionBeforeIncisionOpen
     - *holdIncisionOpen
     - &openRibcage
       step: SurgeryOpenRibcage
@@ -856,13 +967,18 @@
         - !type:SurgeryLimbHasStatus
           statuses:
             - LimbStatusEffectSurgicalRibcageOpen
-    - &clampAfterOpenRibcage
+    - &clampAfterOpenRibcageBeforeAorta
       step: SurgeryClampBleeding
       conditionComplete:
         - !type:SurgeryLimbHasStatus
           statuses:
             - LimbStatusEffectSurgicalRibcageOpen
-        - *noBleeding
+        - !type:SurgeryConditionOr
+          conditions:
+            - *noBleeding
+            - !type:SurgeryLimbHasStatus
+              statuses:
+                - LimbStatusEffectSurgicalAortaClamped
     - &clampAorta
       step: SurgeryClampAorta
       conditionComplete:
@@ -886,10 +1002,10 @@
       category: Heart
   steps:
     - *makeIncision
-    - *clampAfterIncision
+    - *clampAfterIncisionBeforeIncisionOpen
     - *holdIncisionOpen
     - *openRibcage
-    - *clampAfterOpenRibcage
+    - *clampAfterOpenRibcageBeforeAorta
     - *clampAorta
     - step: SurgeryImplantHeart
       conditionComplete:
@@ -908,10 +1024,21 @@
       category: Lungs
   steps:
     - *makeIncision
-    - *clampAfterIncision
+    - *clampAfterIncisionBeforeIncisionOpen
     - *holdIncisionOpen
     - *openRibcage
-    - *clampAfterOpenRibcage
+    - &clampAfterOpenRibcageBeforeLungs
+      step: SurgeryClampBleeding
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          statuses:
+            - LimbStatusEffectSurgicalRibcageOpen
+        - !type:SurgeryConditionOr
+          conditions:
+            - *noBleeding
+            - !type:SurgeryLimbHasStatus
+              statuses:
+                - LimbStatusEffectSurgicalLungsAccessed
     - &accessLungs
       step: SurgeryAccessLungs
       conditionComplete:
@@ -935,10 +1062,10 @@
       category: Lungs
   steps:
     - *makeIncision
-    - *clampAfterIncision
+    - *clampAfterIncisionBeforeIncisionOpen
     - *holdIncisionOpen
     - *openRibcage
-    - *clampAfterOpenRibcage
+    - *clampAfterOpenRibcageBeforeLungs
     - *accessLungs
     - step: SurgeryImplantLungs
       conditionComplete:
@@ -956,10 +1083,10 @@
         - Asphyxiation
   steps:
     - *makeIncision
-    - *clampAfterIncision
+    - *clampAfterIncisionBeforeIncisionOpen
     - *holdIncisionOpen
     - *openRibcage
-    - *clampAfterOpenRibcage
+    - *clampAfterOpenRibcageBeforeLungs
     - *accessLungs
     - step: SurgeryTreatLungDamage
       conditionComplete:
@@ -980,10 +1107,21 @@
       category: Lungs
   steps:
     - *makeIncision
-    - *clampAfterIncision
+    - *clampAfterIncisionBeforeIncisionOpen
     - *holdIncisionOpen
     - *openRibcage
-    - *clampAfterOpenRibcage
+    - &clampAfterOpenRibcageBeforeShadekinCore
+      step: SurgeryClampBleeding
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          statuses:
+            - LimbStatusEffectSurgicalRibcageOpen
+        - !type:SurgeryConditionOr
+          conditions:
+            - *noBleeding
+            - !type:SurgeryLimbHasStatus
+              statuses:
+                - LimbStatusEffectSurgicalShadekinCoreAccessed
     - &accessShadekinCore
       step: SurgeryShadekinAccessCore
       conditionComplete:
@@ -1007,10 +1145,10 @@
       category: Lungs
   steps:
     - *makeIncision
-    - *clampAfterIncision
+    - *clampAfterIncisionBeforeIncisionOpen
     - *holdIncisionOpen
     - *openRibcage
-    - *clampAfterOpenRibcage
+    - *clampAfterOpenRibcageBeforeShadekinCore
     - *accessShadekinCore
     - step: SurgeryShadekinImplantCore
       conditionComplete:
@@ -1031,10 +1169,20 @@
       category: SentientCore
   steps:
     - *makeIncision
-    - *clampAfterIncision
+    - *clampAfterIncisionBeforeIncisionOpen
     - *holdIncisionOpen
     - *openRibcage
-    - *clampAfterOpenRibcage
+    - step: SurgeryClampBleeding
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          statuses:
+            - LimbStatusEffectSurgicalRibcageOpen
+        - !type:SurgeryConditionOr
+          conditions:
+            - *noBleeding
+            - !type:SurgeryLimbHasStatus
+              statuses:
+                - LimbStatusEffectSurgicalDionaCoreAccessed
     - &accessDionaCore
       step: SurgeryDionaAccessCore
       conditionComplete:
@@ -1054,7 +1202,7 @@
   name: Limb Amputation
   steps:
     - *makeIncision
-    - *clampAfterIncision
+    - *clampAfterIncisionBeforeIncisionOpen
     - *holdIncisionOpen
     - step: SurgerySlimeAmputateLimb
       conditionComplete:
@@ -1073,7 +1221,7 @@
       category: HandLeftImplant
   steps:
     - *makeIncision
-    - *clampAfterIncision
+    - *clampAfterIncisionBeforeIncisionOpen
     - *holdIncisionOpen
     - step: SurgerySlimeImplantLeftHandImplant
       conditionComplete:
@@ -1091,7 +1239,7 @@
       category: HandRightImplant
   steps:
     - *makeIncision
-    - *clampAfterIncision
+    - *clampAfterIncisionBeforeIncisionOpen
     - *holdIncisionOpen
     - step: SurgerySlimeImplantRightHandImplant
       conditionComplete:
@@ -1108,7 +1256,7 @@
       category: HandLeftImplant
   steps:
     - *makeIncision
-    - *clampAfterIncision
+    - *clampAfterIncisionBeforeIncisionOpen
     - *holdIncisionOpen
     - step: SurgerySlimeRemoveLeftHandImplant
       conditionComplete:
@@ -1126,7 +1274,7 @@
       category: HandRightImplant
   steps:
     - *makeIncision
-    - *clampAfterIncision
+    - *clampAfterIncisionBeforeIncisionOpen
     - *holdIncisionOpen
     - step: SurgerySlimeRemoveRightHandImplant
       conditionComplete:
@@ -1147,7 +1295,7 @@
       category: ArmLeft
   steps:
     - *makeIncision
-    - *clampAfterIncision
+    - *clampAfterIncisionBeforeIncisionOpen
     - *holdIncisionOpen
     - step: SurgerySlimeAttachLeftArm
       conditionComplete:
@@ -1165,7 +1313,7 @@
       category: ArmRight
   steps:
     - *makeIncision
-    - *clampAfterIncision
+    - *clampAfterIncisionBeforeIncisionOpen
     - *holdIncisionOpen
     - step: SurgerySlimeAttachRightArm
       conditionComplete:
@@ -1183,7 +1331,7 @@
       category: HandLeft
   steps:
     - *makeIncision
-    - *clampAfterIncision
+    - *clampAfterIncisionBeforeIncisionOpen
     - *holdIncisionOpen
     - step: SurgerySlimeAttachLeftHand
       conditionComplete:
@@ -1201,7 +1349,7 @@
       category: HandRight
   steps:
     - *makeIncision
-    - *clampAfterIncision
+    - *clampAfterIncisionBeforeIncisionOpen
     - *holdIncisionOpen
     - step: SurgerySlimeAttachRightHand
       conditionComplete:
@@ -1219,7 +1367,7 @@
       category: LegLeft
   steps:
     - *makeIncision
-    - *clampAfterIncision
+    - *clampAfterIncisionBeforeIncisionOpen
     - *holdIncisionOpen
     - step: SurgerySlimeAttachLeftLeg
       conditionComplete:
@@ -1237,7 +1385,7 @@
       category: LegRight
   steps:
     - *makeIncision
-    - *clampAfterIncision
+    - *clampAfterIncisionBeforeIncisionOpen
     - *holdIncisionOpen
     - step: SurgerySlimeAttachRightLeg
       conditionComplete:
@@ -1255,7 +1403,7 @@
       category: FootLeft
   steps:
     - *makeIncision
-    - *clampAfterIncision
+    - *clampAfterIncisionBeforeIncisionOpen
     - *holdIncisionOpen
     - step: SurgerySlimeAttachLeftFoot
       conditionComplete:
@@ -1273,7 +1421,7 @@
       category: FootRight
   steps:
     - *makeIncision
-    - *clampAfterIncision
+    - *clampAfterIncisionBeforeIncisionOpen
     - *holdIncisionOpen
     - step: SurgerySlimeAttachRightFoot
       conditionComplete:
@@ -1291,7 +1439,7 @@
       category: Head
   steps:
     - *makeIncision
-    - *clampAfterIncision
+    - *clampAfterIncisionBeforeIncisionOpen
     - *holdIncisionOpen
     - step: SurgerySlimeAttachHead
       conditionComplete:
@@ -1310,7 +1458,7 @@
       category: EyeImplant
   steps:
     - *makeIncision
-    - *clampAfterIncision
+    - *clampAfterIncisionBeforeIncisionOpen
     - *holdIncisionOpen
     - step: SurgerySlimeRemoveEyeImplant
       conditionComplete:
@@ -1329,7 +1477,7 @@
       category: EyeImplant
   steps:
     - *makeIncision
-    - *clampAfterIncision
+    - *clampAfterIncisionBeforeIncisionOpen
     - *holdIncisionOpen
     - step: SurgerySlimeImplantEyeImplant
       conditionComplete:
@@ -1348,7 +1496,7 @@
       category: Lungs
   steps:
     - *makeIncision
-    - *clampAfterIncision
+    - *clampAfterIncisionBeforeIncisionOpen
     - *holdIncisionOpen
     - step: SurgerySlimeRemoveLungs
       conditionComplete:
@@ -1367,7 +1515,7 @@
       category: Lungs
   steps:
     - *makeIncision
-    - *clampAfterIncision
+    - *clampAfterIncisionBeforeIncisionOpen
     - *holdIncisionOpen
     - step: SurgerySlimeImplantLungs
       conditionComplete:
@@ -1384,7 +1532,7 @@
       category: SentientCore
   steps:
     - *makeIncision
-    - *clampAfterIncision
+    - *clampAfterIncisionBeforeIncisionOpen
     - *holdIncisionOpen
     - &accessSlimeCore
       step: SurgerySlimeAccessCore
@@ -1409,7 +1557,7 @@
       category: SentientCore
   steps:
     - *makeIncision
-    - *clampAfterIncision
+    - *clampAfterIncisionBeforeIncisionOpen
     - *holdIncisionOpen
     - *accessSlimeCore
     - step: SurgerySlimeImplantCore
@@ -1428,7 +1576,7 @@
     - !type:SurgeryHasUnadressedNecrosis
   steps:
     - *makeIncision
-    - *clampAfterIncision
+    - *clampAfterIncisionBeforeDeepIncision
     - *deepIncision
     - step: SurgeryInspectNecrosis
       conditionComplete:

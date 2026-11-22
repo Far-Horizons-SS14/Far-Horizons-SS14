@@ -18,13 +18,18 @@
         - !type:SurgeryLimbHasStatus
           statuses:
             - LimbStatusEffectPlatingUnscrewed
-        - &noLeaks
-          !type:SurgeryLimbHasStatus
-          inverse: true
-          statuses:
-            - LimbStatusEffectLeakingOilI
-            - LimbStatusEffectLeakingOilII
-            - LimbStatusEffectLeakingOilIII
+        - !type:SurgeryConditionOr
+          conditions:
+            - &noLeaks
+              !type:SurgeryLimbHasStatus
+              inverse: true
+              statuses:
+                - LimbStatusEffectLeakingOilI
+                - LimbStatusEffectLeakingOilII
+                - LimbStatusEffectLeakingOilIII
+            - !type:SurgeryLimbHasStatus
+              statuses:
+                - LimbStatusEffectSurgicalPlatingPried
     - &pryPlatingOpen
       step: SurgeryPryPlating
       conditionComplete:
@@ -43,7 +48,12 @@
         - !type:SurgeryLimbHasStatus
           statuses:
             - LimbStatusEffectSurgicalStructureUnscrewed
-        - *noLeaks
+        - !type:SurgeryConditionOr
+          conditions:
+            - *noLeaks
+            - !type:SurgeryLimbHasStatus
+              statuses:
+                - LimbStatusEffectSurgicalLimbPoweredDown
     - &powerDownLimb
       step: SurgeryPowerDownLimb
       conditionComplete:
@@ -167,7 +177,12 @@
         - !type:SurgeryLimbHasStatus
           statuses:
             - LimbStatusEffectSurgicalBoltsLoosened
-        - *noLeaks
+        - !type:SurgeryConditionOr
+          conditions:
+            - *noLeaks
+            - !type:SurgeryLimbHasStatus
+              statuses:
+                - LimbStatusEffectSurgicalJointsWelded
     - &weldJoints
       step: SurgeryWeldJoints
       conditionComplete:
@@ -505,7 +520,12 @@
         - !type:SurgeryLimbHasStatus
           statuses:
             - LimbStatusEffectSurgicalHydraulicsCut
-        - *noLeaks
+        - !type:SurgeryConditionOr
+          conditions:
+            - *noLeaks
+            - !type:SurgeryLimbHasStatus
+              statuses:
+                - LimbStatusEffectSurgicalPumpPoweredDown
     - &powerDownPump
       step: SurgeryPowerDownPump
       conditionComplete:
