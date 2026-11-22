@@ -13,13 +13,13 @@ using Robust.Shared.Prototypes;
 namespace Content.Client._FarHorizons.LimbDamage.UI;
 
 [UsedImplicitly]
-public sealed class LimbTargettingUIController : UIController, IOnSystemLoaded<LimbTargettingSystem>
+public sealed partial class LimbTargettingUIController : UIController, IOnSystemLoaded<LimbTargettingSystem>
 {
-    [Dependency] private readonly IEntityManager _entMan = default!;
-    [Dependency] private readonly IPrototypeManager _protoMan = default!;
-    [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly IResourceCache _resourceCache = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private IEntityManager _entMan = default!;
+    [Dependency] private IPrototypeManager _protoMan = default!;
+    [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private IResourceCache _resourceCache = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
 
     private SpriteSystem? _sprite;
     private LimbTargettingSystem? _limbTargetting;

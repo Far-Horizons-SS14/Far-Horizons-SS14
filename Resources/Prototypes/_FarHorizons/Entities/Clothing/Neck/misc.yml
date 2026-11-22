@@ -1,0 +1,27 @@
+- type: entity
+  parent: ClothingNeckBase
+  id: BadgeDeputy
+  name: Deputy Badge
+  description: Somewhat sharp badge that is given out as a reward to members of Security who have completed the Concord Frontier Authority training programme. Doubles as a shitty throwing star.
+  components:
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Neck/Misc/badgestar.rsi
+    quickEquip: true
+    slots:
+      - neck
+      - pin
+  - type: EmbeddableProjectile
+    sound: /Audio/Weapons/star_hit.ogg
+    offset: -0.15,0.0
+    removalTime: 1.5
+  - type: LandAtCursor
+  - type: DamageOtherOnHit
+    ignoreResistances: true
+    damage:
+      types:
+        Slash: 5
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Neck/Misc/badgestar.rsi
+    state: icon
+  - type: Item
+    size: Tiny

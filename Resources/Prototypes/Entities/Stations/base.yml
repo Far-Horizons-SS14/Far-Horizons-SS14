@@ -17,6 +17,13 @@
         Science: [ ]
         Security: [ ]
         Service: [ ]
+        #Far Horizons Start
+        EngineeringNS: [ ]
+        MedicalNS: [ ]
+        ScienceNS: [ ]
+        SecurityNS: [ ]
+        ServiceNS: [ ]
+        #Far Horizons End
     - type: StationCargoBountyDatabase
 
 - type: entity
@@ -58,7 +65,7 @@
             - type: ProtectedGrid
             - type: TradeStation
           paths:
-            - /Maps/Shuttles/trading_outpost.yml
+            - /Maps/_FarHorizons/Shuttles/Trading_Outpost.yml #FH - Noticed weird bug, the name isn't displayed properly.
 #        mining: !type:GridSpawnGroup # 🌟Starlight begin🌟
 #          paths:
 #            - /Maps/Shuttles/mining.yml

@@ -11,6 +11,7 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Events;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Popups;
+using Content.Shared.Pulling.Events;
 using Content.Shared.Random.Helpers;
 using Content.Shared.Speech;
 using Content.Shared.Stunnable;
@@ -22,15 +23,15 @@ namespace Content.Shared._FarHorizons.Mobs;
 
 public abstract partial class SharedActiveCritSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] protected readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly SharedStunSystem _stun = default!;
-    [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
-    [Dependency] private readonly DamageableSystem _damage = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedCombatModeSystem _combat = default!;
-    [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
-    [Dependency] private readonly BlindableSystem _blindable = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] protected MobStateSystem _mobState = default!;
+    [Dependency] private SharedStunSystem _stun = default!;
+    [Dependency] private MovementSpeedModifierSystem _movementSpeed = default!;
+    [Dependency] private DamageableSystem _damage = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedCombatModeSystem _combat = default!;
+    [Dependency] private ActionBlockerSystem _actionBlocker = default!;
+    [Dependency] private BlindableSystem _blindable = default!;
 
     public override void Initialize()
     {
@@ -52,6 +53,23 @@ public abstract partial class SharedActiveCritSystem : EntitySystem
         SubscribeLocalEvent<ActiveCritComponent, UpdateCanMoveEvent>(OnCanMoveCheck);
         SubscribeLocalEvent<ActiveCritComponent, SpeakAttemptEvent>(OnSpeakAttempt);
         SubscribeLocalEvent<ActiveCritComponent, InRangeOverrideEvent>(OnInRangeCheck);
+    }
+
+    [SubscribeLocalEvent]
+    private void OnStopPullAttempt(Entity<ActiveCritComponent> ent, ref AttemptStopPullingEvent args)
+    {
+        if (args.User == null || !Exists(args.User.Value))
+            return;
+
+        if (args.User.Value == ent.Owner && _mobState.IsCritical(ent.Owner) )
+            args.Cancelled = true;
+    }
+
+    [SubscribeLocalEvent]
+    private void OnForceStandEvent(Entity<ActiveCritComponent> ent, ref TryForceStandEvent args)
+    {
+        if (_mobState.IsCritical(ent.Owner) )
+            args.Cancel();
     }
 
     private void OnInRangeCheck(Entity<ActiveCritComponent> ent, ref InRangeOverrideEvent args)
@@ -159,7 +177,7 @@ public abstract partial class SharedActiveCritSystem : EntitySystem
 
     private void OnStateChanged(Entity<ActiveCritComponent> ent, ref MobStateChangedEvent args)
     {
-        if (!_timing.IsFirstTimePredicted) return;
+        if (!_timing.IsFirstTimePredicted || TerminatingOrDeleted(ent)) return;
 
         if (args.OldMobState == MobState.ActiveCritical && args.NewMobState != MobState.ActiveCritical)
             CleanupActiveCrit(ent.AsNullable());

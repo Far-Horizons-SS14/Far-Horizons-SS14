@@ -4,7 +4,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server._FarHorizons.LimbDamage;
 
-public sealed class LimbTargettingSystem : EntitySystem
+public sealed partial class LimbTargettingSystem : EntitySystem
 {
     public override void Initialize()
     {

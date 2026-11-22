@@ -11,7 +11,7 @@ using Robust.Server.GameObjects;
 namespace Content.Server._FarHorizons.Vampire;
 
 public sealed partial class LesserVampireSystem : SharedLesserVampireSystem
-{    [Dependency] private readonly MetabolizerSystem _metabolism = default!;
+{    [Dependency] private MetabolizerSystem _metabolism = default!;
 
     public override void Initialize()
     {

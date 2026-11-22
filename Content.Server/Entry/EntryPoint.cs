@@ -90,14 +90,14 @@ namespace Content.Server.Entry
         [Dependency] private ServerFeedbackManager _feedbackManager = null!;
 
 #region Starlight
-        [Dependency] private readonly ITTSClient _ttsClient = default!;
-        [Dependency] private readonly HolidaySystem _holidaySystem = default!;
-        [Dependency] private readonly IBugReportManager _bugReport = default!;
-        [Dependency] private readonly PreWrittenDocumentManager _preWrittenDocument = default!;
-        [Dependency] private readonly IPlayerRolesManager _playerRoles = default!;
+        [Dependency] private ITTSClient _ttsClient = default!;
+        [Dependency] private HolidaySystem _holidaySystem = default!;
+        [Dependency] private IBugReportManager _bugReport = default!;
+        [Dependency] private PreWrittenDocumentManager _preWrittenDocument = default!;
+        [Dependency] private IPlayerRolesManager _playerRoles = default!;
 #endregion Starlight
 
-        [Dependency] private readonly ISharedLobbyManager _lobby = default!; // Far Horizons
+        [Dependency] private ISharedLobbyManager _lobby = default!; // Far Horizons
 
         public override void PreInit()
         {

@@ -1,4 +1,49 @@
 - type: htnCompound
+  id: ReloadMagazineGunCompound
+  branches:
+    - tasks:
+        - !type:HTNCompoundTask
+          task: ReloadGunFromInventoryCompound
+    - tasks:
+        - !type:HTNCompoundTask
+          task: ReloadGunFromGroundCompound
+
+- type: htnCompound
+  id: ReloadBallisticGunCompound
+  branches:
+    - tasks:
+        - !type:HTNCompoundTask
+          task: ReloadGunFromInventoryCompound       # speed loader / box
+    - tasks:
+        - !type:HTNCompoundTask
+          task: ReloadShotgunFromInventoryCompound   # loose cartridge
+    - tasks:
+        - !type:HTNCompoundTask
+          task: ReloadGunFromGroundCompound          # speed loader / box
+    - tasks:
+        - !type:HTNCompoundTask
+          task: ReloadShotgunFromGroundCompound      # loose cartridge
+
+
+- type: htnCompound
+  id: BeforeReloadCompound
+  branches:
+    - tasks:
+        # Save currently held gun as "HeldGun"
+        - !type:HTNPrimitiveTask
+          operator: !type:SaveEntityInActiveHandOperator
+            targetKey: HeldGun
+
+        # Free the supporting hand before picking up the magazine.
+        - !type:HTNPrimitiveTask
+          operator: !type:WieldOperator
+            wield: false
+
+        # Swap to empty hand
+        - !type:HTNPrimitiveTask
+          operator: !type:SwapToFreeHandOperator
+            
+- type: htnCompound
   id: GrabAmmoFromInventoryCompound
   branches:
     - tasks:
@@ -6,15 +51,6 @@
         - !type:HTNPrimitiveTask
           operator: !type:UtilityOperator
             proto: InventoryAmmo
-      
-        # Save currently held gun as "HeldGun"
-        - !type:HTNPrimitiveTask
-          operator: !type:SaveEntityInActiveHandOperator
-            targetKey: HeldGun
-
-        # Swap to empty hand
-        - !type:HTNPrimitiveTask
-          operator: !type:SwapToFreeHandOperator
         
         # Pick up ammo
         - !type:HTNPrimitiveTask
@@ -25,19 +61,10 @@
   id: GrabIndividualAmmoFromInventoryCompound
   branches:
     - tasks:
-        # Find ammo in inventory that matches the gun in active hand
+        # Find cartridges in inventory that match the gun in active hand
         - !type:HTNPrimitiveTask
           operator: !type:UtilityOperator
             proto: InventoryIndividualAmmo
-      
-        # Save currently held gun as "HeldGun"
-        - !type:HTNPrimitiveTask
-          operator: !type:SaveEntityInActiveHandOperator
-            targetKey: HeldGun
-
-        # Swap to empty hand
-        - !type:HTNPrimitiveTask
-          operator: !type:SwapToFreeHandOperator
         
         # Pick up ammo
         - !type:HTNPrimitiveTask
@@ -64,15 +91,6 @@
           operator: !type:MoveToOperator
             targetKey: FoundTargetCoordinates
             rangeKey: MovementRangeClose
-
-        # Save currently held gun as "HeldGun"
-        - !type:HTNPrimitiveTask
-          operator: !type:SaveEntityInActiveHandOperator
-            targetKey: HeldGun
-
-        # Swap to empty hand
-        - !type:HTNPrimitiveTask
-          operator: !type:SwapToFreeHandOperator
         
         # Pick up ammo
         - !type:HTNPrimitiveTask
@@ -83,7 +101,7 @@
   id: SearchAndPickIndividualAmmoCompound
   branches:
     - tasks:
-        # Find ammo on the ground that matches the gun in active hand
+        # Find cartridges on the ground that match the gun in active hand
         - !type:HTNPrimitiveTask
           operator: !type:UtilityOperator
             proto: NearbyIndividualAmmo
@@ -99,15 +117,6 @@
           operator: !type:MoveToOperator
             targetKey: FoundTargetCoordinates
             rangeKey: MovementRangeClose
-
-        # Save currently held gun as "HeldGun"
-        - !type:HTNPrimitiveTask
-          operator: !type:SaveEntityInActiveHandOperator
-            targetKey: HeldGun
-
-        # Swap to empty hand
-        - !type:HTNPrimitiveTask
-          operator: !type:SwapToFreeHandOperator
         
         # Pick up ammo
         - !type:HTNPrimitiveTask

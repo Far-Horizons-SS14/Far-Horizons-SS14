@@ -1,0 +1,43 @@
+- type: entity
+  parent: UraniumWindow
+  id: UraniumWindowGeneric
+  suffix: Generic
+  components:
+  - type: Sprite
+    drawdepth: WallTops
+    sprite: _FarHorizons/Structures/Windows/Generic/uranium_window.rsi
+  - type: Icon
+    sprite: _FarHorizons/Structures/Windows/Generic/uranium_window.rsi
+
+- type: entity
+  parent: UraniumWindow
+  id: UraniumWindowNS
+  suffix: NS
+  components:
+  - type: Sprite
+    drawdepth: WallTops
+    sprite: _FarHorizons/Structures/Windows/NeoSol/uranium_window.rsi
+  - type: Icon
+    sprite: _FarHorizons/Structures/Windows/NeoSol/uranium_window.rsi
+
+- type: entity
+  parent: UraniumWindowDiagonal
+  id: UraniumWindowDiagonalGeneric
+  suffix: Diagonal, Generic
+  components:
+  - type: Sprite
+    drawdepth: WallTops
+    sprite: _FarHorizons/Structures/Windows/NanoTrasen/uranium_window_diagonal.rsi
+  - type: Icon
+    sprite: _FarHorizons/Structures/Windows/NanoTrasen/uranium_window_diagonal.rsi
+
+- type: entity
+  parent: UraniumWindowDiagonal
+  id: UraniumWindowDiagonalNS
+  suffix: Diagonal, NS
+  components:
+  - type: Sprite
+    drawdepth: WallTops
+    sprite: _FarHorizons/Structures/Windows/NeoSol/uranium_window_diagonal.rsi
+  - type: Icon
+    sprite: _FarHorizons/Structures/Windows/NeoSol/uranium_window_diagonal.rsi

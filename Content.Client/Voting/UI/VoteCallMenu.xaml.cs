@@ -284,7 +284,7 @@ namespace Content.Client.Voting.UI
     }
 
     [UsedImplicitly, AnyCommand]
-    public sealed class VoteMenuCommand : LocalizedCommands
+    public sealed partial class VoteMenuCommand : LocalizedCommands
     {
         public override string Command => "votemenu";
 

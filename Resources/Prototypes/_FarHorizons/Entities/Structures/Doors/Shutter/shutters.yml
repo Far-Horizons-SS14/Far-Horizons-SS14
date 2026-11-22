@@ -1,0 +1,175 @@
+- type: entity
+  id: BaseShutterSecure
+  parent: [ BaseStructure, BaseStructureDissolvable ]
+  name: Floor-Locking Shutters
+  description: It seems to anchor firmly into the ground when closed, preventing prying. Additional security measures have also been added to prevent tampering.
+  abstract: true
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: AccessReader
+    containerAccessProvider: board
+  - type: Anchorable
+    flags:
+    - Anchorable
+  - type: Rotatable
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Doors/Shutters/shutters.rsi
+    drawdepth: BlastDoors
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+    - state: welded
+      map: ["enum.WeldableLayers.BaseWelded"]
+  - type: AnimationPlayer
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,0.49"
+        density: 100
+        mask:
+        - FullTileMask
+        layer:
+        - AirlockLayer
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSecurity ]
+  - type: ContainerContainer
+    containers:
+      board: !type:Container
+  - type: NavMapDoor
+  - type: Tag
+    tags:
+    - ForceNoFixRotations # Don't want the fixrotations command to target these
+  - type: Door
+    performCollisionCheck: false #Allows for forceful door closing.
+    openDrawDepth: BlastDoors
+    closedDrawDepth: BlastDoors
+    bumpOpen: false
+    clickOpen: false
+    closeTimeOne: 0.2
+    closeTimeTwo: 1.2
+    openTimeOne: 1.2
+    openTimeTwo: 0.2
+    openingAnimationTime: 1.4
+    closingAnimationTime: 1.4
+    canPry: false
+    crushDamage:
+      types:
+        Blunt: 5 #The act of a shutter slamming into you doesn't hurt that bad, but..
+        Slash: 5 #..Hooks digging into your skin probably doesn't feel the best.
+    openSound:
+      path: /Audio/Machines/shutter.ogg
+    closeSound:
+      path: /Audio/Machines/shutter.ogg
+  - type: Weldable
+    time: 3
+  - type: Appearance
+  - type: UserInterface
+    interfaces:
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  - type: Airtight
+  - type: RadiationBlocker
+    resistance: 2
+  - type: Damageable
+    damageModifierSet: StructuralMetallic
+  - type: Injurable
+    damageContainer: StructuralInorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 500
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: DoorSignalControl
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
+  - type: WirelessNetworkConnection
+    range: 200
+  - type: DeviceLinkSink
+    ports:
+      - Open
+      - Close
+      - Toggle
+  - type: DeviceLinkSource
+    ports:
+    - DoorStatus
+    lastSignals:
+      DoorStatus: false
+  - type: InteractionPopup
+    interactSuccessString: shutter-rattle
+    messagePerceivedByOthers: shutter-rattle
+    interactSuccessSound:
+      collection: FenceRattle
+  - type: BlockWeather
+
+- type: entity
+  id: ShuttersSecure
+  parent: [BaseDeltaPressureGlass, BaseShutterSecure]
+  suffix: Security
+  components:
+  - type: Occluder
+  - type: Construction
+    graph: Shutters
+    node: ShuttersSecure
+    containers:
+    - board
+
+- type: entity
+  id: ShuttersSecureOpen
+  parent: ShuttersSecure
+  suffix: Open
+  components:
+  - type: Door
+    state: Open
+  - type: Physics
+    canCollide: false
+  - type: Occluder
+    enabled: false
+  - type: Airtight
+    airBlocked: false
+  - type: RadiationBlocker
+    enabled: false
+
+- type: entity
+  id: ShuttersSecureWindow
+  parent: [BaseDeltaPressureGlass, BaseShutterSecure]
+  name: Floor-Locking Window Shutters
+  description: It seems to anchor firmly into the ground when closed, preventing prying. Additional security measures have also been added to prevent tampering.
+  suffix: Security
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Doors/Shutters/shutters_window.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+    - state: welded
+      map: ["enum.WeldableLayers.BaseWelded"]
+  - type: Construction
+    graph: Shutters
+    node: ShuttersSecureWindow
+    containers:
+    - board
+  - type: RadiationBlocker
+    resistance: 1
+
+- type: entity
+  id: ShuttersSecureWindowOpen
+  parent: ShuttersSecureWindow
+  suffix: Open
+  components:
+  - type: Door
+    state: Open
+  - type: Physics
+    canCollide: false
+  - type: Airtight
+    airBlocked: false
+  - type: RadiationBlocker
+    enabled: false

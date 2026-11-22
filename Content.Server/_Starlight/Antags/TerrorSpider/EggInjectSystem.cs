@@ -8,11 +8,11 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server._Starlight.Antags.TerrorSpider;
 
-public sealed class EggInjectSystem : EntitySystem
+public sealed partial class EggInjectSystem : EntitySystem
 {
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly SharedUserInterfaceSystem _uiSystem = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private SharedUserInterfaceSystem _uiSystem = default!;
 
     private readonly EntProtoId[] _eggs =
     [

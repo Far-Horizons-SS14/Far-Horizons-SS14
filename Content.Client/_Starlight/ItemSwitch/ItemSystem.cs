@@ -9,7 +9,7 @@ using Robust.Client.GameObjects;
 
 namespace Content.Client._Starlight.ItemSwitch;
 
-public sealed class ItemSwitchSystem : SharedItemSwitchSystem
+public sealed partial class ItemSwitchSystem : SharedItemSwitchSystem
 {
     public override void Initialize()
     {

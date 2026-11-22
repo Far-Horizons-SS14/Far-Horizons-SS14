@@ -8,11 +8,11 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared._FarHorizons.Mobs;
 
-public sealed class SharedMobSplittingSystem : EntitySystem
+public sealed partial class SharedMobSplittingSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly ThrowingSystem _throw = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private ThrowingSystem _throw = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
 
     public override void Initialize()
     {

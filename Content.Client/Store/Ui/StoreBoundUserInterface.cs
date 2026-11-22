@@ -7,9 +7,9 @@ using Robust.Shared.Prototypes;
 namespace Content.Client.Store.Ui;
 
 [UsedImplicitly]
-public sealed class StoreBoundUserInterface : BoundUserInterface
+public sealed partial class StoreBoundUserInterface : BoundUserInterface
 {
-   [Dependency] private readonly IPrototypeManager _prototypeManager = default!; // FH-Fix
+    [Dependency] private IPrototypeManager _prototypeManager = default!; // FH-Fix
     private readonly StoreSystem _storeSystem = default!;
 
     [ViewVariables]
@@ -71,7 +71,7 @@ public sealed class StoreBoundUserInterface : BoundUserInterface
                 _listings = msg.Listings;
 
                 _menu?.UpdateBalance(msg.Balance);
-                _menu!.GridMode = msg.GridMode; // Starlight
+                _menu?.GridMode = msg.GridMode; // Far Horizons
 
                 UpdateListingsWithSearchFilter();
                 _menu?.SetFooterVisibility(msg.ShowFooter);
@@ -93,5 +93,6 @@ public sealed class StoreBoundUserInterface : BoundUserInterface
         }
         _menu.PopulateStoreCategoryButtons(filteredListings);
         _menu.UpdateListing(filteredListings.ToList());
+        _menu.SetWithdraw(filteredListings.Any()); // Far Horizons - if we have no listings, we likely don't have access to the store, withdraw button is disabled
     }
 }

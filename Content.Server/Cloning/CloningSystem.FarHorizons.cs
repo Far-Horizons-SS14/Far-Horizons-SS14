@@ -6,7 +6,7 @@ namespace Content.Server.Cloning;
 
 public sealed partial class CloningSystem
 {
-    [Dependency] private readonly TagSystem _tag = default!;
+    [Dependency] private TagSystem _tag = default!;
 
     private static readonly ProtoId<TagPrototype> _protogenArmorTag = "ProtogenCybernetics";
 

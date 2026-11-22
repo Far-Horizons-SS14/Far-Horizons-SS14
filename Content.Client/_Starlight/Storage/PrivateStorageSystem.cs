@@ -5,6 +5,6 @@ namespace Content.Client._Starlight.Storage;
 /// <summary>
 /// Client-side implementation of the private storage system.
 /// </summary>
-public sealed class PrivateStorageSystem : SharedPrivateStorageSystem
+public sealed partial class PrivateStorageSystem : SharedPrivateStorageSystem
 {
 }

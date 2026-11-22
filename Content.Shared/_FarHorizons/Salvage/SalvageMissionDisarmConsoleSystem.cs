@@ -4,11 +4,11 @@ using Robust.Shared.Audio.Systems;
 
 namespace Content.Shared._FarHorizons.Salvage;
 
-public sealed class SalvageMissionDisarmConsoleSystem : EntitySystem
+public sealed partial class SalvageMissionDisarmConsoleSystem : EntitySystem
 {
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SharedUserInterfaceSystem _ui = default!;
 
     public override void Initialize()
     {

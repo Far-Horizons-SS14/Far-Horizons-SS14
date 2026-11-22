@@ -19,13 +19,13 @@ namespace Content.Server.Starlight.Antags.Abductor;
 
 public sealed partial class AbductorSystem : SharedAbductorSystem
 {
-    [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
-    [Dependency] private readonly SharedColorFlashEffectSystem _color = default!;
-    [Dependency] private readonly PullingSystem _pullingSystem = default!;
-    [Dependency] private readonly InventorySystem _inv = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly RemoteEyeSystem _remoteEye = default!;
-    [Dependency] private readonly MetaDataSystem _metaData = default!; //FarHorizons
+    [Dependency] private SharedAudioSystem _audioSystem = default!;
+    [Dependency] private SharedColorFlashEffectSystem _color = default!;
+    [Dependency] private PullingSystem _pullingSystem = default!;
+    [Dependency] private InventorySystem _inv = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private RemoteEyeSystem _remoteEye = default!;
+    [Dependency] private MetaDataSystem _metaData = default!; //FarHorizons
 
     private static readonly EntProtoId<InstantActionComponent> _gizmoMark = "ActionGizmoMark";
     private static readonly EntProtoId<InstantActionComponent> _sendYourself = "ActionSendYourself";

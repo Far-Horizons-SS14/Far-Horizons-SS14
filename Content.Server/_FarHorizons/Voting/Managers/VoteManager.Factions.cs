@@ -12,7 +12,7 @@ namespace Content.Server.Voting.Managers;
 
 public sealed partial class VoteManager
 {
-    [Dependency] private readonly IServerFactionManager _factions = default!;
+    [Dependency] private IServerFactionManager _factions = default!;
 
     private void CreateFactionVote(ICommonSession? initiator)
     {

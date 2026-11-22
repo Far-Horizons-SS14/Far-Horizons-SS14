@@ -24,9 +24,9 @@ public sealed class NavMapBeaconBoundUserInterface : BoundUserInterface
             _window.SetEntity(Owner, beacon);
         }
 
-        _window.OnApplyButtonPressed += (label, enabled, color) =>
+        _window.OnApplyButtonPressed += (label, enabled, color, nextBeacon) => // Far Horizons - add nextBeacon
         {
-            SendMessage(new NavMapBeaconConfigureBuiMessage(label, enabled, color));
+            SendMessage(new NavMapBeaconConfigureBuiMessage(label, enabled, color, nextBeacon)); // Far Horizons - add nextBeacon
         };
     }
 }

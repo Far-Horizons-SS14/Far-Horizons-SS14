@@ -5,7 +5,7 @@ namespace Content.Client._FarHorizons.Factions;
 
 public sealed partial class ClientFactionManager : SharedFactionManager
 {
-    [Dependency] private readonly IClientNetManager _netManager = default!;
+    [Dependency] private IClientNetManager _netManager = default!;
 
     public override void Init()
     {

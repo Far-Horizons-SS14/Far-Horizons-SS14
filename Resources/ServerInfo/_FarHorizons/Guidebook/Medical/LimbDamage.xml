@@ -1,0 +1,48 @@
+<Document>
+# Limb Damage
+It is important for medical personel to understand how wounds on their patient's limbs will affect them. 
+
+This guide will go over how to heal limbs, each limb's health and how damage affects them.
+
+## Treatment
+To see how damaged a limb is, scan your patient utilizing either a health scanner or medical PDA.
+<Box>
+<GuideEntityEmbed Entity="MedicalPDA"/>
+<GuideEntityEmbed Entity="HandheldHealthAnalyzer"/>
+</Box>
+Then decide whether you want to apply chemical or topical treatment.
+\nTopical treatment will only heal the currently targetted limb, make sure to select the one you wish to heal before applying topicals.
+\nChemical treatment will heal all limbs evenly, great for healing multiple limbs at once but requires the patient to be alive.
+
+Important note - Only the torso's health affects a patient's total health, healing the other limbs is not required for revival.
+
+## Body parts
+Each body part has its own health pool and effects when damaged, they also gib/ash at different amounts of damage. If a limb is missing, surgery will be required to replace it.
+
+### Torso
+The torso is the health pool, any damage dealt to a patient will be in part transfered to it regardless of what limb was hit.
+\nOnce it reaches 100 damage the patient will enter a critical state, and they will die once 200 damage is reached.
+
+### Head 
+The head, unless stated otherwise in the species's guidebook entry, is a vital organ and the patient will die without it.
+\nIt can only be damaged by direct hits (clicking on the target's sprite while targetting it) with a 60% chance or by explosions and fire, and it will transfer all of the damage it takes to the torso directly (unless considered not vital). If the 60% chance misses, the torso will be hit instead.
+
+Destroying it is also easier as it is more fragile, gibbing at 250 blunt damage and being cut off at 150 slash damage.
+
+### Arms and Legs
+Arm and Legs are very similar, the only difference being what happens when they are severely damaged.
+\nBoth will transfer 40% of their damage to the torso and can be damaged with a 75% chance by direct hits or by explosions and fire. If the 75% chance misses, the torso will be hit instead.
+
+All 4 limbs will gib at 250 blunt damage, ash at 500 heat damage and get cut off at 100 slash damage.
+
+Hitting a limb that has more than 250 total damage or at least 150 blunt damage will cause the target to either drop what they are holding if it's an arm, or fall to the ground if it's a leg.
+
+### Hands and Feet
+Similarly to arms and legs, the only difference between hands and feet is what happens when they are severely damaged.
+\nBoth will transfer 20% of their damage to the torso and can be damaged with a 60% chance by direct hits or by explosions and fire. If the 60% chance misses, the respective arm/leg will be hit instead.
+
+Hands and feet will gib at 150 blunt damage, ash at 300 heat damage and get cut off at 50 slash damage. It is very common for patients to be missing one of these after explosions or fire related injuries.
+
+Hitting a hand or foot that has more than 150 total damage or at least 50 blunt damage will cause the target to either drop what they are holding if it's a hand, or fall to the ground if it's a foot.
+
+</Document>

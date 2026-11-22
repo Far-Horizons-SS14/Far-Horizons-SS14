@@ -4,7 +4,7 @@ using Content.Shared._Starlight.Speech;
 
 namespace Content.Client.Speech.EntitySystems;
 
-public sealed class SlurredSystem : SharedSlurredSystem
+public sealed partial class SlurredSystem : SharedSlurredSystem
 {
     protected override SpeechMessage AccentuateInternal(EntityUid uid, SlurredAccentComponent comp, SpeechMessage message) // FH string -> SpeechMessage
     {

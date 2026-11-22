@@ -25,6 +25,13 @@
   - type: Access
     groups:
     - SecurityNS
+  - type: Sprite
+    layers:
+    - state: door_remotebase
+    - state: door_remotelightscolour
+      color: "#0060a5"
+    - state: door_remotescreencolour
+      color: "#830000"
 
 - type: entity
   parent: DoorRemoteArmory
@@ -35,6 +42,13 @@
   - type: Access
     groups:
     - ArmoryNS
+  - type: Sprite
+    layers:
+    - state: door_remotebase
+    - state: door_remotelightscolour
+      color: "#e80000"
+    - state: door_remotescreencolour
+      color: "#a80000"
 
 - type: entity
   parent: DoorRemoteService

@@ -4,7 +4,7 @@ using Robust.Shared.Prototypes;
 namespace Content.Client.FeedbackPopup;
 
 /// <inheritdoc />
-public sealed class ClientFeedbackManager : SharedFeedbackManager
+public sealed partial class ClientFeedbackManager : SharedFeedbackManager
 {
     /// <summary>
     /// A read-only set representing the currently displayed feedback popups.

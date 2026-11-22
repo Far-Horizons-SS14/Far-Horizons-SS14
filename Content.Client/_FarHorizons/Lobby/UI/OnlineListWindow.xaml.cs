@@ -11,7 +11,7 @@ namespace Content.Client._FarHorizons.Lobby.UI;
 [UsedImplicitly]
 public sealed partial class OnlineListWindow : DefaultWindow
 {
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
 
     public OnlineListWindow()
     {

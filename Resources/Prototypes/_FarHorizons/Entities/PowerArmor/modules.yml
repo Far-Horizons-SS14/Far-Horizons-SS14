@@ -1,0 +1,54 @@
+- type: entity
+  id: PowerArmorModuleBase
+  name: Power Armor Module Base
+  parent: BaseItem
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Misc/PowerArmor/modules.rsi
+  - type: Item
+    size: Small
+  - type: InteractionOutline
+  - type: Clickable
+  - type: PowerArmorModule
+
+- type: entity
+  id: PowerArmorModuleIDLockSecurityNT
+  name: ID Lock Module
+  description: A module which engages with the various locks and seals tied to the suit's systems, enabling it to only be worn by someone corresponding with the access.
+  suffix: NT, Security
+  parent: PowerArmorModuleBase
+  components:
+  - type: Sprite
+    layers:
+    - state: dnalock
+  - type: PowerArmorPassiveModule
+    comps:
+      - type: IdClothingBlocker
+        allowedJobs:
+          - Security
+      - type: AccessReader
+        access: [["Security"]]
+  - type: PowerArmorModule
+    canBeToggled: false
+
+- type: entity
+  id: PowerArmorModuleSecurityVisor
+  name: Security Visor Module
+  description: A heads-up display installed into the visor of the suit. This module is a heavily-retrofitted pair of security glasses, plugged into various criminal databases to be able to view arrest records, and generally know who to shoot.
+  suffix: Security
+  parent: PowerArmorModuleBase
+  components:
+  - type: Sprite
+    layers:
+    - state: sechud_visor
+  - type: PowerArmorPassiveModule
+    comps:
+    - type: ShowJobIcons
+    - type: ShowMindShieldIcons
+    - type: ShowCriminalRecordIcons
+    - type: ShowContrabandDetails
+  - type: PowerArmorModule
+    addToOtherHalf: true
+    activePowerDrain: 1.5
+    complexityCost: 2

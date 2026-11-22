@@ -55,6 +55,8 @@ public sealed partial class FactionJobAssignmentPrototype : IPrototype
 
     [DataField("override")]
     public JobOverride? Override = default!;
+
+    [DataField] public bool Hidden = false;
 }
 
 /// <summary>
@@ -86,4 +88,6 @@ public sealed partial class JobOverride{
     public IReadOnlyCollection<ProtoId<AccessGroupPrototype>>? ExtendedAccessGroups;
     [DataField]
     public LocId? Supervisors;
+    [DataField(serverOnly: true)]
+    public JobSpecial[]? Special;
 }

@@ -139,6 +139,12 @@
   - type: Battery
     maxCharge: 720
     startingCharge: 720
+#FH - Start
+  - type: Tag
+    tags:
+      - PowerCell
+      - PowerCellMedium
+#FH - End
 
 - type: entity
   id: PowerCellMediumPrinted
@@ -174,6 +180,12 @@
   - type: Battery
     maxCharge: 1080
     startingCharge: 1080
+#FH - Start
+  - type: Tag
+    tags:
+      - PowerCell
+      - PowerCellHigh
+#FH - End
 
 - type: entity
   id: PowerCellHighPrinted

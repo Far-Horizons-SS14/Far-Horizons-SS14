@@ -1,120 +1,120 @@
-﻿- type: entity
-  abstract: true
-  id: FHBaseDoorConstructible
-  components:
-    - type: Construction
-      graph: FHAirlock
-      node: airlock
-      containers:
-        - board
-    - type: Sprite
-      snapCardinals: false
-      layers:
-        - state: electrified
-          sprite: Effects/electricity.rsi
-          shader: unshaded
-          visible: false
-          map: ["enum.ElectrifiedLayers.Sparks"]
-        - state: closed
-          map: [ "enum.DoorVisualLayers.Base" ]
-        - state: closed_unlit
-          map: ["enum.DoorVisualLayers.BaseUnlit"]
-        - state: welded
-          map: [ "enum.WeldableLayers.BaseWelded" ]
-          visible: false
-        - state: locked
-          shader: unshaded
-          map: ["enum.DoorVisualLayers.BaseBolted"]
-        - state: spark
-          shader: unshaded
-          map: ["enum.DoorVisualLayers.BaseEmergencyAccess"]
-        - state: panel_open
-          map: ["enum.WiresVisualLayers.MaintenancePanel"]
-        - state: electrified_ai
-          sprite: Interface/Misc/ai_hud.rsi
-          shader: unshaded
-          visible: false
-          map: ["enum.ElectrifiedLayers.HUD"]
-    - type: GenericVisualizer
-      visuals:
-        enum.ElectrifiedVisuals.ShowSparks:
-          enum.ElectrifiedLayers.Sparks:
-            True: { visible: True }
-            False: { visible: False }
-    - type: Paintable
-      group: FHAirlockStandard
-
-
+﻿# The same as WizDen's Airlock, except:
+# - add FHDoor so it rotates on spawn to fit walls
+# - add StructureOcclusion so it occludes sound
+# - add fixVacuum to Airtight so it doesn't flicker you to suffocating if you walk through them quickly
+# - use FH construction graph and paint group
+# From RMC:
+# - override the sprite setup using the RMC sprite layers, except as noted for emags
+# - add IconSmooth so that walls show as connected to the airlock when adjacent
+# - use the RMC airlock sounds for opening and closing
 - type: entity
-  parent: [ CMBaseDoor, FHBaseDoorConstructible ]
   id: FHAirlock
+  parent: Airlock
   name: Airlock
-  description: It opens, it closes, and maybe crushes you.
-  placement:
-    mode: SnapgridCenter
   components:
-    - type: FHDoor
-    - type: Sprite
-      sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/basic.rsi
-    - type: Construction
-      graph: FHAirlock
-      node: airlock
-      containers:
-        - board
-    - type: Occluder
-    - type: Door
-      crushDamage:
-        types:
-          Blunt: 15
-      openSound:
-        path: /Audio/_RMC14/Machines/airlock.ogg
-      closeSound:
-        path: /Audio/_RMC14/Machines/airlock.ogg
-      denySound:
-        path: /Audio/Machines/airlock_deny.ogg
-    - type: Paintable
-      group: FHAirlockStandard
+  - type: Sprite # The general setup of the sprite here is from RMC, except where noted
+    sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/basic.rsi # FH - use FH airlock sprites
+    snapCardinals: false
+    layers:
+    - state: closed
+      map: [ "enum.DoorVisualLayers.Base" ]
+    - state: unlit
+      map: ["enum.DoorVisualLayers.BaseUnlit"]
+    - state: welded
+      map: [ "enum.WeldableLayers.BaseWelded" ]
+      visible: false
+    - state: locked
+      shader: unshaded
+      map: ["enum.DoorVisualLayers.BaseBolted"]
+    - state: spark
+      shader: unshaded
+      map: ["enum.DoorVisualLayers.BaseEmergencyAccess", "enum.DoorVisualLayers.BaseEmagging"] # FH - Added BaseEmagging so emag animations show up
+    - state: panel_open
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+    - state: electrified_ai
+      sprite: Interface/Misc/ai_hud.rsi
+      shader: unshaded
+      visible: false
+      map: ["enum.ElectrifiedLayers.HUD"]
+    - state: electrified
+      sprite: Effects/electricity.rsi
+      shader: unshaded
+      visible: false
+      map: ["enum.ElectrifiedLayers.Sparks"]
+  - type: Door
+    crushDamage:
+      types:
+        Blunt: 15
+    openSound:
+      path: /Audio/_RMC14/Machines/airlock.ogg # RMC
+    closeSound:
+      path: /Audio/_RMC14/Machines/airlock.ogg # RMC
+    denySound:
+      path: /Audio/Machines/airlock_deny.ogg
+    emaggingSpriteState: spark
+  - type: ContainerContainer
+    containers:
+      board: !type:Container
+  - type: Airlock
+    openingSpriteState: opening
+    closingSpriteState: closing
+    denySpriteState: deny
+  - type: Airtight
+    fixVacuum: true
+    noAirWhenFullyAirBlocked: false
+  - type: Construction
+    graph: FHAirlock
+    node: airlock
+    containers:
+    - board
+  - type: Paintable
+    group: FHAirlockStandard
+  - type: FHDoor
+  - type: StructureOcclusion
+  - type: IconSmooth # From RMC, makes walls show as connected to the airlock when adjacent
+    key: walls
+    mode: NoSprite
 
 - type: entity
   id: FHAirlockGlass
   parent: FHAirlock
   name: Glass Airlock
   components:
-    - type: MeleeSound
-      soundGroups:
-        Brute:
-          collection: GlassSmack
-    - type: Door
-      occludes: false
-    - type: Occluder
-      enabled: false
-    - type: Fixtures
-      fixtures:
-        fix1:
-          shape:
-            !type:PhysShapeAabb
-            bounds: "-0.49,-0.49,0.49,0.49" # don't want this colliding with walls or they won't close
-          density: 100
-          mask:
-            - FullTileMask
-          layer:     #removed opaque from the layer, allowing lasers to pass through glass airlocks
-            - GlassAirlockLayer
-    - type: Sprite
-      sprite: _FarHorizons/Structures/Doors/Airlocks/Glass/basic.rsi
-    - type: LayerChangeOnWeld
-      unWeldedLayer: GlassAirlockLayer
-      weldedLayer: GlassLayer
-    - type: Construction
-      graph: FHAirlock
-      node: glassAirlock
-    - type: Paintable
-      group: FHAirlockGlass
-    - type: RadiationBlocker
-      resistance: 2
-    - type: Tag
-      tags:
-        - GlassAirlock
-        # This tag is used to nagivate the Airlock construction graph. It's needed because the construction graph is shared between Airlock, AirlockGlass, and HighSecDoor
-        - DoorRemoteWhitelist
+  - type: MeleeSound
+    soundGroups:
+      Brute:
+        collection: GlassSmack
+  - type: Door
+    occludes: false
+  - type: Occluder
+    enabled: false
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Doors/Airlocks/Glass/basic.rsi
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,0.49" # don't want this colliding with walls or they won't close
+        density: 100
+        mask:
+        - FullTileMask
+        layer:     #removed opaque from the layer, allowing lasers to pass through glass airlocks
+        - GlassAirlockLayer
+  - type: LayerChangeOnWeld
+    unWeldedLayer: GlassAirlockLayer
+    weldedLayer: GlassLayer
+  - type: Construction
+    graph: FHAirlock
+    node: glassAirlock
+  - type: Paintable
+    group: FHAirlockGlass
+  - type: RadiationBlocker
+    resistance: 2
+  - type: Tag
+    tags:
+      - GlassAirlock
+      # This tag is used to nagivate the Airlock construction graph. It's needed because the construction graph is shared between Airlock, AirlockGlass, and HighSecDoor
+      - DoorRemoteWhitelist
       # This tag is used by door remotes to allow or not a door remote to normally be able to interact with a door
-    - type: LineOfSightExclude
+  - type: LineOfSightExclude

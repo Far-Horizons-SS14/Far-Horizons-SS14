@@ -48,7 +48,23 @@ namespace Content.Shared.Cargo
         [DataField]
         public ProtoId<CargoAccountPrototype> Account;
 
-        public CargoOrderData(int orderId, ProtoId<CargoProductPrototype> product, int amount, string requester, string reason, ProtoId<CargoAccountPrototype> account)
+        #region Starlight
+        /// <summary>
+        /// The ID of the station this order belongs to.
+        /// </summary>
+        [DataField]
+        public NetEntity StationId;
+        #endregion
+
+        // Far Horizons start
+        [DataField] public NetEntity? ChargeCreditsFrom;
+        [DataField] public string? PersonalOrderRecipient;
+        [DataField] public string? PersonalOrderStation;
+        [DataField] public string? PersonalOrderInstructions;
+        [DataField] public bool? PersonalDeliverySuccess = null;
+        // Far Horizons end
+
+        public CargoOrderData(int orderId, ProtoId<CargoProductPrototype> product, int amount, string requester, string reason, ProtoId<CargoAccountPrototype> account, NetEntity stationId, NetEntity? chargeCreditsFrom = null, string? recipient = null, string? station = null, string? instructions = null) // Starlight: +stationId; Far horizons - charge credits
         {
             OrderId = orderId;
             Product = product;
@@ -56,6 +72,13 @@ namespace Content.Shared.Cargo
             Requester = requester;
             Reason = reason;
             Account = account;
+            StationId = stationId; // Starlight
+            // Far Horizons start
+            ChargeCreditsFrom = chargeCreditsFrom;
+            PersonalOrderRecipient = recipient;
+            PersonalOrderStation = station;
+            PersonalOrderInstructions = instructions;
+            // Far Horizons end
         }
 
         public void SetApproverData(string? approver)

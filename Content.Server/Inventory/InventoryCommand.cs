@@ -8,7 +8,7 @@ using Robust.Shared.Toolshed;
 namespace Content.Server.Inventory;
 
 [ToolshedCommand, AdminCommand(AdminFlags.Debug)]
-public sealed class InventoryCommand : ToolshedCommand
+public sealed partial class InventoryCommand : ToolshedCommand
 {
     private InventorySystem? _inventorySystem;
 
@@ -20,7 +20,7 @@ public sealed class InventoryCommand : ToolshedCommand
     {
         _inventorySystem ??= GetSys<InventorySystem>();
 
-        if (!EntityManager.TryGetComponent<InventoryComponent>(entity, out var inventory))
+        if (!TryComp<InventoryComponent>(entity, out var inventory))
             return [];
 
         List<EntityUid> result = new();
@@ -49,7 +49,7 @@ public sealed class InventoryCommand : ToolshedCommand
     {
         _inventorySystem ??= GetSys<InventorySystem>();
 
-        if (!EntityManager.TryGetComponent<InventoryComponent>(ent, out var inventory))
+        if (!TryComp<InventoryComponent>(ent, out var inventory))
             return [];
 
         List<EntityUid> items = new();
@@ -81,7 +81,7 @@ public sealed class InventoryCommand : ToolshedCommand
     {
         _inventorySystem ??= GetSys<InventorySystem>();
 
-        if (!EntityManager.TryGetComponent<InventoryComponent>(ent, out var inventory))
+        if (!TryComp<InventoryComponent>(ent, out var inventory))
             return [];
 
         List<EntityUid> items = new();
@@ -182,7 +182,7 @@ public sealed class InventoryCommand : ToolshedCommand
     {
         _inventorySystem ??= GetSys<InventorySystem>();
 
-        if (!EntityManager.TryGetComponent<InventoryComponent>(targetEnt, out var inventory))
+        if (!TryComp<InventoryComponent>(targetEnt, out var inventory))
             return null;
 
 

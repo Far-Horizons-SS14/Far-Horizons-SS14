@@ -9,9 +9,9 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared._FarHorizons.Silicons.IPC.Traits.Negative;
 
-public sealed class MicroreactorIncompatibilityTraitSystem : IPCTraitSystem<MicroreactorIncompatibilityTraitComponent>
+public sealed partial class MicroreactorIncompatibilityTraitSystem : IPCTraitSystem<MicroreactorIncompatibilityTraitComponent>
 {
-    [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
+    [Dependency] private ItemSlotsSystem _itemSlots = default!;
     protected override void TraitInit(Entity<IPCBrainHolderComponent, MicroreactorIncompatibilityTraitComponent> ent)
     {
         if(!TryComp<IPCBatteryComponent>(ent.Owner, out var ipcBattery) || 
@@ -28,9 +28,9 @@ public sealed class MicroreactorIncompatibilityTraitSystem : IPCTraitSystem<Micr
     }
 }
 
-public sealed class HeavierFrameTraitSystem: IPCTraitSystem<HeavierFrameTraitComponent>
+public sealed partial class HeavierFrameTraitSystem: IPCTraitSystem<HeavierFrameTraitComponent>
 {
-    [Dependency] private readonly MovementSpeedModifierSystem _speedModifier = default!;
+    [Dependency] private MovementSpeedModifierSystem _speedModifier = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -43,10 +43,10 @@ public sealed class HeavierFrameTraitSystem: IPCTraitSystem<HeavierFrameTraitCom
         => args.ModifySpeed(ent.Comp.SpeedModifier);
 }
 
-public sealed class IntegratedBatteryTraitSystem : IPCTraitSystem<IntegratedBatteryTraitComponent>
+public sealed partial class IntegratedBatteryTraitSystem : IPCTraitSystem<IntegratedBatteryTraitComponent>
 {
-    [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
+    [Dependency] private ItemSlotsSystem _itemSlots = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
     protected override void TraitInit(Entity<IPCBrainHolderComponent, IntegratedBatteryTraitComponent> ent)
     {
         if(!TryComp<IPCBatteryComponent>(ent.Owner, out var ipcBattery) || 

@@ -84,6 +84,15 @@
     # Far Horizons end
     Bloodstream:
       effects:
+    # Far Horizons start
+      - !type:AdjustReagent
+          conditions:
+          - !type:ReagentCondition
+            reagent: Hemex
+            min: 1
+          reagent: Hemex
+          amount: -3
+    # Far Horizons end
       - !type:HealthChange
         conditions:
         - !type:MetabolizerTypeCondition
@@ -122,7 +131,7 @@
         conditions:
         - !type:MetabolizerTypeCondition
           type: [ Avali, Resomi, ProtoBird ] #FH
-        amount: 3
+        amount: 9 # FH 15% per 5u 
 
 - type: reagent
   id: BoneGel

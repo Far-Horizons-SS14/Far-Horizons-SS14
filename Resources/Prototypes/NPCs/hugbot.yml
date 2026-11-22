@@ -4,6 +4,11 @@
   - tasks:
     - !type:HTNCompoundTask
       task: HugNearbyCompound
+  # Far Horizons start
+  - tasks:
+    - !type:HTNCompoundTask
+      task: PatrolBeaconCompound
+  # Far Horizons end
   - tasks:
     - !type:HTNCompoundTask
       task: IdleCompound
@@ -18,11 +23,15 @@
         proto: NearbyNeedingHug
 
     # Announce intent to hug
-    - !type:HTNPrimitiveTask
-      operator: !type:SpeakOperator
-        speech: !type:LocalizedSetSpeakOperatorSpeech
-          lineSet: HugBotStarts
-        hidden: true
+    # Far Horizons start - menu speech toggle
+    #- !type:HTNPrimitiveTask
+    #  operator: !type:SpeakOperator
+    #    speech: !type:LocalizedSetSpeakOperatorSpeech
+    #      lineSet: HugBotStarts
+    #    hidden: true
+    - !type:HTNCompoundTask
+      task: HugBotStartSpeakCompound
+    # Far Horizons end
 
     # Approach hug recipient
     - !type:HTNPrimitiveTask
@@ -99,6 +108,10 @@
   # Say mean things if emagged
   - preconditions:
     - !type:IsEmaggedPrecondition
+    # Far Horizons start
+    - !type:KeyExistsPrecondition
+      key: SimpleBotSpeechEnabled
+    # Far Horizons end
     tasks:
     - !type:HTNPrimitiveTask
       operator: !type:SpeakOperator
@@ -106,12 +119,34 @@
           lineSet: EmaggedHugBotFinishes
         hidden: true
   # Say nice thing otherwise
-  - tasks:
+  - preconditions:
+    # Far Horizons start
+    - !type:KeyExistsPrecondition
+      key: SimpleBotSpeechEnabled
+    tasks:
+    # Far Horizons end
     - !type:HTNPrimitiveTask
       operator: !type:SpeakOperator
         speech: !type:LocalizedSetSpeakOperatorSpeech
           lineSet: HugBotFinishes
         hidden: true
+  - tasks: []
+
+# Far Horizons start
+- type: htnCompound
+  id: HugBotStartSpeakCompound
+  branches:
+  - preconditions:
+    - !type:KeyExistsPrecondition
+      key: SimpleBotSpeechEnabled
+    tasks:
+    - !type:HTNPrimitiveTask
+      operator: !type:SpeakOperator
+        speech: !type:LocalizedSetSpeakOperatorSpeech
+          lineSet: HugBotStarts
+        hidden: true
+  - tasks: []
+# Far Horizons end
 
 - type: utilityQuery
   id: NearbyNeedingHug

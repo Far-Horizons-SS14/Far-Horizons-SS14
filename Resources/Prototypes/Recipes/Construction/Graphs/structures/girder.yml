@@ -135,7 +135,7 @@
               doAfter: 2
 
     - node: wall
-      entity: WallSolidStandard #FH, Paintable Walls
+      entity: WallSolidGeneric #FH, Paintable Walls
       edges:
         - to: girder
           completed:
@@ -294,7 +294,71 @@
             - material: Plasteel
               amount: 1
               doAfter: 1
+#FH - Start
+        - to: ReinforcedShuttleWall
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          conditions:
+            - !type:EntityAnchored { }
+          steps:
+            - material: MetalRod
+              amount: 8
+              doAfter: 1
+            - tool: Screwing
+              doAfter: 4
+            - material: Plasteel
+              amount: 4
+              doAfter: 1
 
+        - to: DiagonalReinforcedShuttleWall
+          conditions:
+            - !type:EntityAnchored { }
+          steps:
+            - material: MetalRod
+              amount: 4
+              doAfter: 1
+            - material: Steel
+              amount: 2
+              doAfter: 1
+            - tool: Welding
+              doAfter: 4
+            - material: Plasteel
+              amount: 2
+              doAfter: 1
+
+        - to: ArmoredShuttleWall
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          conditions:
+            - !type:EntityAnchored { }
+          steps:
+            - material: MetalRod
+              amount: 12
+              doAfter: 1
+            - tool: Screwing
+              doAfter: 4
+            - material: Plasteel
+              amount: 8
+              doAfter: 1
+
+        - to: DiagonalArmoredShuttleWall
+          conditions:
+            - !type:EntityAnchored { }
+          steps:
+            - material: MetalRod
+              amount: 6
+              doAfter: 1
+            - material: Steel
+              amount: 4
+              doAfter: 1
+            - tool: Welding
+              doAfter: 4
+            - material: Plasteel
+              amount: 4
+              doAfter: 1
+#FH - End
         - to: girder
           completed:
             - !type:SnapToGrid
@@ -308,8 +372,270 @@
             - tool: Cutting
               doAfter: 2
 
+#FH - Start
+    - node: ReinforcedShuttleWall
+      entity: WallShuttleReinforcedGeneric
+      edges:
+        - to: reinforcedGirder
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetPlasteel1
+              amount: 4
+            - !type:SpawnPrototype
+              prototype: PartRodMetal1
+              amount: 8
+          steps:
+            - tool: Welding
+              doAfter: 25 #Panel 1
+            - tool: Prying
+              doAfter: 5
+            - tool: Welding
+              doAfter: 25 #Panel 2
+            - tool: Prying
+              doAfter: 5
+            - tool: Welding
+              doAfter: 25 #Panel 3
+            - tool: Prying
+              doAfter: 5
+            - tool: Welding
+              doAfter: 25 #Panel 4
+            - tool: Prying
+              doAfter: 5
+            - tool: Welding
+              doAfter: 10
+            - tool: Cutting
+              doAfter: 1
+              completed:
+                - !type:VisualizerDataInt
+                  key: "enum.ShuttleWallVisuals.DeconstructionStage"
+                  data: 5
+            - tool: Screwing
+              doAfter: 2
+            - tool: Welding
+              doAfter: 5
+              completed:
+                - !type:VisualizerDataInt
+                  key: "enum.ShuttleWallVisuals.DeconstructionStage"
+                  data: 4
+            - tool: Prying
+              doAfter: 2
+            - tool: Anchoring
+              doAfter: 1
+              completed:
+                - !type:VisualizerDataInt
+                  key: "enum.ShuttleWallVisuals.DeconstructionStage"
+                  data: 3
+            - tool: Welding
+              doAfter: 10
+              completed:
+                - !type:VisualizerDataInt
+                  key: "enum.ShuttleWallVisuals.DeconstructionStage"
+                  data: 2
+            - tool: Prying
+              doAfter: 1
+              completed:
+                - !type:VisualizerDataInt
+                  key: "enum.ShuttleWallVisuals.DeconstructionStage"
+                  data: 1
+            - tool: Screwing
+              doAfter: 1
+              completed:
+                - !type:VisualizerDataInt
+                  key: "enum.ShuttleWallVisuals.DeconstructionStage"
+                  data: 0
+            - tool: Cutting
+              doAfter: 4
+
+    - node: DiagonalReinforcedShuttleWall
+      entity: WallShuttleReinforcedDiagonalGeneric
+      edges:
+        - to: reinforcedGirder
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetPlasteel1
+              amount: 2
+            - !type:SpawnPrototype
+              prototype: PartRodMetal1
+              amount: 4
+          steps:
+            - tool: Welding
+              doAfter: 25 #Panel 1
+            - tool: Prying
+              doAfter: 5
+            - tool: Welding
+              doAfter: 25 #Panel 2
+            - tool: Prying
+              doAfter: 5
+            - tool: Welding
+              doAfter: 25 #Panel 3
+            - tool: Prying
+              doAfter: 5
+            - tool: Welding
+              doAfter: 25 #Panel 4
+            - tool: Prying
+              doAfter: 5
+            - tool: Welding
+              doAfter: 5
+            - tool: Cutting
+              doAfter: 1
+            - tool: Screwing
+              doAfter: 1
+            - tool: Welding
+              doAfter: 5
+            - tool: Prying
+              doAfter: 1
+            - tool: Anchoring
+              doAfter: 1
+            - tool: Welding
+              doAfter: 10
+            - tool: Prying
+              doAfter: 1
+            - tool: Screwing
+              doAfter: 1
+            - tool: Cutting
+              doAfter: 1
+
+    - node: ArmoredShuttleWall
+      entity: WallShuttleArmoredGeneric
+      edges:
+        - to: reinforcedGirder
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetPlasteel1
+              amount: 8
+            - !type:SpawnPrototype
+              prototype: PartRodMetal1
+              amount: 12
+          steps:
+            - tool: Welding
+              doAfter: 25 #Panel 1
+            - tool: Prying
+              doAfter: 5
+            - tool: Welding
+              doAfter: 25 #Panel 2
+            - tool: Prying
+              doAfter: 5
+            - tool: Welding
+              doAfter: 25 #Panel 3
+            - tool: Prying
+              doAfter: 5
+            - tool: Welding
+              doAfter: 25 #Panel 4
+            - tool: Prying
+              doAfter: 5
+            - tool: Welding
+              doAfter: 25 #Panel 5
+            - tool: Prying
+              doAfter: 5
+            - tool: Welding
+              doAfter: 25 #Panel 6
+            - tool: Prying
+              doAfter: 5
+            - tool: Welding
+              doAfter: 10
+            - tool: Cutting
+              doAfter: 1
+              completed:
+                - !type:VisualizerDataInt
+                  key: "enum.ShuttleWallVisuals.DeconstructionStage"
+                  data: 5
+            - tool: Screwing
+              doAfter: 2
+            - tool: Welding
+              doAfter: 5
+              completed:
+                - !type:VisualizerDataInt
+                  key: "enum.ShuttleWallVisuals.DeconstructionStage"
+                  data: 4
+            - tool: Prying
+              doAfter: 2
+            - tool: Anchoring
+              doAfter: 1
+              completed:
+                - !type:VisualizerDataInt
+                  key: "enum.ShuttleWallVisuals.DeconstructionStage"
+                  data: 3
+            - tool: Welding
+              doAfter: 10
+              completed:
+                - !type:VisualizerDataInt
+                  key: "enum.ShuttleWallVisuals.DeconstructionStage"
+                  data: 2
+            - tool: Prying
+              doAfter: 1
+              completed:
+                - !type:VisualizerDataInt
+                  key: "enum.ShuttleWallVisuals.DeconstructionStage"
+                  data: 1
+            - tool: Screwing
+              doAfter: 1
+              completed:
+                - !type:VisualizerDataInt
+                  key: "enum.ShuttleWallVisuals.DeconstructionStage"
+                  data: 0
+            - tool: Cutting
+              doAfter: 4
+
+    - node: DiagonalArmoredShuttleWall
+      entity: WallShuttleArmoredDiagonalGeneric
+      edges:
+        - to: reinforcedGirder
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetPlasteel1
+              amount: 4
+            - !type:SpawnPrototype
+              prototype: PartRodMetal1
+              amount: 6
+          steps:
+            - tool: Welding
+              doAfter: 25 #Panel 1
+            - tool: Prying
+              doAfter: 5
+            - tool: Welding
+              doAfter: 25 #Panel 2
+            - tool: Prying
+              doAfter: 5
+            - tool: Welding
+              doAfter: 25 #Panel 3
+            - tool: Prying
+              doAfter: 5
+            - tool: Welding
+              doAfter: 25 #Panel 4
+            - tool: Prying
+              doAfter: 5
+            - tool: Welding
+              doAfter: 25 #Panel 5
+            - tool: Prying
+              doAfter: 5
+            - tool: Welding
+              doAfter: 25 #Panel 6
+            - tool: Prying
+              doAfter: 5
+            - tool: Welding
+              doAfter: 5
+            - tool: Cutting
+              doAfter: 1
+            - tool: Screwing
+              doAfter: 1
+            - tool: Welding
+              doAfter: 5
+            - tool: Prying
+              doAfter: 1
+            - tool: Anchoring
+              doAfter: 1
+            - tool: Welding
+              doAfter: 10
+            - tool: Prying
+              doAfter: 1
+            - tool: Screwing
+              doAfter: 1
+            - tool: Cutting
+              doAfter: 1
+#FH - End
+
     - node: reinforcedWall
-      entity: WallReinforcedStandard #FH, Paintable Walls
+      entity: WallReinforcedGeneric #FH, Paintable Walls
       edges:
         - to: reinforcedGirder
           completed:
@@ -470,7 +796,7 @@
               doAfter: 4
 
     - node: diagonalshuttleWall
-      entity: WallShuttleDiagonal
+      entity: WallShuttleDiagonalGeneric # Far Horizons
       edges:
         - to: reinforcedGirder
           completed:

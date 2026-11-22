@@ -1,0 +1,34 @@
+- type: entity
+  id: AllHumanoidTranslator
+  parent: [ Translator , BaseCentcommContraband ]
+  name:  Universal Translator
+  suffix: All Humanoid
+  description: A special-issue translator that helps you speak and understand all of the station's languages.
+  components:
+    - type: Sprite
+      layers:
+        - state: icon
+        - state: translator
+          shader: unshaded
+          visible: false
+          map: ["translator"]
+    - type: HandheldTranslator
+      understood:
+        - Terrum
+        - Nekomimetic
+        - Scratch
+        - Lagomorphian
+        - Thaveyan
+        - Moffic
+        - SolCommon
+        - Grumbakul
+        - Sylvan
+        - Draconic
+        - Trinary
+        - Marish
+        - VoxPidgin
+        - Canilunzt
+        - Chittin
+        - Bubblish
+      requires:
+        - GalacticCommon

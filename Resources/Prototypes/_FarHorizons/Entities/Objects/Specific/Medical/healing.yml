@@ -30,7 +30,7 @@
     damage:
       types:
         Bloodloss: -10
-    modifyBloodLevel: 20 # ~ 6 per use / 60% recovered per pack / 6 uses = 40%, consumes 6u. Not exact but this is as close as I'm getting to 1-1. Small buff for bloodbags ig.
+    modifyBloodLevel: 36 # 6% per use / 60% recovered per pack / 1 to 1 blood healed with the injected chemical
     healingBeginSound:
       path: "/Audio/Items/Medical/brutepack_begin.ogg"
       params:
@@ -62,7 +62,7 @@
 - type: entity
   suffix: Filled
   parent: BloodpackEmpty
-  id: Bloodpack
+  id: Bloodpack 
   components:
   - type: Solution
     solution:
@@ -100,7 +100,7 @@
       types:
         Bloodloss: -6
         Asphyxiation: -7
-    modifyBloodLevel: 20 # ~ 6% per use
+    modifyBloodLevel: 36 # 6% per use / more healed than if injecting the chem but on par with the normal bloodpack
   - type: InteractRestriction 
     restrictInteractionTarget:
       blacklist:
@@ -164,7 +164,7 @@
     damage:
       types:
         Bloodloss: -1
-    modifyBloodLevel: 20 # ~ 6% per use
+    modifyBloodLevel: 20 # ~ 6.6% per use / IPC have 300u of blood instead of 600u like everyone else so this needs to be lower
   - type: InteractRestriction 
     restrictInteractionTarget:
       blacklist:  # All species but IPC.
@@ -303,6 +303,8 @@
       params:
         volume: 1.0
         variation: 0.125
+    damageCaps: 
+      Burn: 400
   - type: SolutionContainerVisuals
     maxFillLevels: 6
     fillBaseName: ointment
@@ -388,6 +390,8 @@
       params:
         volume: 1.0
         variation: 0.125
+    damageCaps: 
+      Burn: 400
   - type: SolutionContainerVisuals
     maxFillLevels: 8
     fillBaseName: ointment
@@ -474,6 +478,8 @@
       params:
         volume: 1.0
         variation: 0.125
+    damageCaps: 
+      Burn: 400
   - type: SolutionContainerVisuals
     maxFillLevels: 6
     fillBaseName: ointment
@@ -574,6 +580,8 @@
       params:
         volume: 1.0
         variation: 0.125
+    damageCaps: 
+      Brute: 400
   - type: StackPrice
     price: 5
   - type: InteractRestriction
@@ -656,6 +664,8 @@
       params:
         volume: 1.0
         variation: 0.125
+    damageCaps: 
+      Brute: 400
   - type: StackPrice
     price: 5
   - type: InteractRestriction
@@ -748,6 +758,8 @@
       params:
         volume: 1.0
         variation: 0.125
+    damageCaps:
+      Brute: 400
   - type: StackPrice
     price: 5
   - type: InteractRestriction
@@ -830,6 +842,8 @@
       params:
         volume: 1.0
         variation: 0.125
+    damageCaps: 
+      Brute: 400
   - type: StackPrice
     price: 5
   - type: InteractRestriction
@@ -912,6 +926,8 @@
       params:
         volume: 1.0
         variation: 0.125
+    damageCaps: 
+      Brute: 400
   - type: StackPrice
     price: 5
   - type: InteractRestriction

@@ -16,10 +16,10 @@
   - type: Projectile
     damage:
       types:
-        Blunt: 13
-        Structural: 15
+        Blunt: 9
+        Structural: 19
   - type: TimedDespawn
-    lifetime: 0.2 # roughly 5 tiles
+    lifetime: 0.135 # roughly 3 tiles
 
 - type: entity
   id: ProtoKineticPellet
@@ -28,8 +28,8 @@
   components:
   - type: ProjectileSpread
     proto: PelletKinetic
-    count: 5
-    spread: 25
+    count: 4
+    spread: 35
 
 #PKC variant charge shots
 

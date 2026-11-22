@@ -13,15 +13,15 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server._FarHorizons.DiscordLink;
 
-public sealed class DiscordLinkManager : IDiscordLinkManager
+public sealed partial class DiscordLinkManager : IDiscordLinkManager
 {
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly ILogManager _logManager = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly DiscordRequestsAdapter _requests = default!;
-    [Dependency] private readonly IServerDbManager _dbManager = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IServerNetManager _netMgr = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
+    [Dependency] private ILogManager _logManager = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private DiscordRequestsAdapter _requests = default!;
+    [Dependency] private IServerDbManager _dbManager = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IServerNetManager _netMgr = default!;
     private ISawmill _sawmill = default!;
 
     private readonly ConcurrentDictionary<string, OAuthStateInfo> _oauthStates = new();

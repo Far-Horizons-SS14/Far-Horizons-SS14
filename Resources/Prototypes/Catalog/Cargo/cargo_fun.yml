@@ -1,74 +1,4 @@
 - type: cargoProduct
-  id: FunInstrumentsVariety
-  icon:
-    sprite: Objects/Fun/Instruments/accordion.rsi
-    state: icon
-  product: CrateFunInstrumentsVariety
-  cost: 2000
-  category: cargoproduct-category-name-fun
-  group: market
-
-- type: cargoProduct
-  id: FunInstrumentsBrass
-  icon:
-    sprite: Objects/Fun/Instruments/structureinstruments.rsi
-    state: tuba
-  product: CrateFunInstrumentsBrass
-  cost: 2000
-  category: cargoproduct-category-name-fun
-  group: market
-
-- type: cargoProduct
-  id: FunInstrumentsString
-  icon:
-    sprite: Objects/Fun/Instruments/bassguitar.rsi
-    state: icon
-  product: CrateFunInstrumentsString
-  cost: 2500
-  category: cargoproduct-category-name-fun
-  group: market
-
-- type: cargoProduct
-  id: FunInstrumentsWoodwind
-  icon:
-    sprite: Objects/Fun/Instruments/harmonica.rsi
-    state: icon
-  product: CrateFunInstrumentsWoodwind
-  cost: 3000
-  category: cargoproduct-category-name-fun
-  group: market
-
-- type: cargoProduct
-  id: FunInstrumentsKeyedPercussion
-  icon:
-    sprite: Objects/Fun/Instruments/h_synthesizer.rsi
-    state: icon
-  product: CrateFunInstrumentsKeyedPercussion
-  cost: 2500
-  category: cargoproduct-category-name-fun
-  group: market
-
-- type: cargoProduct
-  id: FunInstrumentsSpecial
-  icon:
-    sprite: Objects/Fun/Instruments/gunpet.rsi
-    state: icon
-  product: CrateFunInstrumentsSpecial
-  cost: 10000
-  category: cargoproduct-category-name-fun
-  group: market
-
-- type: cargoProduct
-  id: FunInstrumentsRandom
-  icon:
-    sprite: Objects/Fun/Instruments/h_synthesizer.rsi
-    state: supersynth
-  product: CrateFunInstrumentsRandom
-  cost: 2500
-  category: cargoproduct-category-name-fun
-  group: market
-
-- type: cargoProduct
   id: FunArtSupplies
   icon:
     sprite: Objects/Fun/crayons.rsi
@@ -80,6 +10,7 @@
   cost: 500
   category: cargoproduct-category-name-fun
   group: market
+  personalOrder: true # Far Horizons
 
 - type: cargoProduct
   id: FunParty
@@ -90,6 +21,7 @@
   cost: 1000
   category: cargoproduct-category-name-fun
   group: market
+  personalOrder: true # Far Horizons
 
 - type: cargoProduct
   id: CrateFunWaterGuns
@@ -100,6 +32,7 @@
   cost: 750
   category: cargoproduct-category-name-fun
   group: market
+  personalOrder: true # Far Horizons
 
 - type: cargoProduct
   id: CrateFunFoamGuns
@@ -110,6 +43,7 @@
   cost: 3000
   category: cargoproduct-category-name-fun
   group: market
+  personalOrder: true # Far Horizons
 
 - type: cargoProduct
   id: FunPlushies
@@ -120,6 +54,7 @@
   cost: 1000
   category: cargoproduct-category-name-fun
   group: market
+  personalOrder: true # Far Horizons
 
 - type: cargoProduct
   id: FunLizardPlushies
@@ -130,6 +65,7 @@
   cost: 500
   category: cargoproduct-category-name-fun
   group: market
+  personalOrder: true # Far Horizons
 
 - type: cargoProduct
   id: FunSharkPlushies
@@ -140,6 +76,7 @@
   cost: 500
   category: cargoproduct-category-name-fun
   group: market
+  personalOrder: true # Far Horizons
 
 - type: cargoProduct
   id: FunBoardGames
@@ -150,6 +87,7 @@
   cost: 1500
   category: cargoproduct-category-name-fun
   group: market
+  personalOrder: true # Far Horizons
 
 - type: cargoProduct
   id: FunSadTromboneImplants
@@ -160,6 +98,7 @@
   cost: 1000
   category: cargoproduct-category-name-fun
   group: market
+  personalOrder: true # Far Horizons
 
 - type: cargoProduct
   id: FunLightImplants
@@ -170,6 +109,7 @@
   cost: 1000
   category: cargoproduct-category-name-fun
   group: market
+  personalOrder: true # Far Horizons
 
 - type: cargoProduct
   id: FunBoxing
@@ -180,6 +120,7 @@
   cost: 500
   category: cargoproduct-category-name-fun
   group: market
+  personalOrder: true # Far Horizons
 
 - type: cargoProduct
   id: FunPirate
@@ -190,6 +131,7 @@
   cost: 400
   category: cargoproduct-category-name-fun
   group: market
+  personalOrder: true # Far Horizons
 
 - type: cargoProduct
   id: FunToyBox
@@ -200,6 +142,7 @@
   cost: 900
   category: cargoproduct-category-name-fun
   group: market
+  personalOrder: true # Far Horizons
 
 - type: cargoProduct
   id: FunBikeHornImplants
@@ -210,6 +153,7 @@
   cost: 1000
   category: cargoproduct-category-name-fun
   group: market
+  personalOrder: true # Far Horizons
 
 - type: cargoProduct
   id: FunMysteryFigurines
@@ -220,6 +164,7 @@
   cost: 4000
   category: cargoproduct-category-name-fun
   group: market
+  personalOrder: true # Far Horizons
 
 - type: cargoProduct
   id: FunDartsSet
@@ -230,6 +175,7 @@
   cost: 900
   category: cargoproduct-category-name-fun
   group: market
+  personalOrder: true # Far Horizons
 
 - type: cargoProduct
   id: HydratedScurret
@@ -250,116 +196,7 @@
   cost: 10000
   category: cargoproduct-category-name-fun
   group: market
-
-- type: cargoProduct
-  id: ChurchOrganInstrument
-  icon:
-    sprite: Objects/Fun/Instruments/structureinstruments.rsi
-    state: church-organ
-  product: ChurchOrganInstrument
-  cost: 1500
-  category: cargoproduct-category-name-fun
-  group: market
-
-- type: cargoProduct
-  id: PianoInstrument
-  icon:
-    sprite: Objects/Fun/Instruments/structureinstruments.rsi
-    state: piano
-  product: PianoInstrument
-  cost: 1500
-  category: cargoproduct-category-name-fun
-  group: market
-
-- type: cargoProduct
-  id: UprightPianoInstrument
-  icon:
-    sprite: Objects/Fun/Instruments/structureinstruments.rsi
-    state: piano-upright
-  product: UprightPianoInstrument
-  cost: 1500
-  category: cargoproduct-category-name-fun
-  group: market
-
-- type: cargoProduct
-  id: VibraphoneInstrument
-  icon:
-    sprite: Objects/Fun/Instruments/structureinstruments.rsi
-    state: vibraphone
-  product: VibraphoneInstrument
-  cost: 1500
-  category: cargoproduct-category-name-fun
-  group: market
-
-- type: cargoProduct
-  id: MarimbaInstrument
-  icon:
-    sprite: Objects/Fun/Instruments/structureinstruments.rsi
-    state: marimba
-  product: MarimbaInstrument
-  cost: 1500
-  category: cargoproduct-category-name-fun
-  group: market
-
-- type: cargoProduct
-  id: TubaInstrument
-  icon:
-    sprite: Objects/Fun/Instruments/structureinstruments.rsi
-    state: tuba
-  product: TubaInstrument
-  cost: 1500
-  category: cargoproduct-category-name-fun
-  group: market
-
-- type: cargoProduct
-  id: HarpInstrument
-  icon:
-    sprite: Objects/Fun/Instruments/structureinstruments.rsi
-    state: harp
-  product: HarpInstrument
-  cost: 1500
-  category: cargoproduct-category-name-fun
-  group: market
-
-- type: cargoProduct
-  id: TimpaniInstrument
-  icon:
-    sprite: Objects/Fun/Instruments/structureinstruments.rsi
-    state: timpani
-  product: TimpaniInstrument
-  cost: 1500
-  category: cargoproduct-category-name-fun
-  group: market
-
-- type: cargoProduct
-  id: TaikoInstrument
-  icon:
-    sprite: Objects/Fun/Instruments/structureinstruments.rsi
-    state: taiko
-  product: TaikoInstrument
-  cost: 1500
-  category: cargoproduct-category-name-fun
-  group: market
-
-- type: cargoProduct
-  id: ContrabassInstrument
-  icon:
-    sprite: Objects/Fun/Instruments/structureinstruments.rsi
-    state: contrabass
-  product: ContrabassInstrument
-  cost: 1500
-  category: cargoproduct-category-name-fun
-  group: market
-
-- type: cargoProduct
-  id: MinimoogInstrument
-  icon:
-    sprite: Objects/Fun/Instruments/structureinstruments.rsi
-    state: minimoog
-  product: MinimoogInstrument
-  cost: 1500
-  category: cargoproduct-category-name-fun
-  group: market
+  personalOrder: true # Far Horizons
 
 - type: cargoProduct
   id: MoproachCrate
@@ -370,16 +207,7 @@
   cost: 2000
   category: cargoproduct-category-name-fun
   group: market
-
-- type: cargoProduct
-  id: TomDrumsInstrument
-  icon:
-    sprite: Objects/Fun/Instruments/structureinstruments.rsi
-    state: toms
-  product: TomDrumsInstrument
-  cost: 1500
-  category: cargoproduct-category-name-fun
-  group: market
+  personalOrder: true # Far Horizons
 
 - type: cargoProduct
   id: FunPlants
@@ -390,3 +218,4 @@
   cost: 1000
   category: cargoproduct-category-name-fun
   group: market
+  personalOrder: true # Far Horizons

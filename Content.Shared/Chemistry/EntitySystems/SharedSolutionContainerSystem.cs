@@ -28,6 +28,7 @@ namespace Content.Shared.Chemistry.EntitySystems;
 /// The event raised whenever a solution entity is modified.
 /// This event is raised on the owner of the solution.
 /// If the changed solution is contained in a <see cref="SolutionManagerComponent"/>, it will be raised on the owner of that component.
+/// FH - this wasn't actually raised on the owner of the solution upstream, but is for us, in addition to any <see cref="SolutionManagerComponent"/> owner. This is to avoid behavioral differences between direct and managed solutions.
 /// </summary>
 /// <remarks>
 /// Raised after chemcial reactions and <see cref="SolutionOverflowEvent"/> are handled.
@@ -397,6 +398,10 @@ public abstract partial class SharedSolutionContainerSystem : EntitySystem
         var owner = GetSolutionOwner(solution);
 
         var changedEv = new SolutionChangedEvent(solution);
+        // Far Horizons start - solution-level systems may also need notifications. This avoids behavioral differences between direct and managed solutions.
+        if (owner != solution.Owner)
+            RaiseLocalEvent(solution, ref changedEv);
+        // Far Horizons end
         RaiseLocalEvent(owner, ref changedEv);
         Dirty(solution);
 

@@ -77,11 +77,11 @@ public sealed partial class StationAiSystem : SharedStationAiSystem
     [Dependency] private MobStateSystem _mobState = default!;
     [Dependency] private SharedAppearanceSystem _appearance = default!;
     // Starlight Start
-    [Dependency] private IMapManager _map = default!;
     [Dependency] private SuitSensorSystem _suitSensors = default!;
     [Dependency] private FollowerSystem _followerSystem = default!;
     [Dependency] private StationAiVisionSystem _aiVision = default!;
     // Starlight End
+    [Dependency] private SharedMapSystem _map = default!; // Far Horizons
 
     private readonly HashSet<Entity<StationAiCoreComponent>> _stationAiCores = new();
 

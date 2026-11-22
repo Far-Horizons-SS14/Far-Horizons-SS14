@@ -1,0 +1,124 @@
+<controls:FancyWindow xmlns="https://spacestation14.io"
+                      xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+                      xmlns:limbDamage="clr-namespace:Content.Client._FarHorizons.LimbDamage.UI"
+                      MinSize="600 650"
+                      MaxSize="600 650"
+                      Title="{Loc 'power-armor-control-panel'}">
+    <BoxContainer Orientation="Vertical" HorizontalExpand="True">
+        <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+            
+            <PanelContainer StyleClasses="PanelDark" SetWidth="285" SetHeight="175" Margin="10 10">
+                <BoxContainer Name="SuitStatus" Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True">
+                    <BoxContainer Orientation="Horizontal">
+                        <Label Name="SuitStatusLabel" Text="Suit Status" StyleClasses="LabelKeyText" HorizontalAlignment="Left" Margin="10 10 0 0"/>
+                        <Control HorizontalExpand="True"/>
+                        <Button Name="ActivationButton" StyleClasses="CrossButtonRed" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 10 0">
+                            <BoxContainer Orientation="Horizontal" HorizontalExpand="True" VerticalExpand="True">
+                                <TextureRect StyleClasses="ButtonSquare" TexturePath="/Textures/Interface/VerbIcons/Spare/poweronoff.svg.192dpi.png" Stretch="KeepAspectCentered" SetSize="16 16" Margin="0 2 4 0"/>
+                                <RichTextLabel Text="Activate" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                            </BoxContainer>
+                        </Button>
+                    </BoxContainer>
+                    <PanelContainer StyleClasses="HighDivider" />
+                        <BoxContainer Orientation="Vertical"> 
+                            <BoxContainer Orientation="Horizontal">
+                                <RichTextLabel Text="Charge: " HorizontalAlignment="Left" Margin="10 10 0 0"/>
+                                <Control SetSize="200 25" Margin="5 10 0 0">
+                                    <ProgressBar Name="ChargeBar" MinValue="0" MaxValue="100" Value="50" Margin="0 0 5 0"/>
+                                    <RichTextLabel Name="ChargePercent" Text="50%" HorizontalAlignment="Right" Margin="0 0 15 0"/>
+                                </Control>   
+                            </BoxContainer>
+                            <BoxContainer>
+                                <RichTextLabel Text="Panel Status:" HorizontalAlignment="Left" Margin="10 5 0 0"/>
+                                <RichTextLabel Name="PanelStatus" Text="Closed" HorizontalAlignment="Left" Margin="5 5 0 0"/>
+                            </BoxContainer>   
+                            <RichTextLabel Name="PowerDrain" Text="Total Power Drain: 0" HorizontalAlignment="Left" Margin="10 5 0 0"/>
+                        </BoxContainer>
+                </BoxContainer>
+            </PanelContainer>
+
+            <PanelContainer StyleClasses="PanelDark" SetWidth="285" SetHeight="175" Margin="0 10 10 10">
+                <BoxContainer Name="UserStatus" Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True">
+                    <Label Name="UserStatusLabel" Text="User Status" StyleClasses="LabelKeyText" HorizontalAlignment="Left" Margin="10 10 0 0"/>
+                    <PanelContainer StyleClasses="HighDivider" />
+                    <Control Name="UserStatusBody" HorizontalExpand="True" VerticalExpand="True">
+                        
+                        <BoxContainer Name="UserStatusContent" Orientation="Horizontal" HorizontalExpand="True" VerticalExpand="True" Margin="10">
+                            <limbDamage:LimbStatusUI Name="LimbTargettingDisplay"/>
+                            <PanelContainer Name="DamageInfoPanel" StyleClasses="BackgroundPanel" Visible="False" HorizontalExpand="True" VerticalExpand="True">
+                                <ScrollContainer>
+                                    <BoxContainer Name="DamageInfo" Orientation="Vertical" HorizontalExpand="True" Margin="0 10 0 0">
+                                        <Button Name ="NoDamageDetected" Text ="No Damage" Disabled="True" MaxWidth="120"/>
+                                    </BoxContainer>
+                                </ScrollContainer>
+                            </PanelContainer>
+                        </BoxContainer>
+                        
+
+                        <PanelContainer Name="UnpoweredOverlay" Visible="False" HorizontalExpand="True" VerticalExpand="True">
+                            <BoxContainer Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Label Name="NoUserLabel" Text="No User Detected" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </BoxContainer>
+                        </PanelContainer>
+                    </Control>
+                </BoxContainer>
+            </PanelContainer>
+        </BoxContainer>
+
+        <PanelContainer StyleClasses="PanelDark" SetWidth="580" SetHeight="200" Margin="10 0 10 10">
+            <BoxContainer Name="Modules" Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True">
+                <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+                    <Label Name="ModulesLabel" Text="Modules" StyleClasses="LabelKeyText" HorizontalAlignment="Left" Margin="10 10 0 0"/>
+                    <Control HorizontalExpand="True"/>
+                    <Label Name="ModulesComplexity" Text="0 of 20 complexity used" HorizontalAlignment="Right" Margin="0 10 10 0"/>
+                </BoxContainer>
+                <PanelContainer StyleClasses="HighDivider" />
+                <ScrollContainer VerticalExpand="True" HorizontalExpand="True">
+                    <BoxContainer Name="ModulesPanel" Orientation="Vertical">
+                        <BoxContainer Orientation="Horizontal" Margin="0 5 25 0"> 
+                            <Label Text="Actions" Margin="30 0 0 0" HorizontalAlignment="Left"/>
+                            <Label Text="Name" Margin="10 0 0 0" HorizontalAlignment="Left"/>
+                            <Control HorizontalExpand="True"/>
+                            <Button StyleClasses="ButtonSquare" Margin="0 2 2 2" SetSize="32, 32" Disabled="true">
+                                <TextureRect StyleClasses="ButtonSquare" TexturePath="/Textures/_FarHorizons/Interface/plug.svg.192dpi.png" Stretch="KeepAspectCentered" SetSize="16 16"/>
+                            </Button>
+                            <Button StyleClasses="ButtonSquare" Margin="0 2 2 2" SetSize="32, 32" Disabled="true">
+                                <TextureRect StyleClasses="ButtonSquare" TexturePath="/Textures/_FarHorizons/Interface/lightbulb.svg.192dpi.png" Stretch="KeepAspectCentered" SetSize="16 16"/>
+                            </Button>
+                            <Button StyleClasses="ButtonSquare" Margin="0 2 2 2" SetSize="32, 32" Disabled="true">
+                                <TextureRect StyleClasses="ButtonSquare" TexturePath="/Textures/Interface/VerbIcons/zap.svg.192dpi.png" Stretch="KeepAspectCentered" SetSize="16 16"/>
+                            </Button>
+                            <Button StyleClasses="ButtonSquare" Margin="0 2 2 2" SetSize="32, 32" Disabled="true">
+                                <TextureRect StyleClasses="ButtonSquare" TexturePath="/Textures/_FarHorizons/Interface/floppy.svg.192dpi.png" Stretch="KeepAspectCentered" SetSize="16 16"/>
+                            </Button>
+                        </BoxContainer>
+                    </BoxContainer>
+                </ScrollContainer>
+            </BoxContainer>
+        </PanelContainer>
+        
+        <PanelContainer StyleClasses="PanelDark" SetWidth="580" SetHeight="200" Margin="10 0 10 10">
+            <BoxContainer Name="Hardware" Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True">
+                <Label Name="HardwareLabel" Text="Hardware" StyleClasses="LabelKeyText" HorizontalAlignment="Left" Margin="10 10 0 0"/>
+                <PanelContainer StyleClasses="HighDivider" />
+                <ScrollContainer VerticalExpand="True" HorizontalExpand="True">
+                    <BoxContainer Name="HardwarePanel" Orientation="Vertical">
+                        <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+                            <Label Text="Part" StyleClasses="LabelKeyText" Margin="90 0 0 0" HorizontalAlignment="Left"/>
+                            <Control HorizontalExpand="True"/>
+                            <Label Text="Integrity" StyleClasses="LabelKeyText" Margin="0 0 50 0" HorizontalAlignment="Right"/>
+                        </BoxContainer>
+
+                        <PanelContainer Name="Head" StyleClasses="BackgroundPanel" Margin="10 5 10 0"/>
+                        <PanelContainer Name="Chest" StyleClasses="BackgroundPanel" Margin="10 5 10 0"/>
+                        <PanelContainer Name="RArm" StyleClasses="BackgroundPanel" Margin="10 5 10 0"/>
+                        <PanelContainer Name="LArm" StyleClasses="BackgroundPanel" Margin="10 5 10 0"/>
+                        <PanelContainer Name="RLeg" StyleClasses="BackgroundPanel" Margin="10 5 10 0"/>
+                        <PanelContainer Name="LLeg" StyleClasses="BackgroundPanel" Margin="10 5 10 0"/>
+
+                    </BoxContainer>
+                </ScrollContainer>
+            </BoxContainer>
+        </PanelContainer>
+    </BoxContainer>
+</controls:FancyWindow>

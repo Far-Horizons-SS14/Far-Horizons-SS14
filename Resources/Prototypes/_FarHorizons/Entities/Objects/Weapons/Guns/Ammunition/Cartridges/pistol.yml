@@ -81,3 +81,63 @@
   - type: Construction
     graph: ImprovisedPistolBulletGraph
     node: shell
+
+# Ammo for UA - Corona
+
+- type: entity
+  id: BaseCapsuleUA
+  name: Capsule (UA)
+  parent: [BaseItem, BaseCartridge ]
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - CartridgeUA
+      - CartridgeBatteryUA
+  - type: CartridgeAmmo
+    proto: RedLaserBeam
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Ammunition/Casings/UA_Capsule.rsi
+    layers:
+    - state: base
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+  
+- type: entity
+  id: CapsuleUA
+  name: Capsule (UA)
+  parent: BaseCapsuleUA
+  components:
+  - type: CartridgeAmmo
+    proto: RedLaserBeamCorona
+
+# AP Ammo for UA - Corona
+
+- type: entity
+  id: BaseCapsuleUAAP
+  name: AP Capsule (UA)
+  parent: [BaseItem, BaseCartridge ]
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - CartridgeUA
+      - CartridgeBatteryUA
+  - type: CartridgeAmmo
+    proto: RedLaserBeam
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Ammunition/Casings/UA_Capsule.rsi
+    layers:
+    - state: base
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+  
+- type: entity
+  id: CapsuleUAAP
+  name: AP Capsule (UA)
+  parent: BaseCapsuleUAAP
+  components:
+  - type: CartridgeAmmo
+    proto: RedLaserBeamCoronaAP

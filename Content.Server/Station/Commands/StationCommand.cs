@@ -13,7 +13,7 @@ using Robust.Shared.Utility;
 namespace Content.Server.Station.Commands;
 
 [ToolshedCommand, AdminCommand(AdminFlags.Admin)]
-public sealed class StationsCommand : ToolshedCommand
+public sealed partial class StationsCommand : ToolshedCommand
 {
     private StationSystem? _station;
     private CargoSystem? _cargo;

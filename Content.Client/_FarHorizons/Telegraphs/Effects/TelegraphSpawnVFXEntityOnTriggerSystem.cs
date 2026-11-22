@@ -8,8 +8,8 @@ namespace Content.Client._FarHorizons.Telegraphs.Effects;
 
 public sealed partial class TelegraphSpawnVFXEntityOnTriggerSystem : EntitySystem
 {
-    [Dependency] private readonly TelegraphedAttackSystem _telegraph = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private TelegraphedAttackSystem _telegraph = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
 
     public override void Initialize()
     {

@@ -370,7 +370,7 @@
   - type: Clothing
     sprite: _FarHorizons/Objects/Weapons/Guns/Battery/plasma_shotgun.rsi
   - type: Gun
-    fireRate: 1 # bring back to 2 when bullet spread is a thing
+    fireRate: 2 
     spread: 10
     soundGunshot:
       path: /Audio/_Starlight/Weapons/Energy/laser_shotgun.ogg
@@ -390,7 +390,12 @@
       fireCost: 150 # ~ 8 shots 
       visualState: lethal
       magState: lethal
-      heldPrefix: lethal 
+      heldPrefix: lethal
+    - proto: BoltPlasmaSingle
+      fireCost: 200 # ~ 6 shots 
+      visualState: lethal
+      magState: lethal
+      heldPrefix: lethal
   - type: Item
     size: Large
     sprite: _FarHorizons/Objects/Weapons/Guns/Battery/plasma_shotgun_inhands_64x.rsi
@@ -431,7 +436,7 @@
   - type: Clothing
     sprite: _FarHorizons/Objects/Weapons/Guns/Battery/laser_shotgun.rsi
   - type: Gun
-    fireRate: 1 # bring back to 2 when bullet spread is a thing
+    fireRate: 2
     spread: 10
     soundGunshot:
       path: /Audio/_Starlight/Weapons/Energy/laser_shotgun.ogg
@@ -458,6 +463,17 @@
         - gamma
     - proto: RedLaserBeamSpread
       fireCost: 150 # ~ 16 shots 
+      visualState: lethal
+      magState: lethal
+      heldPrefix: lethal
+      conditions:
+      - !type:AlertLevelCondition
+        alertLevels:
+        - violet
+        - red
+        - gamma
+    - proto: RedLaserBeamSingle
+      fireCost: 300 # ~ 8 shots 
       visualState: lethal
       magState: lethal
       heldPrefix: lethal
@@ -548,6 +564,7 @@
       - HoloflarePistol
   - type: StaticPrice
     price: 50
+  - type: PacifismAllowedGun
 
 - type: entity
   id: WeaponHoloflarePistolSec
@@ -740,3 +757,57 @@
     tags:
     - Sidearm
     - Dominator
+
+- type: entity
+  name: X-01 Multiphase Energy Gun
+  suffix: NS
+  parent: [ BaseWeaponBatterySmall, BaseBlueshieldContraband ]
+  id: WeaponMultiphaseGunNS
+  description: This is an expensive, modern version of the antique laser pistol, with several unique fire modes.
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Battery/multiphase_gun.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: disable-unshaded
+      map: ["enum.FireModesLayers.FireMode"]
+      shader: unshaded
+    - state: disable-unshaded-0
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Lock
+    mindShieldLock: true
+  - type: AccessReader
+    access: [["RedSword"]]
+  - type: Item
+    size: Small
+    shape:
+    - 0, 0, 1, 1
+  - type: MagazineVisuals
+    magState: disable
+    steps: 5
+    zeroVisible: true
+  - type: BatteryAmmoProvider
+    proto: TaserBolt
+    fireCost: 100
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: TaserBolt
+      fireCost: 100
+      magState: stun
+      visualState: stun-unshaded
+    - proto: RedLaserBeam
+      fireCost: 75
+      magState: kill
+      visualState: kill-unshaded
+    - proto: DestroyBeam
+      fireCost: 750
+      magState: destroy
+      visualState: destroy-unshaded
+  - type: Battery
+    maxCharge: 1500
+    startingCharge: 1500
+  - type: BatterySelfRecharger
+    autoRechargeRate: 20

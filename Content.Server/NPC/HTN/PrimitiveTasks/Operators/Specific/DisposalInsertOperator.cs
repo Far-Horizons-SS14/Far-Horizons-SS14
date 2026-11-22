@@ -20,6 +20,14 @@ public sealed partial class DisposalInsertOperator : HTNOperator
     [DataField(required: true)]
     public string DisposalTargetKey = string.Empty;
 
+    // Far Horizons start
+    /// <summary>
+    /// Inserts without a user, allowing handless NPCs to use a disposal unit.
+    /// </summary>
+    [DataField]
+    public bool BypassHands;
+    // Far Horizons end
+
     public override void Initialize(IEntitySystemManager sysManager)
     {
         base.Initialize(sysManager);
@@ -40,13 +48,13 @@ public sealed partial class DisposalInsertOperator : HTNOperator
         if (!blackboard.TryGetValue<EntityUid>(TargetKey, out var target, _entManager) || _entManager.Deleted(target))
             return HTNOperatorStatus.Failed;
 
-        if (!blackboard.TryGetValue<EntityUid>(DisposalTargetKey, out var disposalUnitTarget, _entManager) || _entManager.Deleted(target))
+        if (!blackboard.TryGetValue<EntityUid>(DisposalTargetKey, out var disposalUnitTarget, _entManager) || _entManager.Deleted(disposalUnitTarget)) // Far Horizons - check if disposalUnitTarget is deleted
             return HTNOperatorStatus.Failed;
 
         if (!_entManager.TryGetComponent<DisposalUnitComponent>(disposalUnitTarget, out var disposalComp))
             return HTNOperatorStatus.Failed;
 
-        if (!_disposalSystem.TryInsert(disposalUnitTarget, target, owner, disposalComp))
+        if (!_disposalSystem.TryInsert(disposalUnitTarget, target, BypassHands ? null : owner, disposalComp)) // Far Horizons - support handless insertion
             return HTNOperatorStatus.Failed;
 
         return HTNOperatorStatus.Finished;

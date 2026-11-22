@@ -524,6 +524,7 @@
       - id: RubberStampCorpsman
       - id: PlushieMorgana
       - id: PlushieKiller
+      - id: ClothingBeltCorpsmanWeb
 
 #region Racks - NT
 
@@ -574,14 +575,14 @@
       amount: 4
 
 - type: entity
-  id: ShelfArmoryIFV-50TLargeFilled
-  parent: ShelfArmoryIFV-50TLarge
+  id: ShelfArmoryHannibalTLargeFilled
+  parent: ShelfArmoryHannibalTLarge
   suffix: NT, Filled
   components:
   - type: StorageFill
     contents:
 #Guns
-    - id: WeaponRifleIFV-50T
+    - id: WeaponRifleHannibalT
       amount: 4
     - id: WeaponPistolEnforcerTypeT
       amount: 4
@@ -622,7 +623,7 @@
 #Guns
     - id: WeaponRifleLecterNT
       amount: 2
-    - id: WeaponRifleIFV-50T
+    - id: WeaponRifleHannibalT
       amount: 2
     - id: WeaponPistolEnforcerTypeT
       amount: 4
@@ -674,7 +675,7 @@
   components:
   - type: StorageFill
     contents:
-    - id: WeaponShotgunKammerer5084
+    - id: WeaponShotgunKlauserT
       amount: 2
     - id: WeaponShotgunSentinelT
       amount: 2
@@ -721,15 +722,15 @@
       amount: 4
 
 - type: entity
-  id: ShelfArmoryKrammerLargeFilled
-  parent: ShelfArmoryKrammerLarge
+  id: ShelfArmoryCitadelLargeFilled
+  parent: ShelfArmoryCitadelLarge
   suffix: NT, Filled
   components:
   - type: StorageFill
     contents:
-    - id: WeaponShotgunKammererCitadelT
+    - id: WeaponShotgunCitadelT
       amount: 4
-    - id: WeaponPistolMk78
+    - id: WeaponPistolMKT
       amount: 4
 
     - id: MagazineCanisterShotgun12GFlechette
@@ -769,9 +770,9 @@
   components:
   - type: StorageFill
     contents:
-    - id: WeaponShotgunKammererCitadelT
+    - id: WeaponShotgunCitadelT
       amount: 2
-    - id: WeaponShotgunKammerer5084
+    - id: WeaponShotgunKlauserT
       amount: 1
     - id: WeaponShotgunSentinelT
       amount: 1
@@ -875,22 +876,22 @@
       amount: 4
 
 - type: entity
-  id: ShelfArmoryP291TLargeFilled
-  parent: ShelfArmoryP291TLarge
+  id: ShelfArmorySparvTLargeFilled
+  parent: ShelfArmorySparvTLarge
   suffix: NT, Filled
   components:
   - type: StorageFill
     contents:
 #Guns
-    - id: WeaponSubMachineGunP291T
+    - id: WeaponSubMachineGunSparvT
       amount: 2
 #Canisters
     - id: MagazineCanisterPistolSP #Like this for a reason
       amount: 2
 #Guns
-    - id: WeaponSubMachineGunP291T
+    - id: WeaponSubMachineGunSparvT
       amount: 2
-    - id: WeaponPistolMk78
+    - id: WeaponPistolMKT
       amount: 4
 #Canisters
     - id: MagazineBoxPistolHP
@@ -925,11 +926,11 @@
     - id: MagazineCanisterPistolSP #Like this for a reason
       amount: 2
 #Guns
-    - id: WeaponSubMachineGunP291T
+    - id: WeaponSubMachineGunSparvT
       amount: 2
     - id: WeaponPistolEnforcerTypeT
       amount: 2
-    - id: WeaponPistolMk78
+    - id: WeaponPistolMKT
       amount: 2
 #Canisters
     - id: MagazineBoxPistolHP
@@ -1105,9 +1106,7 @@
   components:
   - type: StorageFill
     contents:
-    - id: ClothingOuterHardsuitSecurityHeavy
-    - id: ClothingHandsGlovesSecurityPowered
-    - id: ClothingShoesBootsMagAdvSec
+    - id: PowerArmorNTJuggernautFilled
     - id: ClothingMaskGasSecurityNoHailer
     - id: WeaponLightMachineGunM492
     - id: Rifle556HeavyMagazineSP
@@ -1150,7 +1149,7 @@
       - id: ClothingHandsGlovesSecurityRed
       - id: ClothingShoesBootsJackSyndi
       - id: WeaponMeleeNeedle
-      - id: HoloprojectorSecurity
+      - id: HoloprojectorSecurityNS
       - id: BookSpaceLaw
   
 - type: entity
@@ -1185,7 +1184,7 @@
       - id: ClothingShoesBootsJackSyndi
         amount: 2
       - id: WeaponMeleeNeedle
-      - id: HoloprojectorSecurity
+      - id: HoloprojectorSecurityNS
         amount: 2
       - id: BookSpaceLaw
         amount: 2
@@ -1222,7 +1221,7 @@
       - id: ClothingShoesBootsJackSyndi
         amount: 2
       - id: WeaponMeleeNeedle
-      - id: HoloprojectorSecurity
+      - id: HoloprojectorSecurityNS
         amount: 2
       - id: BookSpaceLaw
         amount: 2
@@ -1260,7 +1259,7 @@
         amount: 3
       - id: WeaponMeleeNeedle
         amount: 2
-      - id: HoloprojectorSecurity
+      - id: HoloprojectorSecurityNS
         amount: 3
       - id: BookSpaceLaw
         amount: 3
@@ -1297,7 +1296,7 @@
       - id: ClothingShoesBootsJackSyndi
         amount: 2
       - id: WeaponMeleeNeedle
-      - id: HoloprojectorSecurity
+      - id: HoloprojectorSecurityNS
         amount: 2
       - id: BookSpaceLaw
         amount: 2
@@ -1332,7 +1331,7 @@
     - id: ClothingOuterWinterWardenSyndi
     - id: RubberStampConstable
     - id: DoorRemoteArmory
-    - id: HoloprojectorSecurity
+    - id: HoloprojectorSecurityNS
     - id: BookSpaceLaw
     - id: ClothingBackpackElectropack
       amount: 2
@@ -1383,7 +1382,7 @@
       - id: ClothingEyesVisorSecMedSyndi
       - id: WeaponDisabler
         amount: 2
-      - id: TrackingImplanter
+      - id: TrackingImplanterNS
         amount: 4
       - id: ClothingOuterHardsuitBrigmedicSyndi
         amount: 2
@@ -1416,7 +1415,7 @@
       - id: ClothingEyesEyepatchHudSecMedSyndi
       - id: ClothingEyesVisorSecMedSyndi
       - id: WeaponDisabler
-      - id: TrackingImplanter
+      - id: TrackingImplanterNS
         amount: 2
       - id: ClothingOuterHardsuitBrigmedicSyndi
       - id: BoxSterileMask
@@ -1452,7 +1451,7 @@
       - id: ClothingEyesEyepatchHudSecMedSyndi
       - id: ClothingEyesVisorSecMedSyndi
       - id: WeaponDisabler
-      - id: TrackingImplanter
+      - id: TrackingImplanterNS
         amount: 2
       - id: ClothingOuterHardsuitCorpsman #Needs respriting
       - id: BoxSterileMask 
@@ -1493,7 +1492,7 @@
     - id: ClothingHeadHatDetGadget
     - id: ClothingNeckTieDet
     - id: ClothingOuterVestDetectiveSyndi
-    - id: ClothingOuterCoatInspector
+    - id: ClothingOuterCoatDetectiveSyndi
     - id: FlippoEngravedLighter
     - id: FlashlightSeclite
     - id: ForensicScanner
@@ -1502,7 +1501,7 @@
     - id: DrinkDetFlask
     - id: ClothingHandsGlovesForensic
     - id: RubberStampInspector
-    - id: HoloprojectorSecurity
+    - id: HoloprojectorSecurityNS
     - id: BoxEvidenceMarkers
     - id: HandLabeler
     - id: PlushieLizardJobDetective
@@ -1558,14 +1557,14 @@
       amount: 4
 
 - type: entity
-  id: ShelfArmoryIFV-50SLargeFilled
-  parent: ShelfArmoryIFV-50SLarge
+  id: ShelfArmoryHannibalSLargeFilled
+  parent: ShelfArmoryHannibalSLarge
   suffix: NS, Filled
   components:
   - type: StorageFill
     contents:
 #Guns
-    - id: WeaponRifleIFV-50S
+    - id: WeaponRifleHannibalS
       amount: 4
     - id: WeaponPistolEnforcerTypeS
       amount: 4
@@ -1606,7 +1605,7 @@
 #Guns
     - id: WeaponRifleLecterNS
       amount: 2
-    - id: WeaponRifleIFV-50S
+    - id: WeaponRifleHannibalS
       amount: 2
     - id: WeaponPistolEnforcerTypeS
       amount: 4
@@ -1689,22 +1688,22 @@
       amount: 4
 
 - type: entity
-  id: ShelfArmoryP291SLargeFilled
-  parent: ShelfArmoryP291SLarge
+  id: ShelfArmorySparvSLargeFilled
+  parent: ShelfArmorySparvSLarge
   suffix: NS, Filled
   components:
   - type: StorageFill
     contents:
 #Guns
-    - id: WeaponSubMachineGunP291S
+    - id: WeaponSubMachineGunSparvS
       amount: 2
 #Canisters
     - id: MagazineCanisterPistolSP #Like this for a reason
       amount: 2
 #Guns
-    - id: WeaponSubMachineGunP291S
+    - id: WeaponSubMachineGunSparvS
       amount: 2
-    - id: WeaponPistolMk59
+    - id: WeaponPistolMKS
       amount: 4
 #Canisters
     - id: MagazineBoxPistolHP
@@ -1739,11 +1738,11 @@
     - id: MagazineCanisterPistolSP #Like this for a reason
       amount: 2
 #Guns
-    - id: WeaponSubMachineGunP291S
+    - id: WeaponSubMachineGunSparvS
       amount: 2
     - id: WeaponPistolEnforcerTypeS
       amount: 2
-    - id: WeaponPistolMk59
+    - id: WeaponPistolMKS
       amount: 2
 #Canisters
     - id: MagazineBoxPistolHP
@@ -1773,7 +1772,7 @@
   components:
   - type: StorageFill
     contents:
-    - id: WeaponShotgunKammerer5052
+    - id: WeaponShotgunKlauserS
       amount: 2
     - id: WeaponShotgunSentinelS
       amount: 2
@@ -1820,15 +1819,15 @@
       amount: 4
 
 - type: entity
-  id: ShelfArmoryKrammerLargeNSFilled
-  parent: ShelfArmoryKrammerLargeNS
+  id: ShelfArmoryCitadelLargeNSFilled
+  parent: ShelfArmoryCitadelLargeNS
   suffix: NS, Filled
   components:
   - type: StorageFill
     contents:
-    - id: WeaponShotgunKammererCitadelS
+    - id: WeaponShotgunCitadelS
       amount: 4
-    - id: WeaponPistolMk59
+    - id: WeaponPistolMKS
       amount: 4
 
     - id: MagazineCanisterShotgun12GFlechette
@@ -1868,9 +1867,9 @@
   components:
   - type: StorageFill
     contents:
-    - id: WeaponShotgunKammererCitadelS
+    - id: WeaponShotgunCitadelS
       amount: 2
-    - id: WeaponShotgunKammerer5052
+    - id: WeaponShotgunKlauserS
       amount: 1
     - id: WeaponShotgunSentinelS
       amount: 1

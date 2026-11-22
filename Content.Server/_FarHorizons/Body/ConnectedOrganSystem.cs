@@ -9,8 +9,8 @@ namespace Content.Server._FarHorizons.Body;
 
 public sealed partial class ConnectedOrganSystem : SharedConnectedOrganSystem
 {
-    [Dependency] private readonly IPrototypeManager _protoMan = default!;
-    [Dependency] private readonly MetaDataSystem _metaData = default!;
+    [Dependency] private IPrototypeManager _protoMan = default!;
+    [Dependency] private MetaDataSystem _metaData = default!;
     public override void Initialize()
     {
         base.Initialize();

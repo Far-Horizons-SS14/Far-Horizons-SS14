@@ -208,3 +208,73 @@
   materials:
     Plastic: 2560
     Uranium: 480
+
+#region .44 Sp.Lever-Action
+- type: latheRecipe
+  id: SpeedLoaderMagnumLeverRubber
+  result: SpeedLoaderMagnumLeverRubber
+  categories:
+  - Ammo
+  completetime: 5
+  materials:
+    Steel: 343
+    Plastic: 296
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: SpeedLoaderMagnumLeverEmpty
+  result: SpeedLoaderMagnumLeverEmpty
+  materials:
+    Steel: 100
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: SpeedLoaderMagnumLeverSP
+  result: SpeedLoaderMagnumLeverSP
+  materials:
+    Steel: 237
+    
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: SpeedLoaderMagnumLeverHP
+  result: SpeedLoaderMagnumLeverHP
+  materials:
+    Steel: 237
+    
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: SpeedLoaderMagnumLeverFMJ
+  result: SpeedLoaderMagnumLeverFMJ
+  materials:
+    Steel: 237
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: SpeedLoaderMagnumLeverAP
+  result: SpeedLoaderMagnumLeverAP
+  materials:
+    Plastic: 237
+    Steel: 177
+    Uranium: 177
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: SpeedLoaderMagnumLeverPractice
+  result: SpeedLoaderMagnumLeverPractice
+  materials:
+    Steel: 59
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: SpeedLoaderMagnumLeverIncendiary
+  result: SpeedLoaderMagnumLeverIncendiary
+  materials:
+    Plastic: 237
+    
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: SpeedLoaderMagnumLeverUranium
+  result: SpeedLoaderMagnumLeverUranium
+  materials:
+    Plastic: 237
+    Uranium: 177

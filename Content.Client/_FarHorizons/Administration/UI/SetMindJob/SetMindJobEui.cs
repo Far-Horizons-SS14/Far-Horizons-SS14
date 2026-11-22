@@ -6,7 +6,7 @@ using JetBrains.Annotations;
 namespace Content.Client._FarHorizons.Administration.UI.SetMindJob;
 
 [UsedImplicitly]
-public sealed class SetMindJobEui : BaseEui
+public sealed partial class SetMindJobEui : BaseEui
 {
     private readonly SetMindJobMenu _window;
     private IEntityManager _entManager;

@@ -32,8 +32,8 @@ public abstract partial class SharedLanguageSystem : EntitySystem
     [ViewVariables(VVAccess.ReadOnly)]
     public HashSet<ProtoId<LanguagePrototype>> Languages = new();
 
-    [Dependency] protected readonly IPrototypeManager _prototype = default!;
-    [Dependency] protected readonly SharedGameTicker _ticker = default!;
+    [Dependency] protected IPrototypeManager _prototype = default!;
+    [Dependency] protected SharedGameTicker _ticker = default!;
 
     public override void Initialize()
     {

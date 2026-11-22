@@ -6,12 +6,12 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Client._FarHorizons.GenericPaintable;
 
-public sealed class GenericPaintableSystem : EntitySystem
+public sealed partial class GenericPaintableSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IComponentFactory _componentFactory = default!;
-    [Dependency] private readonly SpriteSystem _sprite = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IComponentFactory _componentFactory = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
+    [Dependency] private SharedAppearanceSystem _appearanceSystem = default!;
     public override void Initialize()
     {
         base.Initialize();

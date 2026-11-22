@@ -32,7 +32,9 @@ public sealed partial class MindShieldSystem : EntitySystem
 
     private void OnImplantImplanted(Entity<MindShieldImplantComponent> ent, ref ImplantImplantedEvent ev)
     {
-        EnsureComp<MindShieldComponent>(ev.Implanted);
+        var mindshield = EnsureComp<MindShieldComponent>(ev.Implanted);     //
+        mindshield.MindShieldStatusIcon = ent.Comp.MindShieldStatusIcon;    // FarHorizons - allow for different mindshield icons
+        Dirty(ev.Implanted, mindshield);                                    //
         MindShieldRemovalCheck(ev.Implanted, ev.Implant);
     }
 

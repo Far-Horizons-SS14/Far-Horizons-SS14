@@ -72,6 +72,7 @@ public abstract partial class SharedBuckleSystem
             return false;
         }
 
+        if(!strapComp.Enabled) return false; // Far Horizons - Why can you still strap yourself on disabled strap?
         bool Ignored(EntityUid entity) => entity == userUid || entity == buckleUid || entity == targetUid;
 
         return _interaction.InRangeUnobstructed(targetUid, buckleUid, buckleComp.Range, predicate: Ignored);

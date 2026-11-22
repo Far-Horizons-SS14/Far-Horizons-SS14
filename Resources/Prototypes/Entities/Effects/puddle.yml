@@ -160,8 +160,11 @@
     fixtures:
       slipFixture:
         shape:
-          !type:PhysShapeAabb
-          bounds: "-0.4,-0.4,0.4,0.4"
+          # Far Horizons, made hitbox of puddle smaller
+          # !type:PhysShapeAabb
+          # bounds: "-0.4,-0.4,0.4,0.4"
+          !type:PhysShapeCircle
+          radius: 0.2
         mask:
         - ItemMask
         layer:
@@ -199,3 +202,13 @@
   - type: Tag
     tags:
     - DNASolutionScannable
+  # Far Horizons start
+  - type: FluidFootprintSource
+    minUnitsForFootPrint: 10.0
+    minFootprints: 10
+    bonusPerUnit: 1 # 30 footprints from 30u, 10 footprints from 10u
+    stopAfter: 5.0 # 5 seconds
+    draggingStepSpacing: 0.15
+    draggingFootprint: DraggingTrail
+    draggingFootprintSize: 2.0
+  # Far Horizons end

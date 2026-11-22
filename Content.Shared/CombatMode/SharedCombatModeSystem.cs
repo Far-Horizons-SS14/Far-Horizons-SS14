@@ -6,7 +6,7 @@ using Content.Shared.Movement.Components;
 using Content.Shared.NPC.Systems;
 using Content.Shared.Popups;
 using Robust.Shared.Timing;
-using Content.Shared._FarHorizons.Vehicles.Components;//Far Horizons
+using Content.Shared._FarHorizons.Vehicles;//Far Horizons
 
 namespace Content.Shared.CombatMode;
 

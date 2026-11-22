@@ -6,6 +6,14 @@
     mode: SnapgridCenter
   components:
   - type: DragonRift
+  #FH start
+    spawn: !type:GroupSelector 
+      children:
+      - id: MobCarpDragon
+        weight: 95
+      - id: MobSharkDragon
+        weight: 5
+  #FH end
   - type: Transform
     anchored: true
   - type: Physics

@@ -193,10 +193,17 @@
     - DoorBumpOpener
     - AnomalyHost
     - Diona
-  - type: VisionOrganRequiredForVision # Far Horizons
-  - type: RegrowableLimbs #FarHorizons
-  - type: LimbDamageable # Far Horizons
+  # Far Horizons start
+  - type: VisionOrganRequiredForVision
+  - type: RegrowableLimbs
+  - type: LimbDamageable
     proto: LimbTargetDiona
+  - type: FluidFootprintSpreader
+    footprint: Diona
+    footprintSize: 2.0
+    stepSpacing: 0.3
+    lateralOffset: 0
+  # Far Horizons end
 
 - type: entity
   parent: OrganBase

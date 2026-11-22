@@ -24,7 +24,7 @@ namespace Content.IntegrationTests.Tests
     [TestFixture]
     [TestOf(typeof(VendingMachineRestockComponent))]
     [TestOf(typeof(VendingMachineSystem))]
-    public sealed class VendingMachineRestockTest : GameTest
+    public sealed partial class VendingMachineRestockTest : GameTest
     {
         private static readonly ProtoId<DamageTypePrototype> TestDamageType = "Blunt";
 
@@ -377,7 +377,6 @@ namespace Content.IntegrationTests.Tests
             var server = pair.Server;
             await server.WaitIdleAsync();
 
-            var mapManager = server.ResolveDependency<IMapManager>();
             var entityManager = server.ResolveDependency<IEntityManager>();
             var entitySystemManager = server.ResolveDependency<IEntitySystemManager>();
 

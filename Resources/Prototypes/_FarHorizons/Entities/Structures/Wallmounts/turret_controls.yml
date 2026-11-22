@@ -1,0 +1,192 @@
+- type: entity
+  abstract: true
+  parent: WeaponEnergyTurretControlPanelFrame
+  id: WeaponEnergyTurretStationControlPanelBaseNS
+  name: sentry turret control panel
+  description: A wall-mounted interface for remotely configuring the operational parameters of linked sentry turrets.
+  components:
+  - type: Appearance
+  - type: Sprite
+    noRot: false
+    drawdepth: SmallObjects
+    sprite: Structures/Wallmounts/turret_controls.rsi
+    layers:
+    - state: base
+    - state: safe
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+      shader: unshaded
+    - state: wires
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+      visible: false
+  - type: GenericVisualizer
+    visuals:
+      enum.WiresVisualLayers.MaintenancePanel:
+        enum.WiresVisualLayers.MaintenancePanel:
+          True: { visible: true }
+          False: { visible: false }
+      enum.PowerDeviceVisuals.Powered:
+        enum.PowerDeviceVisualLayers.Powered:
+          True: { visible: true }
+          False: { visible: false }
+      enum.TurretControllerVisuals.ControlPanel:
+        enum.PowerDeviceVisualLayers.Powered:
+          -1: { state: safe }
+          0: { state: stun }
+          1: { state: lethal }
+  - type: StationAiWhitelist
+  - type: DeployableTurretController
+    accessGroups:
+    - Cargo
+    - Executive
+    - EngineeringNS
+    - GeneralNS
+    - MedicalNS
+    - ResearchNS
+    - SecurityNS
+    - ServiceNS
+    - SiliconNS
+    accessLevels:
+    - SalvageLead
+    - ArmoryNS
+    - AtmosphericsNS
+    - BarNS
+    - BasicSiliconNS
+    - BorgNS
+    - BrigNS
+    - DetectiveNS
+    - Commandant
+    - Cargo
+    - ChapelNS
+    - ChemistryNS
+    - Foreman
+    - MedicalDirector
+    - Executive
+    - CryogenicsNS
+    - EngineeringNS
+    - ExternalNS
+    - PersonnelManager
+    - Marshal
+    - HydroponicsNS
+    - JanitorNS
+    - KitchenNS
+    - LawyerNS
+    - MaintenanceNS
+    - MedicalNS
+    - Quartermaster
+    - ResearchNS
+    - EpistemicsProvost
+    - Salvage
+    - SecurityNS
+    - ServiceNS
+    - TheatreNS
+    - SalvageLead
+    - SurgeryNS
+    - CadetNS
+    - RedSword
+    - NSRep
+    - Magistrate
+    - BrigmedicNS
+    - RoboticsNS
+    - ParamedicNS
+    - Mining
+  - type: DeviceList
+    isAllowList: true
+  - type: DeviceNetwork
+    deviceNetId: Wired
+    receiveFrequencyId: Turret
+    transmitFrequencyId: TurretControl
+    sendBroadcastAttemptEvent: true
+    prefix: device-address-prefix-console
+  - type: DeviceNetworkRequiresPower
+  - type: WiredNetworkConnection
+  - type: ActivatableUI
+    key: enum.DeployableTurretControllerUiKey.Key
+  - type: ActivatableUIRequiresPower
+  - type: UserInterface
+    interfaces:
+      enum.DeployableTurretControllerUiKey.Key:
+        type: TurretControllerWindowBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  - type: WiresPanel
+  - type: WiresVisuals
+  - type: Wires
+    boardName: wires-board-name-turret-controls
+    layoutId: TurretControls
+  - type: Lock
+    locked: true
+    unlockOnClick: false
+  - type: LockedWiresPanel
+  - type: ApcPowerReceiver
+  - type: ExtensionCableReceiver
+  - type: Electrified
+    enabled: false
+    usesApcPower: true
+  - type: ContainerFill
+    containers:
+      board:
+      - WeaponEnergyTurretStationControlPanelElectronicsNS
+  - type: Construction
+    graph: WeaponEnergyTurretControlPanel
+    node: finish
+
+- type: entity
+  parent: WeaponEnergyTurretStationControlPanelBaseNS
+  id: WeaponEnergyTurretAIControlPanelNS
+  suffix: NS, AI # Starlight edit
+  components:
+  - type: AccessReader
+    access: [["StationAiNS"], ["EpistemicsProvost"]]
+  - type: ContainerFill
+    containers:
+      board:
+      - WeaponEnergyTurretAIControlPanelElectronicsNS
+  - type: DeviceNetwork
+    receiveFrequencyId: TurretAI
+    transmitFrequencyId: TurretControlAI
+  - type: TurretTargetSettings
+    exemptAccessLevels:
+    - BasicSiliconNS
+    - BorgNS
+  # Starlight edit Start: AI turret controller All Access
+  # - type: DeployableTurretController
+  #   accessGroups:
+  #   - Silicon
+  #   accessLevels:
+  #   - BasicSilicon
+  #   - Borg
+  # Starligh edit End
+
+- type: entity
+  parent: WeaponEnergyTurretStationControlPanelBaseNS
+  id: WeaponEnergyTurretSecurityControlPanelNS
+  suffix: NS, Security
+  components:
+  - type: AccessReader
+    access: [["StationAiNS"], ["SecurityNS"]]
+  - type: ContainerFill
+    containers:
+      board:
+      - WeaponEnergyTurretSecurityControlPanelElectronicsNS
+  - type: TurretTargetSettings
+    exemptAccessLevels:
+    - SecurityNS
+    - BasicSiliconNS
+    - BorgNS
+
+- type: entity
+  parent: WeaponEnergyTurretStationControlPanelBaseNS
+  id: WeaponEnergyTurretCommandControlPanelNS
+  suffix: NS, Command
+  components:
+  - type: AccessReader
+    access: [["StationAiNS"], ["Executive"]]
+  - type: ContainerFill
+    containers:
+      board:
+      - WeaponEnergyTurretCommandControlPanelElectronicsNS
+  - type: TurretTargetSettings
+    exemptAccessLevels:
+    - Executive
+    - BasicSiliconNS
+    - BorgNS

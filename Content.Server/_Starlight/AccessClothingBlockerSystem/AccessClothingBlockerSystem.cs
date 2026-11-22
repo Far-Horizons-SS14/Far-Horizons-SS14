@@ -13,13 +13,13 @@ using Content.Shared.Gibbing;
 
 namespace Content.Server.Starlight.FactionClothingBlockerSystem;
 
-public sealed class AccessClothingBlockerSystem : EntitySystem
+public sealed partial class AccessClothingBlockerSystem : EntitySystem
 {
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly ExplosionSystem _explosionSystem = default!;
-    [Dependency] private readonly AudioSystem _audioSystem = default!;
-    [Dependency] private readonly AccessReaderSystem _accessReader = default!;
-    [Dependency] private readonly GibbingSystem _gibbing = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private ExplosionSystem _explosionSystem = default!;
+    [Dependency] private AudioSystem _audioSystem = default!;
+    [Dependency] private AccessReaderSystem _accessReader = default!;
+    [Dependency] private GibbingSystem _gibbing = default!;
 
     public override void Initialize()
     {
@@ -47,7 +47,7 @@ public sealed class AccessClothingBlockerSystem : EntitySystem
         if (canUse)
             return;
 
-        EntityManager.EnsureComponent<UnremoveableComponent>(uid);
+        EnsureComp<UnremoveableComponent>(uid);
         await PopupWithDelays(uid, component);
         _gibbing.Gib(args.EquipTarget);
         _explosionSystem.QueueExplosion(uid, "Default", 50, 5, 30, canCreateVacuum: false);

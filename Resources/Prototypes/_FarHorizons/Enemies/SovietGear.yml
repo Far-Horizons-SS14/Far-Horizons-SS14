@@ -1,0 +1,137 @@
+- type: startingGear
+  id: SovietComradeGear
+  equipment:
+    head: ClothingHeadHatUshanka
+    jumpsuit: ClothingUniformJumpsuitSoviet
+    shoes: ClothingShoesBootsCowboyBlackCommieFilled
+    id: SovietIdCard
+
+- type: startingGear
+  id: SovietComradeGearBelt
+  equipment:
+    belt: ClothingSovietBelt
+  storage:
+    belt:
+    - RadioHandheld
+    - GeigerCounter
+    - Flare
+    - Flare
+    - Flare
+    - Flare
+    - Finka
+
+#Miner
+- type: startingGear
+  id: SovietComradeGearMiner
+  parent: SovietComradeGear
+  equipment:
+    outerClothing: ClothingOuterHardsuitCygnianMiner
+  inhand:
+  - Pickaxe
+
+#Pistol
+- type: startingGear
+  id: SovietComradeGearMakarov
+  parent: [SovietComradeGear, SovietComradeGearBelt]
+  equipment:
+    outerClothing: ClothingOuterWinterMilitsiya
+  inhand:
+  - WeaponPistolMakarov
+  storage:
+    belt:
+    - RadioHandheld
+    - GeigerCounter
+    - Flare
+    - Flare
+    - Flare
+    - Flare
+    - Finka
+    - MagazinePistolSP
+    - MagazinePistolSP
+
+#Mosin
+- type: startingGear
+  id: SovietComradeGearMosin
+  parent: [SovietComradeGear, SovietComradeGearBelt]
+  equipment:
+    head: ClothingHeadHatCapMilitsya
+    rig: ClothingBeltSovietMarineWebbing
+    outerClothing: ClothingOuterWinterMilitsiya
+  inhand:
+  - WeaponSniperMosin
+  storage:
+    belt:
+    - RadioHandheld
+    - GeigerCounter
+    - Flare
+    - Flare
+    - Flare
+    - Flare
+    - Finka
+    - SpeedLoaderRifle792SP
+
+#Shotgun
+- type: startingGear
+  id: SovietComradeGearToz
+  parent: [SovietComradeGear, SovietComradeGearBelt]
+  equipment:
+    head: ClothingHeadHatCapMilitsya
+    outerClothing: ClothingOuterWinterDmitriGreatCoat
+    rig: ClothingSovietBandolier
+  storage:
+    belt:
+    - RadioHandheld
+    - GeigerCounter
+    - Flare
+    - Flare
+    - Flare
+    - Flare
+    - Finka
+    - MagazineShotgunTozExtendedFlechette
+  inhand:
+  - WeaponShotgunToz106ExtendedFlechette
+
+#SMG
+- type: startingGear
+  id: SovietComradeGearSMG
+  parent: [SovietComradeGear, SovietComradeGearBelt]
+  equipment:
+    head: ClothingHeadHatCapCommissar
+    jumpsuit: ClothingUniformJumpsuitCommissar
+    rig: ClothingBeltSovietMarineWebbing
+    outerClothing: ClothingOuterWinterCommissar
+  inhand:
+  - WeaponSubMachineGunPPSH
+  storage:
+    belt:
+    - RadioHandheld
+    - GeigerCounter
+    - Flare
+    - Flare
+    - Flare
+    - Flare
+    - Finka
+    - MagazinePistolSubMachineGunPPSH 
+
+#AK
+- type: startingGear
+  id: SovietComradeGearAk
+  parent: [SovietComradeGear, SovietComradeGearBelt]
+  equipment:
+    head: ClothingHeadHatCapAdmiral
+    eyes: ClothingEyesHudSovietMarine
+    neck: ClothingNeckMantleAdmiral
+    jumpsuit: ClothingUniformJumpsuitAdmiral
+    outerClothing: ClothingOuterArmorAdmiralCarapace
+  inhand:
+  - WeaponRifleAk
+  storage:
+    belt:
+    - RadioHandheld
+    - GeigerCounter
+    - Flare
+    - Flare
+    - Flare
+    - Flare
+    - Finka
+    - MagazineRifle762SP 

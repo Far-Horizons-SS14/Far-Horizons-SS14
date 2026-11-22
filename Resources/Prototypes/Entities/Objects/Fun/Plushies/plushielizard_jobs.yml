@@ -128,6 +128,7 @@
   parent: BasePlushieLizardJob
   id: PlushieLizardJobDetective
   name: detective lizard plushie
+  suffix: NT # Far horizons
   description: An adorable stuffed toy that resembles a lizardperson as a detective. Seems ready for a mystery.
   components:
   - type: Sprite
@@ -142,14 +143,14 @@
   - type: Sprite
     state: headofpersonnel
 
-- type: entity
-  parent: BasePlushieLizardJob
-  id: PlushieLizardJobHeadofsecurity
-  name: head of security lizard plushie
-  description: An adorable stuffed toy that resembles a lizardperson as the head of security. It seems to have been ripped and re-stitched a few times.
-  components:
-  - type: Sprite
-    state: headofsecurity
+#- type: entity
+#  parent: BasePlushieLizardJob
+#  id: PlushieLizardJobHeadofsecurity
+#  name: head of security lizard plushie
+#  description: An adorable stuffed toy that resembles a lizardperson as the head of security. It seems to have been ripped and re-stitched a few times.
+#  components:
+#  - type: Sprite
+#    state: headofsecurity
 
 - type: entity
   parent: BasePlushieLizardJob
@@ -310,23 +311,23 @@
   - type: Sprite
     state: scientist
 
-- type: entity
-  parent: BasePlushieLizardJob
-  id: PlushieLizardJobSecuritycadet
-  name: security cadet lizard plushie
-  description: An adorable stuffed toy that resembles a lizardperson as a security cadet. Seems to have shock marks across the plushie.
-  components:
-  - type: Sprite
-    state: securitycadet
+#- type: entity
+#  parent: BasePlushieLizardJob
+#  id: PlushieLizardJobSecuritycadet
+#  name: security cadet lizard plushie
+#  description: An adorable stuffed toy that resembles a lizardperson as a security cadet. Seems to have shock marks across the plushie.
+#  components:
+#  - type: Sprite
+#    state: securitycadet
 
-- type: entity
-  parent: BasePlushieLizardJob
-  id: PlushieLizardJobSecurityofficer
-  name: security officer lizard plushie
-  description: An adorable stuffed toy that resembles a lizardperson as a security officer. The stuffing has been padded down from a lot of punching.
-  components:
-  - type: Sprite
-    state: securityofficer
+#- type: entity
+#  parent: BasePlushieLizardJob
+#  id: PlushieLizardJobSecurityofficer
+#  name: security officer lizard plushie
+#  description: An adorable stuffed toy that resembles a lizardperson as a security officer. The stuffing has been padded down from a lot of punching.
+#  components:
+#  - type: Sprite
+#    state: securityofficer
 
 - type: entity
   parent: BasePlushieLizardJob
@@ -355,14 +356,14 @@
   - type: Sprite
     state: technicalassistant
 
-- type: entity
-  parent: BasePlushieLizardJob
-  id: PlushieLizardJobWarden
-  name: warden lizard plushie
-  description: An adorable stuffed toy that resembles a lizardperson as a warden. Smells like black powder and gun oil.
-  components:
-  - type: Sprite
-    state: warden
+#- type: entity
+#  parent: BasePlushieLizardJob
+#  id: PlushieLizardJobWarden
+#  name: warden lizard plushie
+#  description: An adorable stuffed toy that resembles a lizardperson as a warden. Smells like black powder and gun oil.
+#  components:
+#  - type: Sprite
+#    state: warden
 
 - type: entity
   parent: BasePlushieLizardJob

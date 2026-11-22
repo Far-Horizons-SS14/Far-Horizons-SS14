@@ -171,29 +171,218 @@
         - id: AmmoSelection9mmSMGS
 
 - type: entity
-  id: BriefcaseWeaponIFA30LeftFilled
+  id: BriefcaseWeaponIFA30Filled
   parent: BriefcaseWeaponSmall
   name: Secure IFA-30 Case
-  suffix: Filled, Left
+  suffix: Filled
   components:
   - type: EntityTableContainerFill
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: CyberneticImplanterLeftArmCyberIFA30
+        - id: CyberneticImplanterSyndicateArmCyberIFA30
         - id: TreasureCoinIron
         - id: AmmoSelection9mmSMGS
+  
+# consortium gun cases
 
 - type: entity
-  id: BriefcaseWeaponIFA30RightFilled
-  parent: BriefcaseWeaponSmall
-  name: Secure IFA-30 Case
-  suffix: Filled, Right
+  id: ConsortiumBriefcaseWeaponViperFilled
+  parent: ConsortiumBriefcaseWeaponSmall
+  name: Secure Viper Case
+  suffix: Filled
   components:
   - type: EntityTableContainerFill
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: CyberneticImplanterRightArmCyberIFA30
+        - id: WeaponPistolViper
         - id: TreasureCoinIron
-        - id: AmmoSelection9mmSMGS
+        - id: AmmoSelection9mmC
+
+- type: entity # .25 does not have any ammo types.
+  id: ConsortiumBriefcaseWeaponCobraFilled
+  parent: ConsortiumBriefcaseWeaponSmall
+  name: Secure Cobra Case
+  suffix: Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponPistolCobra
+        - id: TreasureCoinIron
+        - id: MagazinePistolCaselessRifle
+          amount: 3
+        - id: MagazineBoxCaselessRifle
+
+- type: entity
+  id: ConsortiumBriefcaseWeaponStechkinFilled
+  parent: ConsortiumBriefcaseWeaponSmall
+  name: Secure Stechkin Case
+  suffix: Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponPistolStechkin
+        - id: TreasureCoinIron
+        - id: AmmoSelection38C
+
+- type: entity
+  id: ConsortiumBriefcaseWeaponJungleHawkFilled
+  parent: ConsortiumBriefcaseWeaponSmall
+  name: Secure Jungle Hawk Case
+  suffix: Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponPistolDeagle
+        - id: TreasureCoinIron
+        - id: AmmoSelection44MagC
+
+- type: entity
+  id: ConsortiumBriefcaseWeaponCoronaFilled
+  parent: ConsortiumBriefcaseWeaponSmall
+  name: Secure UA - Corona Case
+  suffix: Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponPistolCorona
+        - id: MagazineBatteryUA
+        - id: MagazineBatteryUA
+        - id: MagazineBatteryUA
+        - id: TreasureCoinIron
+
+- type: entity
+  id: ConsortiumBriefcaseWeaponCoronaAPFilled
+  parent: ConsortiumBriefcaseWeaponSmall
+  name: Secure UA - Corona Case
+  suffix: Filled, AP
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponPistolCoronaAP
+        - id: MagazineBatteryUAAP
+        - id: MagazineBatteryUAAP
+        - id: MagazineBatteryUAAP
+        - id: TreasureCoinIron
+
+- type: entity
+  id: ConsortiumBriefcaseWeaponUziFilled
+  parent: ConsortiumBriefcaseWeaponSmall
+  name: Secure Uzi Case
+  suffix: Filled, H6
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponSubMachineGunH6Uzi
+        - id: TreasureCoinIron
+        - id: AmmoSelection9mmSMGC
+
+- type: entity
+  id: ConsortiumBriefcaseWeaponBulldogFilled
+  parent: ConsortiumBriefcaseWeapon
+  name: Secure Bulldog Case
+  suffix: Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponShotgunBulldog
+        - id: TreasureCoinIron
+        - id: AmmoSelection12GMagC
+
+- type: entity
+  id: ConsortiumBriefcaseWeaponMinotaurFilled
+  parent: ConsortiumBriefcaseWeapon
+  name: Secure Minotaur Case
+  suffix: Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponShotgunMinotaur
+        - id: TreasureCoinIron
+        - id: AmmoSelection12GMagC
+
+- type: entity
+  id: ConsortiumBriefcaseWeaponPitbullFilled
+  parent: ConsortiumBriefcaseWeapon
+  name: Secure Pitbull Case
+  suffix: Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponRiflePitbull
+        - id: TreasureCoinIron
+        - id: MagazineMagnumRifleSP
+        - id: MagazineMagnumRifleSP
+
+- type: entity
+  id: ConsortiumBriefcaseWeaponLecterTFilled
+  parent: ConsortiumBriefcaseWeapon
+  name: Secure Lecter Type-T Case
+  suffix: Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponRifleLecterC
+        - id: TreasureCoinIron
+        - id: AmmoSelection556C
+
+- type: entity
+  id: ConsortiumBriefcaseWeaponHushpupFilled
+  parent: ConsortiumBriefcaseWeaponSmall
+  name: Secure Hushpup Case
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponShotgunHushpup
+        - id: TreasureCoinIron
+
+- type: entity
+  id: ConsortiumBriefcaseWeaponEstocFilled
+  parent: ConsortiumBriefcaseWeapon
+  name: Secure Estoc Case
+  suffix: Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponRifleEstoc
+        - id: TreasureCoinIron
+        - id: AmmoSelection556C
+
+- type: entity
+  id: ConsortiumBriefcaseWeaponC20RFilled
+  parent: ConsortiumBriefcaseWeaponSmall
+  name: Secure CR20 Case
+  suffix: Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponSubMachineGunC20r
+        - id: TreasureCoinIron
+        - id: AmmoSelection9mmSMGC

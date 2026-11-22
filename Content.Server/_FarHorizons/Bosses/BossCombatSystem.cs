@@ -11,9 +11,9 @@ namespace Content.Server._FarHorizons.Bosses;
 
 public sealed partial class BossCombatSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IPrototypeManager _protoMan = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private IPrototypeManager _protoMan = default!;
 
     const string HTN_TARGET_KEY = "Target";
 

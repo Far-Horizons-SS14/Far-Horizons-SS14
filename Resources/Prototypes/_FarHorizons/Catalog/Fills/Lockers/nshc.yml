@@ -1,0 +1,89 @@
+- type: entity
+  id: COAFilled
+  name: COA Intern Locker
+  suffix: NS Filled
+  parent: LockerBaseSecure
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Storage/NeoSol/closet.rsi
+  - type: EntityStorageVisuals
+    stateBaseClosed: coa
+    stateDoorOpen: coa_open
+    stateDoorClosed: coa_door
+  - type: AccessReader
+    access: [ [ "NSHighCommand" ] ]
+  - type: WiresPanelSecurity
+    securityLevel: medSecurity
+  - type: StorageFill
+    contents:
+    - id: ClothingBackpackSatchelLeather
+    - id: MagazineMagnum
+      amount: 2
+    - id: ClothingEyesHudHighCommand
+    - id: MindShieldImplanterNS
+    - id: DeathRattleImplanterNSHC
+    - id: RedspaceImplanter
+    - id: ClothingUniformJumpsuitHighCommand
+    - id: ClothingEyesGlassesHighCommand
+    - id: ClothingHandsGlovesHop
+    - id: SHCPDA
+    - id: WeaponPistolN1984
+    - id: ClothingBeltSheathFilledSyndi
+    - id: ClothingHeadHatHighCap
+    - id: ClothingShoesBootsLaceup
+    - id: ClothingOuterArmorHighCommandCarapace
+    - id: ClothingHeadsetAltNSHC
+#    - id: ClothingMaskGasCentcom
+    - id: AllHumanoidTranslator
+    - id: RSOxygenTankFilled
+    - id: RSNitrogenTankFilled  
+    - id: PowerCellAntiqueProto
+      amount: 2
+    - id: RubberStampCOA
+    - id: BoxStampsHCAdministrative
+
+- type: entity
+  id: GWSFilled
+  name: GWS Midshipman Locker
+  suffix: NS Filled
+  parent: LockerBaseSecure
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Storage/NeoSol/closet.rsi
+  - type: EntityStorageVisuals
+    stateBaseClosed: gws
+    stateDoorOpen: gws_open
+    stateDoorClosed: gws_door
+  - type: AccessReader
+    access: [ [ "NSHighCommand" ] ]
+  - type: WiresPanelSecurity
+    securityLevel: medSecurity
+  - type: StorageFill
+    contents:
+    - id: ClothingBackpackSatchelSyndicateSecurity
+    - id: MagazineMagnum
+      amount: 2
+    - id: ClothingEyesHudHighCommand
+    - id: MindShieldImplanterNS
+    - id: DeathRattleImplanterNSHC
+    - id: RedspaceImplanter
+    - id: ClothingUniformJumpsuitHighCommand
+    - id: ClothingEyesGlassesHighCommand
+    - id: ClothingHandsGlovesCombat
+    - id: SHCPDA
+    - id: WeaponPistolN1984
+    - id: ClothingBeltSecuritySyndiFilled
+    - id: ClothingHeadHatBeretSecuritySyndi
+    - id: ClothingShoesBootsJackSyndiFilled
+    - id: ClothingOuterVestWebEliteHighCommand
+    - id: ClothingHeadsetAltNSHC
+#    - id: ClothingMaskGasCentcom
+    - id: AllHumanoidTranslator
+    - id: RSOxygenTankFilled
+    - id: RSNitrogenTankFilled
+    - id: PowerCellAntiqueProto
+      amount: 2
+    - id: RubberStampGWS
+    - id: BoxStampsHCAdministrative

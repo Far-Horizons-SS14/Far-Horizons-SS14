@@ -4,7 +4,7 @@ using Content.Shared.Ghost.Roles;
 
 namespace Content.Server.Ghost.Roles.UI
 {
-    public sealed class MakeGhostRoleEui : BaseEui
+    public sealed partial class MakeGhostRoleEui : BaseEui
     {
         private IEntityManager _entManager;
 

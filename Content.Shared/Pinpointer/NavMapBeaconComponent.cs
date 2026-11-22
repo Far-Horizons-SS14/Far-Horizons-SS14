@@ -30,4 +30,12 @@ public sealed partial class NavMapBeaconComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public bool Enabled = true;
+
+    // Far Horizons start
+    /// <summary>
+    /// The named beacon that a simple bot should visit after reaching this beacon.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public string NextBeacon = string.Empty;
+    // Far Horizons end
 }

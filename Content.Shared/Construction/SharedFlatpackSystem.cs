@@ -37,7 +37,7 @@ public abstract partial class SharedFlatpackSystem : EntitySystem
     [Dependency] protected SharedMaterialStorageSystem MaterialStorage = default!;
 
 #region Far Horizons
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private IRobustRandom _random = default!;
 #endregion Far Horizons
 
     /// <inheritdoc/>

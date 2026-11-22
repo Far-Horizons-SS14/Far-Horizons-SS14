@@ -28,15 +28,15 @@ namespace Content.Server._Starlight.NullSpace;
 
 public sealed partial class NullSpaceSystem : SharedNullSpaceSystem
 {
-    [Dependency] private readonly VisibilitySystem _visibilitySystem = default!;
-    [Dependency] private readonly SharedStealthSystem _stealth = default!;
-    [Dependency] private readonly EyeSystem _eye = default!;
-    [Dependency] private readonly NpcFactionSystem _factions = default!;
-    [Dependency] private readonly PullingSystem _pulling = default!;
-    [Dependency] private readonly SharedVirtualItemSystem _virtualItem = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
-    [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly NullSpacePhaseSystem _phaseSystem = default!;
+    [Dependency] private VisibilitySystem _visibilitySystem = default!;
+    [Dependency] private SharedStealthSystem _stealth = default!;
+    [Dependency] private EyeSystem _eye = default!;
+    [Dependency] private NpcFactionSystem _factions = default!;
+    [Dependency] private PullingSystem _pulling = default!;
+    [Dependency] private SharedVirtualItemSystem _virtualItem = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
+    [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private NullSpacePhaseSystem _phaseSystem = default!;
     public override void Initialize()
     {
         base.Initialize();

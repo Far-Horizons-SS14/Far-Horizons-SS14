@@ -20,7 +20,11 @@ public struct DrawResearchTier (string name, Font? font, int? left, int? right, 
         new(Left == null ? 0 : Offset.X + Margin.X - (Spacing.X / 2) + (Left!.Value * (Size.X + Size.Y + Spacing.X)), 0);
     public readonly Vector2 RightPos => 
         new(Right == null ? 3000 : Offset.X + Margin.X - (Spacing.X / 2) + (Right!.Value * (Size.X + Size.Y + Spacing.X)), 3000);
-    public readonly UIBox2 Box => new(LeftPos, RightPos);
+    public readonly UIBox2 Box =>
+        new(
+            new Vector2(MathF.Min(LeftPos.X, RightPos.X), LeftPos.Y),
+            new Vector2(MathF.Max(LeftPos.X, RightPos.X), RightPos.Y)
+        );
 
     private Vector2? _offset = offset;
     public Vector2 Offset {

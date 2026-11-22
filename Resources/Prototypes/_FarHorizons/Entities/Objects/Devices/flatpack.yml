@@ -50,3 +50,67 @@
     - state: icon-default
   - type: Flatpack
     entity: NSPrinterDoc
+
+#region Fusion Reactor
+- type: entity
+  parent: BaseFlatpack
+  id: FusionReactorTorusFlatpack
+  name: Fusion Reactor Torus Flatpack
+  description: A flatpack used for a piece of the fusion reactor's torus.
+  components:
+  - type: Sprite
+    layers:
+    - state: ame-part
+  - type: Flatpack
+    entity: FusionReactorTorus
+  - type: StaticPrice
+    price: 500
+  - type: GuideHelp
+    guides:
+    - Power
+
+- type: entity
+  parent: BaseFlatpack
+  id: FusionReactorCoolantPumpFlatpack
+  name: Fusion Reactor Coolant Pump Flatpack
+  description: A flatpack used for constructing a coolant pump for the fusion reactor.
+  components:
+  - type: Flatpack
+    entity: FusionReactorCoolantPumpInlet
+
+- type: entity
+  parent: BaseFlatpack
+  id: FusionReactorBatteryFlatpack
+  name: Fusion Reactor Supercapacitor Flatpack
+  description: A flatpack used for constructing a supercapacitor for the fusion reactor.
+  components:
+  - type: Flatpack
+    entity: FusionReactorBatteryEmpty
+
+- type: entity
+  parent: BaseFlatpack
+  id: FusionReactorMaserFlatpack
+  name: Fusion Reactor MASER Flatpack
+  description: A flatpack used for constructing a MASER for the fusion reactor.
+  components:
+  - type: Flatpack
+    entity: FusionReactorMaser
+
+- type: entity
+  parent: BaseFlatpack
+  id: FusionReactorGasInletFlatpack
+  name: Fusion Reactor Gas Inlet Flatpack
+  description: A flatpack used for constructing a gas inlet for the fusion reactor.
+  components:
+  - type: Flatpack
+    entity: FusionReactorGasInlet
+
+- type: entity
+  parent: BaseFlatpack
+  id: FusionReactorControllerFlatpack
+  name: Fusion Reactor Controller Flatpack
+  description: A flatpack used for constructing a controller for the fusion reactor.
+  components:
+  - type: Flatpack
+    entity: FusionReactorController
+#endregion

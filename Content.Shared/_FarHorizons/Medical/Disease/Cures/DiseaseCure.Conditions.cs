@@ -1,11 +1,8 @@
-using Content.Shared.Body.Components;
-using Content.Shared.Chemistry.EntitySystems;
-using Content.Shared.EntityConditions;
-using Content.Shared.Metabolism;
 using Content.Shared._FarHorizons.Medical.Disease.Prototypes;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Content.Shared._FarHorizons.Medical.Disease.Systems;
+using System.Linq;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared._FarHorizons.Medical.Disease.Cures;
 
@@ -13,40 +10,30 @@ namespace Content.Shared._FarHorizons.Medical.Disease.Cures;
 public sealed partial class CureConditions : CureStep
 {
     /// <summary>
-    /// Conditions checked on the disease carrier.
+    /// List of conditions needed to meet to cure someone.
     /// </summary>
-    [DataField(required: true)]
-    public EntityCondition[] Conditions { get; private set; } = [];
+    [DataField]
+    public List<CureStep> Conditions = new();
 }
 
 public sealed partial class CureConditions
 {
     /// <summary>
-    /// Cure step that succeeds once its configured carrier conditions pass.
+    /// Cures the disease when meeting the conditions listed above.
     /// </summary>
     public override bool OnCure(EntityUid uid, DiseaseData disease)
-    {
-        var _entityManager = IoCManager.Resolve<IEntityManager>();
-        var _entitySysManager = IoCManager.Resolve<IEntitySystemManager>();
-        var _metabolism = _entitySysManager.GetEntitySystem<MetabolizerSystem>();
-        var _solutions = _entitySysManager.GetEntitySystem<SharedSolutionContainerSystem>();
-        
-        if (!_entityManager.TryGetComponent(uid, out BloodstreamComponent? bloodstream))
-            return false;
-
-        if (!_solutions.ResolveSolution(uid, bloodstream.BloodSolutionName, ref bloodstream.BloodSolution))
-            return false;
-
-        return _metabolism.CanMetabolizeEffect(uid, uid, bloodstream.BloodSolution.Value, Conditions);
-    }
+        => Conditions.All(p => p.OnCure(uid, disease)); 
 
     public override IEnumerable<string> BuildDiagnoserLines(IPrototypeManager prototypes)
     {
         foreach (var condition in Conditions)
         {
-            var line = condition.EntityConditionGuidebookText(prototypes);
-            if (!string.IsNullOrWhiteSpace(line))
-                yield return line;
+            var lines = condition.BuildDiagnoserLines(prototypes);
+            foreach (var line in lines)
+            {
+                if (!string.IsNullOrWhiteSpace(line))
+                    yield return line;
+            }
         }
     }
 }

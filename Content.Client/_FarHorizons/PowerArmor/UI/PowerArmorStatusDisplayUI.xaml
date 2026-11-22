@@ -1,0 +1,29 @@
+<powerArmorDisplay:PowerArmorStatusDisplayUI
+    xmlns="https://spacestation14.io"
+    xmlns:powerArmorDisplay="clr-namespace:Content.Client._FarHorizons.PowerArmor.UI"
+    xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+    MinSize="64 64">
+
+    <PanelContainer
+        Name="BackgroundPanel"
+        MinWidth="100"
+        MinHeight="100"
+        MaxWidth="100"
+        MaxHeight="100">
+
+        <PanelContainer.PanelOverride>
+            <gfx:StyleBoxTexture
+                PatchMarginBottom="6"
+                PatchMarginTop="6"
+                PatchMarginLeft="6"
+                PatchMarginRight="6"
+                TextureScale="2 2"
+                Mode="Tile" />
+        </PanelContainer.PanelOverride>
+
+        <powerArmorDisplay:PowerArmorStatusDisplay
+            Name="StatusDisplay" />
+
+    </PanelContainer>
+
+</powerArmorDisplay:PowerArmorStatusDisplayUI>

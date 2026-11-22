@@ -5,6 +5,7 @@
     - type: StationCentcomm
       maps:
         - "/Maps/_FarHorizons/SHCs/shc.yml"
+        - "/Maps/_FarHorizons/SHCs/NSHC2.yml"
         
 - type: entity
   abstract: true
@@ -58,7 +59,7 @@
   parent:
     - BaseStation
     - BaseStationNews
-    - BaseStationCargo
+    - BaseStationCargoNS
     - BaseStationJobsSpawning
     - BaseStationRecords
     - BaseStationArrivals

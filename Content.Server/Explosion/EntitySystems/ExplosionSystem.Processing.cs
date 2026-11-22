@@ -63,6 +63,8 @@ public sealed partial class ExplosionSystem
 
     private List<EntityUid> _anchored = new();
 
+    private const float LIMB_DAMAGE_MULTIPLIER = 4f; // Far Horizons - deal this much more damage to limbs as dealt to torso (damage is randomly split between all available limbs)
+
     private void OnMapRemoved(MapRemovedEvent ev)
     {
         // If a map was deleted, check the explosion currently being processed belongs to that map.
@@ -455,7 +457,7 @@ public sealed partial class ExplosionSystem
 
                 // Far Horizons
                 if (_limbDamageableQuery.TryComp(entity, out var damageableLimb))
-                    _limbDamage.ChangeDamageAll((entity, damageableLimb), damage, ignoreResistances: true, ignoreGlobalModifiers: true);
+                    _limbDamage.ChangeDamageRandom((entity, damageableLimb), damage * LIMB_DAMAGE_MULTIPLIER, ignoreResistances: true, ignoreGlobalModifiers: true);
                 
                 // TODO EXPLOSIONS turn explosions into entities, and pass the the entity in as the damage origin.
                 _damageableSystem.TryChangeDamage((entity, damageable), damage, ignoreResistances: true, ignoreGlobalModifiers: true);

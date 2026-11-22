@@ -155,7 +155,7 @@
     - id: ClothingBeltSheathFilledSyndi
     - id: ClothingHeadsetAltCommandSyndi
     - id: ClothingOuterArmorCaptainCarapaceSyndi
-    - id: CommsComputerCircuitboard
+    - id: CommsComputerCircuitboardNS
     - id: DoorRemoteCustom
     - id: MedalCase
     - id: NukeDisk
@@ -231,8 +231,8 @@
     - id: ClothingNeckMantleHOPSyndi
     - id: ClothingBeltHoPSyndi
     - id: AccessConfiguratorNS
-    - id: BoxEncryptionKeyAssistant
-    - id: BoxEncryptionKeyService
+    - id: BoxEncryptionKeyAssistantNS
+    - id: BoxEncryptionKeyServiceNS
     - id: BoxHeadset
     - id: BoxIDNS
     - id: BoxPDANS
@@ -245,8 +245,8 @@
     - id: DoorRemoteServiceNS
     - id: PersonnelManagerIDCard
     - id: IDComputerCircuitboardNS
-    - id: FundingAllocationComputerCircuitboard
-    - id: CargoRequestServiceComputerCircuitboard
+    - id: FundingAllocationComputerCircuitboardNS
+    - id: CargoRequestServiceComputerCircuitboardNS
     - id: RubberStampApproved
     - id: RubberStampDenied
     - id: RubberStampPM
@@ -278,7 +278,7 @@
     children:
     #- id: ClothingNeckCloakCeElite
     - id: AccessConfiguratorNS
-    - id: BoxEncryptionKeyEngineering
+    - id: BoxEncryptionKeyEngineeringNS
     - id: CigarCase
       prob: 0.15
     - id: ClothingBeltChiefEngineerFilledSyndi
@@ -286,9 +286,9 @@
     - id: ClothingHandsGlovesColorYellow
     - id: ClothingHeadsetAltCESyndi
     - id: DoorRemoteEngineering
-    - id: CargoRequestEngineeringComputerCircuitboard
+    - id: CargoRequestEngineeringComputerCircuitboardNS
     - id: ShipyardRCD
-    - id: BoxCECircuitboards
+    - id: BoxCECircuitboardsNS
     - id: MatBag
     - id: WeaponGrapplingGun
     - id: BoxFlare
@@ -356,7 +356,7 @@
   table: !type:AllSelector
     children:
     - id: ClothingCloakCmoElite
-    - id: BoxEncryptionKeyMedical
+    - id: BoxEncryptionKeyMedicalNS
     - id: ClothingBackpackDuffelSurgerySyndiFilled
     - id: ClothingEyesHudMedicalSyndi
     - id: ClothingBeltMedicalSyndiFilled
@@ -376,6 +376,7 @@
     - id: RubberStampMD
     - id: PlushieLizardJobChiefmedicalofficer
       prob: 0.02
+    - id: CoolingUnitNitrogen
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable
@@ -422,8 +423,8 @@
     children:
     - id: ClothingNeckCloakRdElite
     - id: Intellicard
-    - id: BoxEncryptionKeyScience
-    - id: BoxRDCircuitboards
+    - id: BoxEncryptionKeyScienceNS
+    - id: BoxRDCircuitboardsNS
     - id: ClothingBeltScienceRD
     - id: ClothingHeadsetAltScience
     - id: DoorRemoteResearchNS
@@ -486,9 +487,9 @@
   table: !type:AllSelector
     children:
     - id: ClothingNeckCloakHosEliteSyndi
-    - id: WeaponEnergySMG
+    - id: WeaponSniperWatcher
     - id: BookSpaceLaw
-    - id: BoxEncryptionKeySecurity
+    - id: BoxEncryptionKeySecurityNS
     - id: CigarGoldCase
       prob: 0.50
     - id: ClothingBeltSecuritySyndiFilled
@@ -499,15 +500,15 @@
     - id: ClothingOuterCoatHoSTrenchSyndi
     - id: ClothingShoesBootsJackSyndiFilled
     - id: DoorRemoteSecurityNS
-    - id: HoloprojectorSecurity
+    - id: HoloprojectorSecurityNS
     - id: RubberStampMarshal
-    - id: SecurityTechFabCircuitboard
+    - id: OverwatchTechFabCircuitboard
     - id: SecurityAmmoTechFabCircuitboardNS
-    - id: CargoRequestSecurityComputerCircuitboard
+    - id: CargoRequestSecurityComputerCircuitboardNS
     - id: WeaponDisabler
-    - id: WantedListCartridge
-    - id: DrinkHosFlask
-    - id: SecurityShuttleConsoleCircuitboard
+    - id: WantedListCartridgeNS
+    - id: DrinkMarshalFlask
+    - id: SecurityShuttleConsoleCircuitboardNS
     - id: PrintedDocumentGreenshiftAlert
       conditions:
       - !type:GamemodeCondition
@@ -523,7 +524,7 @@
     children:
     - id: ClothingMaskGasSwat
     - id: ClothingOuterHardsuitSecurityRed
-    - id: JetpackSecurityFilled
+    - id: JetpackSecurityNSFilled
     - id: OxygenTankFilled
     - id: NitrogenTankFilled 
     - id: ClothingShoesBootsMagSec
@@ -611,7 +612,7 @@
         - id: FlashlightSeclite
         - id: ClothingHandsGlovesCombat
         - id: ClothingShoesBootsCombat
-        - id: TrackingImplanter
+        - id: TrackingImplanterNS
           amount: 3
         - id: MedkitAdvancedFilled
         - id: WeaponPistolDP 

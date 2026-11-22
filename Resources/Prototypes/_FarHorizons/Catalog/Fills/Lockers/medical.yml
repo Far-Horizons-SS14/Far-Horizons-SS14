@@ -74,3 +74,13 @@
     containers:
       entity_storage: !type:NestedSelector
         tableId: LockerFillNSParamedic
+
+- type: entity
+  parent: LockerMedicineNS
+  id: LockerMedicineNSFilled
+  suffix: NS, Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: LockerFillMedicine

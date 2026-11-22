@@ -25,9 +25,9 @@ public sealed class
         EnsureComp<PryingComponent>(ent);
 }
 
-public sealed class HealingBloodVampireTraitSystem : LesserVampireTraitSystem<HealingBloodVampireTraitComponent>
+public sealed partial class HealingBloodVampireTraitSystem : LesserVampireTraitSystem<HealingBloodVampireTraitComponent>
 {
-    [Dependency] private readonly MetabolizerSystem _metabolizer = default!;
+    [Dependency] private MetabolizerSystem _metabolizer = default!;
 
     protected override void TraitInit(Entity<LesserVampireComponent, HealingBloodVampireTraitComponent> ent)
     {
@@ -47,11 +47,11 @@ public sealed class HealingBloodVampireTraitSystem : LesserVampireTraitSystem<He
     }
 }
 
-public sealed class
+public sealed partial class
     LanguageAbsorptionVampireTraitSystem : LesserVampireTraitSystem<LanguageAbsorptionVampireTraitComponent>
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly SharedLanguageSystem _language = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private SharedLanguageSystem _language = default!;
 
     public override void Initialize()
     {
@@ -103,13 +103,13 @@ public sealed class ExtendableFangsVampireTraitSystem : LesserVampireToggleActio
     }
 }
 
-public sealed class
+public sealed partial class
     TransfusionVampireTraitSystem : LesserVampireActionTraitSystem<TransfusionVampireTraitComponent,
     VampireTransfusionEvent>
 {
-    [Dependency] private readonly SharedBloodstreamSystem _bloodstream = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private SharedBloodstreamSystem _bloodstream = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
 
     public override void Initialize()
     {
@@ -165,19 +165,19 @@ public sealed class
         Vampire.GetBloodPool(vampire) >= vampire.Comp2.DecreaseBloodPool;
 }
 
-public sealed class
+public sealed partial class
     CharmVampireTraitSystem : LesserVampireToggleActionTraitSystem<CharmVampireTraitComponent, VampireCharmEvent>
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly SharedMindSystem _mind = default!;
-    [Dependency] private readonly SharedEntityEffectsSystem _effects = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
+    [Dependency] private SharedEntityEffectsSystem _effects = default!;
 
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
 
-        var query = EntityManager.AllEntityQueryEnumerator<LesserVampireComponent, CharmVampireTraitComponent>();
+        var query = AllEntityQuery<LesserVampireComponent, CharmVampireTraitComponent>();
         while (query.MoveNext(out var uid, out var vampire, out var comp))
         {
             if (!comp.Toggled) continue;

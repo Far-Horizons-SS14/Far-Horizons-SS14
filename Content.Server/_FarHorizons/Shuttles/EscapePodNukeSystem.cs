@@ -16,17 +16,17 @@ using Robust.Shared.Timing;
 
 namespace Content.Server._FarHorizons.Shuttles;
 
-public sealed class EscapePodNukeSystem : EntitySystem
+public sealed partial class EscapePodNukeSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly ShuttleSystem _shuttle = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly StationSystem _station = default!;
-    [Dependency] private readonly GameTicker _ticker = default!;
-    [Dependency] private readonly EmergencyShuttleSystem _emergencyshuttle = default!;
-    [Dependency] private readonly ChatSystem _chatSystem = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly AlertLevelSystem _alertLevel = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private ShuttleSystem _shuttle = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private StationSystem _station = default!;
+    [Dependency] private GameTicker _ticker = default!;
+    [Dependency] private EmergencyShuttleSystem _emergencyshuttle = default!;
+    [Dependency] private ChatSystem _chatSystem = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private AlertLevelSystem _alertLevel = default!;
 
     private bool _preppods = false;
     private bool _escapealerted = false;

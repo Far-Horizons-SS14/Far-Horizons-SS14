@@ -1,7 +1,35 @@
 - type: paintableGroupCategory
   id: Walls
-  groups: #might be a good idea to split windows and walls into seperate categories, but that is an easy change we can make later once we have more stuff paintable
+  groups:
   - WallSolid
+  - WallSolidDiagonal
   - WallReinforced
+  - WallReinforcedDiagonal
+  - WallShuttle
+  - WallShuttleDiagonal
+  - WallShuttleReinforced
+  - WallShuttleReinforcedDiagonal
+  - WallShuttleArmored
+  - WallShuttleArmoredDiagonal
+
+- type: paintableGroupCategory
+  id: Windows
+  groups:
   - Window
+  - WindowDiagonal
   - ReinforcedWindow
+  - ReinforcedWindowDiagonal
+  - PlasmaWindow
+  - PlasmaWindowDiagonal
+  - ReinforcedPlasmaWindow
+  - ReinforcedPlasmaWindowDiagonal
+  - UraniumWindow
+  - UraniumWindowDiagonal
+  - ReinforcedUraniumWindow
+  - ReinforcedUraniumWindowDiagonal
+  - ShuttleWindow
+  - ShuttleWindowDiagonal
+  - ShuttleWindowReinforced
+  - ShuttleWindowReinforcedDiagonal
+  - ShuttleWindowArmored
+  - ShuttleWindowArmoredDiagonal

@@ -1,0 +1,1 @@
+fh-collective-mind-chat-wrap-message-admin = [bold]{$source}: {$message}[/bold]

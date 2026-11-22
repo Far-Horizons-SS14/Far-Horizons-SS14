@@ -412,4 +412,8 @@ public sealed partial class StoreMenu : DefaultWindow
     }
 
     // Starlight-end
+
+    // Far Horizons
+    public void SetWithdraw(bool enabled) => 
+        WithdrawButton.Disabled = WithdrawButton.Disabled || !enabled;
 }

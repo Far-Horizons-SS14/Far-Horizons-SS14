@@ -4,7 +4,7 @@ using Content.Shared.Teleportation.Components;
 
 namespace Content.Client._Starlight.Shadekin;
 
-public sealed class DarkPortalSystem : EntitySystem
+public sealed partial class DarkPortalSystem : EntitySystem
 {
     public override void Initialize()
     {

@@ -1,3 +1,3 @@
-salvage-mission-disarm-ui-menu-title = Disarm Sequence
+salvage-mission-disarm-ui-menu-title = Code Locked
 salvage-mission-disarm-ui-menu-submit-button = Enter
 salvage-mission-disarm-ui-menu-code-placeholder = Enter code...

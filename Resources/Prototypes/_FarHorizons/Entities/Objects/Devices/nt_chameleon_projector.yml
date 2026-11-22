@@ -28,10 +28,16 @@
       - MindContainer 
       - Pda 
       - SubFloorHide 
+      # Moffstation - Start - Playing cards, hands and deck are invisible due to heavily layered visuals.
+      - PlayingCard
+      - PlayingCardHand
+      - PlayingCardDeck
+      # Moffstation - End
       tags:
       - Catwalk 
       - Wall 
       - Window 
+      - ChameleonProjectorBlacklist
     disguiseProto: ChameleonDisguise
   - type: StaticPrice
     price: 5000

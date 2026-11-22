@@ -5,9 +5,9 @@ using Content.Shared.Inventory.Events;
 
 namespace Content.Server._FarHorizons.Body;
 
-public sealed class OrganWithInventorySlotsSystem : EntitySystem
+public sealed partial class OrganWithInventorySlotsSystem : EntitySystem
 {
-    [Dependency] private readonly InventorySystem _inventory = default!;
+    [Dependency] private InventorySystem _inventory = default!;
 
     public override void Initialize()
     {

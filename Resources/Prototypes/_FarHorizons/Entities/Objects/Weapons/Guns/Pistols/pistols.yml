@@ -36,6 +36,8 @@
     tags:
     - Enforcer
     - Sidearm
+  - type: StealTarget
+    stealGroup: OfficerHandgun
 
 #region Enforcinator
 - type: entity
@@ -58,7 +60,7 @@
     size: Large
     shape:
     - 0,0,3,0
-    - 1,1,0,1
+    - 0,1,1,1
     storedOffset: -5,-4
   - type: GunRequiresWield
   - type: GunWieldBonus
@@ -112,6 +114,8 @@
         whitelist:
           tags:
             - CartridgePistol
+  - type: StealTarget
+    stealGroup: OfficerHandgun
 
 #region MK 58
 - type: entity
@@ -147,21 +151,23 @@
     - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/mk58.ogg
+  - type: StealTarget
+    stealGroup: OfficerHandgun
 #region =NanoTrasen=
 
 
 
 
-#region MK78
+#region MK-T
 - type: entity
-  name: MK 78
+  name: MK-T
   parent: [BaseWeaponPistol, BaseSecurityContraband, FlashlightLantern]
-  id: WeaponPistolMk78
-  description: Designed by Nanotrasen’s Small Arms Division, the MK 78 is a semi-automatic pistol with a simple recoil-operated action and excellent reliability. The new standard sidearm of Nanotrasen’s station security and emergency response teams, feeds from 9mm pistol magazines. Comes with a intergrated flashlight and electronic status lights, unlike the MK 58.
+  id: WeaponPistolMKT
+  description: Designed by Nanotrasen’s Small Arms Division, the MK-T is a semi-automatic pistol with a simple recoil-operated action and excellent reliability. The new standard sidearm of Nanotrasen’s station security and emergency response teams, feeds from 9mm pistol magazines. Comes with a intergrated flashlight and electronic status lights, unlike the MK 58.
   suffix: NT
   components:
   - type: Sprite
-    sprite: _FarHorizons/Objects/Weapons/Guns/Pistols/mk78.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Pistols/MKT.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -214,14 +220,14 @@
     steps: 4
     zeroVisible: true
   - type: Clothing
-    sprite: _FarHorizons/Objects/Weapons/Guns/Pistols/mk78.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Pistols/MKT.rsi
   - type: Item
     size: Small
     shape:
     - 0,0,1,0
     - 0,1,0,1
     storedRotation: 0
-    sprite: _FarHorizons/Objects/Weapons/Guns/Pistols/mk78.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Pistols/MKT.rsi
     storedOffset: 0,-2
   - type: Gun
     fireRate: 5
@@ -231,11 +237,13 @@
       path: /Audio/Weapons/Guns/Gunshots/mk58.ogg
   - type: ChamberMagazineAmmoProvider
     autoEject: true
+  - type: StealTarget
+    stealGroup: OfficerHandgun
 
 #region Enforcer Type-T
 - type: entity
   name: Enforcer Type-T
-  parent: [WeaponPistolMk78]
+  parent: [WeaponPistolMKT]
   id: WeaponPistolEnforcerTypeT
   description: A modified burst-fire Enforcer platform often issued in NanoTransen armories to supplement larger firearms like the Lecter or Kammerer, comes with electronic status lights. Feeds from 9mm Magazines.
   suffix: NT
@@ -271,11 +279,13 @@
     tags:
     - Enforcer
     - Sidearm
+  - type: StealTarget
+    stealGroup: OfficerHandgun
 
 #region Due Process
 - type: entity
   name: Due Process
-  parent: [WeaponPistolMk78]
+  parent: [WeaponPistolMKT]
   id: WeaponPistolDP
   description: A retrofitted Enforcer chambered in .38 Special, it is THE final word in brig defense.
   components:
@@ -323,6 +333,8 @@
   - type: Item
     sprite: _FarHorizons/Objects/Weapons/Guns/Pistols/dp.rsi
     storedOffset: 0,-2
+  - type: StealTarget
+    stealGroup: OfficerHandgun
 
 #region Pathology
 - type: entity
@@ -382,11 +394,13 @@
     magState: mag
     steps: 4
     zeroVisible: true
+  - type: StealTarget
+    stealGroup: OfficerHandgun
 
 #region N1984
 - type: entity
   name: N1984
-  parent: [WeaponPistolMk78, BaseGunWieldable]
+  parent: [WeaponPistolMKT, BaseGunWieldable]
   id: WeaponPistolN1984
   description: An exceptionally powerful ‘hand cannon’ designed as part of Nanotrasen's BFG initiative. Chambered in .44, the lord’s caliber, it was deemed too costly to produce as part of standard security-issue gear and a handful are supplied to station-side armories instead. Due to the relative rarity of the gun, it's become somewhat of a status symbol among Security officers and Nanotransen officals alike.
   components:
@@ -444,6 +458,8 @@
         whitelist:
           tags:
             - CartridgeMagnum
+  - type: StealTarget
+    stealGroup: OfficerHandgun
 
 #region =NeoSol=
 
@@ -452,16 +468,16 @@
 
 
 
-#region MK59
+#region MK-S
 - type: entity
-  name: MK 59
+  name: MK-S
   parent: [BaseWeaponPistol, BaseSecurityContraband]
-  id: WeaponPistolMk59
-  description: Designed by NeoSol's Small Arms Division, the MK 59 is a modern iteration of the classic MK 58 with a nice red paintjob and bayonet for stabbing tiders. Debates are frequently had between NanoTrasen and NeoSol Security Officers about which service-pistol is better. Feeds from 9mm Magazines.
+  id: WeaponPistolMKS
+  description: Designed by NeoSol's Small Arms Division, the MK-S is a modern iteration of the classic MK 58 with a nice red paintjob and bayonet for stabbing tiders. Debates are frequently had between NanoTrasen and NeoSol Security Officers about which service-pistol is better. Feeds from 9mm Magazines.
   suffix: NS
   components:
   - type: Sprite
-    sprite: _FarHorizons/Objects/Weapons/Guns/Pistols/mk59.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Pistols/MKS.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -472,14 +488,14 @@
     steps: 1
     zeroVisible: true
   - type: Clothing
-    sprite: _FarHorizons/Objects/Weapons/Guns/Pistols/mk59.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Pistols/MKS.rsi
   - type: Item
     size: Small
     shape:
     - 0,0,1,0
     - 0,1,0,1
     storedRotation: 0
-    sprite: _FarHorizons/Objects/Weapons/Guns/Pistols/mk59.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Pistols/MKS.rsi
     storedOffset: 0,-2
   - type: Gun
     fireRate: 5
@@ -499,11 +515,13 @@
     animation: WeaponArcThrust
   - type: AltFireMelee
     attackType: Heavy
+  - type: StealTarget
+    stealGroup: OfficerHandgun
 
 #region Enforcer Type-S
 - type: entity
   name: Enforcer Type-S
-  parent: [WeaponPistolMk59]
+  parent: [WeaponPistolMKS]
   id: WeaponPistolEnforcerTypeS
   description: A modified burst-fire Enforcer platform often issued in NeoSol armories to supplement larger firearms like the Lecter or Kammerer, comes with a combat knife bayonet. Feeds from 9mm Magazines.
   suffix: NS
@@ -533,7 +551,94 @@
     tags:
     - Enforcer
     - Sidearm
+  - type: StealTarget
+    stealGroup: OfficerHandgun
 
+# consortium energy revolver
+- type: entity
+  name: UA - Corona 
+  parent: [BaseItem, BaseSyndicateContraband]
+  id: WeaponPistolCorona
+  description: A powerful energy pistol named afer the outer part of a star, it uses an esoteric red substance as ammunition. Although most of the parts of this gun are unknown to most, anyone could tell you that it is wasteful. 
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Pistols/Energy_Magnum.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    size: Small
+    shape:
+    - 0,0,1,0
+    - 0,1,0,1
+  - type: Clothing
+    sprite: _FarHorizons/Objects/Weapons/Guns/Pistols/Energy_Magnum.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: MagazineAmmoProvider
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineBatteryUA
+        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineBatteryUA
+        whitelistFailPopup: gun-magazine-whitelist-fail
+  - type: AmmoCounter
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+  - type: Gun
+    fireRate: 2
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser.ogg
+      params:
+        volume: 2.25
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: RestrictByUserTag
+    doestContain:
+    - Abductor
+    messages:
+    - abductor-gun-restricted-1
+  - type: StaticPrice
+    price: 1500
+  - type: Tag
+    tags:
+    - Sidearm
+
+- type: entity
+  name: UA - Corona 
+  parent: WeaponPistolCorona
+  id: WeaponPistolCoronaAP
+  suffix: AP
+  components:
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineBatteryUAAP
+        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineBatteryUA
+        whitelistFailPopup: gun-magazine-whitelist-fail
 #region =Civilian=
 
 
@@ -549,7 +654,7 @@
   description: A modified MK 58 designed for civilian use. It has been modifed to only accept civilian 9mm magazines, and to have a slower fire-rate.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Objects/Weapons/Guns/Pistols/mk58.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Pistols/mk58_civilian.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -560,14 +665,14 @@
     steps: 1
     zeroVisible: true
   - type: Clothing
-    sprite: _FarHorizons/Objects/Weapons/Guns/Pistols/mk58.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Pistols/mk58_civilian.rsi
   - type: Item
     size: Small
     shape:
     - 0,0,1,0
     - 0,1,0,1
     storedRotation: 0
-    sprite: _FarHorizons/Objects/Weapons/Guns/Pistols/mk58.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Pistols/mk58_civilian.rsi
     storedOffset: 0,-2
   - type: Gun
     fireRate: 3
@@ -595,16 +700,16 @@
           tags:
             - CartridgePistol
 
-#region Civilian MK78
+#region Civilian MK-T
 - type: entity
-  name: Civilian MK 78
+  name: Civilian MK-T
   parent: [BaseWeaponPistol, FlashlightLantern]
-  id: WeaponPistolMk78Civilian
-  description: A modified MK 57 designed for civilian use. It has been modifed to only accept civilian 9mm magazines, and to have a slower fire-rate.
+  id: WeaponPistolMKTCivilian
+  description: A modified MK-T designed for civilian use. It has been modifed to only accept civilian 9mm magazines, and to have a slower fire-rate.
   suffix: NT
   components:
   - type: Sprite
-    sprite: _FarHorizons/Objects/Weapons/Guns/Pistols/mk78.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Pistols/MKT.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -657,14 +762,14 @@
     steps: 4
     zeroVisible: true
   - type: Clothing
-    sprite: _FarHorizons/Objects/Weapons/Guns/Pistols/mk78.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Pistols/MKT.rsi
   - type: Item
     size: Small
     shape:
     - 0,0,1,0
     - 0,1,0,1
     storedRotation: 0
-    sprite: _FarHorizons/Objects/Weapons/Guns/Pistols/mk78.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Pistols/MKT.rsi
     storedOffset: 0,-2
   - type: Gun
     fireRate: 2.5
@@ -675,16 +780,16 @@
   - type: ChamberMagazineAmmoProvider
     autoEject: true
 
-#region Civilian MK59
+#region Civilian MK-S
 - type: entity
-  name: Civilian MK 59
+  name: Civilian MK-S
   parent: [BaseWeaponPistol]
-  id: WeaponPistolMk59Civilian
-  description:  A modified MK 57 designed for civilian use. It has been modifed to only accept civilian 9mm magazines, and to have a slower fire-rate.
+  id: WeaponPistolMKSCivilian
+  description:  A modified MK-S designed for civilian use. It has been modifed to only accept civilian 9mm magazines, and to have a slower fire-rate.
   suffix: NS
   components:
   - type: Sprite
-    sprite: _FarHorizons/Objects/Weapons/Guns/Pistols/mk59.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Pistols/MKS.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -695,14 +800,14 @@
     steps: 1
     zeroVisible: true
   - type: Clothing
-    sprite: _FarHorizons/Objects/Weapons/Guns/Pistols/mk59.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Pistols/MKS.rsi
   - type: Item
     size: Small
     shape:
     - 0,0,1,0
     - 0,1,0,1
     storedRotation: 0
-    sprite: _FarHorizons/Objects/Weapons/Guns/Pistols/mk59.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Pistols/MKS.rsi
     storedOffset: 0,-2
   - type: Gun
     fireRate: 2.5
@@ -741,4 +846,3 @@
         whitelist:
           tags:
             - CartridgePistol
-

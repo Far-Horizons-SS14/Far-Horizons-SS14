@@ -4,10 +4,10 @@ using Robust.Shared.Containers;
 
 namespace Content.Server._FarHorizons.AutoImplanter;
 
-public sealed class AutoImplanterSystem : EntitySystem
+public sealed partial class AutoImplanterSystem : EntitySystem
 {
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly ImplanterSystem _implanter = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private ImplanterSystem _implanter = default!;
 
     public override void Initialize()
     {

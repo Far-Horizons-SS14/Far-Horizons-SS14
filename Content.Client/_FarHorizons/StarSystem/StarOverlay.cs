@@ -6,7 +6,7 @@ using Robust.Client.Graphics;
 using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server._FarHorizons.StarSystem;
+namespace Content.Client._FarHorizons.StarSystem;
 
 public sealed class StarOverlay : Overlay
 {

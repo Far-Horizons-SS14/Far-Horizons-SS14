@@ -2,4 +2,4 @@
 
 namespace Content.Client._RMC14.Scoping;
 
-public sealed class ScopeSystem : SharedScopeSystem;
+public sealed partial class ScopeSystem : SharedScopeSystem;

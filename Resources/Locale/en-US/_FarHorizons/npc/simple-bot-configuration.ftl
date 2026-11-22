@@ -1,0 +1,11 @@
+simple-bot-configuration-verb = Configure bot
+simple-bot-configuration-title = Bot Configuration
+simple-bot-configuration-power = Power
+simple-bot-configuration-speech = Speech
+simple-bot-configuration-patrol = Patrol beacon
+simple-bot-configuration-patrol-mode = Idle behavior
+simple-bot-configuration-patrol-wander = Wander
+simple-bot-configuration-patrol-leash = Return to beacon
+simple-bot-configuration-patrol-route = Patrol route
+simple-bot-configuration-patrol-placeholder = Beacon name
+simple-bot-configuration-apply = Apply

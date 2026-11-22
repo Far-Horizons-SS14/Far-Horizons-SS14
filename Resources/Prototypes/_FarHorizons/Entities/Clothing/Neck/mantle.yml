@@ -81,3 +81,165 @@
     stealGroup: HeadCloak
   - type: StaticPrice
     price: 2000
+
+  #region High Command
+
+
+
+- type: entity
+  parent: [ ClothingNeckBase, BaseCentcommContraband ]
+  id: ClothingNeckMantleHCRank1
+  name: High Command Mantle 
+  description: A High Command officers mantle, If you’re not a member of high command you shouldn't have this.
+  suffix: NS , Unranked
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Neck/Cloaks/NeoSol/High_Command/High_Command_Mantle_Rank_1.rsi
+
+- type: entity
+  parent: [ ClothingNeckBase, BaseCentcommContraband ]
+  id: ClothingNeckMantleHCRank2
+  name: High Command Mantle 
+  description: A High Command officers mantle, This one is worn by lower middle management, if you’re not a member of high command you shouldn't have this.
+  suffix: NS , Game Admin
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Neck/Cloaks/NeoSol/High_Command/High_Command_Mantle_Rank_2.rsi
+
+- type: entity
+  parent: [ ClothingNeckBase, BaseCentcommContraband ]
+  id: ClothingNeckMantleHCRank3
+  name: High Command Mantle 
+  description: A High Command officers Mantle, This one is worn by middle middle management, if you’re not a member of high command you shouldn't have this.
+  suffix: NS , Senior Admin
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Neck/Cloaks/NeoSol/High_Command/High_Command_Mantle_Rank_3.rsi
+
+- type: entity
+  parent: [ ClothingNeckBase, BaseCentcommContraband ]
+  id: ClothingNeckMantleHCRank4
+  name: High Command Mantle 
+  description: A High Command officers mantle, This one is worn by upper middle management, if you’re not a member of high command you should expect to be under heavy scrutiny for a while.
+  suffix: NS , Staff Mentor
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Neck/Cloaks/NeoSol/High_Command/High_Command_Mantle_Rank_4.rsi
+
+- type: entity
+  parent: [ ClothingNeckBase, BaseCentcommContraband ]
+  id: ClothingNeckMantleHCRank5
+  name: High Command Mantle 
+  description: A High Command officers mantle, This one is worn by some of the highest ranking members of their department, if you’re not a member of high command you should expect to be in a disciplinary hearing soon.
+  suffix: NS , Leadership
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Neck/Cloaks/NeoSol/High_Command/High_Command_Mantle_Rank_5.rsi
+
+- type: entity
+  parent: [ ClothingNeckBase, BaseCentcommContraband ]
+  id: ClothingNeckMantleHCRank6
+  name: High Command Mantle 
+  description: A High Command officers mantle, This one is worn by the head of their department, If you’re not a member of high command you should expect to not make any money for a long time.
+  suffix: NS , Head of Department
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Neck/Cloaks/NeoSol/High_Command/High_Command_Mantle_Rank_6.rsi
+
+#region Central Command
+
+- type: entity
+  parent: [ ClothingNeckBase, BaseCentcommContraband ]
+  id: ClothingNeckMantleCCRank1
+  name: Central Command Mantle 
+  description: A Central Command officers mantle, If you’re not a member of central command you shouldn't have this.
+  suffix: NT , Unranked
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Neck/Cloaks/CentComm/Central_Command_Mantle_Rank_1.rsi
+
+- type: entity
+  parent: [ ClothingNeckBase, BaseCentcommContraband ]
+  id: ClothingNeckMantleCCRank2
+  name: Central Command Mantle 
+  description: A Central Command officers mantle, This one is worn by lower middle management, If you’re not a member of central command you shouldn't have this.
+  suffix: NT , Game Admin
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Neck/Cloaks/CentComm/Central_Command_Mantle_Rank_2.rsi
+
+- type: entity
+  parent: [ ClothingNeckBase, BaseCentcommContraband ]
+  id: ClothingNeckMantleCCRank3
+  name: Central Command Mantle 
+  description: A Central Command officers mantle, This one is worn by middle middle management, If you’re not a member of central command you shouldn't have this.
+  suffix: NT , Senior Admin
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Neck/Cloaks/CentComm/Central_Command_Mantle_Rank_3.rsi
+
+- type: entity
+  parent: [ ClothingNeckBase, BaseCentcommContraband ]
+  id: ClothingNeckMantleCCRank4
+  name: Central Command Mantle 
+  description: A Central Command officers mantle, This one is worn by upper middle management, If you’re not a member of central command you should expect to be under heavy scrutiny for a while.
+  suffix: NT , Staff Mentor
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Neck/Cloaks/CentComm/Central_Command_Mantle_Rank_4.rsi
+
+- type: entity
+  parent: [ ClothingNeckBase, BaseCentcommContraband ]
+  id: ClothingNeckMantleCCRank5
+  name: Central Command Mantle 
+  description: A Central Command officers mantle, This one is worn by some of the highest ranking members of their department, If you’re not a member of central command you should expect to be in a disciplinary hearing soon.
+  suffix: NT , Leadership
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Neck/Cloaks/CentComm/Central_Command_Mantle_Rank_5.rsi
+
+- type: entity
+  parent: [ ClothingNeckBase, BaseCentcommContraband ]
+  id: ClothingNeckMantleCCRank6
+  name: Central Command Mantle 
+  description: A Central Command officers mantle, This one is worn by the head of their department, If you’re not a member of central command you should expect to not make any money for a long time.
+  suffix: NT , Head of Department
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Neck/Cloaks/CentComm/Central_Command_Mantle_Rank_6.rsi
+#region ## USSP ##
+- type: entity
+  parent: [ClothingNeckBase, BaseSovietContraband]
+  id: ClothingNeckMantleAdmiral
+  name: Admiral's Mantle
+  suffix: USSP
+  description: A mantle that shows off the status of an Admiral of a USSP station.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Neck/Mantles/USSP/admiralmantle.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Neck/Mantles/USSP/admiralmantle.rsi
+
+- type: entity
+  parent: [ClothingNeckBase, BaseSovietContraband]
+  id: ClothingNeckMantleCommissar
+  name: Commissar's Mantle
+  suffix: USSP
+  description: A mantle to given to the best performing Commissars.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Neck/Mantles/USSP/commissarmantle.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Neck/Mantles/USSP/commissarmantle.rsi
+
+- type: entity
+  parent: [ClothingNeckBase, BaseSovietContraband]
+  id: ClothingNeckMantleImperialOfficerFormal
+  name: Imperial Officer's Formal Mantle
+  suffix: USSP
+  description: A formal mantle from a Imperial Officer, one of the highest rankings in the USSP.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Neck/Mantles/USSP/imperialofficerformalmantle.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Neck/Mantles/USSP/imperialofficerformalmantle.rsi

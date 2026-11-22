@@ -20,11 +20,11 @@ namespace Content.Server.Power.EntitySystems
     /// <summary>
     /// Allows cables to connect over docks.
     /// </summary>
-    public sealed class DockCableSystem : EntitySystem
+    public sealed partial class DockCableSystem : EntitySystem
     {
         #region Dependencies
 
-        [Dependency] public readonly SharedMapSystem _mapSystem = default!;
+        [Dependency] public SharedMapSystem _mapSystem = default!;
         [Dependency] private IConfigurationManager _configurationManager = default!;
         private readonly HashSet<EntityUid> _dockConnectionsChecked = new();
 
@@ -66,8 +66,8 @@ namespace Content.Server.Power.EntitySystems
             foreach (var cableA in cablesA)
             foreach (var cableB in cablesB)
             {
-                if (EntityManager.GetComponent<TransformComponent>(cableA.Owner).Anchored &&
-                    EntityManager.GetComponent<TransformComponent>(cableB.Owner).Anchored &&
+                if (Comp<TransformComponent>(cableA.Owner).Anchored &&
+                    Comp<TransformComponent>(cableB.Owner).Anchored &&
                     CanConnect(cableA, cableB))
                 {
                     cableA.AddAlwaysReachable(cableB);
@@ -261,7 +261,7 @@ namespace Content.Server.Power.EntitySystems
 
         public IEnumerable<(EntityUid, EntityUid)> GetAllDockedPairs()
         {
-            foreach (var dockEntity in EntityManager.EntityQuery<DockingComponent>())
+            foreach (var dockEntity in EntityQuery<DockingComponent>())
             {
                 var dockA = dockEntity.Owner;
                 if (dockEntity.DockedWith is not { } dockB)
@@ -293,7 +293,7 @@ namespace Content.Server.Power.EntitySystems
 
         public string GetCableDebugInfo(EntityUid entity)
         {
-            if (!EntityManager.TryGetComponent<NodeContainerComponent>(entity, out var nodeContainer))
+            if (!TryComp<NodeContainerComponent>(entity, out var nodeContainer))
                 return "No NodeContainerComponent.";
             foreach (var node in nodeContainer.Nodes.Values)
             {
@@ -311,7 +311,7 @@ namespace Content.Server.Power.EntitySystems
 
         public string GetTileDebugInfo(EntityUid gridId, Vector2i tile)
         {
-            if (!EntityManager.TryGetComponent<MapGridComponent>(gridId, out var grid))
+            if (!TryComp<MapGridComponent>(gridId, out var grid))
                 return $"Grid {gridId} not found.";
             var ents = _mapSystem.GetAnchoredEntities(gridId, grid, tile).ToList();
             if (ents.Count == 0)
@@ -324,8 +324,8 @@ namespace Content.Server.Power.EntitySystems
 
         public string TestCableConnection(EntityUid cableAUid, EntityUid cableBUid)
         {
-            if (!EntityManager.TryGetComponent<NodeContainerComponent>(cableAUid, out var nodeA) ||
-                !EntityManager.TryGetComponent<NodeContainerComponent>(cableBUid, out var nodeB))
+            if (!TryComp<NodeContainerComponent>(cableAUid, out var nodeA) ||
+                !TryComp<NodeContainerComponent>(cableBUid, out var nodeB))
                 return "One or both entities are not cables.";
             CableNode? cableA = nodeA.Nodes.Values.OfType<CableNode>().FirstOrDefault();
             CableNode? cableB = nodeB.Nodes.Values.OfType<CableNode>().FirstOrDefault();
@@ -352,8 +352,8 @@ namespace Content.Server.Power.EntitySystems
                 foreach (var cableB in cablesB)
                 {
                     if (!anchoredA.Contains(cableA.Owner) || !anchoredB.Contains(cableB.Owner) ||
-                        !EntityManager.GetComponent<TransformComponent>(cableA.Owner).Anchored ||
-                        !EntityManager.GetComponent<TransformComponent>(cableB.Owner).Anchored) continue;
+                        !Comp<TransformComponent>(cableA.Owner).Anchored ||
+                        !Comp<TransformComponent>(cableB.Owner).Anchored) continue;
                     var reachableA = cableA.GetAlwaysReachable();
                     var reachableB = cableB.GetAlwaysReachable();
                     if (reachableA != null && reachableA.Contains(cableB))
@@ -364,8 +364,8 @@ namespace Content.Server.Power.EntitySystems
                 foreach (var cableA in cablesA)
                 foreach (var cableB in cablesB)
                     if (anchoredA.Contains(cableA.Owner) && anchoredB.Contains(cableB.Owner) &&
-                        EntityManager.GetComponent<TransformComponent>(cableA.Owner).Anchored &&
-                        EntityManager.GetComponent<TransformComponent>(cableB.Owner).Anchored &&
+                        Comp<TransformComponent>(cableA.Owner).Anchored &&
+                        Comp<TransformComponent>(cableB.Owner).Anchored &&
                         CanConnect(cableA, cableB))
                     {
                         cableA.AddAlwaysReachable(cableB);

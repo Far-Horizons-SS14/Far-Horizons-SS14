@@ -12,10 +12,10 @@ namespace Content.Server._FarHorizons.Factions;
 
 public sealed partial class ServerFactionManager : SharedFactionManager, IServerFactionManager
 {
-    [Dependency] private readonly IServerNetManager _netManager = default!;
-    [Dependency] private readonly IEntitySystemManager _entitySystem = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly ILogManager _logManager = default!;
+    [Dependency] private IServerNetManager _netManager = default!;
+    [Dependency] private IEntitySystemManager _entitySystem = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private ILogManager _logManager = default!;
 
     private ISawmill _sawmill = default!;
 

@@ -312,7 +312,7 @@ namespace Content.Client.Construction
             }
             else if (targetProto.Components.TryGetValue("Sprite", out _))
             {
-                var dummy = EntityManager.SpawnEntity(targetProtoId, MapCoordinates.Nullspace);
+                var dummy = Spawn(targetProtoId, MapCoordinates.Nullspace);
                 var targetSprite = EnsureComp<SpriteComponent>(dummy);
                 EntityManager.System<AppearanceSystem>().OnChangeData(dummy, targetSprite);
 
@@ -382,7 +382,7 @@ namespace Content.Client.Construction
         {
             // Count ghosts at the given location and allow up to the maximum allowed per tile
             var ghostCount = _ghosts.Values.Count(ghost =>
-                EntityManager.GetComponent<TransformComponent>(ghost).Coordinates.Equals(loc));
+                Comp<TransformComponent>(ghost).Coordinates.Equals(loc));
 
             return ghostCount >= _configurationManager.GetCVar(StarlightCCVars.ConstructionMaxGhostsPerTile);
         }

@@ -1,3 +1,4 @@
+using System.Numerics.Tensors;
 using System.Runtime.CompilerServices;
 using Content.Shared.Atmos.Prototypes;
 using Content.Shared.Atmos.Reactions;
@@ -110,7 +111,7 @@ public abstract partial class SharedAtmosphereSystem
     [PublicAPI]
     public void GetFlammableMoles(GasMixture mixture, float[] buffer)
     {
-        NumericsHelpers.Multiply(mixture.Moles, GasOxidiserFuelMask, buffer);
+        TensorPrimitives.Multiply(mixture.Moles, GasOxidiserFuelMask, buffer);
     }
 
     /// <summary>
@@ -122,7 +123,7 @@ public abstract partial class SharedAtmosphereSystem
     /// considered ignitable, for both oxidizer and fuel.</param>
     /// <returns>True if the <see cref="GasMixture"/> is ignitable, otherwise, false.</returns>
     [PublicAPI]
-    public bool IsMixtureIgnitable(GasMixture mixture, float epsilon = Atmospherics.Epsilon)
+    public bool IsMixtureIgnitable(GasMixture mixture, float epsilon = 0.5f) // Far Horizons change default epsilon
     {
         return IsMixtureFuel(mixture, epsilon) && IsMixtureOxidizer(mixture, epsilon);
     }
@@ -135,7 +136,7 @@ public abstract partial class SharedAtmosphereSystem
     /// is considered fuel.</param>
     /// <returns>True if the <see cref="GasMixture"/> is fuel, otherwise, false.</returns>
     [PublicAPI]
-    public abstract bool IsMixtureFuel(GasMixture mixture, float epsilon = Atmospherics.Epsilon);
+    public abstract bool IsMixtureFuel(GasMixture mixture, float epsilon = 0.01f); // Far Horizons change default epsilon
 
     /// <summary>
     /// Determines if a <see cref="GasMixture"/> has oxidizer gases in it or not.
@@ -213,7 +214,7 @@ public abstract partial class SharedAtmosphereSystem
             }
         }
 
-        NumericsHelpers.Add(receiver.Moles, giver.Moles);
+        TensorPrimitives.Add(receiver.Moles, giver.Moles, receiver.Moles);
     }
 
     /// <summary>

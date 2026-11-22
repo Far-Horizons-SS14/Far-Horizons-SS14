@@ -1,0 +1,105 @@
+#region NanoTrasen
+
+
+- type: entity
+  parent: BaseFigurine
+  id: ToyFigurineHeadOfSecurity
+  name: Head of Security Figure
+  suffix: NT
+  description: A figurine depicting the glorious head of the Security department.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Fun/figurines.rsi
+    state: hos
+  - type: SpeakOnTrigger
+    pack: FigurinesHoS
+
+- type: entity
+  parent: BaseFigurine
+  id: ToyFigurineWarden
+  name: Warden Figure
+  suffix: NT
+  description: A figurine depicting a Warden, ready to jail someone at any moment.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Fun/figurines.rsi
+    state: warden
+  - type: SpeakOnTrigger
+    pack: FigurinesWarden
+
+- type: entity
+  parent: BaseFigurine
+  id: ToyFigurineDetective
+  name: Detective Figure
+  suffix: NT
+  description: A figurine depicting a Detective wearing their iconic trench coat.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Fun/figurines.rsi
+    state: detective
+  - type: SpeakOnTrigger
+    pack: FigurinesDetective
+
+- type: entity
+  parent: BaseFigurine
+  id: ToyFigurineSecurity
+  name: Security Officer Figure
+  suffix: NT
+  description: A figurine depicting a Security Officer holding a stunbaton, ready to defend the station.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Fun/figurines.rsi
+    state: security
+  - type: SpeakOnTrigger
+    pack: FigurinesSecurity
+
+#region NeoSol
+
+
+- type: entity
+  parent: BaseFigurine
+  id: ToyFigurineMarshal
+  name: Marshal Figure
+  suffix: NS
+  description: A figurine depicting the glorious leader of the Security department.
+  components:
+  - type: Sprite
+    state: hos
+  - type: SpeakOnTrigger
+    pack: FigurinesHoS
+
+- type: entity
+  parent: BaseFigurine
+  id: ToyFigurineConstable
+  name: Constable Figure
+  suffix: NS
+  description: A figurine depicting a Constable, ready to enforce the law at any moment.
+  components:
+  - type: Sprite
+    state: warden
+  - type: SpeakOnTrigger
+    pack: FigurinesWarden
+
+- type: entity
+  parent: BaseFigurine
+  id: ToyFigurineInspector
+  name: Inspector Figure
+  suffix: NS
+  description: A figurine depicting an Inspector, ready to investigate any wrongdoing.
+  components:
+  - type: Sprite
+    state: detective
+  - type: SpeakOnTrigger
+    pack: FigurinesDetective
+
+- type: entity
+  parent: BaseFigurine
+  id: ToyFigurineEnforcer
+  name: Enforcer Figure
+  suffix: NS
+  description: A figurine depicting an Enforcer, ready to maintain order.
+  components:
+  - type: Sprite
+    state: security
+  - type: SpeakOnTrigger
+    pack: FigurinesSecurity

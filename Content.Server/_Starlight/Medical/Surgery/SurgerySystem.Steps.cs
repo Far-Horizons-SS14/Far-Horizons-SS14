@@ -23,12 +23,12 @@ namespace Content.Server.Starlight.Medical.Surgery;
 //However, I don’t want to touch the official systems, so I need to come up with extensions for them.
 public sealed partial class SurgerySystem : SharedSurgerySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly StarlightEntitySystem _entity = default!;
-    [Dependency] private readonly SharedBloodstreamSystem _bloodstreamSystem = default!;
-    [Dependency] private readonly SharedRottingSystem _rottingSystem = default!;
-    [Dependency] private readonly SleepingSystem _sleeping = default!;
-    [Dependency] private readonly IComponentFactory _compFactory = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private StarlightEntitySystem _entity = default!;
+    [Dependency] private SharedBloodstreamSystem _bloodstreamSystem = default!;
+    [Dependency] private SharedRottingSystem _rottingSystem = default!;
+    [Dependency] private SleepingSystem _sleeping = default!;
+    [Dependency] private IComponentFactory _compFactory = default!;
 
     public void InitializeSteps()
     {

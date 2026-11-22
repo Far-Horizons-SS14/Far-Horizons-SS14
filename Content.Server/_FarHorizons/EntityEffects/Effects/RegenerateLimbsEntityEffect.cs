@@ -15,11 +15,11 @@ namespace Content.Server.EntityEffects.Effects;
 /// <inheritdoc cref="EntityEffectSystem{T,TEffect}"/>
 public sealed partial class RegenerateEntityEffectSystem : EntityEffectSystem<RegrowableLimbsComponent, RegenerateLimbs>
 {
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly IComponentFactory _componentFactory = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly SharedVisualBodySystem _visualBody = default!;
-    [Dependency] private readonly SharedJitteringSystem _jitter = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private IComponentFactory _componentFactory = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private SharedVisualBodySystem _visualBody = default!;
+    [Dependency] private SharedJitteringSystem _jitter = default!;
     protected override void Effect(Entity<RegrowableLimbsComponent> ent, ref EntityEffectEvent<RegenerateLimbs> args)
     {
         if(!TryComp<BodyComponent>(ent.Owner, out var bodyComp) || bodyComp.Organs == null || !TryComp<InitialBodyComponent>(ent.Owner, out var iBodyComp))

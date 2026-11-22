@@ -16,7 +16,7 @@ using static Robust.Client.UserInterface.Controls.LayoutContainer;
 namespace Content.Client._Starlight.Railroading;
 
 [UsedImplicitly]
-public sealed class CardSelectionEui : BaseEui
+public sealed partial class CardSelectionEui : BaseEui
 {
     private List<IDisposable> _disposables = [];
     private static readonly Vector2 _cardSize = new(264, 370);
@@ -124,7 +124,7 @@ public sealed class CardSelectionEui : BaseEui
                 .WithHorizontalExp()
                 .WithVAlignment(Control.VAlignment.Bottom);
 
-            // To-do: rework the layout once it becomes clear why the alignment isn’t working.
+            // To-do: rework the layout once it becomes clear why the alignment isnï¿½t working.
             panel.Margin = new Thickness(0, 185, 0, 0);
             panel.MinSize = _cardDescSize;
             panel.MaxSize = _cardDescSize;

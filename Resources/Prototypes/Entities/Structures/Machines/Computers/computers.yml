@@ -34,10 +34,6 @@
           2: { state: alert-1 }
           3: { state: alert-2 }
           4: { state: alert-2 }
-      enum.WiresVisuals.MaintenancePanelState:
-        enum.WiresVisualLayers.MaintenancePanel:
-          True: { visible: false }
-          False: { visible: true }
       # Starlight Start
       enum.EdgeConnectionVisuals.ConnectionMask:
         computerLayerBody:
@@ -907,6 +903,7 @@
   parent: ComputerComms
   id: CentcommComputerComms
   name: Central Command Communications Computer #Far Horizons - The Great Capitalization Crusade
+  suffix: NT #FH
   description: A computer used to make world wide announcements via keyboard. The superior cousin of the regular communications computer.
   components:
   - type: Sprite
@@ -1064,6 +1061,7 @@
   - type: GuideHelp
     guides:
     - Cargo
+  - type: CredstickDirectTransferTarget # Far Horizons
 
 # Request console variants.
 - type: entity
@@ -1139,6 +1137,7 @@
   parent: ComputerCargoOrders
   name: Science Request Computer #Far Horizons - The Great Capitalization Crusade
   description: Used by the science department to order supplies.
+  suffix: NT #FH
   components:
   - type: Sprite
     sprite: _FarHorizons/Structures/Machines/Computers/scirequest.rsi #Far Horizons
@@ -1207,6 +1206,7 @@
   parent: ComputerCargoOrders
   name: Service Request Computer #Far Horizons - The Great Capitalization Crusade
   description: Used by the service department to order supplies.
+  suffix: NT #FH
   components:
   - type: Sprite
     layers:
@@ -1429,10 +1429,6 @@
             False: { visible: false }
           computerLayerKeys:
             True: { visible: true, shader: unshaded }
-            False: { visible: true }
-        enum.WiresVisuals.MaintenancePanelState:
-          enum.WiresVisualLayers.MaintenancePanel:
-            True: { visible: false }
             False: { visible: true }
         # Starlight Start
         enum.EdgeConnectionVisuals.ConnectionMask:
@@ -1883,10 +1879,6 @@
           Occupied: { state: ai-fixer-full }
           Rebooting: { state: ai-fixer-404 }
           Dead: { state: ai-fixer-404 }
-      enum.WiresVisuals.MaintenancePanelState:
-        enum.WiresVisualLayers.MaintenancePanel:
-          True: { visible: false }
-          False: { visible: true }
       # Starlight Start
       enum.EdgeConnectionVisuals.ConnectionMask:
         computerLayerBody:

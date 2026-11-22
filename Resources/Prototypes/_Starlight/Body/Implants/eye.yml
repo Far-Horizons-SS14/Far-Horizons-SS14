@@ -40,6 +40,7 @@
       - Inorganic
       - Silicon
   # FH start
+      - Robotic
   - type: RoundstartImplantable
     cost: 1
     iconScale: 1.3
@@ -104,9 +105,9 @@
     - type: ShowCriminalRecordIcons
 
 - type: entity
-  id: EyeImplantSyndie
-  name: Syndicate Eye Implant #FH
-  description: Enables you to see information about station crew, humanoids and syndie without any glasses.
+  id: EyeImplantAgent #FH - changed ID from EyeImplantSyndie
+  name: Agent Eye Implant #FH
+  description: Enables you to see information about station crew, humanoids, and agents without any glasses. #FH
   parent: [ BaseEntityEyeImplant, BaseSyndicateContraband ]
   components:
   - type: Sprite

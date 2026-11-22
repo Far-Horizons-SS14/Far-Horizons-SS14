@@ -1,0 +1,68 @@
+- type: entity
+  id: FusionReactorTorus
+  parent: BaseStructure
+  name: Fusion Reactor Torus
+  description: A piece of a Fusion Reactor's magnetic torus. The only thing between you and the power of the sun.
+  components:
+  - type: Sprite
+    drawdepth: Walls
+    sprite: _FarHorizons/Structures/Power/Generation/FusionGenerator/fusion_reactor_torus.rsi
+    state: shield_0
+    layers:
+    - state: shield_0
+    - map: ["enum.FusionReactorTorusVisualLayers.Magnet"]
+      state: core
+      visible: false
+    - map: ["enum.FusionReactorTorusVisualLayers.Superconducting"]
+      state: core_weak
+      shader: unshaded
+      visible: false
+  - type: GenericVisualizer
+    visuals:
+      enum.FusionReactorTorusVisuals.Magnet:
+        enum.FusionReactorTorusVisualLayers.Magnet:
+          True: { visible: true }
+          False: { visible: false }
+      enum.FusionReactorTorusVisuals.Superconducting:
+        enum.FusionReactorTorusVisualLayers.Superconducting:
+          True: { visible: true }
+          False: { visible: false }
+  - type: Appearance
+  - type: IconSmooth
+    mode: CardinalFlags
+    base: shield_
+    key: fusion_torus
+  - type: InteractionOutline
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: FusionReactorTorus
+    thermalMass: 86000 # 200kg of YBaCuO
+    tC: 93 # Critical temperature of YBaCuO
+    loss: 0.01
+  - type: FusionReactorPowerDraw
+    priority: 0
+  - type: NodeContainer
+    examinable: true
+    nodes:
+      reactor:
+        !type:DirectionalNode
+        nodeGroupID: FusionReactor
+        nodeDirection: Fourway
+  - type: Construction
+    graph: FusionReactorTorus
+    node: fusionReactorTorus
+  - type: AmbientSound
+    enabled: false
+    volume: -5
+    range: 12
+    sound:
+      path: /Audio/_FarHorizons/Ambience/Objects/plasma_engine.ogg

@@ -15,7 +15,7 @@ public sealed partial class SeparatedChatGameScreen : InGameScreen
     public const string StyleClassChatContainer = "ChatContainer";
     public const string StyleClassChatOutput = "ChatOutput";
 
-    [Dependency] private readonly IConfigurationManager _cfg = default!; // Starlight
+    [Dependency] private IConfigurationManager _cfg = default!; // Starlight
 
     public SeparatedChatGameScreen()
     {
@@ -30,7 +30,7 @@ public sealed partial class SeparatedChatGameScreen : InGameScreen
         SetAnchorAndMarginPreset(TopLeftContainer, LayoutPreset.TopLeft, margin: 10);
         SetAnchorAndMarginPreset(Ghost, LayoutPreset.BottomWide, margin: 80);
         SetAnchorAndMarginPreset(Hotbar, LayoutPreset.BottomWide, margin: 5);
-        SetAnchorAndMarginPreset(LimbTargetting, LayoutPreset.BottomRight, margin: 5); // Far Horizons
+        SetAnchorAndMarginPreset(LimbHealthContainer, LayoutPreset.BottomRight, margin: 5); // Far Horizons
         SetAnchorAndMarginPreset(Alerts, LayoutPreset.CenterRight, margin: 10);
 
         ScreenContainer.OnSplitResizeFinished += () =>

@@ -92,7 +92,7 @@ public abstract partial class SharedSurgerySystem
     {
         if (args.Cancelled) return;
         
-        if (EntityManager.TryGetComponent<HumanoidProfileComponent>(args.Body, out var humanoidProfileComponent))
+        if (TryComp<HumanoidProfileComponent>(args.Body, out var humanoidProfileComponent))
         {
             if (ent.Comp.SpeciesBlacklist.Contains(humanoidProfileComponent.Species))
             {

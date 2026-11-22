@@ -4,7 +4,7 @@ using Content.Shared._Starlight.Thaven;
 
 namespace Content.Client._Starlight.Thaven.Eui;
 
-public sealed class ThavenMoodsEui : BaseEui
+public sealed partial class ThavenMoodsEui : BaseEui
 {
     private ThavenMoodUi _thavenMoodUi;
     private NetEntity _target;

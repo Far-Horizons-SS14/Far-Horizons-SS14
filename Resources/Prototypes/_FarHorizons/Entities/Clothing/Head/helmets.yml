@@ -1,6 +1,6 @@
 # region ## GSL ##
 - type: entity
-  parent: [ ClothingHeadHelmetBase, BaseSalvageContraband ]
+  parent: [ ClothingHeadHelmetArmoredBase, BaseSalvageContraband ]
   id: ClothingHeadHelmetSalvage
   name: Salvage Helmet
   description: A generic helmet given to all of GSL's salvage teams. Clearly the money that was supposed to armor it went somewhere's else.
@@ -16,7 +16,7 @@
 - type: entity
   parent: [ ClothingHeadHelmetBase, BaseSalvageContraband ]
   id: ClothingHeadHelmetSalvageMedium
-  name: Salvage Armored Helmet
+  name: Armored Salvage Helmet
   description: A generic helmet given to all of GSL's salvage teams but this time armored.
   components:
   - type: Sprite
@@ -41,18 +41,20 @@
       Head:
         flatReductions:
           Slash: 2
-          Piercing: 3
+          Piercing: 2
+          Heat: 1
         coefficients:
-          Blunt: 0.85
-          Slash: 0.8
-          Piercing: 0.7
+          Blunt: 0.7
+          Slash: 0.7
+          Piercing: 0.75
+          Heat: 0.8
   - type: ExplosionResistance
     damageCoefficient: 0.80
     
 - type: entity
   parent: ClothingHeadHelmetSalvageMedium
   id: ClothingHeadHelmetSalvageMediumGoliath
-  name: Goliath Salvage Armored Helmet
+  name: Goliath Armored Salvage Helmet
   description: A generic helmet given to all of GSL's salvage teams but this time armored and some extra Goliath flesh.
   components:
   - type: Sprite
@@ -63,16 +65,16 @@
     limbs:
       Head:
         flatReductions:
-          Slash: 2
+          Slash: 3
           Piercing: 3
-          Heat: 3
+          Heat: 2
         coefficients:
-          Blunt: 0.85
-          Slash: 0.7
-          Piercing: 0.7
-          Heat: 0.7
-          Radiation: 0.7
-          Caustic: 0.7
+          Blunt: 0.65
+          Slash: 0.6
+          Piercing: 0.6
+          Heat: 0.75
+          Caustic: 0.8
+          Radiation: 0.75
   - type: Construction
     graph: SalvageHelmetGoliath
     node: salvageHelmetGoliath
@@ -80,7 +82,7 @@
 - type: entity
   parent: ClothingHeadHelmetSalvageMedium
   id: ClothingHeadHelmetSalvageHeavy
-  name: Heavy Salvage Armored Helmet
+  name: Heavy Armored Salvage Helmet
   description: A generic helmet given to all of GSL's salvage teams but this time extra armored.
   components:
   - type: Sprite
@@ -105,11 +107,13 @@
       Head:
         flatReductions:
           Slash: 3
-          Piercing: 4
+          Piercing: 2
+          Heat: 2
         coefficients:
-          Blunt: 0.75
+          Blunt: 0.65
           Slash: 0.65
-          Piercing: 0.6    
+          Piercing: 0.75
+          Heat: 0.75    
   - type: BreathMask
   - type: IngestionBlocker
   - type: IdentityBlocker
@@ -117,7 +121,7 @@
 - type: entity
   parent: ClothingHeadHelmetSalvageMedium
   id: ClothingHeadHelmetSalvageHeavyGoliath
-  name: Goliath Heavy Salvage Armored Helmet
+  name: Heavy Goliath Armored Salvage Helmet
   description: A generic helmet given to all of GSL's salvage teams but this time extra armored and some Goliath flesh.
   components:
   - type: Sprite
@@ -130,13 +134,13 @@
         flatReductions:
           Slash: 4
           Piercing: 4
-          Heat: 4
+          Heat: 3
         coefficients:
-          Blunt: 0.75
+          Blunt: 0.6
           Slash: 0.6
           Piercing: 0.6
-          Heat: 0.6
-          Caustic: 0.65
+          Heat: 0.65
+          Caustic: 0.7
           Radiation: 0.65
   - type: Construction
     graph: SalvageHeavyHelmetGoliath
@@ -144,11 +148,61 @@
 
 #region ## NanoTrasen ##
 
+#region Lambda raid suit helmet
+- type: entity
+  parent: [ BaseSyndicateContraband, ClothingHeadHelmetBase ]
+  id: ClothingHeadHelmetLambdaRaid
+  name: Lambda Raid Helmet "Apollo"
+  suffix: NT
+  description: An armored helmet for use with the "Apollo" raid suit. Very stylish.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Helmets/hardliner_raid.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Helmets/hardliner_raid.rsi
+    clothingVisuals:
+      head:
+        - state: equipped-HELMET
+      head-vox:
+        - state: equipped-HELMET-vox
+      head-resomi:
+        - state: equipped-HELMET-resomi
+      head-avali:
+        - state: equipped-HELMET-avali
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.85
+        Heat: 0.85
+  - type: LimbArmor
+    limbs:
+      Head: {}
+  - type: HideLayerClothing
+    layers:
+      Hair: HEAD
 
 
 
 
 
+
+#region Security
+
+- type: entity
+  parent: [ClothingHeadHelmetArmoredBase, BaseSecurityContraband ]
+  id: ClothingHeadHelmetSecurityDeputy
+  name: Deputy Helmet
+  suffix: NT
+  description: The hat doesn't come off.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Helmets/deputy_hat_armored.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Helmets/deputy_hat_armored.rsi
 
 #region ## NeoSol ##
 
@@ -198,6 +252,18 @@
   - type: BreathMask
 
 #region Security
+
+- type: entity
+  parent: [ClothingHeadHelmetArmoredBase, BaseSecurityContraband ]
+  id: ClothingHeadHelmetSecurityDeputySyndi
+  name: Deputy Helmet
+  suffix: NS
+  description: The hat doesn't come off.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Helmets/NeoSol/deputy_hat_armored_red.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Helmets/NeoSol/deputy_hat_armored_red.rsi
 
 - type: entity
   parent: [ClothingHeadHelmetArmoredBase, BaseSecurityContraband, ClothingHeadSuitWithLightBase ]

@@ -1,8 +1,9 @@
 # Telebonds
 # Weapons
-akms-weapon-desc = An old-fashioned, hard to kill design. Still in use today. Uses .30 ammo.
+akms-weapon-desc = An old-fashioned, hard to kill design. Still in use today. Uses 7.62 ammo.
+dp-desc = From RA-TA-TA-TA with love. Uses 7.62 ammo.
 makarov-desc = Cho? Gun is gun comrade. Uses 9mm ammo.
-mosin-desc = Enemies at the airlock. Uses .44 magnum ammo.
+mosin-desc = Enemies at the airlock. Uses 7.92 ammo.
 ppsh-desc = The legendary PPSH 59. Inaccurate as hell, but delivers it. Uses 9mm ammo.
 
 # Wearables

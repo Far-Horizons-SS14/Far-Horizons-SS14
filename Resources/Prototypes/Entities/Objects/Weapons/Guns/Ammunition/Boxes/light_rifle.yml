@@ -1,16 +1,16 @@
 - type: entity
   abstract: true
   parent: BaseItem
-  id: BaseMagazineBoxLightRifle
-  name: ammunition box (.30 rifle)
-  description: 120 round box of .30 Rifle ammunition. #Far Horizons
+  id: BaseMagazineBoxRifle762 #FH
+  name: ammunition box (7.62 rifle) #FH
+  description: 120 round box of 7.62 Rifle ammunition. #Far Horizons
   components:
   - type: BallisticAmmoProvider
     mayTransfer: true
     whitelist:
       tags:
-        - CartridgeLightRifle
-    proto: CartridgeLightRifleSP
+        - CartridgeRifle762 #FH
+    proto: CartridgeRifle762SP #FH
     capacity: 120 #FH - 4x mag size
   - type: Item
     size: Small
@@ -18,42 +18,24 @@
     containers:
       ballistic-ammo: !type:Container
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Ammunition/Boxes/light_rifle.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Boxes/Rifle/7.62.rsi #FH
   - type: MagazineVisuals
     magState: mag
-    steps: 4
+    steps: 9 #FH
     zeroVisible: false
   - type: Appearance
 
 # Boxes
 - type: entity
-  parent: BaseMagazineBoxLightRifle
-  id: MagazineBoxLightRifleBig
-  name: ammunition box (.30 rifle SP)
-  description: 200 round box of .30 ammunition. #Far Horizons
+  parent: BaseMagazineBoxRifle762 #FH
+  id: MagazineBoxRifle762Big #FH
+  name: ammunition box (7.62 rifle SP) #FH
+  description: 200 round box of 7.62 ammunition. #Far Horizons
   components:
   - type: BallisticAmmoProvider
     capacity: 200
-    proto: CartridgeLightRifleSP
-  - type: Sprite
-    layers:
-    - state: base-b
-      map: ["enum.GunVisualLayers.Base"]
-    - state: magb-1
-      map: ["enum.GunVisualLayers.Mag"]
-  - type: MagazineVisuals
-    magState: magb
-    steps: 4
-    zeroVisible: false
-  - type: Appearance
-
-- type: entity
-  parent: BaseMagazineBoxLightRifle
-  id: MagazineBoxLightRifleSP
-  name: ammunition box (.30 rifle SP)
-  components:
-  - type: BallisticAmmoProvider
-    proto: CartridgeLightRifleSP
+#FH Edit - Start
+    proto: CartridgeRifle762SP
   - type: Sprite
     layers:
     - state: base
@@ -61,100 +43,77 @@
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
     - state: sp
+#  - type: MagazineVisuals
+#    magState: magb
+#    steps: 4
+#    zeroVisible: false
+#FH Edit - End
+  - type: Appearance
+
+- type: entity
+  parent: BaseMagazineBoxRifle762 #FH
+  id: MagazineBoxRifle762SP #FH
+  name: ammunition box (7.62 rifle SP) #FH
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle762SP #FH
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: sp #FH
 # Starlight-start
   - type: Tag
     tags:
-    - MagazineBoxLightRifle
+    - MagazineBoxRifle762 #FH
 # Starlight-end
 
 - type: entity
-  parent: BaseMagazineBoxLightRifle
-  id: MagazineBoxLightRifleHP
-  name: ammunition box (.30 rifle HP)
+  parent: BaseMagazineBoxRifle762 #FH
+  id: MagazineBoxRifle762Practice #FH
+  name: ammunition box (7.62 rifle practice) #FH
+  description: A cardboard box of 7.62 rifle rounds. Intended to hold harmless practice ammunition. #FH
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeLightRifleHP
+    proto: CartridgeRifle762Practice #FH
   - type: Sprite
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
+    - state: practice #FH
 
 - type: entity
-  parent: BaseMagazineBoxLightRifle
-  id: MagazineBoxLightRifleFMJ
-  name: ammunition box (.30 rifle FMJ)
+  parent: BaseMagazineBoxRifle762 #FH
+  id: MagazineBoxRifle762Incendiary #FH
+  name: ammunition box (7.62 rifle incendiary) #FH
+  description: A cardboard box of 7.62 rifle rounds. Intended to hold self-igniting incendiary ammunition. #FH
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeLightRifleFMJ
+    proto: CartridgeRifle762Incendiary #FH
   - type: Sprite
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
-    - state: fmj
+    - state: incendiary #FH
 
 - type: entity
-  parent: BaseMagazineBoxLightRifle
-  id: MagazineBoxLightRifleAP
-  name: ammunition box (.30 rifle AP)
+  parent: BaseMagazineBoxRifle762 #FH
+  id: MagazineBoxRifle762Uranium #FH
+  name: ammunition box (7.62 rifle uranium) #FH
+  description: A cardboard box of 7.62 rifle rounds. Intended to hold exotic uranium-core ammunition. #FH
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeLightRifleAP
+    proto: CartridgeRifle762Uranium #FH
   - type: Sprite
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
-    - state: ap
-
-- type: entity
-  parent: BaseMagazineBoxLightRifle
-  id: MagazineBoxLightRiflePractice
-  name: ammunition box (.30 rifle practice)
-  description: A cardboard box of .30 rifle rounds. Intended to hold harmless practice ammunition.
-  components:
-  - type: BallisticAmmoProvider
-    proto: CartridgeLightRiflePractice
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-    - state: practice
-
-- type: entity
-  parent: BaseMagazineBoxLightRifle
-  id: MagazineBoxLightRifleIncendiary
-  name: ammunition box (.30 rifle incendiary)
-  description: A cardboard box of .30 rifle rounds. Intended to hold self-igniting incendiary ammunition.
-  components:
-  - type: BallisticAmmoProvider
-    proto: CartridgeLightRifleIncendiary
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-    - state: incendiary
-
-- type: entity
-  parent: BaseMagazineBoxLightRifle
-  id: MagazineBoxLightRifleUranium
-  name: ammunition box (.30 rifle uranium)
-  description: A cardboard box of .30 rifle rounds. Intended to hold exotic uranium-core ammunition.
-  components:
-  - type: BallisticAmmoProvider
-    proto: CartridgeLightRifleUranium
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-    - state: uranium
+    - state: uranium #FH

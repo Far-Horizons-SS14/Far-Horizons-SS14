@@ -8,7 +8,7 @@ namespace Content.Server._FarHorizons.NPC.HTN.PrimitiveTasks.Operators;
 
 public sealed partial class GetEntityCoordinatesOperator : HTNOperator
 {
-    [Dependency] private readonly IEntityManager _entMan = default!;
+    [Dependency] private IEntityManager _entMan = default!;
 
     [DataField(required: true)] public string EntityKey;
     [DataField(required: true)] public string TargetKey;

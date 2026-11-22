@@ -1,6 +1,6 @@
 - type: entity
   id: MagazinePistolSubMachineGunTopMounted
-  name: WT550 magazine (.35 auto top-mounted)
+  name: WT550 magazine (9mm top-mounted)
   parent: [ BaseItem, BaseSecurityContraband ]
   description: Unconventional 30-round top feeding magazine for the WT550 SMG. Intended to hold general-purpose kinetic ammunition.
   components:
@@ -32,7 +32,7 @@
 
 - type: entity
   id: MagazinePistolSubMachineGunTopMountedEmpty
-  name: WT550 magazine (.35 auto top-mounted any)
+  name: WT550 magazine (9mm top-mounted any)
   parent: MagazinePistolSubMachineGunTopMounted
   description: Unconventional 30-round top feeding magazine for the WT550 SMG.
   components:
@@ -41,7 +41,7 @@
 
 - type: entity
   id: BaseMagazinePistolHighCapacity
-  name: machine pistol magazine (.35 auto)
+  name: machine pistol magazine (9mm auto)
   parent: BaseItem
   abstract: true
   components:
@@ -79,7 +79,7 @@
 
 - type: entity
   id: MagazinePistolHighCapacityEmpty
-  name: machine pistol magazine (.35 auto any)
+  name: machine pistol magazine (9mm any)
   suffix: empty
   parent: BaseMagazinePistolHighCapacity
   components:
@@ -100,7 +100,7 @@
 
 - type: entity
   id: MagazinePistolHighCapacitySP
-  name: machine pistol magazine (.35 auto SP)
+  name: machine pistol magazine (9mm SP)
   parent: BaseMagazinePistolHighCapacity
   components:
   - type: BallisticAmmoProvider
@@ -124,7 +124,7 @@
 
 - type: entity
   id: MagazinePistolHighCapacityHP
-  name: machine pistol magazine (.35 auto HP)
+  name: machine pistol magazine (9mm HP)
   parent: BaseMagazinePistolHighCapacity
   components:
   - type: BallisticAmmoProvider
@@ -148,7 +148,7 @@
 
 - type: entity
   id: MagazinePistolHighCapacityFMJ
-  name: machine pistol magazine (.35 auto FMJ)
+  name: machine pistol magazine (9mm FMJ)
   parent: BaseMagazinePistolHighCapacity
   components:
   - type: BallisticAmmoProvider
@@ -172,7 +172,7 @@
 
 - type: entity
   id: MagazinePistolHighCapacityAP
-  name: machine pistol magazine (.35 auto AP)
+  name: machine pistol magazine (9mm AP)
   parent: BaseMagazinePistolHighCapacity
   components:
   - type: BallisticAmmoProvider
@@ -196,7 +196,7 @@
 
 - type: entity
   id: MagazinePistolHighCapacityPractice
-  name: machine pistol magazine (.35 auto practice)
+  name: machine pistol magazine (9mm practice)
   parent: BaseMagazinePistolHighCapacity
   components:
   - type: BallisticAmmoProvider
@@ -220,7 +220,7 @@
 
 - type: entity
   id: MagazinePistolHighCapacityRubber
-  name: machine pistol magazine (.35 auto rubber)
+  name: machine pistol magazine (9mm rubber)
   parent: BaseMagazinePistolHighCapacity
   components:
   - type: BallisticAmmoProvider
@@ -244,7 +244,7 @@
 
 - type: entity
   id: MagazinePistolHighCapacityIncendiary
-  name: machine pistol magazine (.35 auto incendiary)
+  name: machine pistol magazine (9mm incendiary)
   parent: BaseMagazinePistolHighCapacity
   components:
   - type: BallisticAmmoProvider
@@ -268,7 +268,7 @@
 
 - type: entity
   id: MagazinePistolHighCapacityUranium
-  name: machine pistol magazine (.35 auto uranium)
+  name: machine pistol magazine (9mm uranium)
   parent: BaseMagazinePistolHighCapacity
   components:
   - type: BallisticAmmoProvider
@@ -289,33 +289,3 @@
       - state: inhand-right-mag
       - state: inhand-right-stripe
         color: "#40F57A"
-
-##########################################################
-
-- type: entity
-  id: MagazinePistolSubMachineGunPPSH
-  name: PPSH magazine
-  parent: BaseMagazinePistolSubMachineGun
-  components:
-  - type: BallisticAmmoProvider
-    proto: CartridgePistolSP
-    capacity: 35
-  - type: Sprite
-    sprite: _Starlight/Objects/Weapons/Guns/Ammunition/Magazine/SMGs/ppsh.rsi
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left
-      right:
-      - state: inhand-right
-  - type: MagazineVisuals
-    magState: mag
-    steps: 5
-  - type: Tag
-    tags:
-      - MagazineSMGPPSH

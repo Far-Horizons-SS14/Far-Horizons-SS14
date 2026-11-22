@@ -535,6 +535,8 @@ public sealed partial class GunSystem : SharedGunSystem
         var ent = Spawn(message.Prototype, coordinates);
         TransformSystem.SetWorldRotationNoLerp(ent, message.Angle);
 
+        gunUid = ent; // Far Horizons: Light from flash, not gun
+
         if (tracked != null)
         {
             var track = EnsureComp<TrackUserComponent>(ent);

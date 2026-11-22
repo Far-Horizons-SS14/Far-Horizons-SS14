@@ -52,6 +52,28 @@
         enum.StorageVisuals.Open:
           enum.PaperLabelVisuals.Layer:
             True: { visible: false }
+        # Starlight BEGIN
+        enum.TamperSealVisuals.Opened:
+          enum.TamperSealLayers.Sealed:
+            False: {
+              sprite: _FarHorizons/Structures/Storage/tamper_seal64.rsi, #FH
+              visible: true,
+              state: canister_cap_sealed,
+              color: "#ffffff"
+            }
+            True: { visible: false }
+        # Starlight END
+        # FarHorizons Start
+        enum.FactionTamperSealVisuals.Opened:
+          enum.FactionTamperSealLayers.Sealed:
+            False: {
+              sprite: _FarHorizons/Structures/Storage/tamper_seal64.rsi, #FH
+              visible: true,
+              state: canister_ribbon_sealed,
+              color: "#ffffff"
+            }
+            True: { visible: false }
+        # FarHorizons Start End
         enum.PaperLabelVisuals.LabelType:
           enum.PaperLabelVisuals.Layer:
             Paper: { state: paper }
@@ -128,7 +150,7 @@
       maxIntegrity: 15 # 5 times stronger than a gas tank
       integrity: 15
       maxReleasePressure: 1013.25
-      safetyPressure: 10132.5 # High enough that liquid tanks don't burst immediately, with an extra 33% wiggle room to work with
+      safetyPressure: 18100 # Far Horizons - increased to accomodate for volumetric pumps pumping 16k just on their own
       overpressure: 20265 # Purposefully high because cans react really fucking fast, may need to redo this value if reactions change!
       gasTankSlot:
         name: comp-gas-canister-slot-name-gas-tank
@@ -151,6 +173,21 @@
       - GasCanisters
     - type: Paintable
       group: Canisters
+    # Starlight BEGIN
+    - type: TamperSealable
+      destroyToolQualities: [Prying]
+    - type: PaperLabel # Overrides parent
+      labelSlot:
+        priority: 100 # <-- Only change relative to BasePaperLabelable.
+        insertVerbText: comp-paper-label-insert
+        ejectVerbText: comp-paper-label-eject
+        whitelist:
+          components:
+            - Paper
+        blacklist:
+          tags:
+            - Book
+    # Starlight END
 
 - type: entity
   parent: GasCanister

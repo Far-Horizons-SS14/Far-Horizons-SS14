@@ -14,9 +14,13 @@ markings-layer-HeadTop-ProtoAvali = Earrings
 markings-layer-TailCover-ProtoAvali = Tailbands
 markings-layer-Hair-ProtoAvali = Feathers
 
+markings-layer-HeadSide-Resomi = Ears
+markings-layer-HeadTop-Resomi = Ear Accessories
 markings-layer-TailCover-Resomi = Tail Feathers
 markings-layer-Hair-Resomi = Feathers
 
+markings-layer-HeadSide-ProtoResomi = Ears
+markings-layer-HeadTop-ProtoResomi = Ear Accessories
 markings-layer-TailCover-ProtoResomi = Tail Feathers
 markings-layer-Hair-ProtoResomi = Feathers
 

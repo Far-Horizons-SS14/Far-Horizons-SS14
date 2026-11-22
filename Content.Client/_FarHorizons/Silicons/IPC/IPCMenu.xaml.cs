@@ -29,9 +29,9 @@ namespace Content.Client._FarHorizons.Silicons.IPC;
 [GenerateTypedNameReferences]
 public sealed partial class IPCMenu : FancyWindow
 {
-    [Dependency] private readonly IConfigurationManager _cfgManager = default!;
-    [Dependency] private readonly IEntityManager _entity = default!;
-    [Dependency] private readonly IResourceCache _cache = default!;
+    [Dependency] private IConfigurationManager _cfgManager = default!;
+    [Dependency] private IEntityManager _entity = default!;
+    [Dependency] private IResourceCache _cache = default!;
 
     public VectorFont ConsoleFont;
     private readonly NameModifierSystem _nameModifier;

@@ -11,7 +11,7 @@ using Content.Shared.Storage;
 using Content.Shared.Tag; // Starlight Edit
 using Robust.Server.GameObjects; // Starlight Edit
 using Robust.Shared.Containers;
-using Content.Shared._FarHorizons.Vehicles.Components;
+using Content.Shared._FarHorizons.Vehicles; //FH
 
 namespace Content.Server.Resist;
 

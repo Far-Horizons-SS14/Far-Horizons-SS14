@@ -1,4 +1,3 @@
-using Content.Server.Cargo.Systems;
 using System.Numerics;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
@@ -26,6 +25,7 @@ public sealed partial class GasTankSystem : SharedGasTankSystem
     private const float MinimumSoundValvePressure = 21.3f; // Arbitrary number
 
     private const float ReleaseArea = 0.0005f; // About 5cm^2
+    private const float SafeReleaseArea = 0.01f; // Far Horizons - split maxcap and non-maxcap release logic 
 
     // A vector bias for throwing our gas tanks in radians. Averages about -43 degrees since the sprite is at a 45-degree angle.
     private static readonly Vector2 ThrowVector = new (-1.0f, -0.5f);
@@ -58,8 +58,11 @@ public sealed partial class GasTankSystem : SharedGasTankSystem
 
         Atmos.React(entity.Comp.Air, entity.Comp);
 
-        if ((entity.Comp.IsConnected || entity.Comp.ReleaseValveOpen) && UI.IsUiOpen(entity.Owner, SharedGasTankUiKey.Key))
+        //Far Horizons Start
+        if ((entity.Comp.IsConnected || entity.Comp.ReleaseValveOpen) &&
+            (UI.IsUiOpen(entity.Owner, SharedGasTankUiKey.Key) || UI.IsUiOpen(entity.Owner, SharedGasTankUiKey.OrganKey)))
             UpdateUserInterface(entity);
+        //Far Horizons End
     }
 
     public override void UpdateUserInterface(Entity<GasTankComponent> ent)
@@ -94,10 +97,6 @@ public sealed partial class GasTankSystem : SharedGasTankSystem
         // Clear the gas tank
         ent.Comp.Air.Clear();
         CheckStatus(ent, 1);
-
-        // Clear moles in the component
-        ent.Comp.TotalMoles = 0;
-        DirtyField(ent.Owner, ent.Comp, nameof(GasTankComponent.TotalMoles));
 
         // Play sound on release
         EntityUid soundSource = ent.Owner;
@@ -134,11 +133,20 @@ public sealed partial class GasTankSystem : SharedGasTankSystem
             ? entity.Comp.Air.Pressure
             : entity.Comp.Air.Pressure - environment.Pressure;
 
-        // Cap deltaP by the maximum output pressure of the tank.
-        if (deltaP < entity.Comp.SafetyPressure)
-            deltaP = Math.Min(entity.Comp.ReleasePressure, deltaP);
+        // Far Horizons start
+        // Removed cap. Despite it looking like an intentional mechanic, it keeps being reported as bug
 
-        var removed = _atmosphereSystem.FlowGas(entity.Comp.Air, deltaP, dt, ReleaseArea);
+        // Cap deltaP by the maximum output pressure of the tank.
+        // if (deltaP < entity.Comp.SafetyPressure)
+        //     deltaP = Math.Min(entity.Comp.ReleasePressure, deltaP);
+
+        // Note, this might be a bad change, I have no idea how atmos works
+        // However, it seems like release area is the most influential factor for how fast gas leaves the tank
+        // If I fuck around with base one - maxcaps become nukes that phase through walls, so I'm keeping maxcap logic the same while changing normal gas release
+        var removed = deltaP > entity.Comp.SafetyPressure
+            ? _atmosphereSystem.FlowGas(entity.Comp.Air, deltaP, dt, ReleaseArea)
+            : _atmosphereSystem.FlowGas(entity.Comp.Air, deltaP, dt, SafeReleaseArea);
+        // Far Horizons end
 
         if (removed == null)
             return;
@@ -172,8 +180,8 @@ public sealed partial class GasTankSystem : SharedGasTankSystem
     {
         var mixture = _atmosphereSystem.RemoveVolumeAtPressure(gasTank.Comp.Air, volume, gasTank.Comp.ReleasePressure);
         // We resize the volume because lungs breathe in volume rather than being pressure based atm.
+        // If we don't do this, they won't consume all of the outputted gas or will consume way too much.
         mixture.Volume = volume;
-
         return mixture;
     }
 

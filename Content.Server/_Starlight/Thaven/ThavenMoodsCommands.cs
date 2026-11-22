@@ -13,9 +13,9 @@ using Robust.Shared.Toolshed;
 namespace Content.Server._Starlight.Thaven;
 
 [AdminCommand(AdminFlags.Admin)]
-internal sealed class ThavenSharedMoodsCommand : LocalizedCommands
+internal sealed partial class ThavenSharedMoodsCommand : LocalizedCommands
 {
-    [Dependency] private readonly IEntitySystemManager _entman = default!;
+    [Dependency] private IEntitySystemManager _entman = default!;
     private ThavenMoodsSystem? _moods;
     public override string Command => "thavenshared";
 
@@ -31,9 +31,9 @@ internal sealed class ThavenSharedMoodsCommand : LocalizedCommands
 }
 
 [AdminCommand(AdminFlags.Admin)]
-internal sealed class ThavenRerollMoodsCommand : LocalizedCommands
+internal sealed partial class ThavenRerollMoodsCommand : LocalizedCommands
 {
-    [Dependency] private readonly IEntitySystemManager _entman = default!;
+    [Dependency] private IEntitySystemManager _entman = default!;
     private ThavenMoodsSystem? _moods;
     public override string Command => "thavenreollshared";
 
@@ -45,7 +45,7 @@ internal sealed class ThavenRerollMoodsCommand : LocalizedCommands
 }
 
 [ToolshedCommand(Name = "moods"), AdminCommand(AdminFlags.Admin)]
-public sealed class AdminMoodsCommand : ToolshedCommand
+public sealed partial class AdminMoodsCommand : ToolshedCommand
 {
     private ThavenMoodsSystem? _moods;
 

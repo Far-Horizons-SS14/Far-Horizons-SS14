@@ -452,18 +452,13 @@ public abstract partial class SharedSuitSensorSystem : EntitySystem
         {
             status.ShowDisease = carrier.ActiveDiseases.Any(x =>
             {
-                if(!_proto.TryIndex(x.Key.Id, out var disease))
+                var stages = _proto.Index(x.Key.Vector).Timers;
+                var maxStage = stages.Count;
+
+                if(x.Key.Stealth.HasFlag(DiseaseStealthFlags.Hidden) && x.Value.Stage < maxStage/2)
                     return false;
 
-                var index = x.Value.Stage;
-
-                if (index < 0 || index >= disease.Stages.Count)
-                {
-                    Log.Error($"Invalid stage index {index} for {x.Key}");
-                    return false;
-                }
-
-                return (disease.Stages[index].Stealth & DiseaseStealthFlags.Hidden) == 0;
+                return true;
             });
             status.DiseaseIcon = carrier.DiseaseIcon;
         }

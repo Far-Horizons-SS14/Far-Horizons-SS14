@@ -13,8 +13,8 @@ public partial class DecalPlacementOverlay : Overlay // Starlight - unsealed so 
 {
     [Dependency] private IEyeManager _eyeManager = default!;
     [Dependency] private IInputManager _inputManager = default!;
-    [Dependency] private IMapManager _mapManager = default!;
     private readonly DecalPlacementSystem _placement;
+    private readonly SharedMapSystem _maps;
     private readonly SharedTransformSystem _transform;
     private readonly SpriteSystem _sprite;
 
@@ -25,10 +25,11 @@ public partial class DecalPlacementOverlay : Overlay // Starlight - unsealed so 
     protected Angle rotation;
     protected Color? color;
 
-    public DecalPlacementOverlay(DecalPlacementSystem placement, SharedTransformSystem transform, SpriteSystem sprite)
+    public DecalPlacementOverlay(DecalPlacementSystem placement, SharedMapSystem maps, SharedTransformSystem transform, SpriteSystem sprite)
     {
         IoCManager.InjectDependencies(this);
         _placement = placement;
+        _maps = maps;
         _transform = transform;
         _sprite = sprite;
         ZIndex = 1000;
@@ -53,7 +54,7 @@ public partial class DecalPlacementOverlay : Overlay // Starlight - unsealed so 
             return;
 
         // No map support for decals
-        if (!_mapManager.TryFindGridAt(mousePos, out var gridUid, out var grid))
+        if (!_maps.TryFindGridAt(mousePos, out var gridUid, out var grid))
         {
             return;
         }

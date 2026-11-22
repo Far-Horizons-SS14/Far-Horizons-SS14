@@ -8,9 +8,9 @@ using Robust.Shared.Console;
 namespace Content.Server._FarHorizons.Administration.Commands;
 
 [AdminCommand(AdminFlags.Permissions)]
-public sealed class MentorWhoCommand : IConsoleCommand
+public sealed partial class MentorWhoCommand : IConsoleCommand
 {
-    [Dependency] private readonly IDiscordLinkManager _discordLink = default!;
+    [Dependency] private IDiscordLinkManager _discordLink = default!;
 
     public string Command => "mentorwho";
     public string Description => Loc.GetString("list-mentors-command-description");

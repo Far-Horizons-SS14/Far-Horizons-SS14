@@ -229,7 +229,7 @@
     baseWalkSpeed: 2.25
     baseSprintSpeed: 3.6
   - type: PointLight
-    mask: /Textures/Effects/LightMasks/cone.png
+    lightMask: ConeSingle #FH
     autoRot: true
     radius: 3
     energy: 5
@@ -291,7 +291,7 @@
   - type: Damageable
     damageModifierSet: MediumArmorNT
   - type: PointLight
-    mask: /Textures/Effects/LightMasks/cone.png
+    lightMask: ConeSingle #FH
     autoRot: true
     radius: 3
     energy: 5
@@ -363,7 +363,7 @@
     baseWalkSpeed: 2.5
     baseSprintSpeed: 4
   - type: PointLight
-    mask: /Textures/Effects/LightMasks/cone.png
+    lightMask: ConeSingle #FH
     autoRot: true
     radius: 5
     energy: 5
@@ -386,10 +386,10 @@
   parent: MechPaddyBattery
   suffix: Battery, Air, Filled
   components:
-  - type: Mech
-#    startingEquipment:
-#      - WeaponMechCombatDisabler
-#      - WeaponMechCombatFlashbangLauncher
+    - type: Mech
+      startingEquipment:
+      - WeaponMechCombatTaser
+      - WeaponMechCombatFlashbangLauncher
 #      - MechEquipmentSecGrabber
 
 # Clarke
@@ -429,7 +429,7 @@
     baseSprintSpeed: 4.5
   - type: MechThrusters
   - type: PointLight
-    mask: /Textures/Effects/LightMasks/cone.png
+    lightMask: ConeSingle #FH
     autoRot: true
     radius: 7
     energy: 6
@@ -661,7 +661,7 @@
     damageModifierSet: LightArmor
   - type: MechThrusters
   - type: PointLight
-    mask: /Textures/Effects/LightMasks/cone.png
+    lightMask: ConeSingle #FH
     autoRot: true
     radius: 6
     energy: 5
@@ -723,7 +723,7 @@
     fuelCost: 30
     doAfterDelay: 15
   - type: PointLight
-    mask: /Textures/Effects/LightMasks/cone.png
+    lightMask: ConeSingle #FH
     autoRot: true
     radius: 7
     energy: 5
@@ -929,7 +929,7 @@
     fuelCost: 40
     doAfterDelay: 20
   - type: PointLight
-    mask: /Textures/Effects/LightMasks/cone.png
+    lightMask: ConeSingle #FH
     autoRot: true
     radius: 7
     energy: 6

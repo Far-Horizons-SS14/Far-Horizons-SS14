@@ -9,11 +9,11 @@ namespace Content.Server._FarHorizons.Shuttles;
 /// <summary>
 /// Shameless copy of the <see cref="SpaceRescuePingSystem"/>
 /// </summary>
-public sealed class BulletTracerPingSystem : EntitySystem
+public sealed partial class BulletTracerPingSystem : EntitySystem
 {
-    [Dependency] private readonly UserInterfaceSystem _ui = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly TransformSystem _transform = default!;
+    [Dependency] private UserInterfaceSystem _ui = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private TransformSystem _transform = default!;
 
     public override void Update(float frameTime)
     {

@@ -265,5 +265,11 @@
       - mask
       - gloves
       - shoes
-  - type: LimbDamageable # Far Horizons
+  # Far Horizons start
+  - type: LimbDamageable
     proto: LimbTargetHuman
+  - type: FluidFootprintSpreader
+    footprint: Human
+    stepSpacing: 0.2
+    lateralOffset: 0.15
+  # Far Horizons end

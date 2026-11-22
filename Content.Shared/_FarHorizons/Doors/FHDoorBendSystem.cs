@@ -6,9 +6,9 @@ using Content.Shared.Interaction;
 
 namespace Content.Shared._FarHorizons.Doors;
 
-public sealed class FHDoorBendSystem : EntitySystem
+public sealed partial class FHDoorBendSystem : EntitySystem
 {
-    [Dependency] private readonly IEntityManager _entityManager = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
 
     public override void Initialize()
     {

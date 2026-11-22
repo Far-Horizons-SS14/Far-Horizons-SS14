@@ -33,6 +33,10 @@ public sealed partial class NeedToRackBoltPrecondition : HTNPrecondition
         var chamberEntity = gunSystem.GetChamberEntity(heldEntity.Value);
         bool hasRoundInChamber = chamberEntity is not null;
 
+        // Far Horizons start - spent cartridges also require cycling.
+        hasRoundInChamber = hasRoundInChamber && (!_entManager.TryGetComponent<CartridgeAmmoComponent>(chamberEntity!.Value, out var cartridge) || !cartridge.Spent);
+        // Far Horizons end
+
         return chamberMagazine.BoltClosed == false || !hasRoundInChamber;
     }
 }

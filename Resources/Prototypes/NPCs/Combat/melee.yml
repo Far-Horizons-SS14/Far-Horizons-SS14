@@ -108,7 +108,21 @@
 - type: htnCompound
   id: PickupMeleeCompound
   branches:
-    - tasks:
+    - preconditions:
+      - !type:ActiveHandFreePrecondition 
+      
+      tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:UtilityOperator
+            proto: InventoryMelee
+
+        - !type:HTNPrimitiveTask
+          operator: !type:EquipOperator
+
+    - preconditions:
+      - !type:ActiveHandFreePrecondition 
+
+      tasks:
         - !type:HTNPrimitiveTask
           operator: !type:UtilityOperator
             proto: NearbyMeleeWeapons
@@ -118,7 +132,6 @@
 
         - !type:HTNPrimitiveTask
           preconditions:
-            - !type:ActiveHandFreePrecondition
             - !type:TargetInRangePrecondition
               targetKey: Target
               rangeKey: InteractRange

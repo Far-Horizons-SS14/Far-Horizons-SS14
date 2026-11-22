@@ -17,9 +17,9 @@ using Robust.Client.Player;
 using Robust.Shared.Player;
 
 namespace Content.Client._Starlight.Tag;
-public sealed class StarlightTagSystem : StarlightSharedTagSystem
+public sealed partial class StarlightTagSystem : StarlightSharedTagSystem
 {
-    [Dependency] private readonly IPlayerManager _player = default!;
+    [Dependency] private IPlayerManager _player = default!;
 
     public override void Initialize()
     {

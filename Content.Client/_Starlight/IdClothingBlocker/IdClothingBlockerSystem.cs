@@ -6,6 +6,6 @@ namespace Content.Client._Starlight.IdClothingBlocker;
 /// Client-side implementation of SharedIdClothingBlockerSystem
 /// Defined for correct unequip predictions
 /// </summary>
-public sealed class IdClothingBlockerSystem : SharedIdClothingBlockerSystem
+public sealed partial class IdClothingBlockerSystem : SharedIdClothingBlockerSystem
 {
 }

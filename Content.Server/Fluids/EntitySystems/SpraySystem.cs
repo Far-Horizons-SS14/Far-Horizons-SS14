@@ -15,7 +15,7 @@ using Content.Shared.Fluids.EntitySystems;
 using Content.Shared.Fluids.Components;
 using Robust.Server.Containers;
 using Robust.Shared.Map;
-using Content.Shared._FarHorizons.Vehicles.Components;
+using Content.Shared._FarHorizons.Vehicles; //FH
 
 namespace Content.Server.Fluids.EntitySystems;
 
@@ -30,6 +30,7 @@ public sealed partial class SpraySystem : SharedSpraySystem
     [Dependency] private VaporSystem _vapor = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private ContainerSystem _container = default!;
 
     private float _gridImpulseMultiplier;
 

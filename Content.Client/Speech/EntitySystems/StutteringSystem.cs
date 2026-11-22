@@ -4,7 +4,7 @@ using Content.Shared._Starlight.Speech;
 
 namespace Content.Client.Speech.EntitySystems;
 
-public sealed class StutteringSystem : SharedStutteringSystem
+public sealed partial class StutteringSystem : SharedStutteringSystem
 {
     protected override SpeechMessage AccentuateInternal(EntityUid uid, StutteringAccentComponent comp, SpeechMessage message)
     {

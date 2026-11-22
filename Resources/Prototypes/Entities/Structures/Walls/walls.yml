@@ -86,6 +86,11 @@
     airBlockedDirection:
     - South
     - East
+  - type: Occluder
+    polygon:
+    - "-0.5,-0.5"
+    - "0.5,0.5"
+    - "0.5,-0.5"
   - type: Fixtures
     fixtures:
       fix1:
@@ -546,6 +551,17 @@
   components:
     - type: Destructible
       thresholds:
+#FH Edit - Start
+        - trigger:
+            !type:DamageTrigger
+            damage: 1100
+          behaviors:
+          - !type:PlaySoundBehavior
+            sound:
+              collection: MetalSlam
+          - !type:DoActsBehavior
+            acts: ["Destruction"]
+#FH Edit - End
         - trigger:
             !type:DamageTrigger
             damage: 1000
@@ -619,9 +635,9 @@
   - type: Ricochetable
     chance: 0.75
   - type: Sprite
-    sprite: Structures/Walls/solid.rsi
+    sprite: _FarHorizons/Structures/Walls/NanoTrasen/solid.rsi #FH
   - type: Icon
-    sprite: Structures/Walls/solid.rsi
+    sprite: _FarHorizons/Structures/Walls/NanoTrasen/solid.rsi #FH
     state: rgeneric
   - type: Construction
     graph: Girder
@@ -634,7 +650,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 600
+        damage: 500 #FH - Prevents shuttle ramming from spawning girders, mostly.
       behaviors:
       - !type:DoActsBehavior
         acts: ["Destruction"]
@@ -695,9 +711,9 @@
   suffix: Rusted, NT #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Sprite
-    sprite: Structures/Walls/solid_rust.rsi
+    sprite: _FarHorizons/Structures/Walls/NanoTrasen/solid_rust.rsi #FH
   - type: Icon
-    sprite: Structures/Walls/solid_rust.rsi
+    sprite: _FarHorizons/Structures/Walls/NanoTrasen/solid_rust.rsi #FH
     state: rgeneric
   - type: Construction
     graph: Girder
@@ -732,13 +748,14 @@
   parent: WallDiagonalBase
   id: WallReinforcedDiagonal
   name: Reinforced Wall #Far Horizons - The Great Capitalization Crusade
+  suffix: Diagonal, NT # Far Horizons
   components:
   - type: Sprite
     drawdepth: Walls
-    sprite: Structures/Walls/reinforced_diagonal.rsi
+    sprite: _FarHorizons/Structures/Walls/NanoTrasen/reinforced_diagonal.rsi #FH
     state: state0
   - type: Icon
-    sprite: Structures/Walls/reinforced_diagonal.rsi
+    sprite: _FarHorizons/Structures/Walls/NanoTrasen/reinforced_diagonal.rsi #FH
     state: state0
   - type: Damageable
     damageModifierSet: StructuralMetallicStrong
@@ -768,6 +785,9 @@
         acts: ["Destruction"]
   - type: RadiationBlocker
     resistance: 5
+  - type: Paintable #FH start
+    group: WallReinforcedDiagonal 
+  - type: GenericPaintable #FH end
 
 # Riveting
 - type: entity
@@ -879,14 +899,14 @@
   parent: WallDiagonalBase
   id: WallShuttleDiagonal
   name: Shuttle Wall #Far Horizons - The Great Capitalization Crusade
-  suffix: Diagonal #Far Horizons
+  suffix: Diagonal, NT #Far Horizons
   components:
   - type: Sprite
     drawdepth: Walls
-    sprite: _FarHorizons/Structures/Walls/shuttle_diagonal.rsi #Far Horizons
+    sprite: _FarHorizons/Structures/Walls/NanoTrasen/shuttle_diagonal.rsi #Far Horizons
     state: state0
   - type: Icon
-    sprite: _FarHorizons/Structures/Walls/shuttle_diagonal.rsi #Far Horizons
+    sprite: _FarHorizons/Structures/Walls/NanoTrasen/shuttle_diagonal.rsi #Far Horizons
     state: state0
   - type: IconSmooth #Far Horizons
     key: walls
@@ -953,6 +973,7 @@
   parent: BaseWall
   id: WallShuttle
   name: Shuttle Wall #Far Horizons - The Great Capitalization Crusade
+  suffix: NT # Far Horizons
   components:
   - type: Damageable
     damageModifierSet: StructuralMetallicStrong
@@ -971,7 +992,7 @@
           collection: MetalSlam
     - trigger:
         !type:DamageTrigger
-        damage: 400
+        damage: 500 #FH
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -985,9 +1006,9 @@
   - type: RadiationBlocker
     resistance: 5
   - type: Sprite
-    sprite: Structures/Walls/shuttle.rsi
+    sprite: _FarHorizons/Structures/Walls/NanoTrasen/shuttle.rsi #FH
   - type: Icon
-    sprite: Structures/Walls/shuttle.rsi
+    sprite: _FarHorizons/Structures/Walls/NanoTrasen/shuttle.rsi #FH
     state: full
   - type: Construction
     graph: Girder
@@ -1031,13 +1052,13 @@
   suffix: NT #FH
   components:
   - type: Sprite
-    sprite: Structures/Walls/solid.rsi
+    sprite: _FarHorizons/Structures/Walls/NanoTrasen/solid.rsi #FH
   - type: WallReplacementMarker
   - type: Construction
     graph: Girder
     node: wall
   - type: Icon
-    sprite: Structures/Walls/solid.rsi
+    sprite: _FarHorizons/Structures/Walls/NanoTrasen/solid.rsi #FH
   - type: RCDDeconstructable
     cost: 6
     delay: 8
@@ -1075,14 +1096,14 @@
   parent: WallDiagonalBase
   id: WallSolidDiagonal
   name: Solid Wall #Far Horizons - The Great Capitalization Crusade
-  suffix: NT #FH
+  suffix: Diagonal, NT #FH
   components:
   - type: Sprite
     drawdepth: Walls
-    sprite: Structures/Walls/solid_diagonal.rsi
+    sprite: _FarHorizons/Structures/Walls/NanoTrasen/solid_diagonal.rsi #FH
     state: state0
   - type: Icon
-    sprite: Structures/Walls/solid_diagonal.rsi
+    sprite: _FarHorizons/Structures/Walls/NanoTrasen/solid_diagonal.rsi #FH
     state: state0
   - type: Ricochetable
     chance: 0.4
@@ -1108,6 +1129,9 @@
           collection: MetalSlam
       - !type:DoActsBehavior
         acts: ["Destruction"]
+  - type: Paintable #FH start
+    group: WallSolidDiagonal 
+  - type: GenericPaintable #FH end
 
 - type: entity
   parent: WallSolid
@@ -1115,9 +1139,9 @@
   suffix: Rusted, NT #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Sprite
-    sprite: Structures/Walls/solid_rust.rsi
+    sprite: _FarHorizons/Structures/Walls/NanoTrasen/solid_rust.rsi #FH
   - type: Icon
-    sprite: Structures/Walls/solid_rust.rsi
+    sprite: _FarHorizons/Structures/Walls/NanoTrasen/solid_rust.rsi #FH
     state: full
   - type: Construction
     graph: Girder

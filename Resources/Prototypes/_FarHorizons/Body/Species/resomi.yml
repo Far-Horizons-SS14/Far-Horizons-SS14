@@ -5,12 +5,16 @@
     enum.HumanoidVisualLayers.Tail:
       limit: 1
       required: true
-      default: [ ResomiTail ]
+      default: [ ResomiBasicTail ]
     enum.HumanoidVisualLayers.TailCover:
-      limit: 1
+      limit: 3
       required: false
     enum.HumanoidVisualLayers.HeadSide:
       limit: 1
+      required: true
+      default: [ ResomiEars ]
+    enum.HumanoidVisualLayers.HeadTop:
+      limit: 4
       required: false
     enum.HumanoidVisualLayers.Hair:
       limit: 1
@@ -36,6 +40,7 @@
   name: Resomi Appearance
   components:
   - type: Inventory
+    speciesId: resomi
     displacements:
       jumpsuit:
         sizeMaps:
@@ -224,6 +229,11 @@
       250: 0.9
       230: 0.8
       223: 0.6
+  - type: FluidFootprintSpreader # Far Horizons
+    footprint: Chicken
+    footprintSize: 0.75
+    stepSpacing: 0.2
+    lateralOffset: 0.1
 
 # Organs
 
@@ -287,6 +297,11 @@
 - type: entity
   parent: [ DamageableLimbVisualsResomi, OrganBaseHeadSexed, OrganBaseHead, OrganResomiExternal ]
   id: OrganResomiHead
+  components:
+  - type: VisualOrganMarkings
+    hideableLayers:
+    - enum.HumanoidVisualLayers.HeadTop
+    - enum.HumanoidVisualLayers.HeadSide
 
 - type: entity
   parent: [ DamageableLimbVisualsResomi, OrganBaseArmLeft, OrganResomiExternal ]

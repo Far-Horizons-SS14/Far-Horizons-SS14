@@ -24,6 +24,16 @@ public sealed partial class SolutionRegenerationSystem : EntitySystem
         ent.Comp.NextRegenTime = _timing.CurTime + ent.Comp.Duration;
 
         Dirty(ent);
+
+        // Far Horizons start
+        // if we have solution regeneration and the solution has empty volume, we need to add the active regeneration component so that it can tick and generate solution
+        if (!_timing.ApplyingState &&
+            TryComp<SolutionComponent>(ent, out var solution) &&
+            solution.Solution.AvailableVolume > FixedPoint2.Zero)
+        {
+            EnsureComp<SLActiveSolutionRegenerationComponent>(ent);
+        }
+        // Far Horizons end
     }
 
     public override void Update(float frameTime)

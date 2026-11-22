@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "license": "CC0-1.0",
-  "copyright": "Sprited by ItsAbby For Far Horizons",
+  "license": "CC-BY-SA-4.0",
+  "copyright": "Sprited by ItsAbby For Far Horizons, Shuttle/Ship sprites by Killer Tamashi (Discord)",
   "size": {
     "x": 32,
     "y": 32
@@ -10,15 +10,63 @@
     {
       "name": "substation"
     },
-	{
-	  "name": "substation_static"
-	},
+	  {
+	    "name": "substation_static"
+	  },
     {
       "name": "substation_wall",
       "directions": 4
     },
     {
+      "name": "substation_ship"
+    },
+	  {
+	    "name": "substation_ship_static"
+	  },
+    {
+      "name": "substation_wall_ship",
+      "directions": 4
+    },
+    {
+      "name": "substation_wall_ship_static"
+    },
+    {
+      "name": "substation_shuttle"
+    },
+	  {
+	    "name": "substation_shuttle_static"
+	  },
+    {
+      "name": "substation_wall_shuttle",
+      "directions": 4
+    },
+    {
+      "name": "substation_wall_shuttle_static"
+    },
+    {
       "name": "screen_wall",
+      "directions": 4,
+      "delays": [
+        [
+          5.0,
+          0.5
+        ],
+        [
+          5.0,
+          0.5
+        ],
+        [
+          5.0,
+          0.5
+        ],
+        [
+          5.0,
+          0.5
+        ]
+      ]
+    },
+    {
+      "name": "screen_wall_ship",
       "directions": 4,
       "delays": [
         [
@@ -46,6 +94,9 @@
       "name": "full"
     },
     {
+      "name": "full_ship"
+    },
+    {
       "name": "charging",
       "delays": [
         [
@@ -68,6 +119,17 @@
     },
     {
       "name": "screen",
+      "delays": [
+        [
+          5.0,
+          0.5,
+          0.5,
+          0.5
+        ]
+      ]
+    },
+    {
+      "name": "screen_ship",
       "delays": [
         [
           5.0,

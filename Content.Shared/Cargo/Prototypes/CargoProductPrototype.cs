@@ -115,6 +115,9 @@ namespace Content.Shared.Cargo.Prototypes
         /// </summary>
         [DataField]
         public ProtoId<CargoMarketPrototype> Group { get; private set; } = "market";
+
+        [DataField] public float CreditCost = 0.5f; // Far Horizons - how much more expensive/cheaper is this listing in credits via GSL now. Default is 1 credit = 2 spesos, balanced around pizza, with each individual pizza being worth around 56 credits
+        [DataField] public bool PersonalOrder = false; // Far Horizons
     }
 
     /// <see cref="CargoProductPrototype.Container"/>

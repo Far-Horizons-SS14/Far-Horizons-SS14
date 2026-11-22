@@ -1,0 +1,141 @@
+# Moles calculation
+#
+#   moles = 1000 / (8.31446261 * 293.15 / volume)
+#
+#   More practically:
+#
+#   moles = volume * 0.41027581
+#
+#   Yes, you do need all those digits or your pressure wont end up exactly 1000
+#
+#
+# The number 1000 comes from the default MaxReleasePressure for a GasCanister,
+# which is 10 * Atmospherics.OneAtmosphere, rounded down.
+#
+# 8.31446261 is the universal gas constant
+#
+# 293.15 is our default atmospheric temperature
+#
+
+# If you change the mole amounts, you can calculate the new gas supply times with:
+# minutes = (moles / outputPressure) * 325
+
+- type: entity
+  id: BSNitrogenTankFilled
+  parent: GasTankRoundBase
+  suffix: NT, BS, Filled
+  name: Bluespace Nitrogen Tank
+  description: A bluespace cylindrical gas tank for nitrogen. It can hold 20 L of gas.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Tanks/red_tank_bluespace.rsi
+  - type: Item
+    sprite: _FarHorizons/Objects/Tanks/red_tank_bluespace.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Objects/Tanks/red_tank_bluespace.rsi
+  # 2 hours 11 minutes
+  - type: GasTank
+    air:
+      volume: 20
+      moles:
+        Nitrogen: 8.31
+      temperature: 293.15
+
+- type: entity
+  id: BSOxygenTankFilled
+  parent: GasTankRoundBase
+  suffix: NT, BS, Filled
+  name: Bluespace Oxygen Tank
+  description: A bluespace cylindrical gas tank for oxygen. It can hold 20 L of gas.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Tanks/oxygen_tank_bluespace.rsi
+  - type: Item
+    sprite: _FarHorizons/Objects/Tanks/oxygen_tank_bluespace.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Objects/Tanks/oxygen_tank_bluespace.rsi
+  # 2 hours 11 minutes
+  - type: GasTank
+    air:
+      volume: 20
+      moles:
+        Oxygen: 8.31
+      temperature: 293.15
+
+- type: entity
+  id: BSTank
+  parent: GasTankRoundBase
+  suffix: NT, BS
+  name: Bluespace Tank
+  description: A bluespace cylindrical gas tank for any gass. It can hold 20 L of gas.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Tanks/generic_tank_bluespace.rsi
+  - type: Item
+    sprite: _FarHorizons/Objects/Tanks/generic_tank_bluespace.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Objects/Tanks/generic_tank_bluespace.rsi
+  # 2 hours 11 minutes
+  - type: GasTank
+    air:
+      volume: 20
+
+- type: entity
+  id: RSNitrogenTankFilled
+  parent: GasTankRoundBase
+  suffix: NS, RS, Filled
+  name: Redspace Nitrogen Tank
+  description: A redspace cylindrical gas tank for nitrogen. It can hold 20 L of gas.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Tanks/red_tank_redspace.rsi
+  - type: Item
+    sprite: _FarHorizons/Objects/Tanks/red_tank_redspace.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Objects/Tanks/red_tank_redspace.rsi
+  # 2 hours 11 minutes
+  - type: GasTank
+    air:
+      volume: 20
+      moles:
+        Nitrogen: 8.31
+      temperature: 293.15
+
+- type: entity
+  id: RSOxygenTankFilled
+  parent: GasTankRoundBase
+  suffix: NS, RS, Filled
+  name: Redspace Oxygen Tank
+  description: A redspace cylindrical gas tank for oxygen. It can hold 20 L of gas.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Tanks/oxygen_tank_redspace.rsi
+  - type: Item
+    sprite: _FarHorizons/Objects/Tanks/oxygen_tank_redspace.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Objects/Tanks/oxygen_tank_redspace.rsi
+  # 2 hours 11 minutes
+  - type: GasTank
+    air:
+      volume: 20
+      moles:
+        Oxygen: 8.31
+      temperature: 293.15
+
+- type: entity
+  id: RSTank
+  parent: GasTankRoundBase
+  suffix: NS, RS
+  name: Redspace Tank
+  description: A redspace cylindrical gas tank for any gass. It can hold 20 L of gas.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Tanks/generic_tank_redspace.rsi
+  - type: Item
+    sprite: _FarHorizons/Objects/Tanks/generic_tank_redspace.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Objects/Tanks/generic_tank_redspace.rsi
+  # 2 hours 11 minutes
+  - type: GasTank
+    air:
+      volume: 20

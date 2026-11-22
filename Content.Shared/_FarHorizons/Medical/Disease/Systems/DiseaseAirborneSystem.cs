@@ -4,6 +4,7 @@ using Content.Shared._FarHorizons.Medical.Disease.Prototypes;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Timing;
+using System.Linq;
 
 namespace Content.Shared._FarHorizons.Medical.Disease.Systems;
 
@@ -11,16 +12,16 @@ namespace Content.Shared._FarHorizons.Medical.Disease.Systems;
 /// Handles airborne disease spread in a periodic.
 /// Also exposes a helper for symptom-driven airborne bursts.
 /// </summary>
-public sealed class DiseaseAirborneSystem : EntitySystem
+public sealed partial class DiseaseAirborneSystem : EntitySystem
 {
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
-    [Dependency] private readonly SharedInteractionSystem _interaction = default!;
-    [Dependency] private readonly SharedDiseaseSystem _disease = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private SharedTransformSystem _transformSystem = default!;
+    [Dependency] private SharedInteractionSystem _interaction = default!;
+    [Dependency] private SharedDiseaseSystem _disease = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
 
-    private readonly HashSet<EntityUid> _tmpTargets = [];
+    private HashSet<EntityUid> _tmpTargets = [];
 
     /// <inheritdoc/>
     public override void Update(float frameTime)
@@ -66,8 +67,9 @@ public sealed class DiseaseAirborneSystem : EntitySystem
         var sourceContained = _container.IsEntityOrParentInContainer(source);
         var flags = sourceContained ? LookupFlags.All : LookupFlags.Uncontained;
         _lookup.GetEntitiesInRange(mapPos.MapId, mapPos.Position, range, _tmpTargets, flags);
+        _tmpTargets = _tmpTargets.Where(x => HasComp<DiseaseCarrierComponent>(x) && x != source ).ToHashSet();
 
-        // Chance now takes into account the disease our spatient
+        // Chance takes into account the patient's equipment
         var chance = Math.Clamp(disease.AirborneInfect * chanceMultiplier, 0f, 1f);
         chance = _disease.AdjustAirborneChanceForProtection(source, chance, disease);
         if (chance <= 0f) return;
@@ -96,7 +98,7 @@ public sealed class DiseaseAirborneSystem : EntitySystem
             if (!_interaction.InRangeUnobstructed(source, other, range))
                 continue;
             
-            var stage = _disease.CreateStage(disease.Id);
+            var stage = _disease.CreateStage(disease);
             if(stage == null)
                 continue;
             _disease.TryInfectWithChance(other, disease, stage, chance);

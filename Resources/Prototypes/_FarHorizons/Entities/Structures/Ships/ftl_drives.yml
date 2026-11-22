@@ -1,0 +1,195 @@
+#TODO - Make destroying one of these things blow out a section of the ship.
+#TODO - Make them actually function. Small, Medium, Large. Each one increases FTL range and acceptable FTL mass, as well as more power consumption.
+#TODO - Ask Abby to sprite, because I have not the slightest fucking clue what this would look like.
+- type: entity
+  id: FTLDriveMini #Weakest, only moves very small shuttles or pods.
+  parent: BaseStructure
+  name: Wall-Mounted FTL Drive
+  description: The miracle of the Space Age. Allows for Faster-Than-Light travel, at a hefty power cost. Don't expect it to go far. Only moves pods.
+  components:
+  - type: Sprite
+    drawdepth: WallMountedItems
+    sprite: _FarHorizons/Structures/Machines/Ship/ftl_drive.rsi
+    layers:
+    - state: small_ftl
+      visible: true
+  - type: Appearance
+  - type: ApcPowerReceiver
+    powerLoad: 1000
+  - type: InteractionOutline
+  - type: Rotatable
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.4"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+        - HighImpassable
+  - type: Damageable
+    damageModifierSet: StructuralMetallic
+  - type: Injurable
+    damageContainer: StructuralInorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1000
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+  - type: PowerState
+    idlePowerDraw: 1000
+    workingPowerDraw: 5000 #While charging up
+  - type: Anchorable
+    delay: 9
+  
+- type: entity
+  id: FTLDriveSmall # Can move things like the cargo shuttle.
+  parent: FTLDriveMini
+  name: Small FTL Drive
+  description: The miracle of the Space Age. Allows for Faster-Than-Light travel, at a hefty power cost. Doesn't have good range, can get a small shuttle or ship going someplace.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Machines/Ship/ftl_drive.rsi
+    layers:
+    - state: small_ftl
+      visible: true
+  - type: Appearance
+  - type: InteractionOutline
+  - type: Rotatable
+  - type: ApcPowerReceiver
+    powerLoad: 10000
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.4"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+        - HighImpassable
+  - type: Damageable
+    damageModifierSet: StructuralMetallic
+  - type: Injurable
+    damageContainer: StructuralInorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1000
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+  - type: PowerState
+    idlePowerDraw: 10000
+    workingPowerDraw: 50000 #While charging up - Maxes out industrial generators.
+
+- type: entity
+  id: FTLDrive # Can move things like the security ship.
+  parent: FTLDriveMini
+  name: FTL Drive
+  description: The miracle of the Space Age. Allows for Faster-Than-Light travel, at a hefty power cost. Has decent range and FTL mass tolerances.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Machines/Ship/ftl_drive_large.rsi
+    offset: 0.5, 0.5
+    layers:
+    - state: large_ftl
+      visible: true
+  - type: Appearance
+  - type: ApcPowerReceiver
+    powerLoad: 50000
+  - type: InteractionOutline
+  - type: Rotatable
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0,1.5,1.5"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+        - HighImpassable
+  - type: Damageable
+    damageModifierSet: StructuralMetallic
+  - type: Injurable
+    damageContainer: StructuralInorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1000
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+  - type: PowerState
+    idlePowerDraw: 50000 #Needs a heavy power source to support it.
+    workingPowerDraw: 100000 #While charging up - Will drain shipside SMESes, that's the point.
+
+- type: entity
+  id: FTLDriveLarge # Can move things like the battleships used in abby's event.
+  parent: FTLDriveMini
+  name: Large FTL Drive
+  description: The miracle of the Space Age. Allows for Faster-Than-Light travel, at a hefty power cost. Has the best range and FTL mass tolerances.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Machines/Ship/ftl_drive_huge.rsi
+    offset: 1, 1
+    layers:
+    - state: huge_ftl
+      visible: true
+  - type: Appearance
+  - type: ApcPowerReceiver
+    powerLoad: 100000
+  - type: InteractionOutline
+  - type: Rotatable
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0,2.5,2.5"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+        - HighImpassable
+  - type: Damageable
+    damageModifierSet: StructuralMetallic
+  - type: Injurable
+    damageContainer: StructuralInorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1000
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+  - type: PowerState
+    idlePowerDraw: 100000 #Needs a heavy power source to support it.
+    workingPowerDraw: 500000 #While charging up - Will drain shipside SMESes, that's the point.

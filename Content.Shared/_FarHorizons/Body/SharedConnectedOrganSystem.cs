@@ -2,9 +2,9 @@ using Robust.Shared.Containers;
 
 namespace Content.Shared._FarHorizons.Body;
 
-public abstract class SharedConnectedOrganSystem : EntitySystem
+public abstract partial class SharedConnectedOrganSystem : EntitySystem
 {
-    [Dependency] protected readonly SharedContainerSystem _container = default!;
+    [Dependency] protected SharedContainerSystem _container = default!;
 
     public override void Initialize()
     {

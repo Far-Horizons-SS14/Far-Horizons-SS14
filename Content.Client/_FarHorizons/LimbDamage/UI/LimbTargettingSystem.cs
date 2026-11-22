@@ -10,11 +10,11 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Client._FarHorizons.LimbDamage.UI;
 
-public sealed class LimbTargettingSystem : EntitySystem
+public sealed partial class LimbTargettingSystem : EntitySystem
 {
-    [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly IPrototypeManager _protoMan = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private IPrototypeManager _protoMan = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
 
     public Action<ProtoId<OrganCategoryPrototype>>? LocalTargetUpdated;
 

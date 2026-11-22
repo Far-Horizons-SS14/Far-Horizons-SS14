@@ -19,7 +19,7 @@ public sealed partial class CargoSystem
      * Handles automated trade station / trade mechanics.
      */
 
-    [Dependency] private readonly AtmosphereSystem _atmosphereSystem = default!; //Starlight
+    [Dependency] private AtmosphereSystem _atmosphereSystem = default!; //Starlight
 
     private static readonly SoundPathSpecifier ApproveSound = new("/Audio/Effects/Cargo/ping.ogg");
     private bool _lockboxCutEnabled;

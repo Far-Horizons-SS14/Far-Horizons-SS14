@@ -3,7 +3,7 @@
   id: PlanetTypeGasGiant
   orbit: [ OuterWarm]
   shader: GasGiant
-  basePrettiness: 30 # Pretty nice
+  basePrettiness: 25
   ringProbability: 0.45
   earthMass:
     min: 100.0
@@ -37,7 +37,7 @@
   id: PlanetTypeIceGiant
   orbit: [ OuterCold ]
   shader: IceGiant
-  basePrettiness: 15 # Eh
+  basePrettiness: 25
   ringProbability: 0.45
   earthMass:
     min: 10.0
@@ -69,7 +69,7 @@
   id: PlanetTypeVolcanic
   orbit: [ InnerHot ]
   shader: RockyPlanet
-  basePrettiness: 10 # Could be fine when it has lava
+  basePrettiness: 10
   ringProbability: 0.05
   earthMass:
     min: 0.1
@@ -139,7 +139,7 @@
   id: PlanetTypeDesert
   orbit: [ InnerHot, InnerHabitable ]
   shader: RockyPlanet
-  basePrettiness: 0 # Eh
+  basePrettiness: 10
   ringProbability: 0.05
   earthMass:
     min: 0.5
@@ -160,7 +160,7 @@
   id: PlanetTypeIce
   orbit: [ InnerHabitable, InnerCold ]
   shader: RockyPlanet
-  basePrettiness: 0 # Eh
+  basePrettiness: 15
   ringProbability: 0.15
   earthMass:
     min: 0.5
@@ -183,7 +183,7 @@
   id: PlanetTypeHabitable
   orbit: [ InnerHabitable ]
   shader: RockyPlanet
-  basePrettiness: 15 # Neat
+  basePrettiness: 15
   ringProbability: 0.10
   earthMass:
     min: 0.8

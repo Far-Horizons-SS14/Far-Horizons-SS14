@@ -15,14 +15,14 @@ using Content.Shared._Starlight.Language.Components;
 
 namespace Content.Server._FarHorizons.Tools.HandheldRadio;
 
-public sealed class HandheldRadioSystem : EntitySystem
+public sealed partial class HandheldRadioSystem : EntitySystem
 {
-    [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
-    [Dependency] private readonly InteractionSystem _interaction = default!;
-    [Dependency] private readonly LanguageSystem _language = default!;
-    [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly AppearanceSystem _appearance = default!;
+    [Dependency] private UserInterfaceSystem _uiSystem = default!;
+    [Dependency] private InteractionSystem _interaction = default!;
+    [Dependency] private LanguageSystem _language = default!;
+    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private AppearanceSystem _appearance = default!;
 
     private readonly Dictionary<float, HashSet<Entity<HandheldRadioComponent>>> _frequencyCache = [];
 

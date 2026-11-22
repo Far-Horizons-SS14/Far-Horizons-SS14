@@ -34,7 +34,7 @@ public sealed partial class SpiderSystem : SharedSpiderSystem
     // Starlight-start
     public void OnMeleeHit(EntityUid uid, SpiderComponent component, ref MeleeHitEvent args)
     {
-        if (component.CantBreakWeb && args.HitEntities.Any(EntityManager.HasComponent<SpiderWebObjectComponent>))
+        if (component.CantBreakWeb && args.HitEntities.Any(HasComp<SpiderWebObjectComponent>))
             args.BonusDamage = -args.BaseDamage;
     }
     // Starlight-end

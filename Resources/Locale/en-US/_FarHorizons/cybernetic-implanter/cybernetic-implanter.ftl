@@ -5,3 +5,7 @@ comp-cyberneticimplanter-missingconnectto = Missing {$connectto}
 comp-cyberneticimplanter-implantstart = The {$implanter} digs into your flesh
 comp-cyberneticimplanter-cleanimplant = The {$implanted} is cleanly installed
 comp-cyberneticimplanter-organdestroyed = The {$implanter} destroys the {$destroyed} of {$target}!
+
+comp-cyberneticimplantermode-left = Left
+comp-cyberneticimplantermode-right = Right
+gun-cyberneticimplantermode-examine = Current selected mode is [color=cyan]{$mode}[/color].

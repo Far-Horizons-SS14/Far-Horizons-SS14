@@ -11,7 +11,7 @@ namespace Content.Server.Starlight.Antags.Abductor;
 
 public sealed partial class AbductorSystem
 {
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
     private void InitializeRoundEnd()
     {
         SubscribeLocalEvent<RoundEndTextAppendEvent>(OnRoundEndText);

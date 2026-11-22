@@ -46,7 +46,8 @@ public sealed class SolutionSizePrototypeTest : GameTest
                     solution.Id != FoodSolutionId)
                     ValidateSolution(entity, entity.ID, solution, expectedVolume, errors);
 
-                if (!entity.TryGetComponent<SolutionManagerComponent>(out var manager, componentFactory))
+                if (!entity.TryGetComponent<SolutionManagerComponent>(out var manager, componentFactory) ||
+                    manager.SolutionEnts == null)
                     continue;
 
                 foreach (var solutionId in manager.SolutionEnts)

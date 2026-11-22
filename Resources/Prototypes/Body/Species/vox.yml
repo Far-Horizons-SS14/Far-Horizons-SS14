@@ -278,8 +278,15 @@
       - AnomalyHost
       - Vox
   - type: Wagging
-  - type: LimbDamageable # Far Horizons
+  # Far Horizons start
+  - type: LimbDamageable
     proto: LimbTargetVox
+  - type: FluidFootprintSpreader
+    footprint: Chicken
+    footprintSize: 1.0
+    stepSpacing: 0.2
+    lateralOffset: 0.15
+  # Far Horizons end
 
 - type: entity
   parent: OrganBase
@@ -452,6 +459,8 @@
     tags:
     - GasTank
     #Starlight end
+  - type: AtmosDevice #FH
+    requireAnchored: false
 
 - type: entity
   parent: [ OrganBaseHeart, OrganVoxInternal, OrganVoxMetabolizer ]

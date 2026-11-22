@@ -13,7 +13,7 @@ namespace Content.Shared._FarHorizons.EntityConditions.Conditions;
 /// <inheritdoc cref="EntityConditionSystem{T,TCon}"/>
 public sealed partial class TotalDamageEntityConditionSystem : EntityConditionSystem<DamageableComponent, TotalDamageCondition>
 {
-    [Dependency] private readonly DamageableSystem _damageable = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
 
     protected override void Condition(Entity<DamageableComponent> entity, ref EntityConditionEvent<TotalDamageCondition> args)
     {

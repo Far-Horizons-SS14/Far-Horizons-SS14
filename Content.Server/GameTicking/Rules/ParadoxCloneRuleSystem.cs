@@ -13,6 +13,7 @@ using Content.Shared.Medical.SuitSensor;
 using Content.Shared.Mind;
 using Content.Shared.Objectives.Systems;
 using Content.Shared.Random.Helpers;
+using Robust.Server.GameObjects;
 using Robust.Shared.Random;
 
 namespace Content.Server.GameTicking.Rules;
@@ -21,12 +22,12 @@ public sealed partial class ParadoxCloneRuleSystem : GameRuleSystem<ParadoxClone
 {
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private CloningSystem _cloning = default!;
-    [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private SharedMindSystem _mind = default!;
     [Dependency] private SuitSensorSystem _sensor = default!;
-    [Dependency] private TargetSystem _target = default!;
-    [Dependency] private SharedCollectiveMindSystem _collectiveMindUpdate = default!;
-    [Dependency] private IChatManager _chatManager = default!; // SL add
+    [Dependency] private AliveHumanoidTargetSystem _target = default!;
+    [Dependency] private TransformSystem _transform = default!; // Far Horizons
+    [Dependency] private IChatManager _chatManager = default!; // Far Horizons
+    [Dependency] private SharedCollectiveMindSystem _collectiveMindUpdate = default!; // Far Horizons
 
     public override void Initialize()
     {
@@ -41,7 +42,7 @@ public sealed partial class ParadoxCloneRuleSystem : GameRuleSystem<ParadoxClone
         base.Started(uid, component, gameRule, args);
 
         // check if we got enough potential cloning targets, otherwise cancel the gamerule so that the ghost role does not show up
-        var allHumans = _target.GetAliveHumans();
+        var allHumans = _target.GetMinds();
 
         if (allHumans.Count == 0)
         {
@@ -76,7 +77,7 @@ public sealed partial class ParadoxCloneRuleSystem : GameRuleSystem<ParadoxClone
         else
         {
             // get possible targets
-            var allAliveHumanoids = _target.GetAliveHumans();
+            var allAliveHumanoids = _target.GetMinds();
 
             // we already checked when starting the gamerule, but someone might have died since then.
             if (allAliveHumanoids.Count == 0)
@@ -140,7 +141,7 @@ public sealed partial class ParadoxCloneRuleSystem : GameRuleSystem<ParadoxClone
     // SL start
     private Entity<MindComponent>? FindValidPlayer()
     {
-        var validPlayers = _target.GetAliveHumans().Where(mind => !HasComp<NoObjectiveTargetComponent>(mind.Comp.OwnedEntity)).ToHashSet();
+        var validPlayers = _target.GetMinds().Where(mind => !HasComp<NoObjectiveTargetComponent>(mind.Comp.OwnedEntity)).ToHashSet();
         if (validPlayers.Count == 0) return null;
         return _random.Pick(validPlayers);
     }

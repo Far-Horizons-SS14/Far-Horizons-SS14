@@ -1,0 +1,82 @@
+- type: entity
+  id: FusionReactorController
+  parent: [ BaseStructure, ConstructibleMachine ]
+  name: Fusion Reactor Controller
+  description: The control center for a fusion reactor.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Power/Generation/FusionGenerator/fusion_reactor_controller.rsi
+    state: control
+    layers:
+    - state: control
+    - map: ["enum.FusionReactorControllerVisualLayers.Display"]
+      state: control_on
+      shader: unshaded
+      visible: false
+  - type: GenericVisualizer
+    visuals:
+      enum.FusionReactorControllerVisuals.Display:
+        enum.FusionReactorControllerVisualLayers.Display:
+          Off: { visible: false }
+          Damage0: { visible: true, state: control_on }
+          Damage1: { visible: true, state: control_warning }
+          Damage2: { visible: true, state: control_critical }
+          Damage3: { visible: true, state: control_fuck }
+  - type: Appearance
+  - type: InteractionOutline
+  - type: Rotatable
+  - type: Anchorable
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: FusionReactorController
+    alertChannel: ["Engineering", "SyndiEngi"]
+    powerExponent: 0.92
+    powerEfficiency: 0.5
+    energyExtractMax: 0.01
+  - type: FusionReactorPowerSupply
+  - type: FusionReactorRequireValid
+    magnet: 1
+    torus: 8
+    alone: false
+  - type: Machine
+    board: FusionReactorControllerMachineCircuitboard
+  - type: WiresPanel
+  - type: NodeContainer
+    examinable: true
+    nodes:
+      reactor:
+        !type:DirectionalNode
+        nodeGroupID: FusionReactor
+        nodeDirection: North
+      output:
+        !type:CableDeviceNode
+        nodeGroupID: HVPower
+  - type: PowerMonitoringDevice
+    group: Generator
+    loadNode: output
+    sprite: _FarHorizons/Structures/Power/Generation/FusionGenerator/fusion_reactor_controller.rsi
+    state: static
+  - type: PowerSupplier
+    supplyRampRate: 75000
+    supplyRampTolerance: 5000
+  - type: ActivatableUI
+    key: enum.FusionReactorUiKey.Key
+  - type: ActivatableUIRequiresAnchor
+  - type: UserInterface
+    interfaces:
+      enum.FusionReactorUiKey.Key:
+        type: FusionReactorControllerBoundUserInterface
+  - type: StationAiWhitelist
+  - type: AccessReader
+    access: [["Engineering"]]
+  - type: Lock
+    unlockOnClick: false

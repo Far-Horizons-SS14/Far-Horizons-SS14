@@ -1,12 +1,12 @@
 using System.Linq;
 using Content.Server.Shuttles.Components;
 using Content.Server.Station.Components;
-using Content.Shared.Atmos.Components;
 using Content.Shared._FarHorizons.LimbDamage;
 using Content.Shared._FarHorizons.Vampire;
 using Content.Shared._FarHorizons.Vampire.Traits;
 using Content.Shared._FarHorizons.Vampire.Traits.Negative;
 using Content.Shared._FarHorizons.Vampire.Traits.Positive;
+using Content.Shared.Atmos.Components;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Damage.Systems;
 using Content.Shared.DoAfter;
@@ -25,10 +25,10 @@ using Robust.Shared.Utility;
 namespace Content.Server._FarHorizons.Vampire.Traits;
 
 // This had to be on server because it's dealing with grids
-public sealed class
+public sealed partial class
     UvSensitivityVampireTraitSystem : LesserVampirePassiveTraitSystem<UvSensitivityVampireTraitComponent>
 {
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
 
     protected override void UpdateEffect(Entity<LesserVampireComponent, UvSensitivityVampireTraitComponent> ent)
     {
@@ -58,20 +58,20 @@ public sealed class
 }
 
 // Making vampire is server side also
-public sealed class
+public sealed partial class
     ConversionVampireTraitSystem : LesserVampireActionTraitSystem<ConversionVampireTraitComponent,
     VampireConversionEvent>
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly SharedMindSystem _mind = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly StatusEffectsSystem _statusEffect = default!;
-    [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly LimbDamageSystem _limbDamage = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly SleepingSystem _sleeping = default!;
-    [Dependency] private readonly TagSystem _tag = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private StatusEffectsSystem _statusEffect = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
+    [Dependency] private LimbDamageSystem _limbDamage = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private SleepingSystem _sleeping = default!;
+    [Dependency] private TagSystem _tag = default!;
 
     private EntProtoId _sleepStatus = "StatusEffectForcedSleeping";
 
@@ -87,7 +87,7 @@ public sealed class
     {
         base.Update(frameTime);
 
-        var query = EntityManager.AllEntityQueryEnumerator<VampireConversionCandidateComponent>();
+        var query = AllEntityQuery<VampireConversionCandidateComponent>();
         while (query.MoveNext(out var uid, out var candidate))
         {
             if (!candidate.Accepted ||

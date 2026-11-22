@@ -989,3 +989,101 @@
     steps: 6
     zeroVisible: false
   - type: Appearance
+  
+# Magazine for UA - Corona
+
+- type: entity
+  id: BaseMagazineBatteryUA
+  name: "Magazine (UA)"
+  parent: [ BaseItem ]
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - MagazineBatteryUA
+  - type: Item
+    size: Small
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeBatteryUA
+    capacity: 6
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/Energy_Magnum_Mag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 7
+    zeroVisible: false
+  - type: Appearance
+ 
+- type: entity
+  id: MagazineBatteryUA
+  name: "Magazine (UA)"
+  parent: BaseMagazineBatteryUA
+  components:
+  - type: BallisticAmmoProvider
+    proto: CapsuleUA
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+ #AP Magazine for UA - Corona
+
+- type: entity
+  id: BaseMagazineBatteryUAAP
+  name: "AP Magazine (UA)"
+  parent: [ BaseItem ]
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - MagazineBatteryUA
+  - type: Item
+    size: Small
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeBatteryUA
+    capacity: 6
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/Energy_Magnum_Mag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 7
+    zeroVisible: false
+  - type: Appearance
+ 
+- type: entity
+  id: MagazineBatteryUAAP
+  name: "AP Magazine (UA)"
+  parent: BaseMagazineBatteryUAAP
+  components:
+  - type: BallisticAmmoProvider
+    proto: CapsuleUAAP
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]

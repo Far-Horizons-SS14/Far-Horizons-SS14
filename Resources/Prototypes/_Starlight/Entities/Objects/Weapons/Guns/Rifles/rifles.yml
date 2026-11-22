@@ -129,7 +129,7 @@
   name: ARG
   parent: [ BaseWeaponRifle, BaseSecurityContraband ]
   id: WeaponRifleARG
-  description: An old galactic standard assault rifle, used by various paramilitary groups and former SVS militias ever since. Uses .30 rifle ammo.
+  description: An old galactic standard assault rifle, used by various paramilitary groups and former SVS militias ever since. Uses 7.62 rifle ammo. #FH
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Rifles/arg.rsi
@@ -153,21 +153,21 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineLightRifleFMJ
+        startingItem: MagazineRifle762FMJ #FH
         insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
         priority: 2
         whitelist:
           tags:
-          - MagazineLightRifle
+          - MagazineRifle762 #FH
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeLightRifleFMJ
+        startingItem: CartridgeRifle762FMJ #FH
         priority: 1
         whitelist:
           tags:
-          - CartridgeLightRifle
+          - CartridgeRifle762 #FH
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot ""
@@ -184,7 +184,7 @@
   name: Aussec Armory M-52
   parent: [WeaponRifleLecter, BaseCentcommContraband]
   id: WeaponRifleM52
-  description: Standard issue assault rifle in broad use, either by the federation or the 'scientifically inclined' paramilitaries. Uses a specific .20 magazine ammo.
+  description: Standard issue assault rifle in broad use, either by the federation or the 'scientifically inclined' paramilitaries. Uses a specific 5.56 magazine ammo.
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Rifles/m-52.rsi
@@ -226,7 +226,7 @@
   name: Pitbull
   parent: [ BaseWeaponRifle, BaseSyndicateContraband ]
   id: WeaponRiflePitbull
-  description: A large bullpup rifle with a low fire-rate but excellent accuracy. Chambered in .45 magnum.
+  description: A large bullpup rifle with a low fire-rate but excellent accuracy. Chambered in .44 magnum.
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Rifles/pitbull.rsi
@@ -269,7 +269,7 @@
   name: Peacemaker
   parent: [ BaseWeaponRifle, BaseSecurityContraband ]
   id: WeaponRiflePeacemaker
-  description: The best or worst thing you'll ever see, depending if it's pointed at you or not. Uses .20 rifle ammo.
+  description: The best or worst thing you'll ever see, depending if it's pointed at you or not. Uses 5.56 ammo.
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Rifles/ert.rsi
@@ -317,7 +317,7 @@
   name: M18-Militant
   parent: [BaseWeaponRifle, BaseSalvageContraband]
   id: WeaponRifleM18
-  description: Aged yet dependable, this old-world assault rifle is chambered in .20 rifle ammunition. Renowned for its reliability and ease of maintenance even in the harshest environments, it remains a staple among your station’s merce- salvage forces.
+  description: Aged yet dependable, this old-world assault rifle is chambered in 5.56 rifle ammunition. Renowned for its reliability and ease of maintenance even in the harshest environments, it remains a staple among your station’s merce- salvage forces.
   components:
     - type: Sprite
       sprite: _Starlight/Objects/Weapons/Guns/Rifles/m16.rsi

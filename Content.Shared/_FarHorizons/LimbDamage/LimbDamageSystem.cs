@@ -11,11 +11,11 @@ namespace Content.Shared._FarHorizons.LimbDamage;
 
 public sealed partial class LimbDamageSystem : EntitySystem
 {
-    [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IPrototypeManager _protoMan = default!;
-    [Dependency] private readonly ExamineSystemShared _examine = default!;
-    [Dependency] private readonly TagSystem _tag = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IPrototypeManager _protoMan = default!;
+    [Dependency] private ExamineSystemShared _examine = default!;
+    [Dependency] private TagSystem _tag = default!;
 
     public override void Initialize()
     {

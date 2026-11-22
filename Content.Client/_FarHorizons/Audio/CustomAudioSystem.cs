@@ -1,3 +1,4 @@
+using System.Collections.Concurrent;
 using System.Numerics;
 using Content.Shared._FarHorizons.Audio;
 using Content.Shared._FarHorizons.CCVar;
@@ -14,16 +15,25 @@ using Robust.Shared.Timing;
 
 namespace Content.Client._FarHorizons.Audio.CustomAudio;
 
-public sealed class CustomAudioSystem : EntitySystem
+public sealed partial class CustomAudioSystem : EntitySystem
 {
-    [Dependency] private readonly AudioSystem _audio = default!;
-    [Dependency] private readonly IConfigurationManager _cfgManager = default!;
-    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private AudioSystem _audio = default!;
+    [Dependency] private IConfigurationManager _cfgManager = default!;
+    [Dependency] private SharedPhysicsSystem _physics = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     private const float OcclusionReferenceThickness = 1f;
-    private readonly Dictionary<EntityUid, float> _smoothedOcclusion = new();
+
+    private static readonly TimeSpan _smoothingTimeout = TimeSpan.FromSeconds(0.25);
+
+    private struct SmoothState
+    {
+        public float Value;
+        public TimeSpan LastUpdate;
+    }
+
+    private readonly ConcurrentDictionary<EntityUid, SmoothState> _smoothedOcclusion = new();
 
     // CVAR Controlled Values
     private float _maxRayLength;
@@ -50,7 +60,7 @@ public sealed class CustomAudioSystem : EntitySystem
     }
 
     private void OnEntityTerminating(ref EntityTerminatingEvent ev)
-        => _smoothedOcclusion.Remove(ev.Entity);
+        => _smoothedOcclusion.TryRemove(ev.Entity, out _);
 
     private void OnRaycastLengthChanged(float value)
         => _maxRayLength = value;
@@ -76,24 +86,31 @@ public sealed class CustomAudioSystem : EntitySystem
         var results = _physics.IntersectRay(listener.MapId, ray, rayLength, ignoredEnt, returnOnFirstHit: false);
 
         var totalOcclusion = 0f;
+        var seen = new HashSet<EntityUid>();
+
         foreach (var result in results)
         {
-            if (!TryComp<StructureOcclusionComponent>(result.HitEntity, out var occlusionComp))
+            var hit = result.HitEntity;
+
+            if (!seen.Add(hit))
+                continue;
+
+            if (!TryComp<StructureOcclusionComponent>(hit, out var occlusionComp))
                 continue;
 
             if (!occlusionComp.DoesOcclusionWorkWhenOpen
-                && TryComp<DoorComponent>(result.HitEntity, out var doorComp)
+                && TryComp<DoorComponent>(hit, out var doorComp)
                 && doorComp.State is DoorState.Open or DoorState.Opening)
                 continue;
 
-            var aabb = _lookup.GetWorldAABB(result.HitEntity);
+            var aabb = _lookup.GetWorldAABB(hit);
             if (!TryGetRayAabbPenetration(listener.Position, direction, aabb, rayLength, out var penetration))
                 continue;
 
             var occlusion = occlusionComp.OcclusionAmount
                 * Math.Clamp(penetration / OcclusionReferenceThickness, 0f, 1f);
 
-            if (TryComp<WeldableComponent>(result.HitEntity, out var weldable) && weldable.IsWelded)
+            if (TryComp<WeldableComponent>(hit, out var weldable) && weldable.IsWelded)
                 occlusion *= occlusionComp.WeldedOcclusionModifier;
 
             totalOcclusion += occlusion;
@@ -109,23 +126,30 @@ public sealed class CustomAudioSystem : EntitySystem
         if (source is not { } key)
             return target;
 
-        var dt = (float) _timing.FrameTime.TotalSeconds;
+        var now = _timing.RealTime;
 
-        if (!_smoothedOcclusion.TryGetValue(key, out var current))
+        if (!_smoothedOcclusion.TryGetValue(key, out var state)
+            || now - state.LastUpdate > _smoothingTimeout)
         {
-            _smoothedOcclusion[key] = target;
+            _smoothedOcclusion[key] = new SmoothState { Value = target, LastUpdate = now };
             return target;
         }
 
+        var dt = (float) (now - state.LastUpdate).TotalSeconds;
+
+        if (dt <= 0f)
+            return state.Value;
+
         var maxDelta = _occlusionSmoothingRate * dt;
-        var diff = target - current;
+        var diff = target - state.Value;
 
-        var next = MathF.Abs(diff) <= maxDelta
+        state.Value = MathF.Abs(diff) <= maxDelta
             ? target
-            : current + (MathF.Sign(diff) * maxDelta);
+            : state.Value + (MathF.Sign(diff) * maxDelta);
+        state.LastUpdate = now;
 
-        _smoothedOcclusion[key] = next;
-        return next;
+        _smoothedOcclusion[key] = state;
+        return state.Value;
     }
 
     private static bool TryGetRayAabbPenetration(Vector2 origin, Vector2 dir, Box2 aabb, float rayLength, out float penetration)

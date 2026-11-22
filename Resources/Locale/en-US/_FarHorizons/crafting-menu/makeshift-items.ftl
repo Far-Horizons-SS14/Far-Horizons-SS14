@@ -8,9 +8,9 @@ crafting-menu-name-Enforcer = Enforcer
 crafting-menu-name-MagazinePistol = Pistol Magazine (.35)
 crafting-menu-name-CombatKnife = Combat Knife
 
-crafting-menu-name-scrapper-combat-gloves = Scrapper Combat Gloves
+crafting-menu-name-scrapper-combat-gloves = Salvager Combat Gloves
 crafting-menu-name-salvage-armor = Salvage Armor
 crafting-menu-name-heavy-salvage-armor = Heavy Salvage Armor
 crafting-menu-name-heavy-salvage-helmet = Heavy Salvage Armored Helmet
 crafting-menu-name-salvage-helmet = Salvage Armored Helmet
-crafting-menu-name-scrapper-webbing = Scrapper Webbing
+crafting-menu-name-scrapper-web-vest = Salvage Web Vest

@@ -2,7 +2,7 @@ using Content.Shared.Damage;
 
 namespace Content.Shared._FarHorizons.Damage;
 
-public sealed class UniversalHealModifierSystem : EntitySystem
+public sealed partial class UniversalHealModifierSystem : EntitySystem
 {
     public override void Initialize()
     {

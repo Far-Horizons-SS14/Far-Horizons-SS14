@@ -23,6 +23,141 @@
   conditions:
     - !type:TileNotBlocked
 
+- type: construction
+  id: BlastDoorSecure
+  graph: BlastDoorSecure
+  startNode: start
+  targetNode: blastdoor
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true
+
+- type: construction
+  id: ShuttersSecure
+  graph: Shutters
+  startNode: start
+  targetNode: ShuttersSecure
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true
+
+- type: construction
+  id: ShuttersSecureWindow
+  graph: Shutters
+  startNode: start
+  targetNode: ShuttersSecureWindow
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true
+
+# Walls
+- type: construction
+  id: WallShuttleReinforced
+  graph: Girder
+  startNode: start
+  targetNode: ReinforcedShuttleWall
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: WallShuttleReinforcedDiagonal
+  graph: Girder
+  startNode: start
+  targetNode: DiagonalReinforcedShuttleWall
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: WallShuttleArmored
+  graph: Girder
+  startNode: start
+  targetNode: ArmoredShuttleWall
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: WallShuttleArmoredDiagonal
+  graph: Girder
+  startNode: start
+  targetNode: DiagonalArmoredShuttleWall
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+# Windows
+- type: construction
+  id: ShuttleWindowReinforced
+  graph: Window
+  startNode: start
+  targetNode: ReinforcedShuttleWindow
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: ShuttleWindowReinforcedDiagonal
+  graph: WindowDirectional
+  startNode: start
+  targetNode: ReinforcedShuttleWindowDirectional
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: ShuttleWindowArmored
+  graph: Window
+  startNode: start
+  targetNode: ArmoredShuttleWindow
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: ShuttleWindowArmoredDiagonal
+  graph: WindowDirectional
+  startNode: start
+  targetNode: ArmoredShuttleWindowDirectional
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
 #Railings
 
 - type: construction

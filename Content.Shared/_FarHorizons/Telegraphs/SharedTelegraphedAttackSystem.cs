@@ -8,9 +8,9 @@ namespace Content.Shared._FarHorizons.Telegraphs;
 
 public abstract partial class SharedTelegraphedAttackSystem : EntitySystem
 {
-    [Dependency] protected readonly IGameTiming Timing = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] protected IGameTiming Timing = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
 
     private readonly List<(EntProtoId, EntityCoordinates, List<EntityUid>)> _spawnQueue = [];
 

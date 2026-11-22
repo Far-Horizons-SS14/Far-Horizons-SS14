@@ -1478,6 +1478,7 @@
     bounds: -0.5,-0.5,0.5,0.5
   - type: JobStatus # marks them as crew
   - type: Puller #FarHorizons
+  - type: LegacyZombieLock # Far Horizons - force monkeys and kobolds to use old zombification (no limb damage required)
 
 - type: entity
   name: monkey
@@ -2608,11 +2609,6 @@
   - type: SolutionManager
     solutions:
     - SolutionVenomSpider
-  - type: SolutionRegeneration
-    generated:
-      reagents:
-      - ReagentId: Mechanotoxin
-        Quantity: 1
   - type: MeleeChemicalInjector
     transferAmount: 0.75
     solution: melee
@@ -2672,6 +2668,12 @@
   parent: [SolutionWeapon, SolutionTiny]
   id: SolutionVenomSpider
   categories: [ HideSpawnMenu ]
+  components:
+  - type: SolutionRegeneration
+    generated:
+      reagents:
+      - ReagentId: Mechanotoxin
+        Quantity: 1
 
 - type: entity
   parent: MobSpiderBase

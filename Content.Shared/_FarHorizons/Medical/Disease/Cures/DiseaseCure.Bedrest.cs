@@ -19,13 +19,13 @@ public sealed partial class CureBedrest : CureStep
     /// Base per-tick cure chance while buckled to a bed.
     /// </summary>
     [DataField]
-    public float BedrestChance { get; private set; } = 0.05f;
+    public float BedrestChance { get; set; } = 0.05f;
 
     /// <summary>
     /// Multiplier to accumulation while the carrier is sleeping.
     /// </summary>
     [DataField]
-    public float SleepMultiplier { get; private set; } = 3f;
+    public float SleepMultiplier { get; set; } = 3f;
 }
 
 public sealed partial class CureBedrest

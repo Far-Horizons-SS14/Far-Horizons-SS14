@@ -8,11 +8,12 @@ using Robust.Server.GameObjects;
 namespace Content.Server._Starlight.Medical.Limbs;
 public sealed partial class CyberLimbSystem : EntitySystem
 {
-    [Dependency] private readonly ActionsSystem _actions = default!;
-    [Dependency] private readonly StarlightEntitySystem _slEnt = default!;
-    [Dependency] private readonly HandsSystem _hands = default!;
-    [Dependency] private readonly ContainerSystem _container = default!;
-    [Dependency] private readonly AudioSystem _audio = default!;
+    [Dependency] private ActionsSystem _actions = default!;
+    [Dependency] private StarlightEntitySystem _slEnt = default!;
+    [Dependency] private HandsSystem _hands = default!;
+    [Dependency] private ContainerSystem _container = default!;
+    [Dependency] private AudioSystem _audio = default!;
+    [Dependency] private UserInterfaceSystem _uiSystem = default!; //Far Horizons
 
     public override void Initialize()
     {

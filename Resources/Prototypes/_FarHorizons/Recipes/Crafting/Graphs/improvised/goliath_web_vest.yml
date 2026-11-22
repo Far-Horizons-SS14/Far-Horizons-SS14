@@ -1,0 +1,25 @@
+- type: constructionGraph
+  id: WebVestGoliath
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: webVestGoliath
+      steps:
+      - item: ClothingOuterVestWebSalvageMerc
+        icon:
+          sprite: _FarHorizons/Clothing/OuterClothing/Vests/salvage.rsi
+          state: icon
+        name: crafting-menu-name-scrapper-web-vest
+        doAfter: 5
+      - material: Durathread
+        amount: 10
+        doAfter: 5
+      - material: Plasteel
+        amount: 5
+        doAfter: 5
+      - material: GoliathHide
+        amount: 10
+        doAfter: 5
+  - node: webVestGoliath
+    entity: ClothingOuterVestWebSalvageMercGoliath

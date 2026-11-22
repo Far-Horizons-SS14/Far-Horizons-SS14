@@ -15,7 +15,7 @@ namespace Content.Server.Atmos.Commands;
 /// Command for managing and inspecting docked pipe connections.
 /// </summary>
 [AdminCommand(AdminFlags.Debug)]
-public sealed class DockPipeCommand : IConsoleCommand
+public sealed partial class DockPipeCommand : IConsoleCommand
 {
     public string Command => "dockpipe";
     public string Description => "Inspect and manage docked pipe connections between airlocks/grids.";

@@ -39,6 +39,7 @@
   id: UplinkRifleMosin
   name: uplink-rifle-mosin-name
   description: uplink-rifle-mosin-desc
+  icon: { sprite: /Textures/_FarHorizons/Objects/Weapons/Guns/Bolt_Actions/Mosin/mosin_x64x32.rsi, state: icon } #FH
   productEntity: WeaponSniperMosin
   cost:
     Telecrystal: 1
@@ -91,8 +92,10 @@
 
 - type: listing
   id: UplinkThrowingKnivesKit
-  name: uplink-knives-kit-name
-  description: uplink-knives-kit-desc
+  #Far Horizons - Start - Changed to make faction neutral
+  name: uplink-knives-kit-name-fh
+  description: uplink-knives-kit-desc-fh
+  #Far Horizons - End
   icon: { sprite: /Textures/Objects/Storage/boxicons.rsi, state: throwing_knives }
   productEntity: ThrowingKnivesKit
   discountCategory: rareDiscounts
@@ -639,7 +642,7 @@
   id: UplinkMosinAmmo
   name: uplink-mosin-ammo-name
   description: uplink-mosin-ammo-desc
-  productEntity: MagazineBoxLightRifleFMJ
+  productEntity: MagazineBoxRifle762FMJ #FH
   cost:
     Telecrystal: 1
   categories:

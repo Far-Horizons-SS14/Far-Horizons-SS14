@@ -17,10 +17,10 @@ namespace Content.Client._FarHorizons.Lobby.UI;
 [UsedImplicitly]
 public sealed partial class JobPicksWindow : DefaultWindow
 {
-    [Dependency] private readonly ISharedFactionManager _factions = default!;
-    [Dependency] private readonly IPrototypeManager _protoMan = default!;
-    [Dependency] private readonly IEntityManager _entMan = default!;
-    [Dependency] private readonly ISharedLobbyManager _lobby = default!;
+    [Dependency] private ISharedFactionManager _factions = default!;
+    [Dependency] private IPrototypeManager _protoMan = default!;
+    [Dependency] private IEntityManager _entMan = default!;
+    [Dependency] private ISharedLobbyManager _lobby = default!;
 
     private readonly SpriteSystem _sprite;
 

@@ -13,10 +13,14 @@
     quickEquip: false
     slots:
     - back
+  # FH start
   - type: Storage
     grid:
-    - 0,0,6,3
-    maxItemSize: Ginormous #FH - Fix for not being able to fit storage containers that hold "huge" items, like guns.
+    - 0,2,1,5
+    - 3,0,6,5
+    - 8,2,9,5
+    maxItemSize: Ginormous
+  # FH end
   - type: ContainerContainer
     containers:
       storagebase: !type:Container
@@ -29,6 +33,12 @@
   # to prevent bag open/honk spam
   - type: UseDelay
     delay: 0.5
+  # FH start
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 0.95
+  - type: HeldSpeedModifier
+  # FH end
   - type: ExplosionResistance
     damageCoefficient: 0.9
   - type: Tag
@@ -340,6 +350,11 @@
     maxItemSize: Ginormous #FH
     grid:
     - 0,0,19,9
+  # FH start
+  - type: ClothingSpeedModifier
+    sprintModifier: 1 # makes its stats identical to other variants of bag of holding
+  - type: HeldSpeedModifier
+  # FH end
 
 - type: entity
   parent: ClothingBackpackClown

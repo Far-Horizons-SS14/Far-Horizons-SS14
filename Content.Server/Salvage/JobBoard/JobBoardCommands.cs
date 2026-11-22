@@ -7,7 +7,7 @@ using Robust.Shared.Toolshed;
 namespace Content.Server.Salvage.JobBoard;
 
 [ToolshedCommand, AdminCommand(AdminFlags.Debug)]
-public sealed class JobBoardCommand : ToolshedCommand
+public sealed partial class JobBoardCommand : ToolshedCommand
 {
     /// <summary> Completes a bounty automatically. </summary>
     [CommandImplementation("completeJob")]

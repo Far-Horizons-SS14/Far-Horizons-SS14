@@ -15,15 +15,15 @@ using Content.Shared.Light.Components;
 
 namespace Content.Server._Starlight.NullSpace;
 
-public sealed class NullSpacePhaseSystem : EntitySystem
+public sealed partial class NullSpacePhaseSystem : EntitySystem
 {
-    [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
-    [Dependency] private readonly PhysicsSystem _physics = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly GhostSystem _ghost = default!;
-    [Dependency] private readonly ContainerSystem _container = default!;
-    [Dependency] private readonly TurfSystem _turf = default!;
+    [Dependency] private SharedActionsSystem _actionsSystem = default!;
+    [Dependency] private PhysicsSystem _physics = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private GhostSystem _ghost = default!;
+    [Dependency] private ContainerSystem _container = default!;
+    [Dependency] private TurfSystem _turf = default!;
 
     private readonly EntProtoId _shadekinShadow = "ShadekinShadow";
     private readonly EntProtoId ShadekinPhaseInEffect = "ShadekinPhaseInEffect";

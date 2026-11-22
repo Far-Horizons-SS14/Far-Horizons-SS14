@@ -10,7 +10,7 @@ using Robust.Shared.Toolshed;
 namespace Content.Server.Station.Commands;
 
 [ToolshedCommand, AdminCommand(AdminFlags.Admin)]
-public sealed class BankCommand : ToolshedCommand
+public sealed partial class BankCommand : ToolshedCommand
 {
     private CargoSystem? _cargo;
 

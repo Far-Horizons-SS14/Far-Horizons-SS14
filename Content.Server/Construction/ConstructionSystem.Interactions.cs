@@ -22,6 +22,10 @@ using Robust.Shared.Utility;
 using Robust.Shared.Exceptions;
 #endif
 
+#region Starlight
+using Content.Shared._Starlight.Construction;
+#endregion
+
 namespace Content.Server.Construction
 {
     public sealed partial class ConstructionSystem
@@ -247,6 +251,17 @@ namespace Content.Server.Construction
 
                 doAfterState = DoAfterState.Completed;
             }
+
+            #region Starlight
+            // Fire an event for intercepting construction steps caused by user interaction.
+            if (doAfterState == DoAfterState.None && ev is InteractUsingEvent earlyCheck)
+            {
+                var attemptEv = new ConstructionInteractAttemptEvent(earlyCheck.User, uid);
+                RaiseLocalEvent(uid, ref attemptEv);
+                if (attemptEv.Canceled)
+                    return HandleResult.False;
+            }
+            #endregion
 
             // The cases in this switch will handle the interaction and return
             switch (step)

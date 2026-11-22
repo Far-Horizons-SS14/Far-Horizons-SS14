@@ -118,9 +118,12 @@ public sealed class CartridgeUiReadyEvent : EntityEventArgs
 {
     public readonly EntityUid Loader;
 
-    public CartridgeUiReadyEvent(EntityUid loader)
+    public readonly EntityUid Actor; // Far Horizons
+
+    public CartridgeUiReadyEvent(EntityUid loader, EntityUid actor) // Far Horizons
     {
         Loader = loader;
+        Actor = actor; // Far Horizons
     }
 }
 

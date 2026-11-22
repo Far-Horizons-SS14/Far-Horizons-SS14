@@ -2,6 +2,6 @@ using Content.Shared.Stunnable;
 
 namespace Content.Client.Stunnable;
 
-public sealed class StunbatonSystem : SharedStunbatonSystem
+public sealed partial class StunbatonSystem : SharedStunbatonSystem
 {
 }

@@ -16,14 +16,14 @@ using Robust.Shared.Utility;
 
 namespace Content.Server._FarHorizons.Medical.Disease.Systems;
 
-public sealed class DiseaseVaccinatorSystem : EntitySystem
+public sealed partial class DiseaseVaccinatorSystem : EntitySystem
 {
-    [Dependency] private readonly LatheSystem _lathe = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly IAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly ContainerSystem _container = default!;
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
-    [Dependency] private readonly MetaDataSystem _metadata = default!;
+    [Dependency] private LatheSystem _lathe = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private IAdminLogManager _adminLogger = default!;
+    [Dependency] private ContainerSystem _container = default!;
+    [Dependency] private SharedSolutionContainerSystem _solutionContainer = default!;
+    [Dependency] private MetaDataSystem _metadata = default!;
     private readonly static string _vaccine = "Vaccine";
     public override void Initialize()
     {

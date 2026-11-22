@@ -9,13 +9,13 @@ using Robust.Shared.Prototypes;
 namespace Content.Server._Starlight.Commands;
 
 [AdminCommand(AdminFlags.Fun)]
-public sealed class StationInitCommand : LocalizedCommands
+public sealed partial class StationInitCommand : LocalizedCommands
 {
     // syntax: stationinit GRID_ID STATION_PROTO_ID TARGET_STATION_ID
     
-    [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly IEntitySystemManager _entitySystemManager = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
+    [Dependency] private IEntitySystemManager _entitySystemManager = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
     
     public override string Command => "stationinit";
     public override string Description => "Turns a grid into a new or existing station.";

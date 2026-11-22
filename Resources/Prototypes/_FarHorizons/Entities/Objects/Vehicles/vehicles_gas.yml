@@ -23,6 +23,9 @@
     riderWhitelist:
       tags:
         - CanPilot
+    riderBlacklist:
+      components:
+        - PowerArmorUser
     soundHit:
       collection: MetalThud
   - type: VehicleBuckle
@@ -30,12 +33,17 @@
     dismountOnStun: true
     dismountOnKnockdown: true
     ejectOnCrash: true
-    northOffset: "0, -0.12"
-    southOffset: "0, -0.12"
-    eastOffset: "0, -0.2"
-    westOffset: "-0, -0.2"
-    eastDrawDepth: BelowMobs
-    westDrawDepth: BelowMobs
+  - type: DirectionalOverride
+    offsets: 
+      North: "0, -0.12"
+      South: "0, -0.12"
+      East: "0, -0.2"
+      West: "0, -0.2"
+    drawDepths: 
+      North: OverMobs
+      South: OverMobs
+      East: BelowMobs
+      West: BelowMobs
   - type: Strap
   - type: Fixtures
     fixtures:
@@ -74,7 +82,7 @@
   - type: ReagentDraw
     enabled: false
     solutionContainer: fueltank
-    whitelistedReagants: 
+    whitelistedReagents: 
     - WeldingFuel
   - type: FootstepModifier
     footstepSoundCollection:
@@ -117,6 +125,11 @@
   - type: VehicleMods
     vehicleType: Gas
     equipmentSlots: [tires, engine, armor, headlight]
+  - type: FluidFootprintSpreader
+    footprint: TireDual
+    footprintSize: 0.75
+    stepSpacing: 0.1
+    lateralOffset: 0.2
 
 - type: entity
   id: VehicleATVFilled
@@ -187,6 +200,11 @@
     - type: VehicleMods
       vehicleType: Gas
       equipmentSlots: [tires, engine, armor, headlight, lightbar]
+    - type: FluidFootprintSpreader
+      footprint: TireDual
+      footprintSize: 0.75
+      stepSpacing: 0.1
+      lateralOffset: 0.2
 
 - type: entity
   id: VehicleATVNTSecFueled
@@ -256,6 +274,11 @@
     armorAffectsVehicle: true
   - type: VehicleMods
     vehicleType: Gas
+  - type: FluidFootprintSpreader
+    footprint: TireMono
+    footprintSize: 0.5
+    stepSpacing: 0.1
+    lateralOffset: 0
 
 - type: entity
   id: VehicleSkeletonMotorcycleFueledwithKeys
@@ -304,8 +327,12 @@
     riderWhitelist:
       tags:
         - CanPilot
+    riderBlacklist:
+      components:
+        - PowerArmorUser
     soundHit:
       collection: MetalThud
+    damageTransfer: 0.5
   - type: VehicleContainer
     seats: 2
     passengerWhitelist:
@@ -318,6 +345,7 @@
       storagebase: !type:Container
       vehicle_mods_container: !type:Container
   - type: Solution
+    id: fueltank 
     solution:
       maxVol: 150
   - type: RefillableSolution
@@ -328,7 +356,7 @@
   - type: ReagentDraw
     enabled: false
     solutionContainer: fueltank
-    whitelistedReagants: 
+    whitelistedReagents: 
     - WeldingFuel
   - type: FootstepModifier
     footstepSoundCollection:
@@ -382,7 +410,8 @@
           collection: MetalBreak
       - !type:DoActsBehavior
         acts: ["Breakage"]
-      - !type:ExplodeBehavior
+      - !type:SolutionExplosionBehavior
+        solution: fueltank
       - !type:EmptyContainersBehaviour
         containers:
         - passenger_slot
@@ -416,6 +445,11 @@
           tags:
           - VehicleKey
           - ClowncarKeys
+  - type: FluidFootprintSpreader
+    footprint: TireDual
+    footprintSize: 0.5
+    stepSpacing: 0.05
+    lateralOffset: 0.2
 
 - type: entity
   id: VehicleClownCarFilled

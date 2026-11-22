@@ -19,12 +19,12 @@ namespace Content.Client.Lobby.UI;
 [GenerateTypedNameReferences]
 public sealed partial class LobbyCharacterPreviewPanel : Control
 {
-    [Dependency] private readonly IEntityManager _entManager = default!;
-    [Dependency] private readonly IClientPreferencesManager _preferences = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly JobRequirementsManager _requirements = default!;
-    [Dependency] private readonly IUserInterfaceManager _uiManager = default!;
-    [Dependency] private readonly ISharedFactionManager _factions = default!; // Far Horizons
+    [Dependency] private IEntityManager _entManager = default!;
+    [Dependency] private IClientPreferencesManager _preferences = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private JobRequirementsManager _requirements = default!;
+    [Dependency] private IUserInterfaceManager _uiManager = default!;
+    [Dependency] private ISharedFactionManager _factions = default!; // Far Horizons
 
     private SpriteSystem _sprite = default!;
 

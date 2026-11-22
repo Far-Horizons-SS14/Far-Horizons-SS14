@@ -1,0 +1,23 @@
+- type: entity
+  parent: CrateMedical
+  id: CrateMindShieldImplantsNS
+  name: MindShield implant crate (NS)
+  description: Crate filled with 3 NeoSol MindShield implants.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        id: MindShieldImplanterNS
+        amount: 3
+
+- type: entity
+  parent: CrateMedical
+  id: CrateMindShieldImplantsGSL
+  name: MindShield implant crate (GSL)
+  description: Crate filled with 3 GSL MindShield implants.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        id: MindShieldImplanterGSL
+        amount: 3

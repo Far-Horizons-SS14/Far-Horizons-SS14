@@ -10,7 +10,7 @@ namespace Content.Server._Starlight.Shadekin;
 
 public sealed partial class ShadekinSystem
 {
-    [Dependency] private readonly DoAfterSystem _doAfterSystem = default!;
+    [Dependency] private DoAfterSystem _doAfterSystem = default!;
     public void InitializeAbilities()
     {
         SubscribeLocalEvent<BrighteyeComponent, BrighteyePortalActionEvent>(OnPortalAction);

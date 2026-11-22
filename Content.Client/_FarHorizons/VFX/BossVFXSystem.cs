@@ -5,8 +5,8 @@ namespace Content.Client._FarHorizons.VFX;
 
 public sealed partial class BossVFXSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _protoMan = default!;
-    [Dependency] private readonly IOverlayManager _overlayMan = default!;
+    [Dependency] private IPrototypeManager _protoMan = default!;
+    [Dependency] private IOverlayManager _overlayMan = default!;
 
     private BossVFXOverlay _overlay = default!;
 

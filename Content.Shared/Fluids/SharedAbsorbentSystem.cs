@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Shared._FarHorizons.Fluids;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.FixedPoint;
@@ -31,6 +32,7 @@ public abstract partial class SharedAbsorbentSystem : EntitySystem
     [Dependency] private SharedMapSystem _mapSystem = default!;
     [Dependency] private SharedItemSystem _item = default!;
     [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private SharedFluidFootprintSystem _footprint = default!; // Far Horizons
 
     public override void Initialize()
     {
@@ -102,6 +104,8 @@ public abstract partial class SharedAbsorbentSystem : EntitySystem
         if (TryComp<UseDelayComponent>(absorbEnt, out var useDelay)
             && _useDelay.IsDelayed((absorbEnt.Owner, useDelay)))
             return;
+        
+        _footprint.AttemptClean(absorbEnt, target, user); // Far Horizons
 
         // Try to slurp up the puddle.
         // We're then done if our mop doesn't use absorber solutions, since those don't need refilling.

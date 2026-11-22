@@ -284,6 +284,24 @@ public sealed partial class HealingSystem : EntitySystem
         if (TryComp<StackComponent>(healing, out var stack) && stack.Count < 1)
             return false;
 
+        //Far Horizons Start
+        if(healing.Comp.DamageCaps.Count > 0)
+        {
+            foreach(var damageCap in healing.Comp.DamageCaps)
+            {
+                var damagePerGroup = _damageable.GetPositiveDamage((target.Owner, target.Comp), damageCap.Key).GetTotal();
+                if(damagePerGroup <= 0)
+                    continue;
+
+                if(damagePerGroup > damageCap.Value)
+                {
+                    _popupSystem.PopupClient(Loc.GetString("medical-item-body-too-damaged", ("item", healing.Owner)), healing.Owner, user);
+                    return false;
+                }
+            }
+        }
+        //Far Horizons End
+
         // Starlight start
         // Far Horizons - migrated solution entities do not require SolutionContainerManager on the item.
         if (healing.Comp.SolutionDrain)

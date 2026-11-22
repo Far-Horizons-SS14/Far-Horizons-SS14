@@ -240,8 +240,15 @@
     sprite:
       sprite: Effects/creampie.rsi
       state: creampie_vulpkanin
-  - type: LimbDamageable # Far Horizons
+  # Far Horizons start
+  - type: LimbDamageable
     proto: LimbTargetVulp
+  - type: FluidFootprintSpreader
+    footprint: Animal
+    footprintSize: 1.0
+    stepSpacing: 0.2
+    lateralOffset: 0.15
+  # Far Horizons end
 
 - type: entity
   parent: OrganBase

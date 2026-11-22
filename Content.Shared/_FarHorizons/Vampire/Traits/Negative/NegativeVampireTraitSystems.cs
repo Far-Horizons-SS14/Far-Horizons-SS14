@@ -9,11 +9,11 @@ namespace Content.Shared._FarHorizons.Vampire.Traits.Negative;
 
 public sealed class PassiveBloodPoolDrainVampireTraitSystem : LesserVampireTraitSystem<PassiveBloodPoolDrainVampireTraitComponent>;
 
-public sealed class BloodDependencyVampireTraitSystem : LesserVampireTraitSystem<BloodDependencyVampireTraitComponent>
+public sealed partial class BloodDependencyVampireTraitSystem : LesserVampireTraitSystem<BloodDependencyVampireTraitComponent>
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly DamageableSystem _damage = default!;
-    [Dependency] private readonly LimbDamageSystem _limbDamage = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private DamageableSystem _damage = default!;
+    [Dependency] private LimbDamageSystem _limbDamage = default!;
 
     public override void Initialize()
     {
@@ -52,10 +52,10 @@ public sealed class DefangedVampireTraitSystem : LesserVampireTraitSystem<Defang
         args.FangsHidden = true;
 }
 
-public sealed class GourmandVampireTraitSystem : LesserVampireTraitSystem<GourmandVampireTraitComponent>
+public sealed partial class GourmandVampireTraitSystem : LesserVampireTraitSystem<GourmandVampireTraitComponent>
 {
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly SharedMindSystem _mind = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
 
     public override void Initialize()
     {

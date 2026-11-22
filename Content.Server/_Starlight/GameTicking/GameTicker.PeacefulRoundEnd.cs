@@ -15,13 +15,13 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server.Starlight.GameTicking;
 
-public sealed class PeacefulRoundEndSystem : EntitySystem
+public sealed partial class PeacefulRoundEndSystem : EntitySystem
 {
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly IDiscordLinkManager _discordLink = default!;  // Far Horizons
-    [Dependency] private readonly SharedJobSystem _jobs = default!;  // Far Horizons
-    [Dependency] private readonly MindSystem _mindSystem = default!;  // Far Horizons
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private IDiscordLinkManager _discordLink = default!;  // Far Horizons
+    [Dependency] private SharedJobSystem _jobs = default!;  // Far Horizons
+    [Dependency] private MindSystem _mindSystem = default!;  // Far Horizons
 
     private bool _isEnabled = false;
     private bool _roundedEnded = false;

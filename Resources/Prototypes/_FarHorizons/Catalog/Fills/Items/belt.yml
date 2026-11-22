@@ -65,7 +65,7 @@
 - type: entity
   id: ClothingBeltHolsterScugFilled
   parent: ClothingBeltHolster
-  suffix: Filled
+  suffix: NT, Filled
   components:
   - type: EntityTableContainerFill
     containers:
@@ -74,7 +74,32 @@
         - id: SpeedLoaderMagnumRubber
         - id: SpeedLoaderMagnumSP
         - id: WeaponRevolverInitiator
-        
+
+- type: entity
+  id: ClothingBeltSecurityDeputyMedicalFilled
+  parent: ClothingBeltSecurityDeputyMedical
+  suffix: NT, Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: Stunbaton
+        - id: Handcuffs    
+        - id: Brutepack
+        - id: Ointment
+        - id: Gauze
+
+- type: entity
+  id: ClothingBeltSecurityDeputyFilled
+  parent: ClothingBeltSecurityDeputy
+  suffix: NT, Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:NestedSelector
+        tableId: BeltSecurityEntityTable
+
 #region ##NeoSol##
 
 
@@ -245,7 +270,17 @@
   - type: EntityTableContainerFill
     containers:
       storagebase: !type:NestedSelector
-        tableId: BeltSecurityEntityTable
+        tableId: BeltSecurityEntityTableNS
+
+- type: entityTable
+  id: BeltSecurityEntityTableNS
+  table: !type:AllSelector
+    children:
+    - id: Stunbaton
+    - id: Handcuffs
+      amount: 2
+    - id: HoloprojectorSecurityNS
+    - id: RadioHandheldSecurityNS
 
 #region Service
 - type: entity

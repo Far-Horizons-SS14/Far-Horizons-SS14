@@ -16,7 +16,8 @@
   components:
   - type: NotJobRequirement
     jobs: 
-      - StationEngineer #TODO: make it so this also includes AtmosphericTechnician
+      - StationEngineer
+      - AtmosphericTechnician
   - type: StealCondition
     stealGroup: ReactorFuelRodSteal
     verifyMapExistence: false

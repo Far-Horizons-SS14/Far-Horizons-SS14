@@ -204,7 +204,14 @@ public sealed partial class AtmosphereSystem
         if (!IsMixtureOxidizer(tile.Air))
             return;
 
-        var isFlammable = IsMixtureFuel(tile.Air);
+        //Far Horizons Start
+        var hypernob = tile.Air.GetMoles(Gas.HyperNoblium);
+
+        if (hypernob > 5f)
+            return;
+        //Far Horizons End
+
+        var isFlammable = IsMixtureIgnitable(tile.Air);
 
         if (tile.Hotspot.Valid)
         {

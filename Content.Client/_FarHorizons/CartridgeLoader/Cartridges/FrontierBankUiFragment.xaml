@@ -1,0 +1,157 @@
+<cartridges:FrontierBankUiFragment
+    xmlns="https://spacestation14.io"
+    xmlns:cartridges="clr-namespace:Content.Client._FarHorizons.CartridgeLoader.Cartridges"
+    xmlns:customControls="clr-namespace:Content.Client.Administration.UI.CustomControls"
+    xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+    xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+    Orientation="Vertical"
+    HorizontalExpand="True"
+    VerticalExpand="True"
+    Margin="5">
+
+    <!-- Root overlay container: controls layering -->
+    <PanelContainer HorizontalExpand="True" VerticalExpand="True">
+
+        <!-- Main UI Layer -->
+        <BoxContainer Orientation="Vertical"
+                      HorizontalExpand="True"
+                      VerticalExpand="True">
+            <BoxContainer Orientation="Vertical"
+                          Margin="4"
+                          SeparationOverride="6"
+                          HorizontalExpand="True"
+                          VerticalExpand="True">
+
+                <!-- Account Header -->
+                <controls:StripeBack>
+                    <Label Name="AccountOwnerLabel"
+                           Text="{Loc 'frontier-bank-account-owner-default'}"
+                           HorizontalAlignment="Center"
+                           Margin="2" />
+                </controls:StripeBack>
+
+                <!-- Financial Details Grid -->
+                <GridContainer Columns="2" HorizontalExpand="True">
+                    <Label Text="{Loc 'frontier-bank-balance-label'}"
+                           StyleClasses="LabelKeyText" />
+                    <Label Name="BalanceAmountLabel"
+                           Text="0 cr."
+                           HorizontalAlignment="Right" />
+
+                    <Label Text="{Loc 'frontier-bank-daily-limit-label'}"
+                           StyleClasses="LabelKeyText" />
+                    <Label Name="DailyLimitLabel"
+                           Text="0 cr."
+                           HorizontalAlignment="Right" />
+                </GridContainer>
+
+                <PanelContainer StyleClasses="LowDivider" Margin="0 2" />
+
+                <!-- Credstick Container area -->
+                <BoxContainer Name="CredstickArea"
+                              Orientation="Vertical"
+                              HorizontalExpand="True"
+                              VerticalExpand="True">
+
+                    <BoxContainer Name="NoCredstickContainer"
+                                  HorizontalExpand="True"
+                                  VerticalExpand="True"
+                                  Orientation="Vertical"
+                                  Align="Center">
+                        <controls:StripeBack HorizontalExpand="True">
+                            <Label Text="{Loc 'frontier-bank-no-credstick-inserted'}"
+                                   HorizontalAlignment="Center"
+                                   StyleClasses="LabelSubtext" />
+                        </controls:StripeBack>
+                    </BoxContainer>
+
+                    <BoxContainer Name="CredstickOperationsContainer"
+                                  Orientation="Vertical"
+                                  HorizontalExpand="True"
+                                  VerticalExpand="True"
+                                  Visible="False"
+                                  SeparationOverride="6">
+                        <controls:StripeBack>
+                            <Label Name="CredstickOperations"
+                                   Text="{Loc 'frontier-bank-credstick-operations'}"
+                                   HorizontalAlignment="Center"
+                                   Margin="2" />
+                        </controls:StripeBack>
+
+                        <GridContainer Columns="2" HorizontalExpand="True">
+                            <Label Text="{Loc 'frontier-bank-credstick-balance-label'}"
+                                   StyleClasses="LabelKeyText" />
+                            <Label Name="CredstickBalanceAmountLabel"
+                                   Text="0 cr."
+                                   HorizontalAlignment="Right" />
+                        </GridContainer>
+
+                        <!-- Action Buttons -->
+                        <BoxContainer Orientation="Vertical"
+                                      SeparationOverride="4"
+                                      Margin="0 4 0 0"
+                                      HorizontalExpand="True">
+                            <Button Name="DepositToCredstickButton"
+                                    Text="{Loc 'frontier-bank-deposit-to-credstick'}"
+                                    HorizontalExpand="True" />
+                            <Button Name="WithdrawFromCredstickButton"
+                                    Text="{Loc 'frontier-bank-withdraw-from-credstick'}"
+                                    HorizontalExpand="True" />
+                        </BoxContainer>
+
+                    </BoxContainer>
+                </BoxContainer>
+            </BoxContainer>
+        </BoxContainer>
+
+        <!-- Dark Semi-Transparent Backdrop -->
+        <PanelContainer Name="TransferModalOverlay"
+                        HorizontalExpand="True"
+                        VerticalExpand="True"
+                        Visible="False"
+                        StyleClasses="BackgroundPanelDark">
+
+            <!-- Center Transfer Dialog Box -->
+            <BoxContainer HorizontalAlignment="Center"
+                          VerticalAlignment="Center"
+                          MinWidth="220">
+                <PanelContainer StyleClasses="BackgroundPanel">
+                    <BoxContainer Orientation="Vertical"
+                                  Margin="8"
+                                  SeparationOverride="8">
+
+                        <Label Name="TransferModalTitleLabel"
+                               Text=""
+                               HorizontalAlignment="Center"
+                               StyleClasses="LabelHeading" />
+
+                        <PanelContainer StyleClasses="LowDivider" />
+
+                        <BoxContainer Orientation="Vertical" SeparationOverride="4">
+                            <Label Text="{Loc 'frontier-bank-enter-amount'}"
+                                   StyleClasses="LabelSubtext" />
+                            <LineEdit Name="TransferAmountInput"
+                                      PlaceHolder="0"
+                                      HorizontalExpand="True" />
+                        </BoxContainer>
+
+                        <!-- Transfer Confirm / Cancel Actions -->
+                        <BoxContainer Orientation="Horizontal"
+                                      HorizontalExpand="True"
+                                      SeparationOverride="6">
+                            <Button Name="TransferConfirmButton"
+                                    Text="{Loc 'frontier-bank-confirm'}"
+                                    HorizontalExpand="True" />
+                            <Button Name="TransferCancelButton"
+                                    Text="{Loc 'frontier-bank-cancel'}"
+                                    HorizontalExpand="True" />
+                        </BoxContainer>
+
+                    </BoxContainer>
+                </PanelContainer>
+            </BoxContainer>
+
+        </PanelContainer>
+
+    </PanelContainer>
+</cartridges:FrontierBankUiFragment>

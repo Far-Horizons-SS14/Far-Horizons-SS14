@@ -11,10 +11,10 @@ using Robust.Shared.Timing;
 
 namespace Content.Client._FarHorizons.Shuttles.UI;
 
-public sealed class ShuttleGunControl : ShuttleNavControl
+public sealed partial class ShuttleGunControl : ShuttleNavControl
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IInputManager _inputs = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IInputManager _inputs = default!;
     private readonly SharedTransformSystem _xformSystem;
     
     private EntityUid? _shuttleEntity;

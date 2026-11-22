@@ -15,21 +15,20 @@ using Content.Shared.Toggleable;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Hands;
 using Content.Shared.Audio;
-using Content.Shared._FarHorizons.ReagentDraw.EntitySystems;
-using Content.Shared._FarHorizons.ReagentDraw.Components;
+using Content.Shared._FarHorizons.ReagentDraw;
 
 namespace Content.Shared._FarHorizons.Tools.FloorBuffer.Systems;
 
 public sealed partial class FloorBufferSystem : EntitySystem
 {
-    [Dependency] private readonly SharedMapSystem _map = default!;
-    [Dependency] private readonly SharedDecalSystem _decals = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
-    [Dependency] private readonly SharedActionsSystem _actions = default!;
-    [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
-    [Dependency] private readonly SharedReagentDrawSystem _ReagentDraw = default!;
-    [Dependency] private readonly SharedAmbientSoundSystem _ambient = default!;
+    [Dependency] private SharedMapSystem _map = default!;
+    [Dependency] private SharedDecalSystem _decals = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private SharedSolutionContainerSystem _solutionContainer = default!;
+    [Dependency] private SharedActionsSystem _actions = default!;
+    [Dependency] private MovementSpeedModifierSystem _movementSpeed = default!;
+    [Dependency] private SharedReagentDrawSystem _ReagentDraw = default!;
+    [Dependency] private SharedAmbientSoundSystem _ambient = default!;
     static readonly public ProtoId<ReagentPrototype> ReplacementReagent = "Water";
     public override void Initialize()
     {
@@ -73,7 +72,7 @@ public sealed partial class FloorBufferSystem : EntitySystem
             if(!TryComp<MapGridComponent>(xForm.GridUid, out var grid))
                 continue;
                         
-            if(TryComp<ReagentDrawComponent>(uid, out var rdComp) && !_ReagentDraw.HasDrawReagant(uid))
+            if(TryComp<ReagentDrawComponent>(uid, out var rdComp) && !_ReagentDraw.HasDrawReagent(uid))
             {
                 floorComp.Enabled = false;
                 rdComp.Enabled = false;

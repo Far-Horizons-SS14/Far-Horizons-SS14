@@ -5,7 +5,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Atmos.Components;
 
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true, fieldDeltas: true)]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)]
 public sealed partial class GasTankComponent : GasMaxPressureHolderComponent
 {
     private const float DefaultLowPressure = Atmospherics.OneAtmosphere;
@@ -27,12 +27,6 @@ public sealed partial class GasTankComponent : GasMaxPressureHolderComponent
     public EntityUid? ConnectStream;
     public EntityUid? DisconnectStream;
 
-
-    // 🌟Starlight🌟
-    // It’s minimal mol count synchronization
-    // just enough so the client can predict a jetpack jump
-    [DataField, AutoNetworkedField]
-    public float TotalMoles;
     /// <summary>
     ///     Pressure at which tank should be considered 'low' such as for internals.
     /// </summary>

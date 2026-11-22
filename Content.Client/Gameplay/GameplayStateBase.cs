@@ -37,7 +37,6 @@ namespace Content.Client.Gameplay
         [Dependency] private IPlayerManager _playerManager = default!;
         [Dependency] private IEntitySystemManager _entitySystemManager = default!;
         [Dependency] private IGameTiming _timing = default!;
-        [Dependency] private IMapManager _mapManager = default!;
         [Dependency] protected IUserInterfaceManager UserInterfaceManager = default!;
         [Dependency] private IEntityManager _entityManager = default!;
         [Dependency] private IViewVariablesManager _vvm = default!;
@@ -231,29 +230,21 @@ namespace Content.Client.Gameplay
             {
                 var mousePosWorld = vp.PixelToMap(kArgs.PointerLocation.Position);
 
-                if (_mapManager.MapExists(mousePosWorld.MapId))
+                if (vp is ScalingViewport svp)
                 {
-                    if (vp is ScalingViewport svp)
-                    {
-                        entityToClick = GetClickedEntity(mousePosWorld, svp.Eye);
-                    }
-                    else
-                    {
-                        entityToClick = GetClickedEntity(mousePosWorld);
-                    }
-
-                    var transformSystem = _entitySystemManager.GetEntitySystem<SharedTransformSystem>();
-                    var mapSystem = _entitySystemManager.GetEntitySystem<MapSystem>();
-
-                    coordinates = _mapManager.TryFindGridAt(mousePosWorld, out var uid, out _)
-                        ? mapSystem.MapToGrid(uid, mousePosWorld)
-                        : transformSystem.ToCoordinates(mousePosWorld);
+                    entityToClick = GetClickedEntity(mousePosWorld, svp.Eye);
                 }
                 else
                 {
-                    // Happens if the viewport temporarily points at an entity in nullspace; treat as no valid target.
-                    coordinates = EntityCoordinates.Invalid;
+                    entityToClick = GetClickedEntity(mousePosWorld);
                 }
+
+                var transformSystem = _entitySystemManager.GetEntitySystem<SharedTransformSystem>();
+                var mapSystem = _entitySystemManager.GetEntitySystem<MapSystem>();
+
+                coordinates = mapSystem.TryFindGridAt(mousePosWorld, out var uid, out _)
+                    ? mapSystem.MapToGrid(uid, mousePosWorld)
+                    : transformSystem.ToCoordinates(mousePosWorld);
             }
             else
             {

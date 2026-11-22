@@ -8,7 +8,7 @@ namespace Content.Client.Commands;
 // sandboxing and uncomment this code (and the SaveActionAssignments() function).
 /*
 [AnyCommand]
-public sealed class SaveActionsCommand : IConsoleCommand
+public sealed partial class SaveActionsCommand : IConsoleCommand
 {
     public string Command => "saveacts";
     public string Description => "Saves the current action toolbar assignments to a file";

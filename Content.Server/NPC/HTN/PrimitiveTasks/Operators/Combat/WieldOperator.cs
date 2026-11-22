@@ -29,7 +29,7 @@ public sealed partial class WieldOperator : HTNOperator
             return HTNOperatorStatus.Failed;
 
         if (!_entManager.TryGetComponent<WieldableComponent>(weaponUid, out var wieldable))
-            return HTNOperatorStatus.Failed;
+            return Wield ? HTNOperatorStatus.Failed : HTNOperatorStatus.Finished; // FH - Failed -> Failed if we're asking "is it wielded", Finished if we're asking "is it unwielded", since if it's not wieldable it's always unwielded.
 
         var wieldableSystem = _entManager.System<SharedWieldableSystem>();
 
@@ -44,7 +44,7 @@ public sealed partial class WieldOperator : HTNOperator
         }
 
         if (!wieldable.Wielded)
-            return HTNOperatorStatus.Failed;
+            return HTNOperatorStatus.Finished; // FH - Failed -> Finished, so that unweilding is considered successful if the weapon is already unwielded.
 
         return wieldableSystem.TryUnwield(weaponUid.Value, wieldable, owner)
             ? HTNOperatorStatus.Finished

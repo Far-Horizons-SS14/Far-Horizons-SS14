@@ -4,3 +4,7 @@ job-description-cc-cad-official = Official member of CentComm's Administrative D
 job-description-cc-csd-official = Official member of CentComm's Security Division. Provide protection to CentComm forces.
 job-description-cc-cid-official = Official member of CentComm's Intelligence Division. -Redacted Description-
 job-description-zookeeper = Put on a joyful display of cute animals and space carps for all the crew to see.
+job-description-highcommoff = Act as an ambassador to the newest state-of-the-art space station in NeoSol's fleet.
+job-description-hc-coa-official = Official member of High Command's Administrative Division. Respond to the station's requests and relax in the downtime.
+job-description-hc-gws-official = Official member of High Command's Security Division. Provide protection to NeoSol forces.
+job-description-hc-dci-official = Official member of Nigh Command's Intelligence Division. -Redacted Description-

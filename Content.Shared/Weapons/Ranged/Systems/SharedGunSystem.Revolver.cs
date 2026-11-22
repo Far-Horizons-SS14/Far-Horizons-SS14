@@ -77,6 +77,11 @@ public partial class SharedGunSystem
         if (args.Current is not RevolverAmmoProviderComponentState state)
             return;
 
+        // Far-Horizons start
+        var ammoChanged = false;
+        var oldChambers = ent.Comp.Chambers;
+        // Far-Horizons end
+
         var oldIndex = ent.Comp.CurrentIndex;
         ent.Comp.CurrentIndex = state.CurrentIndex;
         ent.Comp.Chambers = new bool?[state.Chambers.Length];
@@ -84,12 +89,19 @@ public partial class SharedGunSystem
         // Need to copy across the state rather than the ref.
         for (var i = 0; i < ent.Comp.AmmoSlots.Count; i++)
         {
-            ent.Comp.AmmoSlots[i] = EnsureEntity<RevolverAmmoProviderComponent>(state.AmmoSlots[i], ent);
+            // Far-Horizons edit: check if ammo has changed
+            var newAmmo = EnsureEntity<RevolverAmmoProviderComponent>(state.AmmoSlots[i], ent);
+            if (ent.Comp.AmmoSlots[i] != newAmmo || oldChambers[i] != state.Chambers[i])
+                ammoChanged = true;
+            ent.Comp.AmmoSlots[i] = newAmmo;
+            // End Far-Horizons edit
+
+            //ent.Comp.AmmoSlots[i] = EnsureEntity<RevolverAmmoProviderComponent>(state.AmmoSlots[i], ent); // FH edit - avoid double EnsureEntity call
             ent.Comp.Chambers[i] = state.Chambers[i];
         }
 
         // Handle spins
-        if (oldIndex != state.CurrentIndex)
+        if (oldIndex != state.CurrentIndex || ammoChanged) // Far-Horizons edit: add ammoChanged
         {
             UpdateAmmoCount(ent, prediction: false);
         }
@@ -151,7 +163,7 @@ public partial class SharedGunSystem
 
                 ent.Comp.AmmoSlots[index] = ammoEnt.Value;
                 Containers.Insert(ammoEnt.Value, ent.Comp.AmmoContainer);
-                SetChamber(ent, insertEnt, index);
+                SetChamber(ent, ammoEnt.Value, index); // FH edit: Don't insert the speedloader into the chamber, just the ammo
 
                 if (ev.Ammo.Count == 0)
                     break;
@@ -409,12 +421,6 @@ public partial class SharedGunSystem
                 ent.Comp.AmmoSlots[index] = null;
                 ent.Comp.Chambers[index] = null;
                 args.Ammo.Add((ammoEnt.Value, EnsureComp<AmmoComponent>(ammoEnt.Value)));
-            }
-
-            // Delete the cartridge entity on client
-            if (_netManager.IsClient)
-            {
-                QueueDel(ammoEnt);
             }
         }
 

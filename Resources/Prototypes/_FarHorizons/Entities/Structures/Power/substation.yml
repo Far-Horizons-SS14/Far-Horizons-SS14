@@ -1,0 +1,191 @@
+- type: entity
+  parent: BaseSubstation
+  id: SubstationShip
+  suffix: Ship, 4.5MJ, Max Charge
+  components:
+  - type: Sprite # TODO: add sprite for maintenance panel open
+    sprite: _FarHorizons/Structures/Power/substation.rsi
+    snapCardinals: true
+    layers:
+    - state: substation_ship
+    - state: screen_ship
+      shader: unshaded
+    - state: full
+      shader: unshaded
+  - type: Machine
+    board: SubstationShipMachineCircuitboard
+  - type: PowerMonitoringDevice
+    sprite: _FarHorizons/Structures/Power/substation.rsi
+    state: substation_ship_static
+  - type: Battery
+    maxCharge: 4500000
+    startingCharge: 4500000
+  - type: PowerNetworkBattery
+    maxSupply: 150000
+    maxChargeRate: 150000
+    supplyRampTolerance: 10000
+    supplyRampRate: 5000
+
+- type: entity
+  parent: SubstationShip
+  id: SubstationShipEmpty
+  suffix: Empty
+  components:
+  - type: Battery
+    startingCharge: 0
+
+- type: entity
+  parent: BaseSubstationWall
+  id: SubstationWallShip
+  name: Wallmount Ship Substation
+  suffix: Ship, 4MJ, Max Charge
+  description: A Substation used in Ships.
+  components:
+  - type: Sprite # TODO: add sprite for maintenance panel open
+    drawdepth: WallMountedItems
+    sprite: _FarHorizons/Structures/Power/substation.rsi
+    layers:
+    - state: substation_wall_ship
+    - state: screen_wall_ship
+      shader: unshaded
+  - type: Battery
+    maxCharge: 4000000
+    startingCharge: 4000000
+  - type: ContainerFill
+    containers:
+      board: [ WallmountSubstationElectronicsShip ]
+      manipulator: [ MicroManipulatorStockPart ]
+      powercell: [ PowerCellHigh ]
+  - type: ContainerContainer
+    containers:
+      board: !type:Container
+      manipulator: !type:Container
+      powercell: !type:Container
+  - type: PowerNetworkBattery
+    maxSupply: 150000
+    maxChargeRate: 150000
+    supplyRampTolerance: 10000
+    supplyRampRate: 5000
+
+- type: entity
+  parent: BaseSubstationWallFrame
+  id: SubstationWallShipFrame
+  categories: [ HideSpawnMenu ]
+  name: Wallmount Ship Substation Frame
+  description: A substation frame for construction.
+  components:
+  - type: Sprite
+    drawdepth: WallMountedItems
+    sprite: _FarHorizons/Structures/Power/substation.rsi
+    layers:
+    - state: substation_wall_ship
+  - type: Construction
+    graph: SubstationWallShip
+    node: frame
+
+- type: entity
+  parent: SubstationWallShip
+  id: SubstationWallShipEmpty
+  suffix: Empty
+  components:
+  - type: Battery
+    startingCharge: 0
+  - type: Construction
+    graph: SubstationWallShip
+    node: substation
+
+- type: entity
+  parent: BaseSubstation
+  id: SubstationShuttle
+  suffix: Shuttle, 3.5MJ, Max Charge
+  components:
+  - type: Sprite # TODO: add sprite for maintenance panel open
+    sprite: _FarHorizons/Structures/Power/substation.rsi
+    snapCardinals: true
+    layers:
+    - state: substation_shuttle
+    - state: screen
+      shader: unshaded
+    - state: full
+      shader: unshaded
+  - type: Machine
+    board: SubstationShuttleMachineCircuitboard
+  - type: PowerMonitoringDevice
+    sprite: _FarHorizons/Structures/Power/substation.rsi
+    state: substation_shuttle_static
+  - type: Battery
+    maxCharge: 3500000
+    startingCharge: 3500000
+  - type: PowerNetworkBattery
+    maxSupply: 150000
+    maxChargeRate: 150000
+    supplyRampTolerance: 10000
+    supplyRampRate: 5000
+
+- type: entity
+  parent: SubstationShuttle
+  id: SubstationShuttleEmpty
+  suffix: Empty
+  components:
+  - type: Battery
+    startingCharge: 0
+
+- type: entity
+  parent: BaseSubstationWall
+  id: SubstationWallShuttle
+  suffix: Shuttle, 3MJ, Max Charge
+  name: Wallmount Shuttle Substation
+  description: A Substation used in SMES-Powered Shuttles, where there is no generating source of power.
+  components:
+  - type: Sprite # TODO: add sprite for maintenance panel open
+    drawdepth: WallMountedItems
+    sprite: _FarHorizons/Structures/Power/substation.rsi
+    layers:
+    - state: substation_wall_shuttle
+    - state: screen_wall
+      shader: unshaded
+  - type: Battery
+    maxCharge: 3000000
+    startingCharge: 3000000
+  - type: ContainerFill
+    containers:
+      board: [ WallmountSubstationElectronicsShuttle ]
+      manipulator: [ MicroManipulatorStockPart ]
+      powercell: [ PowerCellMedium ]
+  - type: ContainerContainer
+    containers:
+      board: !type:Container
+      manipulator: !type:Container
+      powercell: !type:Container
+  - type: PowerNetworkBattery
+    maxSupply: 150000
+    maxChargeRate: 150000
+    supplyRampTolerance: 10000
+    supplyRampRate: 5000
+
+- type: entity
+  parent: BaseSubstationWallFrame
+  id: SubstationWallShuttleFrame
+  categories: [ HideSpawnMenu ]
+  name: Wallmount Shuttle Substation Frame
+  description: A substation frame for construction.
+  components:
+  - type: Sprite
+    drawdepth: WallMountedItems
+    sprite: _FarHorizons/Structures/Power/substation.rsi
+    layers:
+    - state: substation_wall_shuttle
+  - type: Construction
+    graph: SubstationWallShuttle
+    node: frame
+
+- type: entity
+  parent: SubstationWallShuttle
+  id: SubstationWallShuttleEmpty
+  suffix: Empty
+  components:
+  - type: Battery
+    startingCharge: 0
+  - type: Construction
+    graph: SubstationWallShuttle
+    node: substation

@@ -218,7 +218,7 @@ namespace Content.Server.Bible
                         }
 
                     }
-                    if (EntityManager.TryGetComponent<HandsComponent>(target, out var hands))
+                    if (TryComp<HandsComponent>(target, out var hands))
                     {
                         foreach (var hand in _hands.EnumerateHands((target, hands)))
                         {

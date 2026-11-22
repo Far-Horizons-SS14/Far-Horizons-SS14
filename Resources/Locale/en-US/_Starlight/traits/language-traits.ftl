@@ -16,7 +16,6 @@ trait-language-canilunzt-name = Canilunzt
 trait-language-canilunzt-desc = You have the ability to speak Canilunzt, a guttural language used by Vulpkanin which heavily incorporates body movements.
 
 trait-language-draconic-name = Draconic
-trait-language-draconic-desc = You can make the sounds needed to speak Draconic, the lizard-tongue composed entirely of hissing and rattling.
 
 trait-language-marish-name = Marish
 trait-language-marish-desc = Somehow, you can communicate with Shadekin in their native Marish - a language comprised only of one word, with many different meanings.
@@ -40,7 +39,6 @@ trait-language-voxpidgin-name = Vox Pidgin
 trait-language-voxpidgin-desc = You know the language of the Vox, a language mostly made of screeches, clicks, and other assorted bird noises.
 
 trait-language-moffic-name = Moffic
-trait-language-moffic-desc = The language of the moth-people, Moffic is basically completely unintelligible to all but yourself and its native speakers.
 
 trait-language-thaveyan-name = Thaveyan
 trait-language-thaveyan-desc = You've been around the fish people long enough to master the rhythm of their tongue, though perhaps not their erratic moods.

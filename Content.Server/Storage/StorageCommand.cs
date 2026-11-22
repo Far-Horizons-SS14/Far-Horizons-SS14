@@ -10,7 +10,7 @@ using Robust.Shared.Toolshed;
 namespace Content.Server.Storage;
 
 [ToolshedCommand, AdminCommand(AdminFlags.Debug)]
-public sealed class StorageCommand : ToolshedCommand
+public sealed partial class StorageCommand : ToolshedCommand
 {
     private SharedStorageSystem? _storage;
     private SharedContainerSystem? _container;
@@ -24,7 +24,7 @@ public sealed class StorageCommand : ToolshedCommand
     {
         _storage ??= GetSys<SharedStorageSystem>();
 
-        if (!EntityManager.TryGetComponent<StorageComponent>(targetEnt, out var storage))
+        if (!TryComp<StorageComponent>(targetEnt, out var storage))
             return null;
 
         return _storage.Insert(targetEnt, entToInsert, out var stackedEntity, null, storage, false)
@@ -42,7 +42,7 @@ public sealed class StorageCommand : ToolshedCommand
         _container ??= GetSys<SharedContainerSystem>();
 
 
-        if (!EntityManager.TryGetComponent<StorageComponent>(storageEnt, out var storage))
+        if (!TryComp<StorageComponent>(storageEnt, out var storage))
             return null;
 
         var removing = storage.Container.ContainedEntities[^1];
@@ -61,7 +61,7 @@ public sealed class StorageCommand : ToolshedCommand
         _storage ??= GetSys<SharedStorageSystem>();
         _container ??= GetSys<SharedContainerSystem>();
 
-        if (!EntityManager.TryGetComponent<StorageComponent>(storageEnt, out var storage))
+        if (!TryComp<StorageComponent>(storageEnt, out var storage))
             return [];
 
         IEnumerable<EntityUid> containedEntities = storage.Container.ContainedEntities;

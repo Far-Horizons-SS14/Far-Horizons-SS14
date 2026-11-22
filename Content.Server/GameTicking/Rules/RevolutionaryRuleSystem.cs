@@ -301,9 +301,7 @@ public sealed partial class RevolutionaryRuleSystem : GameRuleSystem<Revolutiona
                 if (slotEntity.ContainedEntity is not { } contained ||
                     MetaData(contained).EntityPrototype?.ID != "USSPUplinkRadioPreset" ||
                     !_storeSystem.TryGetStore(contained, out _))
-                {
                     continue;
-                }
 
                 if (HasComp<HeadRevolutionaryComponent>(user))
                     EnsureComp<HeadRevolutionaryImplantComponent>(user).ImplantUid = contained;
@@ -317,9 +315,7 @@ public sealed partial class RevolutionaryRuleSystem : GameRuleSystem<Revolutiona
         {
             if (MetaData(held).EntityPrototype?.ID != "USSPUplinkRadioPreset" ||
                 !_storeSystem.TryGetStore(held, out _))
-            {
                 continue;
-            }
 
             if (HasComp<HeadRevolutionaryComponent>(user))
                 EnsureComp<HeadRevolutionaryImplantComponent>(user).ImplantUid = held;

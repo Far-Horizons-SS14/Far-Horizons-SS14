@@ -12,8 +12,8 @@ namespace Content.Server._FarHorizons.Maps.FactionalAccess;
 
 public sealed partial class FactionalAccessSystem : EntitySystem
 {
-    [Dependency] private readonly AccessReaderSystem _access = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private AccessReaderSystem _access = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
 
     public override void Initialize()
     {

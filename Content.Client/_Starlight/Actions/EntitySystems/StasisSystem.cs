@@ -13,12 +13,12 @@ namespace Content.Client._Starlight.Actions.EntitySystems;
 /// <summary>
 /// Client-side system that handles visual and audio effects for stasis.
 /// </summary>
-public sealed class StasisSystem : SharedStasisSystem
+public sealed partial class StasisSystem : SharedStasisSystem
 {
-    [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
-    [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
-    [Dependency] private readonly SharedTransformSystem _xformSystem = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private SharedPopupSystem _popupSystem = default!;
+    [Dependency] private SharedAudioSystem _audioSystem = default!;
+    [Dependency] private SharedTransformSystem _xformSystem = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     public override void Initialize()
     {

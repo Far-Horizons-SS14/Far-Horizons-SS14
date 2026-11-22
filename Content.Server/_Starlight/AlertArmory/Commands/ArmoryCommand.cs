@@ -10,7 +10,7 @@ namespace Content.Server.Starlight.AlertArmory.Commands;
 /// Call/Recall Armory shuttles.
 /// </summary>
 [AdminCommand(AdminFlags.Admin)]
-public sealed class ArmoryCommand : IConsoleCommand
+public sealed partial class ArmoryCommand : IConsoleCommand
 {
     public string Command => "armory";
     public string Description => "Send, recall, or list armory shuttles.";

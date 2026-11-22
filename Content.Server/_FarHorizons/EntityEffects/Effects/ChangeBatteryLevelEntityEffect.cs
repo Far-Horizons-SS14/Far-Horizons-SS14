@@ -12,8 +12,8 @@ namespace Content.Server.EntityEffects.Effects;
 /// <inheritdoc cref="EntityEffectSystem{T,TEffect}"/>
 public sealed partial class ModifyBatteryLevelEntityEffectSystem : EntityEffectSystem<PowerCellSlotComponent, ModifyBatteryLevel>
 {
-    [Dependency] private readonly PowerCellSystem _powerCell = default!;
-    [Dependency] private readonly BatterySystem _battery = default!;
+    [Dependency] private PowerCellSystem _powerCell = default!;
+    [Dependency] private BatterySystem _battery = default!;
     protected override void Effect(Entity<PowerCellSlotComponent> ent, ref EntityEffectEvent<ModifyBatteryLevel> args)
     {
         if (!_powerCell.TryGetBatteryFromSlot(ent.Owner, out var cell) || cell is not { } battery)

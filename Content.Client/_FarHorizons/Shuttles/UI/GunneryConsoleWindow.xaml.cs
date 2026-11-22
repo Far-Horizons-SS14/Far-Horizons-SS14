@@ -16,7 +16,7 @@ namespace Content.Client._FarHorizons.Shuttles.UI;
 public sealed partial class GunneryConsoleWindow : FancyWindow,
     IComputerWindow<NavInterfaceState>
 {
-    [Dependency] private readonly IEntityManager _entManager = default!;
+    [Dependency] private IEntityManager _entManager = default!;
     private readonly SharedMapSystem _maps;
     
     public event Action<NetCoordinates, List<NetEntity>>? FireButtonPressed;

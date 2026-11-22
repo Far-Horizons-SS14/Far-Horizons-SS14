@@ -58,7 +58,7 @@
 
 - type: entity
   name: large reinforced beaker
-  parent: [ BeakerReinforced, SolutionLarge ]
+  parent: [ SolutionLarge, BeakerReinforced ]
   description: Used to contain a large amount of chemicals or solutions, now explosion proof!
   id: LargeBeakerReinforced
   components:
@@ -83,3 +83,22 @@
       ReinforcedGlass: 100
   - type: StaticPrice
     price: 22.5
+
+- type: entity
+  name: Sealable Beaker
+  parent: [Beaker, DrinkVisualsOpenable, DrinkBaseOpenable]
+  description: Used to contain a moderate amount of chemicals and solutions. Can be sealed to avoid spills. Still pretty fragile.
+  id: SealableBeaker
+  components:
+  - type: GenericVisualizer
+    visuals:
+      enum.OpenableVisuals.Opened:
+        enum.OpenableVisuals.Layer:
+          True: {state: "lid_empty"} # lid off
+          False: {state: "lid_beaker"} # lid on
+  - type: Openable
+    sound:
+      collection: bottleOpenSounds
+    closeable: true
+    closeSound:
+      collection: bottleCloseSounds

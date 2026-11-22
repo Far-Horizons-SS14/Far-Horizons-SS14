@@ -1,7 +1,11 @@
+
+
+#region Radiation Blocking
+
 - type: entity
   id: HolosignRadiationBlocking
   parent: HolosignWetFloor
-  name: holographic radiation barrier
+  name: Holographic Radiation Barrier
   description: A barrier of hard light that blocks light and radiation, but nothing else.
   components:
   - type: Sprite
@@ -18,3 +22,69 @@
   - type: Occluder
   - type: RadiationBlocker
     resistance: 50
+
+#region Security
+
+# NanoTrasen
+- type: entity
+  id: HolosignSecurity
+  parent: HolosignWetFloor
+  name: Holographic Barrier
+  suffix: NT
+  description: A barrier of hard light that blocks movement, but pretty weak.
+  components:
+    - type: Physics
+      bodyType: Static
+      canCollide: true
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Holo/security_nt.rsi
+      state: icon
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.3,-0.3,0.3,0.3"
+          mask:
+            - TableMask
+          layer:
+            - TableLayer
+    - type: TimedDespawn
+      lifetime: 180
+    - type: PointLight
+      enabled: true
+      radius: 3
+      color: cyan
+    - type: Climbable
+
+# NeoSol
+- type: entity
+  id: HolosignSecurityNS
+  parent: HolosignWetFloor
+  name: Holographic Barrier
+  suffix: NS
+  description: A barrier of hard light that blocks movement, but pretty weak.
+  components:
+    - type: Physics
+      bodyType: Static
+      canCollide: true
+    - type: Sprite
+      sprite: Structures/Holo/security.rsi
+      state: icon
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.3,-0.3,0.3,0.3"
+          mask:
+            - TableMask
+          layer:
+            - TableLayer
+    - type: TimedDespawn
+      lifetime: 180
+    - type: PointLight
+      enabled: true
+      radius: 3
+      color: red
+    - type: Climbable

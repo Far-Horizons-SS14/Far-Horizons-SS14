@@ -90,6 +90,25 @@
   - type: Sprite
     sprite: _FarHorizons/Clothing/Back/Backpacks/corpsman.rsi
 
+#region Lambda
+- type: entity
+  parent: [ClothingBackpack, BaseSyndicateContraband]
+  id: ClothingBackpackLambda
+  name: Lambda Backpack
+  description:
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Back/Backpacks/consortium.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0.1
+  - type: Storage
+    grid:
+    - 0,0,7,3
+    - 8,0,8,3
+  - type: StaticPrice
+    price: 1000
+
+
 # region ## NeoSol ##
 
 

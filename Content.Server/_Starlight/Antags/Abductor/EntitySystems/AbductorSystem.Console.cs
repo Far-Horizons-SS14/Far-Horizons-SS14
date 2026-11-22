@@ -24,11 +24,11 @@ namespace Content.Server.Starlight.Antags.Abductor;
 
 public sealed partial class AbductorSystem : SharedAbductorSystem
 {
-    [Dependency] private readonly NumberObjectiveSystem _number = default!;
-    [Dependency] private readonly SharedItemSwitchSystem _itemSwitch = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly VendingMachineSystem _vending = default!;
-    [Dependency] private readonly DeviceLinkSystem _deviceLinkSystem = default!;
+    [Dependency] private NumberObjectiveSystem _number = default!;
+    [Dependency] private SharedItemSwitchSystem _itemSwitch = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private VendingMachineSystem _vending = default!;
+    [Dependency] private DeviceLinkSystem _deviceLinkSystem = default!;
     
     public void InitializeConsole()
     {

@@ -113,6 +113,10 @@
       params:
         volume: 1.0
         variation: 0.125
+    #FH Start
+    damageCaps: 
+      Burn: 400
+    #FH End
   - type: Stack
     stackType: RegenerativeMesh
     count: 10
@@ -225,6 +229,10 @@
       params:
         volume: 1.0
         variation: 0.125
+    #FH Start
+    damageCaps: 
+      Brute: 400
+    #FH End
   - type: Stack
     stackType: MedicatedSuture
     count: 10
@@ -366,6 +374,8 @@
         Shock: -2.5
         Caustic: -0.5
     bloodlossModifier: -5
+    damageCaps: 
+      Brute: 400
 #FH - End
     healingBeginSound:
       path: "/Audio/Items/Medical/brutepack_begin.ogg"
@@ -479,7 +489,7 @@
   suffix: Dexalin 20u, 10 # Far Horizons - more pills
   components:
   - type: Label
-    currentLabel: dexalin 10u
+    currentLabel: dexalin 20u # Far Horizons - correct label
   - type: EntityTableContainerFill
     containers:
       storagebase:
@@ -680,7 +690,7 @@
 
 - type: entity
   name: pill
-  suffix: Dermaline 10u
+  suffix: Dermaline 20u # Far Horizons - fix quantity
   parent: Pill
   id: PillDermaline
   components:
@@ -689,7 +699,7 @@
   - type: Sprite
     state: pill8
   - type: Label
-    currentLabel: dermaline 10u
+    currentLabel: dermaline 20u # Far Horizons - fix quantity
   - type: Solution
     solution:
       reagents:
@@ -703,7 +713,7 @@
   suffix: Dermaline 20u, 10 # Far Horizons - more pills
   components:
   - type: Label
-    currentLabel: dermaline 20u
+    currentLabel: dermaline 20u # Far Horizons - fix quantity
   - type: EntityTableContainerFill
     containers:
       storagebase:
@@ -732,7 +742,7 @@
   - type: Sprite
     state: pill3
   - type: Label
-    currentLabel: tricordrazine 20u
+    currentLabel: tricordrazine 40u # Far Horizons
   - type: Solution
     solution:
       reagents:

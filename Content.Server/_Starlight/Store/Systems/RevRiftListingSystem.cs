@@ -12,10 +12,10 @@ namespace Content.Server._Starlight.Store.Systems;
 /// <summary>
 /// Synchronizes revolutionary store listings with the supply-rift lifecycle.
 /// </summary>
-public sealed class RevRiftListingSystem : EntitySystem
+public sealed partial class RevRiftListingSystem : EntitySystem
 {
-    [Dependency] private readonly StoreSystem _store = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private StoreSystem _store = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
 
     private bool _riftDestroyed;
 

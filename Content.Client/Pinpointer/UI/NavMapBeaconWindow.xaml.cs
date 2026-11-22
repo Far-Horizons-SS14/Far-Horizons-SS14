@@ -16,11 +16,14 @@ public sealed partial class NavMapBeaconWindow : FancyWindow
     private string? _defaultLabel;
     private bool _defaultEnabled;
     private Color _defaultColor;
+    // Far Horizons start
+    private string _defaultNextBeacon = string.Empty;
+    // Far Horizons end
 
     // CCVar.
     private int _maxNameLength;
 
-    public event Action<string?, bool, Color>? OnApplyButtonPressed;
+    public event Action<string?, bool, Color, string?>? OnApplyButtonPressed; // Far Horizons
 
     public NavMapBeaconWindow()
     {
@@ -31,6 +34,7 @@ public sealed partial class NavMapBeaconWindow : FancyWindow
 
         VisibleButton.OnPressed += args => UpdateVisibleButton(args.Button.Pressed);
         LabelLineEdit.OnTextChanged += OnTextChanged;
+        PatrolDestinationLineEdit.OnTextChanged += OnTextChanged; // Far Horizons
         ColorSelector.OnColorChanged += _ => TryEnableApplyButton();
 
         TryEnableApplyButton();
@@ -42,6 +46,10 @@ public sealed partial class NavMapBeaconWindow : FancyWindow
         _defaultLabel = navMap.Text;
         _defaultEnabled = navMap.Enabled;
         _defaultColor = navMap.Color;
+        // Far Horizons start
+        _defaultNextBeacon = navMap.NextBeacon;
+        PatrolDestinationLineEdit.Text = _defaultNextBeacon;
+        // Far Horizons end
 
         UpdateVisibleButton(navMap.Enabled);
         LabelLineEdit.Text = navMap.Text ?? string.Empty;
@@ -70,7 +78,8 @@ public sealed partial class NavMapBeaconWindow : FancyWindow
     {
         ApplyButton.Disabled = LabelLineEdit.Text == (_defaultLabel ?? string.Empty) &&
                                VisibleButton.Pressed == _defaultEnabled &&
-                               ColorSelector.Color == _defaultColor;
+                               ColorSelector.Color == _defaultColor &&
+                               PatrolDestinationLineEdit.Text == _defaultNextBeacon; // Far Horizons
     }
 
     private void OnApplyPressed(BaseButton.ButtonEventArgs obj)
@@ -78,7 +87,10 @@ public sealed partial class NavMapBeaconWindow : FancyWindow
         _defaultLabel = LabelLineEdit.Text == string.Empty ? null : LabelLineEdit.Text;
         _defaultEnabled = VisibleButton.Pressed;
         _defaultColor = ColorSelector.Color;
-        OnApplyButtonPressed?.Invoke(_defaultLabel, _defaultEnabled, _defaultColor);
+        // Far Horizons start
+        _defaultNextBeacon = PatrolDestinationLineEdit.Text;
+        OnApplyButtonPressed?.Invoke(_defaultLabel, _defaultEnabled, _defaultColor, _defaultNextBeacon);
+        // Far Horizons end
         TryEnableApplyButton();
     }
 }

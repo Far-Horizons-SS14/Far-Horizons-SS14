@@ -45,7 +45,7 @@
     enabled: false
     radius: 2.5
     softness: 5
-    mask: /Textures/Effects/LightMasks/cone.png
+    lightMask: ConeSingle
     autoRot: true
   - type: Tag
     tags:
@@ -79,7 +79,7 @@
 - type: entity
   parent: BaseSubdermalImplant
   id: TrackingImplant
-  name: tracking implant
+  name: Tracking Implant (NT) #FH
   description: This implant has a tracking device attached to the suit sensor network, as well as a condition monitor for the Security radio channel.
   categories: [ HideSpawnMenu ]
   components:
@@ -101,6 +101,7 @@
     #region Starlight Tracker rattle
     - type: TriggerOnMobstateChange
       mobState:
+      - ActiveCritical #FH
       - Critical
     - type: RattleOnTrigger
       targetUser: true
@@ -175,11 +176,12 @@
       components:
       - Hands # prevent mouse buying grenade penguin since its not telepathic
   - type: RemoteStore
+    proto: StorePresetRemoteUplink # Far Horizons
+    currency: Telecrystal # Far Horizons
   - type: UserInterface
     interfaces:
       enum.StoreUiKey.Key:
         type: StoreBoundUserInterface
-  - type: UplinkImplant # Starlight-edit: Uplink Implant discounts
 
 - type: entity
   parent: BaseSubdermalImplant
@@ -387,7 +389,7 @@
 - type: entity
   parent: BaseSubdermalImplant
   id: FakeMindShieldImplant
-  name: fake mindshield implant
+  name: Fake Mindshield Implant (NT) # FH
   description: This implant allows the implanter to produce a fake signal that security huds use to identify individuals implanted with a mindshield. # FH
   categories: [ HideSpawnMenu ]
   components:
@@ -402,7 +404,7 @@
 - type: entity
   parent: BaseSubdermalImplant
   id: MindShieldImplant
-  name: mindshield implant
+  name: Mindshield Implant (NT) # FH
   description: This implant will ensure protection against mind control devices. # FH
   categories: [ HideSpawnMenu ]
   components:

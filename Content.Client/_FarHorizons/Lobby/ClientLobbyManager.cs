@@ -5,7 +5,7 @@ namespace Content.Client._FarHorizons.Lobby;
 
 public sealed partial class ClientLobbyManager : SharedLobbyManager
 {
-    [Dependency] private readonly IClientNetManager _netManager = default!;
+    [Dependency] private IClientNetManager _netManager = default!;
 
     public override void Init()
     {

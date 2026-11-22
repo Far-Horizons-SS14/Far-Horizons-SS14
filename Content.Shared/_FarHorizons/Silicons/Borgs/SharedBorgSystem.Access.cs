@@ -8,7 +8,7 @@ namespace Content.Shared.Silicons.Borgs;
 /// <inheritdoc/>
 public abstract partial class SharedBorgSystem
 {
-    [Dependency] private readonly DamageableSystem _damageable = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
     private void InitializeAccessModule()
     {
         SubscribeLocalEvent<BorgChassisComponent, GetAdditionalAccessEvent>(OnAdditionalAccess);

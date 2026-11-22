@@ -166,7 +166,19 @@
     tags:
     - PetWearable
     - CorgiWearable
-  
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatSecurityDeputy
+  name: Deputy Hat
+  description: The peak of law enforcement fashion.
+  suffix: NT
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hats/deputy_hat.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hats/deputy_hat.rsi
+
 #region Service
 - type: entity
   parent: ClothingHeadBase
@@ -556,6 +568,18 @@
 
 - type: entity
   parent: ClothingHeadBase
+  id: ClothingHeadHatSecurityDeputySyndi
+  name: Deputy Hat
+  description: The peak of law enforcement fashion.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/deputy_hat_red.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/deputy_hat_red.rsi
+
+- type: entity
+  parent: ClothingHeadBase
   id: ClothingHeadHatBeretSecuritySyndi
   name: Security Beret
   suffix: NS
@@ -670,3 +694,63 @@
     sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/botanist_rancher_hat.rsi
   - type: Clothing
     sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/botanist_rancher_hat.rsi
+
+#region High Command
+- type: entity
+  parent: [ ClothingHeadBase, BaseCentcommContraband ]
+  id: ClothingHeadHatHighCap
+  name: High Cap
+  suffix: NS
+  description: A grand, stylish cap worn by High Command. Shows the station who's in charge.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/highcap.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/highcap.rsi
+  - type: Item
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/highcap.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+    - ClothMade
+    - Recyclable
+    - WhitelistChameleon
+    - HamsterWearable
+#region ## USSP ##
+
+- type: entity
+  parent: [ClothingHeadBase, BaseSovietContraband]
+  id: ClothingHeadHatCapAdmiral
+  name: Admiral Cap
+  suffix: USSP
+  description: A white cap that denotes a high ranking admiral in the USSP.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hats/USSP/admiral_cap.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hats/USSP/admiral_cap.rsi
+
+- type: entity
+  parent: [ClothingHeadBase, BaseSovietContraband]
+  id: ClothingHeadHatCapCommissar
+  name: Commissar Cap
+  suffix: USSP
+  description: A brown cap that belongs to the head of a USSP squad. 
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hats/USSP/commissar_cap.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hats/USSP/commissar_cap.rsi
+
+- type: entity
+  parent: [ClothingHeadBase, BaseSovietContraband]
+  id: ClothingHeadHatCapMilitsya
+  name: Militsya Flatcap
+  suffix: USSP
+  description: A brown cap that belongs to the typical USSP soldier.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hats/USSP/militsya_cap.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hats/USSP/militsya_cap.rsi

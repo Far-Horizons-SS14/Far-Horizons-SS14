@@ -1,0 +1,33 @@
+- type: entity
+  id: BaseStationCargoNS
+  abstract: true
+  components:
+    - type: StationBankAccount
+      accounts: 
+        Cargo: 2000
+        EngineeringNS: 1000
+        MedicalNS: 1000
+        ScienceNS: 1000
+        SecurityNS: 1000
+        ServiceNS: 1000
+      revenueDistribution: 
+        Cargo: 0.00
+        EngineeringNS: 0.20
+        MedicalNS: 0.20
+        ScienceNS: 0.20
+        SecurityNS: 0.20
+        ServiceNS: 0.20
+    - type: StationCargoOrderDatabase
+      orders:
+        Cargo: [ ]
+        Engineering: [ ]
+        Medical: [ ]
+        Science: [ ]
+        Security: [ ]
+        Service: [ ]
+        EngineeringNS: [ ]
+        MedicalNS: [ ]
+        ScienceNS: [ ]
+        SecurityNS: [ ]
+        ServiceNS: [ ]
+    - type: StationCargoBountyDatabase

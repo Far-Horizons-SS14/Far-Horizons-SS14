@@ -1,0 +1,99 @@
+- type: entity
+  parent: BaseSMES
+  id: SMESShip
+  suffix: Ship, 40MJ, Max Charge
+  name: Ship SMES
+  description: An ultra-high capacity superconducting magnetic energy storage (SMES) unit, used on large ships.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Power/smes.rsi
+    snapCardinals: true
+    layers:
+    - state: smes_ship
+    - map: [ "enum.SmesVisualLayers.Charge" ]
+      state: "smes-og1" # -og0 does not exist
+      shader: unshaded
+      visible: false
+    - map: [ "enum.SmesVisualLayers.Input" ]
+      state: "smes-oc0"
+      shader: unshaded
+    - map: [ "enum.SmesVisualLayers.Output" ]
+      state: "smes-op1"
+      shader: unshaded
+    - map: ["enum.WiresVisualLayers.MaintenancePanel"]
+      state: smes_ship-open
+  - type: Machine
+    board: SMESShipMachineCircuitboard
+  - type: Battery
+    maxCharge: 40000000 #30 MJ was too little.. Yeah, I know.
+    startingCharge: 40000000
+  - type: PowerNetworkBattery
+    maxSupply: 200000
+    maxChargeRate: 200000 #so it actually charges fast, honestly dont know why this isn't default. I assume good reason, but it just seems inconvienent to me.
+    supplyRampTolerance: 10000 #faster to avoid flickering
+    supplyRampRate: 5000
+  - type: PowerMonitoringDevice
+    group: SMES
+    sourceNode: input
+    loadNode: output
+    collectionName: smes
+    sprite: _FarHorizons/Structures/Power/smes.rsi
+    state: smes_ship_static
+
+- type: entity
+  parent: SMESShip
+  id: SMESShipEmpty
+  suffix: Empty
+  components:
+  - type: Battery
+    startingCharge: 0
+
+- type: entity
+  parent: BaseSMES
+  id: SMESShuttle
+  suffix: Shuttle, 20MJ, Max Charge
+  name: Shuttle SMES
+  description: An even higher capacity superconducting magnetic energy storage (SMES) unit, used on compact small shuttles.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Power/smes.rsi
+    snapCardinals: true
+    layers:
+    - state: smes_shuttle
+    - map: [ "enum.SmesVisualLayers.Charge" ]
+      state: "smes-og1" # -og0 does not exist
+      shader: unshaded
+      visible: false
+    - map: [ "enum.SmesVisualLayers.Input" ]
+      state: "smes-oc0"
+      shader: unshaded
+    - map: [ "enum.SmesVisualLayers.Output" ]
+      state: "smes-op1"
+      shader: unshaded
+    - map: ["enum.WiresVisualLayers.MaintenancePanel"]
+      state: smes_shuttle-open
+  - type: Machine
+    board: SMESShuttleMachineCircuitboard
+  - type: Battery
+    maxCharge: 20000000
+    startingCharge: 20000000
+  - type: PowerNetworkBattery
+    maxSupply: 200000
+    maxChargeRate: 200000 #so it actually charges fast, honestly dont know why this isn't default. I assume good reason, but it just seems inconvienent to me.
+    supplyRampTolerance: 10000 #faster to avoid flickering
+    supplyRampRate: 5000
+  - type: PowerMonitoringDevice
+    group: SMES
+    sourceNode: input
+    loadNode: output
+    collectionName: smes
+    sprite: _FarHorizons/Structures/Power/smes.rsi
+    state: smes_shuttle_static
+
+- type: entity
+  parent: SMESShuttle
+  id: SMESShuttleEmpty
+  suffix: Empty
+  components:
+  - type: Battery
+    startingCharge: 0

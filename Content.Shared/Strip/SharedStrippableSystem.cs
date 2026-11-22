@@ -41,7 +41,7 @@ public abstract partial class SharedStrippableSystem : EntitySystem
     [Dependency] private ISharedAdminLogManager _adminLogger = default!;
 
     // Starlight Start: Track active strip DoAfters per user with them queues
-    [Dependency] private readonly PullingSystem _pullingSystem = default!;
+    [Dependency] private PullingSystem _pullingSystem = default!;
 
     private readonly Dictionary<EntityUid, Queue<DoAfterId>> _activeStripDoAfters = new();
 

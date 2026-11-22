@@ -18,7 +18,7 @@ namespace Content.Client._FarHorizons.UI.Shipyard
     [GenerateTypedNameReferences]
     public sealed partial class IntegrityAnalyzerWindow : FancyWindow
     {
-        [Dependency] private readonly IEntityManager _entityManager = default!;
+        [Dependency] private IEntityManager _entityManager = default!;
         private readonly DamageableSystem _damageable;
 
 

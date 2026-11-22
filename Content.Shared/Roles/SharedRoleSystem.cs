@@ -33,7 +33,7 @@ public abstract partial class SharedRoleSystem : EntitySystem
     private JobRequirementOverridePrototype? _requirementOverride;
 
     // Starlight
-    [Dependency] private readonly SharedPvsOverrideSystem _pvsOverride = default!;
+    [Dependency] private SharedPvsOverrideSystem _pvsOverride = default!;
     // Starlight
 
     public override void Initialize()

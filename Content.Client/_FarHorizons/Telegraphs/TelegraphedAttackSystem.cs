@@ -8,9 +8,9 @@ namespace Content.Client._FarHorizons.Telegraphs;
 
 public sealed partial class TelegraphedAttackSystem : SharedTelegraphedAttackSystem
 {
-    [Dependency] private readonly IPrototypeManager _protoMan = default!;
-    [Dependency] private readonly IOverlayManager _overlayMan = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private IPrototypeManager _protoMan = default!;
+    [Dependency] private IOverlayManager _overlayMan = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
 
     private TelegraphedAttackOverlay _overlay = default!;
 

@@ -1,38 +1,28 @@
-using Content.Shared._FarHorizons.Medical.Disease.Systems;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization;
 
 namespace Content.Shared._FarHorizons.Medical.Disease.Prototypes;
 
 /// <summary>
-/// Base class for cure step variants.
+/// Prototype for the cures and its tier.
 /// </summary>
-[ImplicitDataDefinitionForInheritors, Serializable, NetSerializable]
-public abstract partial class CureStep
+[Prototype("Cure")]
+public sealed partial class CurePrototype : IPrototype
 {
     /// <summary>
-    /// If true, a successful cure step lowers the current disease stage by 1 instead of curing entirely.
+    /// 
     /// </summary>
-    [DataField]
-    public bool LowerStage { get; private set; }
+    [IdDataField] 
+    public string ID { get; private set; } = null!;
 
     /// <summary>
-    /// Per-tick probability (0-1) to attempt this cure step.
+    /// 
     /// </summary>
-    [DataField]
-    public float CureChance { get; private set; } = 1.0f;
+    [DataField(required:true)]
+    public int Tier { get; private set; }
 
     /// <summary>
-    /// Attempts to execute this cure step on the given entity.
+    /// 
     /// </summary>
-    public virtual bool OnCure(EntityUid uid, DiseaseData disease) 
-        => false;
-
-    /// <summary>
-    /// Returns one or more localized lines describing this cure step for diagnoser reports.
-    /// </summary>
-    public virtual IEnumerable<string> BuildDiagnoserLines(IPrototypeManager prototypes)
-    {
-        yield break;
-    }
+    [DataField(required:true)]
+    public CureStep? CureStep { get; set; }
 }

@@ -2,18 +2,26 @@
   name: DP-28 LMG
   id: WeaponLightMachineGunDP28
   parent: [BaseWeaponLightMachineGun, BaseSovietContraband]
-  description: From RA-TA-TA-TA with love. Uses .30 ammo.
+  description: From RA-TA-TA-TA with love. Uses 7.62 ammo. #FH
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Weapons/Guns/LMGs/DP28.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/LMGs/DP28/DP28_x64x32.rsi #FH
     layers:
     - state: base
-      map: ["enum.GunVisualLayers.Base"]
+      map: [ "enum.GunVisualLayers.Base" ]
     - state: mag-0
-      map: ["enum.GunVisualLayers.Mag"]
+      map: [ "enum.GunVisualLayers.Mag" ]
   - type: Clothing
-    sprite: _Starlight/Objects/Weapons/Guns/LMGs/DP28.rsi
+#FH - Start
+    sprite: _FarHorizons/Objects/Weapons/Guns/LMGs/DP28/DP28_x32.rsi
     quickEquip: false
+  - type: Item
+    sprite: _FarHorizons/Objects/Weapons/Guns/LMGs/DP28/DP28_x32.rsi
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+#FH - End
   - type: ChamberMagazineAmmoProvider
     soundRack:
       path: /Audio/Weapons/Guns/Cock/m41_cock.ogg
@@ -26,19 +34,20 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineLightRifleMaxim
+        startingItem: MagazineRifle762Maxim #FH
         insertSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
         ejectSound: /Audio/Weapons/Guns/MagIn/rifle_load.ogg
+        priority: 2 #FH
         whitelist:
           tags:
-            - MagazineLightRiflePan
+            - MagazineRifle762Pan #FH
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeLightRifleSP
+        startingItem: CartridgeRifle762SP #FH
         priority: 1
         whitelist:
           tags:
-            - CartridgeLightRifle
+            - CartridgeRifle762 #FH
   - type: ClothingSpeedModifier
     walkModifier: 1
     sprintModifier: 0.85

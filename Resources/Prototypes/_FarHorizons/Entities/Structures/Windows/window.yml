@@ -1,33 +1,88 @@
-# Regular
+#region Window
 
 - type: entity
-  id: WindowStandard
+  id: WindowGeneric
   parent: Window
-  name: Window
-  suffix: ""
+  suffix: Generic
   components:
   - type: Sprite
-    drawdepth: WallTops
-    sprite: Structures/Windows/window.rsi
+    sprite: _FarHorizons/Structures/Windows/Generic/window.rsi
   - type: Icon
-    sprite: Structures/Windows/window.rsi
-    state: full
-
-# Reinforced
+    sprite: _FarHorizons/Structures/Windows/Generic/window.rsi
 
 - type: entity
-  id: ReinforcedWindowStandard
-  parent: ReinforcedWindow
-  name: Reinforced Window
-  suffix: ""
+  id: WindowNS
+  parent: Window
+  suffix: NS
   components:
   - type: Sprite
-    drawdepth: WallTops
-    sprite: Structures/Windows/reinforced_window.rsi
+    sprite: _FarHorizons/Structures/Windows/NeoSol/window.rsi
   - type: Icon
-    sprite: Structures/Windows/reinforced_window.rsi
+    sprite: _FarHorizons/Structures/Windows/NeoSol/window.rsi
 
-# Wooden
+- type: entity
+  id: WindowDiagonalGeneric
+  parent: WindowDiagonal
+  suffix: Diagonal, Generic
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Windows/NanoTrasen/window_diagonal.rsi
+  - type: Icon
+    sprite: _FarHorizons/Structures/Windows/NanoTrasen/window_diagonal.rsi
+
+- type: entity
+  id: WindowDiagonalNS
+  parent: WindowDiagonal
+  suffix: Diagonal, NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Windows/NeoSol/window_diagonal.rsi
+  - type: Icon
+    sprite: _FarHorizons/Structures/Windows/NeoSol/window_diagonal.rsi
+
+#region Reinforced Window
+
+- type: entity
+  id: ReinforcedWindowGeneric
+  parent: ReinforcedWindow
+  suffix: Generic
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Windows/Generic/reinforced_window.rsi
+  - type: Icon
+    sprite: _FarHorizons/Structures/Windows/Generic/reinforced_window.rsi
+
+- type: entity
+  id: ReinforcedWindowNS
+  parent: ReinforcedWindow
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Windows/NeoSol/reinforced_window.rsi
+  - type: Icon
+    sprite: _FarHorizons/Structures/Windows/NeoSol/reinforced_window.rsi
+
+- type: entity
+  id: ReinforcedWindowDiagonalGeneric
+  parent: ReinforcedWindowDiagonal
+  suffix: Diagonal, Generic
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Windows/NanoTrasen/reinforced_window_diagonal.rsi
+  - type: Icon
+    sprite: _FarHorizons/Structures/Windows/NanoTrasen/reinforced_window_diagonal.rsi
+
+- type: entity
+  id: ReinforcedWindowDiagonalNS
+  parent: ReinforcedWindowDiagonal
+  suffix: Diagonal, NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Windows/NeoSol/reinforced_window_diagonal.rsi
+  - type: Icon
+    sprite: _FarHorizons/Structures/Windows/NeoSol/reinforced_window_diagonal.rsi
+
+#region Wooden
 
 - type: entity
   id: WindowWoodenFrame
@@ -132,33 +187,7 @@
   - type: BlockWeather
   - type: LineOfSightExclude
 
-  #region NeoSol
-
-- type: entity
-  id: WindowSyndie
-  parent: Window
-  name: Window
-  suffix: NS
-  components:
-  - type: Sprite
-    drawdepth: WallTops
-    sprite: Structures/Windows/window.rsi
-  - type: Icon
-    sprite: Structures/Windows/window.rsi
-    state: full
-
-- type: entity
-  id: ReinforcedWindowSyndie
-  parent: ReinforcedWindow
-  name: Reinforced Window 
-  suffix: NS
-  components:
-  - type: Sprite
-    drawdepth: WallTops
-    sprite: Structures/Windows/reinforced_window.rsi
-  - type: Icon
-    sprite: Structures/Windows/reinforced_window.rsi
-
+#region TintedWindow
 - type: entity
   parent: BaseWindow 
   id: TintedWindowNeoSol
@@ -185,3 +214,342 @@
     - On
     - Off
     - Toggle
+
+#region ShuttleWindow
+- type: entity
+  id: ShuttleWindowGeneric
+  parent: ShuttleWindow
+  suffix: Generic
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Windows/NanoTrasen/shuttle_window.rsi
+  - type: Icon
+    sprite: _FarHorizons/Structures/Windows/NanoTrasen/shuttle_window.rsi
+
+- type: entity
+  id: ShuttleWindowNS
+  parent: ShuttleWindow
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Windows/NeoSol/shuttle_window.rsi
+  - type: Icon
+    sprite: _FarHorizons/Structures/Windows/NeoSol/shuttle_window.rsi
+
+- type: entity
+  id: ShuttleWindowDiagonalGeneric
+  parent: ShuttleWindowDiagonal
+  suffix: Diagonal, Generic
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Windows/NanoTrasen/shuttle_window_diagonal.rsi
+  - type: Icon
+    sprite: _FarHorizons/Structures/Windows/NanoTrasen/shuttle_window_diagonal.rsi
+
+- type: entity
+  id: ShuttleWindowDiagonalNS
+  parent: ShuttleWindowDiagonal
+  suffix: Diagonal, NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Windows/NeoSol/shuttle_window_diagonal.rsi
+  - type: Icon
+    sprite: _FarHorizons/Structures/Windows/NeoSol/shuttle_window_diagonal.rsi
+
+#region Reinf. Shuttle Window
+- type: entity
+  parent: [BaseDeltaPressurePlasmaQuarter, WindowRCDResistant]
+  id: ShuttleWindowReinforced
+  name: Reinforced Shuttle Window
+  suffix: NT
+  components:
+  - type: Sprite
+    drawdepth: WallTops
+    sprite: _FarHorizons/Structures/Windows/NanoTrasen/reinforced_shuttle_window.rsi 
+  - type: Icon
+    sprite: _FarHorizons/Structures/Windows/NanoTrasen/reinforced_shuttle_window.rsi 
+  - type: Repairable
+    fuelCost: 15
+    doAfterDelay: 3
+  - type: Damageable
+    damageModifierSet: RGlass
+  - type: Injurable
+    damageContainer: StructuralInorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1000
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 750
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WindowShatter
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlassReinforced:
+            min: 1
+            max: 2
+          PartRodMetal:
+            min: 1
+            max: 2
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: IconSmooth
+    key: walls # Far Horizons... This will surely get fixed, eventually, during a lunar eclipse, when all the stars align. - the stars weep in my presence 
+    base: swindow
+  - type: Appearance
+  - type: DamageVisuals
+    thresholds: [5, 10, 20]
+    damageDivisor: 20
+    trackAllDamage: true
+    damageOverlay:
+      sprite: Structures/Windows/cracks.rsi
+  - type: StaticPrice
+    price: 250
+  - type: Construction
+    graph: Window
+    node: ReinforcedShuttleWindow
+
+- type: entity
+  id: ShuttleWindowReinforcedGeneric
+  parent: ShuttleWindowReinforced
+  suffix: Generic
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Windows/NanoTrasen/reinforced_shuttle_window.rsi 
+  - type: Icon
+    sprite: _FarHorizons/Structures/Windows/NanoTrasen/reinforced_shuttle_window.rsi 
+    
+- type: entity
+  id: ShuttleWindowReinforcedNS
+  parent: ShuttleWindowReinforced
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Windows/NeoSol/reinforced_shuttle_window.rsi 
+  - type: Icon
+    sprite: _FarHorizons/Structures/Windows/NeoSol/reinforced_shuttle_window.rsi 
+
+- type: entity
+  parent: ShuttleWindowReinforced
+  id: ShuttleWindowReinforcedDiagonal
+  suffix: Diagonal, NT
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Window
+  components:
+  - type: Sprite
+    drawdepth: WallTops
+    sprite: _FarHorizons/Structures/Windows/NanoTrasen/reinforced_shuttle_window_diagonal.rsi
+    state: state0
+  - type: Tag
+    tags:
+    - Diagonal
+    - Window
+  - type: IconSmooth
+    mode: Diagonal
+    key: walls
+    base: state
+  - type: Icon
+    sprite: _FarHorizons/Structures/Windows/NanoTrasen/reinforced_shuttle_window_diagonal.rsi
+    state: state0
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PolygonShape
+            vertices:
+            - "-0.5,-0.5"
+            - "0.5,0.5"
+            - "0.5,-0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - GlassLayer
+  - type: Airtight
+    noAirWhenFullyAirBlocked: false
+    airBlockedDirection:
+    - South
+    - East
+  - type: DamageVisuals
+    damageOverlay:
+      sprite: Structures/Windows/cracks_diagonal.rsi
+  - type: Construction
+    graph: WindowDiagonal
+    node: ShuttleWindowReinforcedDiagonal
+
+- type: entity
+  id: ShuttleWindowReinforcedDiagonalGeneric
+  parent: ShuttleWindowReinforcedDiagonal
+  suffix: Diagonal, Generic
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Windows/NanoTrasen/reinforced_shuttle_window_diagonal.rsi
+  - type: Icon
+    sprite: _FarHorizons/Structures/Windows/NanoTrasen/reinforced_shuttle_window_diagonal.rsi
+
+- type: entity
+  id: ShuttleWindowReinforcedDiagonalNS
+  parent: ShuttleWindowReinforcedDiagonal
+  suffix: Diagonal, NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Windows/NeoSol/reinforced_shuttle_window_diagonal.rsi
+  - type: Icon
+    sprite: _FarHorizons/Structures/Windows/NeoSol/reinforced_shuttle_window_diagonal.rsi
+
+#region A.Shuttle Window
+- type: entity
+  id: ShuttleWindowArmored
+  name: Armored Shuttle Window
+  suffix: NT
+  parent: [BaseDeltaPressureReinforcedPlasmaQuarter, WindowRCDResistant]
+  components:
+  - type: Sprite
+    drawdepth: WallTops
+    sprite: _FarHorizons/Structures/Windows/NanoTrasen/reinforced_shuttle_window.rsi 
+  - type: Icon
+    sprite: _FarHorizons/Structures/Windows/NanoTrasen/reinforced_shuttle_window.rsi 
+  - type: Repairable
+    fuelCost: 15
+    doAfterDelay: 3
+  - type: Damageable
+    damageModifierSet: RGlass
+  - type: Injurable
+    damageContainer: StructuralInorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 1000
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WindowShatter
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlassReinforced:
+            min: 1
+            max: 2
+          PartRodMetal:
+            min: 1
+            max: 2
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: IconSmooth
+    key: walls # Far Horizons... This will surely get fixed, eventually, during a lunar eclipse, when all the stars align. - the stars weep in my presence 
+    base: swindow 
+  - type: Appearance
+  - type: DamageVisuals
+    thresholds: [5, 10, 20]
+    damageDivisor: 20
+    trackAllDamage: true
+    damageOverlay:
+      sprite: Structures/Windows/cracks.rsi
+  - type: StaticPrice
+    price: 350
+  - type: Construction
+    graph: Window
+    node: ArmoredShuttleWindow
+
+- type: entity
+  id: ShuttleWindowArmoredGeneric
+  parent: ShuttleWindowArmored
+  suffix: Generic
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Windows/NanoTrasen/reinforced_shuttle_window.rsi 
+  - type: Icon
+    sprite: _FarHorizons/Structures/Windows/NanoTrasen/reinforced_shuttle_window.rsi 
+
+- type: entity
+  id: ShuttleWindowArmoredNS
+  parent: ShuttleWindowArmored
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Windows/NeoSol/reinforced_shuttle_window.rsi 
+  - type: Icon
+    sprite: _FarHorizons/Structures/Windows/NeoSol/reinforced_shuttle_window.rsi 
+
+- type: entity
+  parent: ShuttleWindowArmored
+  id: ShuttleWindowArmoredDiagonal
+  suffix: Diagonal, NT
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Window
+  components:
+  - type: Sprite
+    drawdepth: WallTops
+    sprite: _FarHorizons/Structures/Windows/NanoTrasen/reinforced_shuttle_window_diagonal.rsi
+    state: state0
+  - type: Tag
+    tags:
+    - Diagonal
+    - Window
+  - type: IconSmooth
+    mode: Diagonal
+    key: walls
+    base: state
+  - type: Icon
+    sprite: _FarHorizons/Structures/Windows/NanoTrasen/reinforced_shuttle_window_diagonal.rsi
+    state: state0
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PolygonShape
+            vertices:
+            - "-0.5,-0.5"
+            - "0.5,0.5"
+            - "0.5,-0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - GlassLayer
+  - type: Airtight
+    noAirWhenFullyAirBlocked: false
+    airBlockedDirection:
+    - South
+    - East
+  - type: DamageVisuals
+    damageOverlay:
+      sprite: Structures/Windows/cracks_diagonal.rsi
+  - type: Construction
+    graph: WindowDiagonal
+    node: ArmoredShuttleWindowDiagonal
+
+- type: entity
+  id: ShuttleWindowArmoredDiagonalGeneric
+  parent: ShuttleWindowArmoredDiagonal
+  suffix: Diagonal, Generic
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Windows/NanoTrasen/reinforced_shuttle_window_diagonal.rsi
+  - type: Icon
+    sprite: _FarHorizons/Structures/Windows/NanoTrasen/reinforced_shuttle_window_diagonal.rsi
+
+- type: entity
+  id: ShuttleWindowArmoredDiagonalNS
+  parent: ShuttleWindowArmoredDiagonal
+  suffix: Diagonal, NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Windows/NeoSol/reinforced_shuttle_window_diagonal.rsi
+  - type: Icon
+    sprite: _FarHorizons/Structures/Windows/NeoSol/reinforced_shuttle_window_diagonal.rsi

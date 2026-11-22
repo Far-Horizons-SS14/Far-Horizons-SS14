@@ -12,9 +12,9 @@ namespace Content.Client._FarHorizons.Body;
 
 public sealed partial class ConnectedOrganSystem : SharedConnectedOrganSystem
 {
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly SpriteSystem _sprite = default!;
-    [Dependency] private readonly MarkingManager _marking = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
+    [Dependency] private MarkingManager _marking = default!;
 
     public override void Initialize()
     {

@@ -109,7 +109,7 @@ public abstract partial class SharedTelegraphedAttackSystem
     {
         if (!_transform.TryGetMapOrGridCoordinates(target, out var coords)) return null;
 
-        var spawned = EntityManager.SpawnAttachedTo(telegraph, coords.Value);
+        var spawned = SpawnAttachedTo(telegraph, coords.Value);
 
         return 
             !TryComp<TelegraphedAttackComponent>(spawned, out var telegraphComp) ? 
@@ -120,7 +120,7 @@ public abstract partial class SharedTelegraphedAttackSystem
     public Entity<TelegraphedAttackComponent>? SpawnTelegraphAttachedTo(EntProtoId telegraph, EntityUid target)
     {
         var coords = new EntityCoordinates(target, Vector2.Zero);
-        var spawned = EntityManager.SpawnAttachedTo(telegraph, coords);
+        var spawned = SpawnAttachedTo(telegraph, coords);
 
         return 
             !TryComp<TelegraphedAttackComponent>(spawned, out var telegraphComp) ? 

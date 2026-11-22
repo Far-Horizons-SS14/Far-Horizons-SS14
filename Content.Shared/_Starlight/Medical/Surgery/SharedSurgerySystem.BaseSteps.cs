@@ -27,9 +27,9 @@ namespace Content.Shared.Starlight.Medical.Surgery;
 // https://github.com/RMC-14/RMC-14
 public abstract partial class SharedSurgerySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly HealingSystem _healing = default!;
-    [Dependency] private readonly LimbDamageSystem _limbDamage = default!; // Far Horizons
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private HealingSystem _healing = default!;
+    [Dependency] private LimbDamageSystem _limbDamage = default!; // Far Horizons
 
     private readonly string _surgeryCompTag = "SurgeryCompatibleArmor";
     private readonly string _cyberHandTag = "CyberHandItem";
@@ -168,7 +168,7 @@ public abstract partial class SharedSurgerySystem
                 organ.Category != ent.Comp.OrganCategory)
                 return;
             
-            var specificToolComp = EntityManager.GetComponents(tool)
+            var specificToolComp = AllComps(tool)
                 .OfType<ISurgeryToolComponent>();
 
             SoundSpecifier? endSound = null;
@@ -345,7 +345,7 @@ public abstract partial class SharedSurgerySystem
                 var toolSpeed = 1f;
                 var toolSuccessRate = 1f;
                 SoundSpecifier? startSound = null;
-                var specificToolComp = EntityManager.GetComponents(tool)
+                var specificToolComp = AllComps(tool)
                     .OfType<ISurgeryToolComponent>();
 
                 foreach(var usedTool in specificToolComp)

@@ -31,15 +31,16 @@ public sealed partial class CrayonSystem : SharedCrayonSystem
     [Dependency] private EntityManager _entityManager = default!;
 
     // Starlight-start
-    [Dependency] private readonly IOverlayManager _overlay = default!;
-    [Dependency] private readonly SpriteSystem _sprite = default!;
-    [Dependency] private readonly SharedInteractionSystem _interaction = default!;
-    [Dependency] private readonly DecalPlacementSystem _placement = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
-    [Dependency] private readonly IPlayerManager _player = default!;
+    [Dependency] private IOverlayManager _overlay = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
+    [Dependency] private SharedInteractionSystem _interaction = default!;
+    [Dependency] private DecalPlacementSystem _placement = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private SharedHandsSystem _handsSystem = default!;
+    [Dependency] private IPlayerManager _player = default!;
     // Starlight-end
+    [Dependency] private SharedMapSystem _maps = default!; // Far Horizons
     
     public override void Initialize()
     {
@@ -112,7 +113,7 @@ public sealed partial class CrayonSystem : SharedCrayonSystem
         var color = component.Color;
         if (component.OpaqueGhost)
             color.A /= 2;
-        _overlay.AddOverlay(new CrayonDecalGhostOverlay(_placement, _transform, _sprite, _interaction, decal,
+        _overlay.AddOverlay(new CrayonDecalGhostOverlay(_placement, _maps, _transform, _sprite, _interaction, decal,
             -component.Rotation, color));
     }
 

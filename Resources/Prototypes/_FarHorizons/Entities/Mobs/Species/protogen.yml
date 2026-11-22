@@ -1285,7 +1285,7 @@
   - type: Flammable
     damage:
       types:
-        Heat: 2.5
+        Heat: 4.5
   - type: Temperature
     currentTemperature: 310.15
     specificHeat: 46
@@ -1768,9 +1768,9 @@
         layer:
           - MobLayer
   - type: IgnoreKudzu
-  - type: IgniteOnHeatDamage
-    fireStacks: 1
-    threshold: 12
+#  - type: IgniteOnHeatDamage #FH it sucks so bad // parity with regular diona
+#    fireStacks: 1
+#    threshold: 12
   - type: GibAction
     actionPrototype: DionaGibAction
     allowedStates:

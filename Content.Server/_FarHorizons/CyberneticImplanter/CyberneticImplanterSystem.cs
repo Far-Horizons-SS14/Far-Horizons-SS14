@@ -12,13 +12,13 @@ using Robust.Shared.Utility;
 
 namespace Content.Server._FarHorizons.CyberneticImplanter;
 
-public sealed class CyberneticImplanterSystem : SharedCyberneticImplanterSystem
+public sealed partial class CyberneticImplanterSystem : SharedCyberneticImplanterSystem
 {
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly IPrototypeManager _protoManager = default!;
-    [Dependency] private readonly ContainerSystem _containers = default!;
-    [Dependency] private readonly PopupSystem _popupSystem = default!;
-    [Dependency] private readonly AppearanceSystem _visualizer = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private IPrototypeManager _protoManager = default!;
+    [Dependency] private ContainerSystem _containers = default!;
+    [Dependency] private PopupSystem _popupSystem = default!;
+    [Dependency] private AppearanceSystem _visualizer = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -110,6 +110,8 @@ public sealed class CyberneticImplanterSystem : SharedCyberneticImplanterSystem
 
         args.Handled = true;
 
+        if (HasComp<CyberneticImplanterModeComponent>(entity))
+            RemCompDeferred<CyberneticImplanterModeComponent>(entity); //Also remove the mode selector if we have it
         RemCompDeferred<CyberneticImplanterComponent>(entity); //cyber da world, my final message, goodbye
     }
 }

@@ -5,7 +5,7 @@ namespace Content.Shared._FarHorizons.EntityEffects.Effects.Vampire;
 
 public sealed partial class FillBloodPoolEffectSystem : EntityEffectSystem<LesserVampireComponent, FillBloodPool>
 {
-    [Dependency] private readonly SharedLesserVampireSystem _vampire = default!;
+    [Dependency] private SharedLesserVampireSystem _vampire = default!;
     
     protected override void Effect(Entity<LesserVampireComponent> ent, ref EntityEffectEvent<FillBloodPool> args)
     {

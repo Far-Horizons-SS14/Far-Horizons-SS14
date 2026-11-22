@@ -9,6 +9,7 @@ using Content.Shared.Mind;
 using Content.Shared.Store;
 using Content.Shared.Store.Components;
 using Content.Shared.StoreDiscount.Components;
+using Content.Shared._FarHorizons.PDA;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Random;
 
@@ -94,8 +95,15 @@ public sealed class StoreTests : GameTest
             uplinkSystem.AddUplink(human, originalBalance, out var notes, pda, true);
 
             Assert.That(notes != null);
-            ringerSystem.TryMatchRingtoneToStore(notes, out var storeEnt);
+            ringerSystem.TryMatchRingtoneToStore(notes!, out var storeEnt, pda); // Far-Horizons - add optional third param to specify that we're calling from the traitor's PDA
             Assert.That(storeEnt.HasValue);
+
+            // Far-Horizons start - non-traitor PDAs shouldn't be able to ring the stores
+            Assert.That(entManager.HasComponent<RingerCapablePDAComponent>(pda), Is.True);
+            var nonTraitorPda = entManager.SpawnEntity("InventoryPdaDummy", coordinates);
+            Assert.That(ringerSystem.TryMatchRingtoneToStore(notes, out _, nonTraitorPda), Is.False);
+            // Far-Horizons end
+
             var storeComponent = entManager.GetComponent<StoreComponent>(storeEnt.Value);
             var discountComponent = entManager.GetComponent<StoreDiscountComponent>(storeEnt.Value);
             Assert.That(

@@ -43,41 +43,40 @@ namespace Content.Server.Vampire;
 
 public sealed partial class VampireSystem : EntitySystem
 {
-    [Dependency] private readonly MindSystem _mind = default!;
-    [Dependency] private readonly IAdminLogManager _admin = default!;
-    [Dependency] private readonly EntityStorageSystem _entityStorage = default!;
-    [Dependency] private readonly BloodstreamSystem _blood = default!;
-    [Dependency] private readonly RottingSystem _rotting = default!;
-    [Dependency] private readonly StomachSystem _stomach = default!;
-    [Dependency] private readonly PolymorphSystem _polymorph = default!;
-    [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly BeamSystem _beam = default!;
-    [Dependency] private readonly SharedInteractionSystem _interaction = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly IMapManager _mapMan = default!;
-    [Dependency] private readonly SharedMapSystem _mapSystem = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly SharedActionsSystem _action = default!;
-    [Dependency] private readonly BodySystem _body = default!;
-    [Dependency] private readonly SharedSolutionContainerSystem _solution = default!;
-    [Dependency] private readonly SharedStunSystem _stun = default!;
-    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
-    [Dependency] private readonly MobThresholdSystem _mobThreshold = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly EntityLookupSystem _entityLookup = default!;
-    [Dependency] private readonly MetabolizerSystem _metabolism = default!;
-    [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
-    [Dependency] private readonly SharedVampireSystem _vampire = default!;
-    [Dependency] private readonly ActionContainerSystem _actionContainer = default!;
-    [Dependency] private readonly ChargesSystem _charges = default!;
-    [Dependency] private readonly StarlightEntitySystem _entities = default!;
-    [Dependency] private readonly TurfSystem _turf = default!;
-    [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
-    [Dependency] private readonly IngestionSystem _ingestion = default!;
+    [Dependency] private MindSystem _mind = default!;
+    [Dependency] private IAdminLogManager _admin = default!;
+    [Dependency] private EntityStorageSystem _entityStorage = default!;
+    [Dependency] private BloodstreamSystem _blood = default!;
+    [Dependency] private RottingSystem _rotting = default!;
+    [Dependency] private StomachSystem _stomach = default!;
+    [Dependency] private PolymorphSystem _polymorph = default!;
+    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private BeamSystem _beam = default!;
+    [Dependency] private SharedInteractionSystem _interaction = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedMapSystem _mapSystem = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
+    [Dependency] private SharedActionsSystem _action = default!;
+    [Dependency] private BodySystem _body = default!;
+    [Dependency] private SharedSolutionContainerSystem _solution = default!;
+    [Dependency] private SharedStunSystem _stun = default!;
+    [Dependency] private DamageableSystem _damageableSystem = default!;
+    [Dependency] private MobThresholdSystem _mobThreshold = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private EntityLookupSystem _entityLookup = default!;
+    [Dependency] private MetabolizerSystem _metabolism = default!;
+    [Dependency] private UserInterfaceSystem _uiSystem = default!;
+    [Dependency] private SharedVampireSystem _vampire = default!;
+    [Dependency] private ActionContainerSystem _actionContainer = default!;
+    [Dependency] private ChargesSystem _charges = default!;
+    [Dependency] private StarlightEntitySystem _entities = default!;
+    [Dependency] private TurfSystem _turf = default!;
+    [Dependency] private StatusEffectsSystem _statusEffects = default!;
+    [Dependency] private IngestionSystem _ingestion = default!;
 
     private const string HeatDamage = "Heat";
 
@@ -336,7 +335,7 @@ public sealed partial class VampireSystem : EntitySystem
         var vampireTransform = Transform(vampireUid);
         var vampirePosition = _transform.GetMapCoordinates(vampireTransform);
 
-        if (!_mapMan.TryFindGridAt(vampirePosition, out _, out var grid))
+        if (!_mapSystem.TryFindGridAt(vampirePosition, out _, out var grid))
             return true;
 
         if (!_mapSystem.TryGetTileRef(vampireUid, grid, vampireTransform.Coordinates, out var tileRef))

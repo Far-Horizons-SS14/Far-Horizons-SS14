@@ -22,7 +22,7 @@ namespace Content.Shared.Atmos
         /// <summary>
         /// Global Atmospherics epsilon. Used for all general floating-point comparisons.
         /// </summary>
-        public const float Epsilon = 0.5f;
+        public const float Epsilon = 0.001f;
 
         /// <summary>
         ///     Maximum external pressure (in kPA) a gas miner will, by default, output to.

@@ -37,7 +37,6 @@
   petSuccessString: petting-success-generic-cyborg
   petFailureString: petting-failure-generic-cyborg
 
-
 # Engineering borg
 - type: borgType
   id: engineering
@@ -69,6 +68,16 @@
   radioChannels:
   - Engineering
   - Science
+
+  # Starlight start: Engiborg hud, access
+  addComponents:
+  - type: ShowHealthBars
+    damageContainers:
+    - Inorganic
+    - Silicon
+    - Robotic #FH
+  - type: ShowAccessReaderSettings
+  # Starlight end
 
   # Visual
   inventoryTemplateId: borgShort

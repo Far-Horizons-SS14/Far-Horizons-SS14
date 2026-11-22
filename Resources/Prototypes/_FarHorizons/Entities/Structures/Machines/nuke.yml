@@ -1,0 +1,33 @@
+- type: entity
+  parent: NuclearBomb
+  id: NuclearBombNS
+  suffix: NeoSol, Anchored
+  components:
+  - type: NukeLabel
+    prefix: "nuke-label-neosol"
+  - type: WarpPoint
+    follow: true
+    location: Nuclear bomb (NS)
+
+- type: entity
+  parent: NuclearBomb
+  id: NuclearBombUnanchoredLambda
+  suffix: Lambda, Unanchored
+  components:
+  - type: Transform
+    anchored: false
+  - type: Physics
+    bodyType: Dynamic
+  - type: NukeLabel
+    prefix: "nuke-label-lambda"
+  - type: WarpPoint
+    follow: true
+    location: Nuclear bomb (Lambda)
+
+- type: entity
+  parent: NuclearBombKeg
+  id: NuclearBombKegNS
+  suffix: NeoSol, Keg
+  components:
+  - type: NukeLabel
+    prefix: "nuke-label-neosol"

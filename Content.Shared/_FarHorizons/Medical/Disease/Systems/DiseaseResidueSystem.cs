@@ -13,13 +13,13 @@ namespace Content.Shared._FarHorizons.Medical.Disease.Systems;
 /// <summary>
 /// Decays disease residue on tiles/items and infects entities on direct contact.
 /// </summary>
-public sealed class DiseaseResidueSystem : EntitySystem
+public sealed partial class DiseaseResidueSystem : EntitySystem
 {
-    [Dependency] private readonly SharedDiseaseSystem _disease = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly SharedInteractionSystem _interaction = default!;
-    [Dependency] private readonly SharedTransformSystem _xform = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private SharedDiseaseSystem _disease = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private SharedInteractionSystem _interaction = default!;
+    [Dependency] private SharedTransformSystem _xform = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -205,7 +205,7 @@ public sealed class DiseaseResidueSystem : EntitySystem
         var chance = Math.Clamp(disease.ContactInfect, 0f, 1f);
         chance = _disease.AdjustContactChanceForProtection(target, chance, disease);
 
-        var stage = _disease.CreateStage(disease.Id);
+        var stage = _disease.CreateStage(disease);
         if(stage == null)
             return;
 

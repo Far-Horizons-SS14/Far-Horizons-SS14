@@ -38,7 +38,6 @@ namespace Content.Server.Explosion.EntitySystems;
 
 public sealed partial class ExplosionSystem : SharedExplosionSystem
 {
-    [Dependency] private IMapManager _mapManager = default!;
     [Dependency] private IRobustRandom _robustRandom = default!;
     [Dependency] private ITileDefinitionManager _tileDefinitionManager = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;
@@ -61,7 +60,7 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
     [Dependency] private DestructibleSystem _destructibleSystem = default!;
     [Dependency] private AtmosphereSystem _atmosphere = default!;
 
-    [Dependency] private readonly LimbDamageSystem _limbDamage = default!; // Far Horizons
+    [Dependency] private LimbDamageSystem _limbDamage = default!; // Far Horizons
     private EntityQuery<LimbDamageableComponent> _limbDamageableQuery; // Far Horizons
 
     private EntityQuery<FlammableComponent> _flammableQuery;
@@ -439,7 +438,7 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
 
             if (distance <= range)
             {
-                EntityManager.SpawnEntity("Smoke", smokePosition);
+                Spawn("Smoke", smokePosition);
             }
         }
     }

@@ -1,0 +1,13 @@
+- type: entity
+  id: ClothingShoesCombat
+  name: Combat Shoes
+  description: Fight in style! Has spurs that jingle AND jangle.
+  parent: [ ClothingShoesBootsCowboyBlack, ClothingShoesBootsSecFilled, BaseSecurityContraband ]
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Shoes/combat_shoes.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Shoes/combat_shoes.rsi
+  - type: ClothingSlowOnDamageModifier
+    modifier: 0.5
+  - type: Appearance

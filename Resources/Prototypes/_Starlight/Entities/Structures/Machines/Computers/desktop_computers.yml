@@ -244,6 +244,7 @@
   components:
   - type: Computer
     board: CargoRequestComputerCircuitboardDesktop
+  - type: CredstickDirectTransferTarget # Far Horizons
 
 # Request console variants.
 - type: entity
@@ -343,6 +344,7 @@
       Cartridge-Slot: !type:ContainerSlot {}
       program-container: !type:Container
       pai_slot: !type:ContainerSlot {} #FarHorizons
+      PDA-credstick: !type:ContainerSlot {} # Far Horizons
   - type: Appearance
     appearanceDataInit:
      enum.PdaVisuals.PdaType:
@@ -370,6 +372,16 @@
       whitelist:
         components:
         - IdCard
+    # Far Horizons start
+    credstickSlot:
+      priority: -3
+      name: pda-credstick-slot-name
+      ejectSound: /Audio/Machines/id_swipe.ogg
+      insertSound: /Audio/Machines/id_insert.ogg
+      whitelist:
+        tags:
+        - Credstick
+    # Far Horizons end
   - type: PdaVisuals
   - type: ItemSlots
   - type: UnpoweredFlashlight
@@ -395,6 +407,8 @@
       - NotekeeperCartridge
       - NanoTaskCartridge
       - NewsReaderCartridge
+      - FrontierBankCartridge # Far Horizons
+      - GSLNowCartridge # Far Horizons
     cartridgeSlot:
       priority: -1
       name: device-pda-slot-component-slot-name-cartridge

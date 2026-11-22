@@ -17,15 +17,15 @@ using Robust.Shared.Timing;
 
 namespace Content.Server._FarHorizons.Shuttles;
 
-public sealed class GunneryConsoleSystem : EntitySystem
+public sealed partial class GunneryConsoleSystem : EntitySystem
 {
-    [Dependency] private readonly DeviceLinkSystem _signal = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly PhysicsSystem _physics = default!;
-    [Dependency] private readonly SharedGunSystem _gunSystem = default!;
-    [Dependency] private readonly ShuttleConsoleSystem _console = default!;
-    [Dependency] private readonly TransformSystem _transformSystem = default!;
-    [Dependency] private readonly UserInterfaceSystem _uiSystem = null!;
+    [Dependency] private DeviceLinkSystem _signal = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private PhysicsSystem _physics = default!;
+    [Dependency] private SharedGunSystem _gunSystem = default!;
+    [Dependency] private ShuttleConsoleSystem _console = default!;
+    [Dependency] private TransformSystem _transformSystem = default!;
+    [Dependency] private UserInterfaceSystem _uiSystem = null!;
 
     public override void Initialize()
     {
@@ -51,14 +51,14 @@ public sealed class GunneryConsoleSystem : EntitySystem
 
     private void CollectTurrets(EntityUid uid, GunneryConsoleComponent comp)
     {
-        if (!EntityManager.TryGetComponent<DeviceLinkSourceComponent>(uid, out var source))
+        if (!TryComp<DeviceLinkSourceComponent>(uid, out var source))
             return;
 
         comp.ConnectedTurrets.Clear();
 
         foreach (var (turretUid, _) in source.LinkedPorts)
         {
-            if (!EntityManager.HasComponent<GunComponent>(turretUid))
+            if (!HasComp<GunComponent>(turretUid))
                 continue;
 
             comp.ConnectedTurrets.Add(turretUid);
@@ -70,10 +70,10 @@ public sealed class GunneryConsoleSystem : EntitySystem
         if (args.SourcePort != comp.TurretConnectionPort)
             return;
 
-        if (!EntityManager.HasComponent<GunComponent>(args.Sink))
+        if (!HasComp<GunComponent>(args.Sink))
             return;
 
-        if (!EntityManager.HasComponent<GunneryManagedTargetingComponent>(args.Sink))
+        if (!HasComp<GunneryManagedTargetingComponent>(args.Sink))
             return;
 
         if (comp.ConnectedTurrets.Contains(args.Sink))
@@ -122,7 +122,7 @@ public sealed class GunneryConsoleSystem : EntitySystem
             var metaData = new GunneryConsoleTurretMetaData
             {
                 EntityName = Identity.Name(turret, EntityManager),
-                Coordinates = EntityManager.GetNetCoordinates(Transform(turret).Coordinates)
+                Coordinates = GetNetCoordinates(Transform(turret).Coordinates)
             };
             comp.TurretMetaData[GetNetEntity(turret)] = metaData;
         }
@@ -169,19 +169,19 @@ public sealed class GunneryConsoleSystem : EntitySystem
     private void OnFireAction(EntityUid uid, GunneryConsoleComponent comp, ref GunneryConsoleFireActionMessage args)
     {
         List<EntityUid> turretUids = [];
-        args.TurretEntities.ForEach(netEnt => turretUids.Add(EntityManager.GetEntity(netEnt)));
+        args.TurretEntities.ForEach(netEnt => turretUids.Add(GetEntity(netEnt)));
         turretUids = [.. turretUids.Intersect(comp.ConnectedTurrets)];
 
-        var targetCoords = EntityManager.GetCoordinates(args.Position);
+        var targetCoords = GetCoordinates(args.Position);
         var targetWorldCoords = _transformSystem.ToWorldPosition(targetCoords);
 
         foreach (var turret in turretUids)
         {
             var xform = Transform(turret);
-            if (!EntityManager.TryGetComponent<GunComponent>(turret, out var gun) || xform == null)
+            if (!TryComp<GunComponent>(turret, out var gun) || xform == null)
                 continue;
 
-            if (!EntityManager.TryGetComponent<GunneryManagedTargetingComponent>(turret, out var targeting))
+            if (!TryComp<GunneryManagedTargetingComponent>(turret, out var targeting))
                 continue;
 
             if (!_gunSystem.CanShoot(gun))

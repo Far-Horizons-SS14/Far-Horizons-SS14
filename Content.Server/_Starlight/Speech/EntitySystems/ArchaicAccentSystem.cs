@@ -6,9 +6,9 @@ using Content.Shared._Starlight.Speech;
 
 namespace Content.Server.Speech.EntitySystems;
 
-public sealed class ArchaicAccentSystem : RelayAccentSystem<ArchaicAccentComponent>
+public sealed partial class ArchaicAccentSystem : RelayAccentSystem<ArchaicAccentComponent>
 {
-    [Dependency] private readonly ReplacementAccentSystem _replacement = default!;
+    [Dependency] private ReplacementAccentSystem _replacement = default!;
 
     protected override SpeechMessage AccentuateInternal(EntityUid uid, ArchaicAccentComponent component, SpeechMessage message)
         => _replacement.ApplyReplacements(message, "archaic");

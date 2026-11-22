@@ -13,9 +13,9 @@ namespace Content.Client._FarHorizons.UI.BackgroundTraits;
 [GenerateTypedNameReferences]
 public sealed partial class BackgroundTraitsWindow : FancyWindow
 {
-    [Dependency] private readonly IPrototypeManager _protoMan = default!;
-    [Dependency] private readonly IResourceCache _resCache = default!;
-    [Dependency] private readonly IEntityManager _entityManager = default!;
+    [Dependency] private IPrototypeManager _protoMan = default!;
+    [Dependency] private IResourceCache _resCache = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
 
     private List<ProtoId<BackgroundTraitPrototype>>? _availableTraits;
     private List<ProtoId<BackgroundTraitPrototype>> _selectedTraits = new();

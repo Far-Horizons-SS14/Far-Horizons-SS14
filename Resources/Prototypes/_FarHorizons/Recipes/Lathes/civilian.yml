@@ -13,8 +13,8 @@
 
 - type: latheRecipe
   parent: BaseWeaponRecipe
-  id: WeaponPistolMk59Civilian
-  result: WeaponPistolMk59Civilian
+  id: WeaponPistolMKSCivilian
+  result: WeaponPistolMKSCivilian
   categories:
     - CivilianWeaponry
   materials:
@@ -33,8 +33,8 @@
 
 - type: latheRecipe
   parent: BaseWeaponRecipe
-  id: WeaponPistolMk78Civilian
-  result: WeaponPistolMk78Civilian
+  id: WeaponPistolMKTCivilian
+  result: WeaponPistolMKTCivilian
   categories:
     - CivilianWeaponry
   materials:
@@ -43,13 +43,23 @@
 
 - type: latheRecipe
   parent: BaseWeaponRecipe
-  id: WeaponSniperLeverCivilian
-  result: WeaponSniperLeverCivilian
+  id: WeaponLeverActionCivilian
+  result: WeaponLeverActionCivilian
   categories:
     - CivilianWeaponry
   materials:
     Steel: 1200
     Plastic: 600
+
+- type: latheRecipe
+  parent: BaseWeaponRecipe
+  id: WeaponLeverActionCivilianPistol
+  result: WeaponLeverActionCivilianPistol
+  categories:
+    - CivilianWeaponry
+  materials:
+    Steel: 600
+    Plastic: 300
 
 #region Magazines
 - type: latheRecipe

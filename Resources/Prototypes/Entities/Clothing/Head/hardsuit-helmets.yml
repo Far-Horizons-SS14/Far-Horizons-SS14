@@ -662,6 +662,28 @@
   - type: PressureProtection
     highPressureMultiplier: 0.3
     lowPressureMultiplier: 1000
+#FarHorzions - Start
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.95
+        Heat: 0.9
+  - type: LimbArmor # Far Horizons
+    limbs:
+      Head:
+        flatReductions:
+          Piercing: 5
+          Heat: 4
+        coefficients:
+          Blunt: 0.8
+          Slash: 0.8
+          Piercing: 0.6
+          Heat: 0.5
+          Radiation: 0.5
+          Caustic: 0.6
+#FarHorzions - End
   - type: Tag
     tags:
     - WhitelistChameleon
@@ -1379,9 +1401,9 @@
   description: A bizarre gem-encrusted helmet that radiates magical energies.
   components:
   - type: Sprite
-    sprite: Clothing/Head/Hardsuits/wizard.rsi
+    sprite: _FarHorizons/Clothing/Head/Hardsuits/wizard.rsi #FH
   - type: Clothing
-    sprite: Clothing/Head/Hardsuits/wizard.rsi
+    sprite: _FarHorizons/Clothing/Head/Hardsuits/wizard.rsi #FH
   - type: PointLight
     color: "#ffadfb"
   - type: PressureProtection

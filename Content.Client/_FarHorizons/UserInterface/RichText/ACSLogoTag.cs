@@ -13,9 +13,9 @@ using Robust.Shared.Utility;
 
 namespace Content.Client._FarHorizons.UserInterface.RichText;
 
-public sealed class ACSLogoTag : IMarkupTag
+public sealed partial class ACSLogoTag : IMarkupTag
 {
-    [Dependency] private readonly IEntitySystemManager _entitySystem = default!;
+    [Dependency] private IEntitySystemManager _entitySystem = default!;
     private SpriteSystem? _spriteSystem;
     private IResourceCache? _resourceCache;
 

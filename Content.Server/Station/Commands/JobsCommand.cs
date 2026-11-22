@@ -11,7 +11,7 @@ using Robust.Shared.Toolshed.TypeParsers;
 namespace Content.Server.Station.Commands;
 
 [ToolshedCommand, AdminCommand(AdminFlags.VarEdit)]
-public sealed class JobsCommand : ToolshedCommand
+public sealed partial class JobsCommand : ToolshedCommand
 {
     private StationJobsSystem? _jobs;
 

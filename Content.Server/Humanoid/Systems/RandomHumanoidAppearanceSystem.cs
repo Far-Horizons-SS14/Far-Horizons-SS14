@@ -52,11 +52,13 @@ public sealed partial class RandomHumanoidAppearanceSystem : EntitySystem
     }
 
     // FarHorizons Start
+    private readonly HashSet<string> _ignoredSpecies =  ["IPC"];
     private void OnCompStartSpecies(EntityUid uid, RandomSpeciesComponent component, ComponentStartup args)
     {
         if (!HasComp<HumanoidProfileComponent>(uid))
             return;
-        var profile = HumanoidCharacterProfile.Random();
+            
+        var profile = HumanoidCharacterProfile.Random(_ignoredSpecies);
         var speciesProto = _prototypeManager.Index(profile.Species);
         
         var dummy = Spawn(speciesProto.Prototype);

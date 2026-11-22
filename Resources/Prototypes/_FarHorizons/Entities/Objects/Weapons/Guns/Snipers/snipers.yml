@@ -2,7 +2,7 @@
   name: Mark 1 Rifle
   parent: [BaseWeaponSniper, BaseGunWieldable, BaseSalvageContraband]
   id: WeaponRifleMark1
-  description: A very old Mark 1 Rifle used in many old wars. Someone managed to find one out of a museum or something, with the date of production scratched out from usage... but the GSL logo is very new.                                                                               Note - This weapon can be chambered in .30 and .45 ammunition!
+  description: A very old Mark 1 Rifle used in many old wars. Someone managed to find one out of a museum or something, with the date of production scratched out from usage... but the GSL logo is very new.                                                                               Note - This weapon can be chambered in 7.62 and .45 ammunition!
   components:
   - type: KnockbackByUserTag
     doestContain:
@@ -14,11 +14,11 @@
         knockback: 2
   - type: BallisticAmmoProvider
     capacity: 10
-    proto: CartridgeLightRifleSP
+    proto: CartridgeRifle762SP
     whitelist:
       tags:
         - CartridgeMagnum
-        - CartridgeLightRifle
+        - CartridgeRifle762
     soundRack:
       path: /Audio/_FarHorizons/Items/Weapons/Mark1/mark1_cycle_Bolt.ogg
       params:
@@ -54,7 +54,7 @@
   name: Mark 1 Sniper Rifle
   parent: [BaseWeaponSniper, BaseGunWieldable, BaseSalvageContraband]
   id: WeaponRifleMark1Sniper
-  description: A very old Mark 1 Rifle used in many old wars. They say the scratches on the side of the gun are for every kill the wielder had.                                Note - This weapon can be chambered in .30 and .45 ammunition!
+  description: A very old Mark 1 Rifle used in many old wars. They say the scratches on the side of the gun are for every kill the wielder had.                                Note - This weapon can be chambered in 7.62 and .44 ammunition!
   components:
   - type: KnockbackByUserTag
     doestContain:
@@ -66,11 +66,11 @@
         knockback: 2
   - type: BallisticAmmoProvider
     capacity: 10
-    proto: CartridgeLightRifleSP
+    proto: CartridgeRifle762SP
     whitelist:
       tags:
         - CartridgeMagnum
-        - CartridgeLightRifle
+        - CartridgeRifle762
     soundRack:
       path: /Audio/_FarHorizons/Items/Weapons/Mark1/mark1_cycle_Bolt.ogg
       params:
@@ -110,7 +110,7 @@
   name: Markalibur 1 "Rifle"
   parent: [BaseWeaponSniper, BaseGunWieldable, BaseSalvageContraband]
   id: WeaponRifleMarkalibur1
-  description: A very old Mark 1 Rifle used in many old wars... before someone took the poor thing, mangled it, and somehow ended up with a sword.                 Note - This weapon can be chambered in .30 and .45 ammunition!
+  description: A very old Mark 1 Rifle used in many old wars... before someone took the poor thing, mangled it, and somehow ended up with a sword.                 Note - This weapon can be chambered in 7.62 and .44 ammunition!
   components:
   - type: KnockbackByUserTag
     doestContain:
@@ -122,11 +122,11 @@
         knockback: 3
   - type: BallisticAmmoProvider
     capacity: 3
-    proto: CartridgeLightRifleSP
+    proto: CartridgeRifle762SP
     whitelist:
       tags:
         - CartridgeMagnum
-        - CartridgeLightRifle
+        - CartridgeRifle762
     soundRack:
       path: /Audio/_FarHorizons/Items/Weapons/Mark1/mark1_cycle_Bolt.ogg
       params:
@@ -173,55 +173,3 @@
   - type: DisarmMalus
   - type: AltFireMelee
     attackType: Heavy
-
-
-- type: entity
-  name: Civilian Lever-Action
-  parent: [BaseWeaponSniper]
-  id: WeaponSniperLeverCivilian
-  description: A civilian lever-action rifle. Accepts .30 and .44 Magnum cartridges.
-  components:
-  - type: Sprite
-    sprite: _Starlight/Objects/Weapons/Guns/Snipers/forged_rifle.rsi
-  - type: Clothing
-    sprite: _Starlight/Objects/Weapons/Guns/Snipers/forged_rifle.rsi
-  - type: Item
-    size: Normal # Small, but can't fit in your pocket.
-  - type: Gun
-    fireRate: 1.5
-    minAngle: 10
-    maxAngle: 20
-    selectedMode: SemiAuto
-    availableModes:
-    - SemiAuto
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/sniper.ogg
-  - type: KnockbackByUserTag
-    doestContain:
-      Skating:
-        knockback: 1.0
-        staminaMultiplier: 100
-      Resomi:
-        knockback: 1.5
-      Avali:
-        knockback: 0.75 # half of what resomi take'
-      Felionoid:
-        knockback: 0.75 # half of what resomi take
-      Animal: #FH
-        knockback: 1.5 #FH
-  - type: BallisticAmmoProvider
-    whitelist:
-      tags:
-      - CartridgeMagnum
-      - CartridgeMagnumImprovised
-      - CartridgeLightRifle
-      - CartridgeLightRifleImprovised
-    capacity: 5
-    proto: CartridgeMagnumSP
-  - type: WeaponDismantleOnShoot
-    dismantleChance: 0.00
-  - type: Wieldable
-    unwieldOnUse: false
-  - type: GunWieldBonus
-    minAngle: -8
-    maxAngle: -15

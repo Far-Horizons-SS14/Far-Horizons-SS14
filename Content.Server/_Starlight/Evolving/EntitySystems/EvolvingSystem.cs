@@ -10,11 +10,11 @@ using Content.Shared._Starlight.Spider.Events;
 
 namespace Content.Server._Starlight.Evolving.EntitySystems;
 
-public sealed class EvolvingSystem : EntitySystem
+public sealed partial class EvolvingSystem : EntitySystem
 {
-    [Dependency] private readonly SharedMindSystem _mindSystem = default!;
-    [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
-    [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
+    [Dependency] private SharedMindSystem _mindSystem = default!;
+    [Dependency] private SharedActionsSystem _actionsSystem = default!;
+    [Dependency] private MobStateSystem _mobStateSystem = default!;
 
     public override void Initialize()
     {
@@ -114,7 +114,7 @@ public sealed class EvolvingSystem : EntitySystem
             return false;
 
         // All conditions met, evolve.
-        var ent = EntityManager.SpawnEntity(component.EvolveTo, Transform(uid).Coordinates);
+        var ent = Spawn(component.EvolveTo, Transform(uid).Coordinates);
         _mindSystem.TransferTo(mindId, ent, mind: mind);
         QueueDel(uid);
         return true;

@@ -6,6 +6,6 @@ namespace Content.Client._Starlight.IdClothingBlocker;
 /// Client-side implementation of SharedIdClothingFrozenSystem
 /// Defined to block action and attack predictions
 /// </summary>
-public sealed class IdClothingFrozenSystem : SharedIdClothingFrozenSystem
+public sealed partial class IdClothingFrozenSystem : SharedIdClothingFrozenSystem
 {
 }

@@ -12,8 +12,8 @@ namespace Content.Shared._FarHorizons.Factions;
 
 public abstract partial class SharedFactionManager : ISharedFactionManager
 {
-    [Dependency] protected readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] protected readonly ILocalizationManager _locMan = default!;
+    [Dependency] protected IPrototypeManager _prototypeManager = default!;
+    [Dependency] protected ILocalizationManager _locMan = default!;
 
     public static readonly string FallbackFaction = "FactionNT";
 
@@ -89,10 +89,10 @@ public abstract partial class SharedFactionManager : ISharedFactionManager
             PopulateCache();
         return _factionDepartments;
     }
-    public IEnumerable<FactionJobAssignmentPrototype> ListFactionJobs(){
+    public IEnumerable<FactionJobAssignmentPrototype> ListFactionJobs(bool showHidden = false){
         if (_factionJobs.Count == 0)
             PopulateCache();
-        return _factionJobs;
+        return showHidden ? _factionJobs : _factionJobs.Where(p => !p.Hidden);
     }
     
     public bool TryFindFaction(string search, [NotNullWhen(true)] out FactionPrototype? faction){
@@ -224,6 +224,16 @@ public abstract partial class SharedFactionManager : ISharedFactionManager
         factionJob.faction == null || !TryGetJobAssignment((factionJob.faction.Value, factionJob.job), out var assignment) ? 
         _prototypeManager.Index(factionJob.job).ExtendedAccessGroups :
         OverrideJobExtendedAccessGroups(assignment!);
+
+    public JobSpecial[] OverrideJobSpecial(FactionJobAssignmentPrototype assignment) =>
+        assignment.Override == null || assignment.Override.Special == null ?
+            _prototypeManager.Index(assignment.Job).Special :
+            assignment.Override.Special;
+
+    public JobSpecial[] OverrideJobSpecial((ProtoId<FactionPrototype>? faction, ProtoId<JobPrototype> job) factionJob) =>
+        factionJob.faction is null || !TryGetJobAssignment((factionJob.faction.Value, factionJob.job), out var assignment) ? 
+        _prototypeManager.Index(factionJob.job).Special :
+        OverrideJobSpecial(assignment!);
 
     private (ProtoId<FactionPrototype> faction, ProtoId<JobPrototype> job) GetDefaultIdsWithJob() =>
         (GetDefaultFaction(), SharedGameTicker.FallbackOverflowJob);

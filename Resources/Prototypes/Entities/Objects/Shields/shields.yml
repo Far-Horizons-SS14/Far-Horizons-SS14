@@ -505,6 +505,7 @@
       reflectProb: 0.95
       reflects:
         - Energy
+      reflectEnergyDraw: 20 #FH
     - type: Blocking
       passiveBlockModifier:
         coefficients:
@@ -521,36 +522,56 @@
         flatReductions:
           Heat: 1
           Piercing: 1
+      damageEnergyDraw: 10 #FH
     - type: Appearance
     - type: Damageable
     - type: Injurable
       damageContainer: Shield
     - type: ExaminableDamage
       messages: EnergyShieldMessages
-    - type: Destructible
-      thresholds:
-        - trigger:
-            !type:DamageTrigger
-            damage: 180
-          behaviors:
-            - !type:DoActsBehavior
-              acts: [ "Destruction" ]
-        - trigger:
-            !type:DamageTrigger
-            damage: 100
-          behaviors:
-            - !type:DoActsBehavior
-              acts: [ "Destruction" ]
-            - !type:PlaySoundBehavior
-              sound:
-                collection: GlassBreak
-            - !type:SpawnEntitiesBehavior
-              spawn:
-                BrokenEnergyShield:
-                  min: 1
-                  max: 1
+    # - type: Destructible
+    #   thresholds:
+    #     - trigger:
+    #         !type:DamageTrigger
+    #         damage: 180
+    #       behaviors:
+    #         - !type:DoActsBehavior
+    #           acts: [ "Destruction" ]
+    #     - trigger:
+    #         !type:DamageTrigger
+    #         damage: 100
+    #       behaviors:
+    #         - !type:DoActsBehavior
+    #           acts: [ "Destruction" ]
+    #         - !type:PlaySoundBehavior
+    #           sound:
+    #             collection: GlassBreak
+    #         - !type:SpawnEntitiesBehavior
+    #           spawn:
+    #             BrokenEnergyShield:
+    #               min: 1
+    #               max: 1
     - type: StaticPrice
       price: 350
+    #FH Start
+    - type: ContainerContainer
+      containers:
+        cell_slot: !type:ContainerSlot
+    - type: ToggleCellDraw
+      disableSelfRechargeOnToggle: true
+    - type: PowerCellDraw
+      drawRate: 2 
+    - type: PowerCellSlot
+      cellSlotId: cell_slot
+      fitsInCharger: false
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          name: power-cell-slot-component-slot-name-default
+          startingItem: PowerCellMicroreactor
+          disableEject: true
+          swap: false
+    #FH End
 
 - type: entity
   name: broken energy shield

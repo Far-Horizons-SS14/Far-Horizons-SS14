@@ -13,10 +13,10 @@ using JetBrains.Annotations;
 namespace Content.Client._Starlight.Antags.TerrorSpider;
 
 [UsedImplicitly]
-public sealed class EggsLayingBui : BoundUserInterface
+public sealed partial class EggsLayingBui : BoundUserInterface
 {
-    [Dependency] private readonly IInputManager _inputManager = default!;
-    [Dependency] private readonly IClyde _displayManager = default!;
+    [Dependency] private IInputManager _inputManager = default!;
+    [Dependency] private IClyde _displayManager = default!;
 
     private EggsLayingMenu? _menu;
     public EggsLayingBui(EntityUid owner, Enum uiKey) : base(owner, uiKey) => IoCManager.InjectDependencies(this);

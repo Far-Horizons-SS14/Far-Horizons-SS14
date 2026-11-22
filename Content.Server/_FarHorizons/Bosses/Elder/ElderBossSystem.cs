@@ -17,14 +17,14 @@ namespace Content.Server._FarHorizons.Bosses.Elder;
 
 public sealed partial class ElderBossSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly BossCombatSystem _boss = default!;
-    [Dependency] private readonly TelegraphedAttackSystem _telegraph = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly DamageableSystem _damage = default!;
-    [Dependency] private readonly BloodstreamSystem _bloodstream = default!;
-    [Dependency] private readonly MapSystem _map = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private BossCombatSystem _boss = default!;
+    [Dependency] private TelegraphedAttackSystem _telegraph = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private DamageableSystem _damage = default!;
+    [Dependency] private BloodstreamSystem _bloodstream = default!;
+    [Dependency] private MapSystem _map = default!;
 
     public override void Initialize()
     {

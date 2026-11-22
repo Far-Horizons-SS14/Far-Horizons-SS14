@@ -7,7 +7,7 @@ using static Content.Shared.Administration.Notes.AdminNoteEuiMsg;
 namespace Content.Client.Administration.UI.Notes;
 
 [UsedImplicitly]
-public sealed class AdminNotesEui : BaseEui
+public sealed partial class AdminNotesEui : BaseEui
 {
     public AdminNotesEui()
     {

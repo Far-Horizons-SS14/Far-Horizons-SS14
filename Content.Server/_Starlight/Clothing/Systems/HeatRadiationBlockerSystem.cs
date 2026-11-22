@@ -4,7 +4,7 @@ using Content.Shared.Inventory;
 
 namespace Content.Server._Starlight.Clothing.Systems;
 
-public sealed class HeatRadiationBlockerSystem : EntitySystem
+public sealed partial class HeatRadiationBlockerSystem : EntitySystem
 {
     public override void Initialize()
     {

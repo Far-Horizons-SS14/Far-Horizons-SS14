@@ -360,23 +360,23 @@
 - type: entity
   parent: [BaseSalvageContraband, ClothingOuterVestWeb] #web vest so it should have some pockets for ammo
   id: ClothingOuterVestWebSalvageMerc
-  name: Scrapper Web Vest #Far Horizons - The Great Capitalization Crusade
+  name: Salvage Web Vest #Far Horizons - The Great Capitalization Crusade
   description: A versatile armored vest, popular among salvagers for its protective yet lightweight design.
   components:
     - type: Sprite
-      sprite: _Starlight/Clothing/OuterClothing/Vests/salvagevest.rsi
+      sprite: _FarHorizons/Clothing/OuterClothing/Vests/salvage.rsi # Far Horizons
     - type: Clothing
-      sprite: _Starlight/Clothing/OuterClothing/Vests/salvagevest.rsi
+      sprite: _FarHorizons/Clothing/OuterClothing/Vests/salvage.rsi # Far Horizons
     - type: Pierceable
       level: Metal
     - type: Armor
       modifiers:
         flatReductions: #FH - Edit
-          Piercing: 5 #FH - Edit
+          Piercing: 4 #FH - Edit
         coefficients:
-          Blunt: 0.7 #slightly better overall protection but slightly worse than bulletproof armor against bullets seems sensible
-          Slash: 0.7
-          Piercing: 0.6
+          Blunt: 0.75 # Far Horizons
+          Slash: 0.75 # Far Horizons
+          Piercing: 0.65 # Far Horizons
           Heat: 0.9
       staminaModifier: 0.85
     - type: LimbArmor # Far Horizons

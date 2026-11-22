@@ -60,8 +60,8 @@
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: CyberneticImplanterLeftArmCyberMantisBlade #FH
-        - id: CyberneticImplanterRightArmCyberMantisBlade #FH
+        - id: CyberneticImplanterSyndicateArmCyberMantisBlade #FH
+        - id: CyberneticImplanterSyndicateArmCyberMantisBlade #FH
     
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
@@ -94,8 +94,9 @@
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
   id: ClothingBackpackDuffelSyndicateFilledInfiltration
-  name: infiltration hardsuit bundle
+  name: Infiltration Hardsuit Bundle #Far Horizons Capitalization
   description: "Contains the latest in Syndicate chameleon technology, the infiltration hardsuit."
+  suffix: NS #Far Horizons
   components:
   - type: EntityTableContainerFill
     containers:

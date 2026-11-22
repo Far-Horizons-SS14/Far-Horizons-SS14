@@ -18,14 +18,14 @@ namespace Content.Server.Implants;
 /// <summary>
 /// Far Horizons: manages the detached stores backing USSP uplink implants.
 /// </summary>
-public sealed class USSPUplinkSystem : EntitySystem
+public sealed partial class USSPUplinkSystem : EntitySystem
 {
     private static readonly EntProtoId<StoreComponent> USSPUplinkStore = "StorePresetRemoteUSSPUplink";
 
-    [Dependency] private readonly StoreSystem _storeSystem = default!;
-    [Dependency] private readonly SharedMindSystem _mind = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly SubdermalImplantSystem _implant = default!;
+    [Dependency] private StoreSystem _storeSystem = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private SubdermalImplantSystem _implant = default!;
 
     public override void Initialize()
     {

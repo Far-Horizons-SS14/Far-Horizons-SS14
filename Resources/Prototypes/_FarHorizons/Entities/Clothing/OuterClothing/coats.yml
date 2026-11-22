@@ -60,6 +60,114 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
 
+#region Security
+- type: entity
+  parent: [ClothingOuterStorageFoldableBase, AllowSuitStorageClothing, BaseSecurityContraband]
+  id: ClothingOuterSecurityBomber
+  name: Security Bomber
+  description: A regular bomber, but with armored inserts.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/security_bomber_nt.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/security_bomber_nt.rsi
+  - type: Armor
+    modifiers:
+      flatReductions:
+        Piercing: 5
+        Heat: 4
+      coefficients:
+        Blunt: 0.70
+        Slash: 0.70
+        Piercing: 0.70
+        Heat: 0.80
+  - type: LimbArmor
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      LegRight: {}
+      LegLeft: {}
+  - type: ExplosionResistance
+    damageCoefficient: 0.90
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.75
+
+- type: entity
+  parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterSecurityBomber]
+  id: ClothingOuterSecurityBomberOpened
+  name: Security Bomber
+  
+- type: entity
+  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing, ClothingOuterArmorBase]
+  id: ClothingOuterCoatDusterSecurityDeputy
+  name: Deputy Duster
+  suffix: NT
+  description: Adorned with two blue & golden strips on each shoulder. This Duster is given out as a reward to members of Security who have completed the Concord Frontier Authority training programme.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/deputy_duster.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/deputy_duster.rsi
+  - type: Armor
+    modifiers:
+      flatReductions:
+        Piercing: 5
+        Heat: 4
+      coefficients:
+        Blunt: 0.70
+        Slash: 0.70
+        Piercing: 0.70
+        Heat: 0.80
+  - type: LimbArmor
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      LegRight: {}
+      LegLeft: {}
+  - type: ExplosionResistance
+    damageCoefficient: 0.90
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.75
+
+# Security Windbreaker
+- type: entity
+  parent: [ClothingOuterStorageFoldableBase, AllowSuitStorageClothing, BaseSecurityContraband]
+  id: ClothingOuterWindbreakerSecurity
+  name: Security Windbreaker
+  description: A stylish blue windbreaker with additional inserted plate padding for security usage.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/windbreaker_security_nt
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/windbreaker_security_nt
+
+
+  - type: Armor
+    modifiers:
+      flatReductions:
+        Piercing: 5
+        Heat: 4
+      coefficients:
+        Blunt: 0.70
+        Slash: 0.70
+        Piercing: 0.70
+        Heat: 0.80
+  - type: LimbArmor
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      LegRight: {}
+      LegLeft: {}
+  - type: ExplosionResistance
+    damageCoefficient: 0.90
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.75
+
+- type: entity
+  parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterWindbreakerSecurity]
+  id: ClothingOuterWindbreakerSecurityOpened
+  name: Security Windbreaker
+  
 #region Civilian
 
 - type: entity
@@ -393,6 +501,16 @@
     contents:
     - id: SmokingPipeFilledTobacco
     - id: FlippoEngravedLighter
+  - type: Armor
+    modifiers:
+      flatReductions:
+        Piercing: 5
+        Heat: 4
+      coefficients:
+        Blunt: 0.70
+        Slash: 0.70
+        Piercing: 0.70
+        Heat: 0.80
   - type: ExplosionResistance
     damageCoefficient: 1 #its a coat. it doesnt do shit
 
@@ -411,10 +529,44 @@
     contents:
     - id: SmokingPipeFilledTobacco
     - id: FlippoEngravedLighter
+  - type: Armor
+    modifiers:
+      flatReductions:
+        Piercing: 5
+        Heat: 4
+      coefficients:
+        Blunt: 0.70
+        Slash: 0.70
+        Piercing: 0.70
+        Heat: 0.80
   - type: ExplosionResistance
     damageCoefficient: 1 #its a coat. it doesnt do shit
 
 # Enforcer (Security Officer)
+
+- type: entity
+  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing, ClothingOuterArmorBase]
+  id: ClothingOuterCoatDusterSecurityDeputySyndi
+  name: Deputy Duster
+  suffix: NS
+  description: Adorned with two red & golden strips on each shoulder. This Duster is given out as a reward to members of Security who have completed the Concord Frontier Authority training programme.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/deputy_duster_red.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/deputy_duster_red.rsi
+  - type: Armor
+    modifiers:
+      flatReductions:
+        Piercing: 5
+        Heat: 4
+      coefficients:
+        Blunt: 0.70
+        Slash: 0.70
+        Piercing: 0.70
+        Heat: 0.80
+  - type: ExplosionResistance
+    damageCoefficient: 1
 
 # Brigmedic (Brigmedic)
 

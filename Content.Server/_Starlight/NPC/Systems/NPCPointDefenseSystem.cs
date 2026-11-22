@@ -4,7 +4,7 @@ using Content.Shared.Weapons.Ranged.Systems;
 
 namespace Content.Server.NPC.Systems;
 
-public sealed class NPCPointDefenseSystem : EntitySystem
+public sealed partial class NPCPointDefenseSystem : EntitySystem
 {
     public override void Initialize()
     {

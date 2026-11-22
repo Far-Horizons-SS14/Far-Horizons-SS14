@@ -20,7 +20,7 @@ public sealed partial class WaggingSystem : EntitySystem
     [Dependency] private SharedVisualBodySystem _visualBody = default!;
     [Dependency] private IPrototypeManager _prototype = default!;
 
-    [Dependency] private readonly StarlightMarkingSystem _starlightMarking = default!; //starlight edit
+    [Dependency] private StarlightMarkingSystem _starlightMarking = default!; //starlight edit
 
     public override void Initialize()
     {

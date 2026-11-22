@@ -1102,6 +1102,7 @@
   parent: [ IDCardStandard, BaseSyndicateContraband ]
   id: OperativeIDCard
   name: Syndicate Operative ID Card
+  suffix: NS
   components:
     - type: Sprite
       layers:
@@ -1474,6 +1475,9 @@
   - type: Tag
     tags:
     - DoorBumpOpener
+    - HighRiskItem
+  - type: StealTarget
+    stealGroup: CaptainIDCard
 
 - type: entity
   parent: [IDCardNeoSolStandard, BaseCommandContraband]
@@ -2000,11 +2004,110 @@
   components:
   - type: Sprite
     layers:
-    - state: idsyndicatehighcommand
+    - state: elite
     - state: idsyndicatehighcommand
   - type: Item
     heldPrefix: elite
   - type: PresetIdCard
-    job: CentralCommandOfficial
+    job: HighCommandOfficial
+
+- type: entity
+  parent: IDCardNeoSolStandard
+  id: HCCOAIDCard
+  name: COA Officer ID Card
+  components:
+  - type: Sprite
+    layers:
+    - state: elite
+    - state: idsyndicatehighcommand
+  - type: Item
+    heldPrefix: elite
+  - type: PresetIdCard
+    job: HC-COAOfficial
+
+- type: entity
+  parent: IDCardNeoSolStandard
+  id: HCGWSIDCard
+  name: GWS Officer ID Card
+  components:
+  - type: Sprite
+    layers:
+    - state: elite
+    - state: idsyndicatehighcommand
+  - type: Item
+    heldPrefix: elite
+  - type: PresetIdCard
+    job: HC-GWSOfficial
+
+- type: entity
+  parent: IDCardNeoSolStandard
+  id: HCDCIIDCard
+  name: DCI Officer ID Card
+  components:
+  - type: Sprite
+    layers:
+    - state: elite
+    - state: idsyndicatehighcommand
+  - type: Item
+    heldPrefix: elite
+  - type: PresetIdCard
+    job: HC-DCIOfficial
 
 #endregion
+
+- type: entity
+  parent: [ IDCardStandard, BaseSyndicateContraband ]
+  id: LambdaIDCard #ID for naval things, just like the syndicate has
+  name: Lambda ID Card 
+  suffix: NT
+  components:
+  - type: Sprite
+    layers:
+    - state: syndi  # TODO- change to Lambda version
+    - state: idoperative # TODO- change to Lambda version
+  - type: Item
+    heldPrefix: black
+  - type: Access
+    tags:
+    - LambdaOperative
+    - LambdaAgent
+
+- type: entity
+  parent: [ LambdaIDCard, BaseSyndicateContraband ]
+  id: LambdaOperativeIDCard
+  name: Lambda Operative ID Card 
+  suffix: NT
+  components:
+  - type: Sprite
+    layers:
+    - state: syndi  # TODO- change to Lambda version
+    - state: idoperative # TODO- change to Lambda version
+  - type: Item
+    heldPrefix: black
+  - type: AgentIDCard
+
+- type: entity
+  parent: [ LambdaOperativeIDCard, BaseSyndicateContraband ]
+  id: LambdaCorpsmanIDCard
+  name: Lambda Corpsman ID Card 
+  suffix: NT
+  components:
+  - type: Sprite
+    layers:
+    - state: syndi  # TODO- change to Lambda version
+    - state: idsyndiagent  # TODO- change to Lambda version
+  - type: Item
+    heldPrefix: black
+
+- type: entity
+  parent: [ LambdaOperativeIDCard, BaseSyndicateContraband ]
+  id: LambdaCommanderIDCard
+  name: Lambda Commander ID Card 
+  suffix: NT
+  components:
+  - type: Sprite
+    layers:
+    - state: syndi  # TODO- change to Lambda version
+    - state: idcommander  # TODO- change to Lambda version
+  - type: Item
+    heldPrefix: black

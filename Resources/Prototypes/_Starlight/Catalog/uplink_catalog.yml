@@ -175,7 +175,7 @@
       sprite: /Textures/_Starlight/Objects/Specific/Medical/implants.rsi,
       state: eyes_night,
     }
-  productEntity: CyberneticImplanterCyberEyeNightVision #FH
+  productEntity: CyberneticImplanterSyndicateCyberEyeNightVision #FH
   discountDownTo:
     Telecrystal: 2
   cost:
@@ -192,7 +192,7 @@
       sprite: /Textures/_Starlight/Objects/Specific/Medical/implants.rsi,
       state: eyes_thermal,
     }
-  productEntity: CyberneticImplanterCyberEyeThermal #FH
+  productEntity: CyberneticImplanterSyndicateCyberEyeThermal #FH
   discountDownTo:
     Telecrystal: 4
   cost:
@@ -233,40 +233,14 @@
         tags:
           - NukeOpsUplink
 
-- type: listing
-  id: UplinkAdvancedLeftClawsImplant #FH
-  name: uplink-advanced-claws-left-name #FH
-  description: uplink-advanced-claws-desc-fh #FH
-  icon: { sprite: _Starlight/Objects/Specific/Medical/implants.rsi, state: l_hand_implant_claws } #FH
-  productEntity: CyberneticImplanterLeftHandImplantClaws #FH
-  discountCategory: rareDiscounts
-  discountDownTo:
-    Telecrystal: 1 #FH
-  cost:
-    Telecrystal: 2
-  categories:
-  - UplinkCybernetics
+#FH - Removed Advanced Claws From Uplink
 
 - type: listing
-  id: UplinkAdvancedRightClawsImplant #FH
-  name: uplink-advanced-claws-right-name #FH
-  description: uplink-advanced-claws-desc-fh #FH
-  icon: { sprite: _Starlight/Objects/Specific/Medical/implants.rsi, state: r_hand_implant_claws } #FH
-  productEntity: CyberneticImplanterRightHandImplantClaws #FH
-  discountCategory: rareDiscounts
-  discountDownTo:
-    Telecrystal: 1 #FH
-  cost:
-    Telecrystal: 2
-  categories:
-  - UplinkCybernetics
-
-- type: listing
-  id: UplinkLeftForensicsImplant #FH
-  name: uplink-forensics-implant-left-name #FH
+  id: UplinkForensicsImplant #FH
+  name: uplink-forensics-implant-name #FH
   description: uplink-forensics-implant-desc-fh #FH
   icon: { sprite: _Starlight/Objects/Specific/Medical/implants.rsi, state: l_hand_implant_forensics } #FH
-  productEntity: CyberneticImplanterLeftHandImplantForensics #FH
+  productEntity: CyberneticImplanterSyndicateHandImplantForensics #FH
   discountCategory: rareDiscounts
   discountDownTo:
     Telecrystal: 1
@@ -276,25 +250,11 @@
   - UplinkCybernetics
 
 - type: listing
-  id: UplinkRightForensicsImplant #FH
-  name: uplink-forensics-implant-right-name #FH
-  description: uplink-forensics-implant-desc-fh #FH
-  icon: { sprite: _Starlight/Objects/Specific/Medical/implants.rsi, state: r_hand_implant_forensics } #FH
-  productEntity: CyberneticImplanterRightHandImplantForensics #FH
-  discountCategory: rareDiscounts
-  discountDownTo:
-    Telecrystal: 1
-  cost:
-    Telecrystal: 2
-  categories:
-  - UplinkCybernetics
-
-- type: listing
-  id: UplinkSyndieEyeImplant
-  name: uplink-syndie-implant-name
-  description: uplink-syndie-implant-desc-fh #FH
+  id: UplinkAgentEyeImplant #FH
+  name: uplink-agent-implant-name #FH
+  description: uplink-agent-implant-desc #FH
   icon: { sprite: _Starlight/Objects/Specific/Medical/implants.rsi, state: eye_implant_syndicate }
-  productEntity: CyberneticImplanterEyeImplantSyndie #FH
+  productEntity: CyberneticImplanterSyndicateEyeImplantAgent #FH
   discountCategory: rareDiscounts
   discountDownTo:
     Telecrystal: 2

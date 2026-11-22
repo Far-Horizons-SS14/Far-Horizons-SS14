@@ -36,7 +36,6 @@ using Robust.Shared.Containers;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
-using System.Linq;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
 
@@ -45,7 +44,7 @@ namespace Content.Server.Mech.Systems;
 /// <inheritdoc/>
 public sealed partial class MechSystem : SharedMechSystem
 {
-    [Dependency] private readonly IEntityManager _entityManager = default!; // Starlight-edit
+    [Dependency] private IEntityManager _entityManager = default!; // Starlight-edit
     [Dependency] private ActionBlockerSystem _actionBlocker = default!;
     [Dependency] private AtmosphereSystem _atmosphere = default!;
     [Dependency] private SharedAudioSystem _audioSystem = default!;

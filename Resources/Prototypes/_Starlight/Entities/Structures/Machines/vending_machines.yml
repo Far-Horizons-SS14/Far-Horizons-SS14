@@ -90,8 +90,28 @@
     currencyWhitelist:
     - NTCredit
 
+# Far Horizons start
 - type: entity
+  id: VendingMachineCredstick
   parent: SLVendingMachine
+  abstract: true
+  components:
+    - type: CredstickStore
+      currency: NTCredit
+      credstickSlot:
+        name: pda-credstick-slot-name
+        ejectSound: /Audio/Machines/id_swipe.ogg
+        insertSound: /Audio/Machines/id_insert.ogg
+        whitelist:
+          tags:
+          - Credstick
+    - type: ContainerContainer
+      containers:
+        credstick-slot: !type:ContainerSlot {}
+# Far Horizons end
+
+- type: entity
+  parent: VendingMachineCredstick # Far Horizons
   id: SLVendingMachineHugDispenser
   name: Hug Dispenser #Far Horizons - The Great Capitalization Crusade
   components:
@@ -105,7 +125,7 @@
     - SLCrew
 
 - type: entity
-  parent: SLVendingMachine
+  parent: VendingMachineCredstick # Far Horizons
   id: SLVendingMachineFashion
   name: Fashion-o-Mat
   description: Happiness should be expensive.
@@ -122,7 +142,7 @@
     - SLFashionOther
 
 - type: entity
-  parent: SLVendingMachine
+  parent: VendingMachineCredstick # Far Horizons
   id: SLVendingMachineMedical
   name: Medical Dispenser #Far Horizons - The Great Capitalization Crusade
   components:
@@ -138,7 +158,7 @@
     - SLSurgery
 
 - type: entity
-  parent: SLVendingMachine
+  parent: VendingMachineCredstick # Far Horizons
   id: SLVendingMachineEngi
   name: Engi Dispenser #Far Horizons - The Great Capitalization Crusade
   components:
@@ -152,7 +172,7 @@
     - SLEnginery
 
 - type: entity
-  parent: SLVendingMachine
+  parent: VendingMachineCredstick # Far Horizons
   id: VendingMachineClown
   name: HohohonkersVend
   description: Get your honk fix here! Surprise the station with HohohonkersVend — the ultimate machine for hilarious pranks. Hack it, and you'll unlock something special!
@@ -167,7 +187,7 @@
     sprite: _FarHorizons/Structures/Machines/CreditVendingMachines/hohohonkers.rsi #FH
 
 - type: entity
-  parent: SLVendingMachine
+  parent: VendingMachineCredstick # Far Horizons
   id: SLVendingMachineSecurity
   name: Security Dispenser #Far Horizons - The Great Capitalization Crusade
   components:
@@ -198,6 +218,11 @@
     - SalvageConsumeables
     - SalvageMercenaryEquipment
     - SalvageCybernetics
+    - SalvageArmor # Far Horizons
+    - SalvageMech # Far Horizons
+    - SalvageVehicles # Far Horizons
+    - SalvageAmmo # Far Horizons
+    - SalvageLuxury  # Far Horizons
     currencyWhitelist:
     - SalvageTicket
 
@@ -216,6 +241,9 @@
         - MiningEquipment
         - MiningConsumeables
         - SalvageCybernetics #FH
+        - MiningMech # Far Horizons
+        - MiningVehicles # Far Horizons
+        - MiningWeapons # Far Horizons
       currencyWhitelist:
         - SalvageTicket # Same currency as salvage vendor to promote sharing
 

@@ -1,4 +1,5 @@
 ﻿using Content.Shared.Administration.Logs;
+using Content.Shared.CombatMode.Pacification; //FH
 using Content.Shared.Database;
 using Content.Shared.DeviceLinking;
 using Content.Shared.EntityTable;
@@ -14,6 +15,8 @@ using Robust.Shared.Physics.Systems;
 using Robust.Shared.Timing;
 using Robust.Shared.Random;
 using Robust.Shared.Audio.Systems;
+using Content.Shared.Tag; // FH
+using Robust.Shared.Prototypes; //FH
 
 
 namespace Content.Shared.Trigger.Systems;
@@ -44,9 +47,11 @@ public sealed partial class TriggerSystem : EntitySystem
     [Dependency] private SharedRoleSystem _role = default!;
     [Dependency] private SharedMindSystem _mind = default!;
     [Dependency] private EntityTableSystem _entityTable = default!;
+    [Dependency] private TagSystem _tag = default!; // FH
 
     public const string DefaultTriggerKey = "trigger";
-
+    private static readonly ProtoId<TagPrototype> _grenadeTag = "HandGrenade"; // FH
+    private static readonly ProtoId<TagPrototype> _whitelistTag = "HandGrenadePacifiedWhitelist"; // FH
     public override void Initialize()
     {
         base.Initialize();
@@ -95,6 +100,14 @@ public sealed partial class TriggerSystem : EntitySystem
 
         if (HasComp<ActiveTimerTriggerComponent>(ent))
             return false; // already activated
+        
+        //FH start
+        if (user != null && TryComp<TagComponent>(ent, out var tagcomp) && !_tag.HasTag(tagcomp, _whitelistTag) && _tag.HasTag(tagcomp, _grenadeTag) && HasComp<PacifiedComponent>(user))
+        {
+            _popup.PopupClient(Loc.GetString("pacified-cannot-activate-handgrenade", ("entity", ent)), user.Value, user.Value);
+            return true; // they cant arm this grenade
+        }
+        //FH end
 
         if (user != null)
         {

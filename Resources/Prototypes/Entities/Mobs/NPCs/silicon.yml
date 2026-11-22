@@ -75,6 +75,7 @@
   - type: Access
     tags:
     - BasicSilicon
+    - BasicSiliconNS # Far Horizons - Anyone can construct these, and BasicSilicon hasn't been an issue access-wise.
   - type: IntrinsicRadioReceiver
   - type: ActiveRadio
     channels:
@@ -161,6 +162,22 @@
   - type: Vocalizer
   - type: DatasetVocalizer
     dataset: FirebotAd
+  # Far Horizons start
+  - type: SimpleBotConfiguration
+  - type: PassivePower
+  - type: StationAiWhitelist
+  - type: ActivatableUIRequiresPower
+  - type: WiresPanel
+  - type: Wires
+    boardName: wires-board-name-simple-bot
+    layoutId: SimpleBotControls
+  - type: UserInterface
+    interfaces:
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+      enum.SimpleBotConfigurationUiKey.Key:
+        type: SimpleBotConfigurationBoundUserInterface
+  # Far Horizons end
 
 - type: entity
   parent: MobSiliconBase
@@ -224,6 +241,22 @@
       path: /Audio/Items/bikehorn.ogg
       params:
         variation: 0.125
+  # Far Horizons start
+  - type: SimpleBotConfiguration
+  - type: PassivePower
+  - type: StationAiWhitelist
+  - type: ActivatableUIRequiresPower
+  - type: WiresPanel
+  - type: Wires
+    boardName: wires-board-name-simple-bot
+    layoutId: SimpleBotControls
+  - type: UserInterface
+    interfaces:
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+      enum.SimpleBotConfigurationUiKey.Key:
+        type: SimpleBotConfigurationBoundUserInterface
+  # Far Horizons end
 
 - type: entity
   parent: MobHonkBot
@@ -304,20 +337,29 @@
     interactFailureString: petting-failure-cleanbot
     interactSuccessSound:
       path: /Audio/Ambience/Objects/periodic_beep.ogg
-  #region starlight
+  # Starlight start
   - type: Vocalizer
   - type: DatasetVocalizer
     dataset: CleanbotAds
+  # Starlight end
+  # Far Horizons start
+  - type: Puller
+    needsHands: false
+  - type: SimpleBotConfiguration
+  - type: PassivePower
+  - type: StationAiWhitelist
+  - type: ActivatableUIRequiresPower
   - type: WiresPanel
   - type: Wires
-    boardName: wires-board-name-cleanbot
-    layoutId: MedibotControls
-    alwaysRandomize: true
+    boardName: wires-board-name-simple-bot
+    layoutId: SimpleBotControls
   - type: UserInterface
     interfaces:
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
-  #end region
+      enum.SimpleBotConfigurationUiKey.Key:
+        type: SimpleBotConfigurationBoundUserInterface
+  # Far Horizons end
 - type: entity
   parent:
   - MobSiliconBase
@@ -368,17 +410,24 @@
   - type: Inventory
     templateId: medibot
   - type: DoAfter
+  # Far Horizons start
+  - type: SimpleBotConfiguration
+  - type: PassivePower
+  - type: StationAiWhitelist
+  - type: ActivatableUIRequiresPower
   - type: WiresPanel
   - type: Wires
-    boardName: wires-board-name-medibot
-    layoutId: MedibotControls
-    alwaysRandomize: true
+    boardName: wires-board-name-simple-bot
+    layoutId: SimpleBotControls
   - type: UserInterface
     interfaces:
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
       enum.StrippingUiKey.Key:              # Starlight
         type: StrippableBoundUserInterface  # Starlight Readded stipping UI to medibots, wirepanels overwrote them
+      enum.SimpleBotConfigurationUiKey.Key:
+        type: SimpleBotConfigurationBoundUserInterface
+  # Far Horizons end
 
 - type: entity
   parent:
@@ -410,6 +459,24 @@
     interactFailureString: petting-failure-mimebot
   - type: Inventory
     templateId: head
+  # Far Horizons start
+  - type: SimpleBotConfiguration
+  - type: PassivePower
+  - type: StationAiWhitelist
+  - type: ActivatableUIRequiresPower
+  - type: WiresPanel
+  - type: Wires
+    boardName: wires-board-name-simple-bot
+    layoutId: SimpleBotControls
+  - type: UserInterface
+    interfaces:
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
+      enum.SimpleBotConfigurationUiKey.Key:
+        type: SimpleBotConfigurationBoundUserInterface
+  # Far Horizons end
 
 - type: entity
   parent: MobSiliconBase
@@ -444,6 +511,7 @@
     tags:
     - Cargo
     - Maintenance
+    - MaintenanceNS # Far Horizons
     - Salvage
   - type: Dumpable
   - type: Storage
@@ -463,7 +531,7 @@
     enabled: false
     radius: 3.5
     softness: 2
-    mask: /Textures/Effects/LightMasks/cone.png
+    lightMask: ConeSingle
     autoRot: true
   - type: FootstepModifier
     footstepSoundCollection:
@@ -516,3 +584,19 @@
     interactSuccessString: hugging-success-generic
     interactSuccessSound: /Audio/Effects/thudswoosh.ogg
     messagePerceivedByOthers: hugging-success-generic-others
+  # Far Horizons start
+  - type: SimpleBotConfiguration
+  - type: PassivePower
+  - type: StationAiWhitelist
+  - type: ActivatableUIRequiresPower
+  - type: WiresPanel
+  - type: Wires
+    boardName: wires-board-name-simple-bot
+    layoutId: SimpleBotControls
+  - type: UserInterface
+    interfaces:
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+      enum.SimpleBotConfigurationUiKey.Key:
+        type: SimpleBotConfigurationBoundUserInterface
+  # Far Horizons end

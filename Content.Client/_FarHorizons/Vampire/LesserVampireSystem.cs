@@ -4,10 +4,10 @@ using Robust.Client.Player;
 
 namespace Content.Client._FarHorizons.Vampire;
 
-public sealed class LesserVampireSystem : SharedLesserVampireSystem
+public sealed partial class LesserVampireSystem : SharedLesserVampireSystem
 {
-    [Dependency] private readonly IPlayerManager _playerMan = default!;
-    [Dependency] private readonly AlertsSystem _alerts = default!;
+    [Dependency] private IPlayerManager _playerMan = default!;
+    [Dependency] private AlertsSystem _alerts = default!;
 
     private TimeSpan _nextUpdate = TimeSpan.Zero;
     private static readonly TimeSpan _updateRate = TimeSpan.FromSeconds(1f);

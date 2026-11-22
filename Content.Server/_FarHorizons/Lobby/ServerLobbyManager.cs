@@ -13,9 +13,9 @@ namespace Content.Server._FarHorizons.Lobby;
 
 public sealed partial class ServerLobbyManager : SharedLobbyManager, IServerLobbyManager
 {
-    [Dependency] private readonly IServerFactionManager _faction = default!;
-    [Dependency] private readonly IServerNetManager _netMan = default!;
-    [Dependency] private readonly IServerPreferencesManager _prefMan = default!;
+    [Dependency] private IServerFactionManager _faction = default!;
+    [Dependency] private IServerNetManager _netMan = default!;
+    [Dependency] private IServerPreferencesManager _prefMan = default!;
 
     public new void Init()
     {

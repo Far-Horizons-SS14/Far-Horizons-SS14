@@ -13,10 +13,10 @@ namespace Content.Server._FarHorizons.Medical.Disease.Commands;
 /// Grants cure from a disease to your attached entity.
 /// </summary>
 [AdminCommand(AdminFlags.Fun)]
-public sealed class VaccinateCommand : LocalizedEntityCommands
+public sealed partial class VaccinateCommand : LocalizedEntityCommands
 {
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly SharedDiseaseCureSystem _cure = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private SharedDiseaseCureSystem _cure = default!;
     public override string Command => "vaccinate";
 
     public override void Execute(IConsoleShell shell, string argStr, string[] args)
@@ -46,8 +46,6 @@ public sealed class VaccinateCommand : LocalizedEntityCommands
             comp = EntityManager.AddComponent<DiseaseCarrierComponent>(targetUid);
 
         var disease = comp.ActiveDiseases.Keys.First(x => x.Id == diseaseId);
-        if (disease == null)
-            return;
         
         _cure.ApplyCureDisease((targetUid, comp), disease);
 
@@ -57,11 +55,24 @@ public sealed class VaccinateCommand : LocalizedEntityCommands
     public override CompletionResult GetCompletion(IConsoleShell shell, string[] args) => args.Length switch
     {
         1 => CompletionResult.FromHintOptions(
-            CompletionHelper.NetEntities(args[0], EntityManager),
+            GetDiseaseCarrierOptions(),
             "<uid>"),
         2 => CompletionResult.FromHintOptions(
             CompletionHelper.PrototypeIDs<DiseasePrototype>(proto: _proto),
             "<disease prototype>"),
         _ => CompletionResult.Empty,
     };
+
+    private IEnumerable<CompletionOption> GetDiseaseCarrierOptions()
+    {
+        var query = EntityManager.EntityQueryEnumerator<DiseaseCarrierComponent, MetaDataComponent>();
+        while (query.MoveNext(out var uid, out var carrier, out var meta))
+        {
+            if (carrier.ActiveDiseases.Count == 0)
+                continue;
+
+            var netEntity = EntityManager.GetNetEntity(uid);
+            yield return new CompletionOption(netEntity.ToString(), meta.EntityName);
+        }
+    }
 }

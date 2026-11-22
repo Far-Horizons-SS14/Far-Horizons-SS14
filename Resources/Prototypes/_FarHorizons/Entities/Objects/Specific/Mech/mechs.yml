@@ -1,0 +1,151 @@
+# Paddy NanoTrasen
+- type: entity
+  id: MechPaddyNT
+  parent: [ BaseMech, CombatMech, IndustrialMech, BaseSecurityContraband ]
+  name: Paddy
+  suffix: NT
+  description: Autonomous Power Loader Unit Subtype Paddy. A Modified MK-II Ripley design intended for light security use.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    sprite: _FarHorizons/Objects/Specific/Mechs/paddy_nt.rsi
+    layers:
+    - map: [ "enum.MechVisualLayers.Base" ]
+      state: base
+    - state: base-sirens
+      map: [ "enum.MechVisualLayers.Siren" ]
+      shader: unshaded
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+  - type: Mech
+    equipmentWhitelist:
+      tags:
+      - PaddyMech
+      - IndustrialMech
+    baseState: base
+    openState: base-open
+    brokenState: base-broken
+    mechToPilotDamageMultiplier: 0.60
+    airtight: true
+    maxEquipmentAmount: 4 # 🌟Starlight-Change
+    pilotWhitelist:
+      components:
+        - HumanoidProfile
+    siren: true
+  - type: MeleeWeapon
+    hidden: true
+    attackRate: 1
+    bluntStaminaDamageFactor: 1.5 # 🌟Starlight-Change
+    damage:
+      types:
+        Blunt: 30 #Decent for a loader, but without the high structural damage of a combat mech. # 
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.5
+    baseSprintSpeed: 4
+  - type: PointLight
+    lightMask: ConeSingle #FH
+    autoRot: true
+    radius: 5
+    energy: 5
+    enabled: false
+
+- type: entity
+  id: MechPaddyNTBattery
+  parent: MechPaddyNT
+  suffix: NT, Battery, Air
+  components:
+  - type: ContainerFill
+    containers:
+      mech-battery-slot:
+      - PowerCellHigh
+      mech-gas-tank-slot:
+      - MechAirTankFilled
+
+- type: entity
+  id: MechPaddyNTFilled
+  parent: MechPaddyNTBattery
+  suffix: NT, Battery, Air, Filled
+  components:
+    - type: Mech
+      startingEquipment:
+      - WeaponMechCombatTaser
+      - WeaponMechCombatFlashbangLauncher
+#      - MechEquipmentSecGrabber
+
+# Paddy NeoSol
+- type: entity
+  id: MechPaddyNS # Different from base Paddy due to me not knowing how to handle the fact that the base can be built on both stations
+  parent: [ BaseMech, CombatMech, IndustrialMech, BaseSecurityContraband ]
+  name: Paddy
+  suffix: NS
+  description: Autonomous Power Loader Unit Subtype Paddy. A Modified MK-II Ripley design intended for light security use.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    sprite: Objects/Specific/Mech/Mechs/Basic/paddy.rsi
+    layers:
+    - map: [ "enum.MechVisualLayers.Base" ]
+      state: base
+    - state: base-sirens
+      map: [ "enum.MechVisualLayers.Siren" ]
+      shader: unshaded
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+  - type: Mech
+    equipmentWhitelist:
+      tags:
+      - PaddyMech
+      - IndustrialMech
+    baseState: base
+    openState: base-open
+    brokenState: base-broken
+    mechToPilotDamageMultiplier: 0.60
+    airtight: true
+    maxEquipmentAmount: 4 # 🌟Starlight-Change
+    pilotWhitelist:
+      components:
+        - HumanoidProfile
+    siren: true
+  - type: MeleeWeapon
+    hidden: true
+    attackRate: 1
+    bluntStaminaDamageFactor: 1.5 # 🌟Starlight-Change
+    damage:
+      types:
+        Blunt: 30 #Decent for a loader, but without the high structural damage of a combat mech. # 
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.5
+    baseSprintSpeed: 4
+  - type: PointLight
+    lightMask: ConeSingle #FH
+    autoRot: true
+    radius: 5
+    energy: 5
+    enabled: false
+
+- type: entity
+  id: MechPaddyNSBattery
+  parent: MechPaddyNS
+  suffix: NS, Battery, Air
+  components:
+  - type: ContainerFill
+    containers:
+      mech-battery-slot:
+      - PowerCellHigh
+      mech-gas-tank-slot:
+      - MechAirTankFilled
+
+- type: entity
+  id: MechPaddyNSFilled
+  parent: MechPaddyNSBattery
+  suffix: NS, Battery, Air, Filled
+  components:
+    - type: Mech
+      startingEquipment:
+      - WeaponMechCombatTaser
+      - WeaponMechCombatFlashbangLauncher
+#      - MechEquipmentSecGrabber

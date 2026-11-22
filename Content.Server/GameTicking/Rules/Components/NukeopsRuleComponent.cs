@@ -100,6 +100,8 @@ public sealed partial class NukeopsRuleComponent : Component
     /// </summary>
     [DataField]
     public SoundSpecifier GreetSoundNotification = new SoundPathSpecifier("/Audio/Ambience/Antag/nukeops_start.ogg");
+
+    [DataField] public LocId GreetingMessage = "nukeops-welcome"; // Far Horizons
 }
 
 public enum WinType : byte

@@ -1,0 +1,30 @@
+- type: loadout
+  id: CredstickDefault
+  dummyEntity: CredstickEmpty
+  storage:
+    id: 
+    - CredstickEmpty
+
+- type: loadout
+  id: CredstickGold
+  dummyEntity: CredstickDeluxeEmpty
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:OverallPlaytimeRequirement
+          time: 36000 # 10h
+  storage:
+    id: 
+    - CredstickDeluxeEmpty
+
+- type: loadout
+  id: CredstickPlatinum
+  dummyEntity: CredstickPremiumEmpty
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:OverallPlaytimeRequirement
+          time: 360000 # 100h
+  storage:
+    id: 
+    - CredstickPremiumEmpty

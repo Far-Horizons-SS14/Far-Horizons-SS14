@@ -1,0 +1,90 @@
+light_mode unshaded;
+
+#include "/Textures/_FarHorizons/Shaders/shader_utils.swsl"
+
+uniform highp vec2 starWorldPos;
+uniform highp float starRadius;
+uniform highp vec3 starColor;
+uniform highp float starLuminosity;
+
+uniform highp vec2 viewportMin;
+uniform highp vec2 viewportSize;
+
+uniform highp float parallaxFactor;
+uniform highp float solarRadiusFactor;
+
+void fragment() {
+    highp vec2 cameraCenter = viewportMin + (viewportSize * 0.5);
+    highp vec2 parallaxedPos = starWorldPos + (cameraCenter - starWorldPos) * (1.0 - parallaxFactor);
+
+    highp vec2 pixelWorldPos = viewportMin + (UV * viewportSize);
+    highp vec2 offset = pixelWorldPos - parallaxedPos;
+    highp float dist = length(offset);
+
+    highp float coreRadius = starRadius * solarRadiusFactor * 0.3;
+
+    highp vec2 jetDir = normalize(vec2(0.35, 0.938));
+    highp vec2 perpDir = vec2(-jetDir.y, jetDir.x);
+
+    highp float alongJet = dot(offset, jetDir);
+    highp float acrossJet = abs(dot(offset, perpDir));
+    highp float distAlongBeam = abs(alongJet);
+
+    highp float baseJetWidth = coreRadius * 1.5;
+    highp float conicalSpread = 0.18; // Controls how fast the cone fans out
+    highp float currentJetWidth = baseJetWidth + (distAlongBeam * conicalSpread);
+
+    highp float maxCoreBounds = coreRadius * 4.0;
+    highp float maxJetLength = max(viewportSize.x, viewportSize.y) * 1.5;
+
+    bool inCore = dist < maxCoreBounds;
+    bool inJet = (acrossJet < currentJetWidth) && (distAlongBeam < maxJetLength);
+
+    if (!inCore && !inJet) {
+        discard;
+    }
+
+    highp float animSpeed = TIME * 1.2;
+
+    highp vec2 st = offset / coreRadius;
+    
+    highp float edgeNoise = fbm(st * 8.0 + vec2(animSpeed * 0.3, 0.0));
+    highp float jaggedR = dist / (coreRadius * (1.0 + edgeNoise * 0.3));
+    
+    highp float coreNoise = fbm(st * 20.0 - vec2(0.0, animSpeed * 0.5)) * 0.5 + 0.5;
+    
+    highp vec3 deepBlue = vec3(0.05, 0.25, 0.8);
+    highp vec3 baseHue = mix(deepBlue, starColor, 0.8);
+    
+    highp vec3 coreSurfaceColor = mix(baseHue * 0.5, baseHue * 1.4, coreNoise);
+    highp float coreMask = smoothstep(1.0, 0.15, jaggedR);
+    highp vec3 coreColor = mix(coreSurfaceColor, vec3(0.9, 0.95, 1.0), smoothstep(0.4, 0.0, jaggedR));
+
+    highp float jetDistFromAxis = acrossJet / currentJetWidth;
+    highp float jetEdgeFalloff = exp(-3.0 * jetDistFromAxis * jetDistFromAxis);
+
+    highp float sineWave = sin(alongJet * 0.02 - animSpeed * 3.5) * (coreRadius * 0.6);
+    highp float wavyAcross = abs(dot(offset, perpDir) + sineWave);
+    highp float waveFalloff = exp(-3.5 * (wavyAcross / currentJetWidth) * (wavyAcross / currentJetWidth));
+
+    highp vec2 jetUV = vec2(alongJet * 0.003, acrossJet * 0.01 - animSpeed * 2.0);
+    highp float jetNoise = fbm(jetUV) * 0.5 + 0.5;
+    highp float pulse = sin(alongJet * 0.012 - animSpeed * 4.0) * 0.5 + 0.5;
+
+    highp float jetIntensity = (jetEdgeFalloff * 0.6 + waveFalloff * 0.85) * (jetNoise * 0.7 + pulse * 0.5);
+
+    highp float lengthFade = smoothstep(maxJetLength, maxCoreBounds * 1.2, distAlongBeam);
+    highp vec3 jetHue = mix(baseHue, vec3(0.4, 0.7, 1.0), jetNoise);
+    highp vec3 jetColor = jetHue * jetIntensity * lengthFade * 2.0;
+
+    highp vec3 finalColor = jetColor + (coreColor * smoothstep(maxCoreBounds, 0.0, dist));
+
+    highp float brightnessBoost = 1.0 + log2(max(starLuminosity, 1.0)) * 0.15;
+    finalColor *= brightnessBoost;
+
+    highp float coreAlpha = smoothstep(maxCoreBounds, coreRadius * 0.3, dist);
+    highp float jetAlpha = jetIntensity * lengthFade * smoothstep(currentJetWidth, currentJetWidth * 0.1, acrossJet);
+    highp float alpha = clamp(coreAlpha + jetAlpha, 0.0, 1.0);
+
+    COLOR = vec4(finalColor, alpha);
+}

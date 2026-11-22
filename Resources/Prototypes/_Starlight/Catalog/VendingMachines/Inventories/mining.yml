@@ -39,7 +39,7 @@
   cost:
     SalvageTicket: 700
   categories:
-  - MiningEquipment
+  - MiningMech # Far Horizons
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
@@ -115,7 +115,7 @@
   cost:
     SalvageTicket: 200
   categories:
-  - MiningEquipment
+  - MiningWeapons # Far Horizons
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 3
@@ -127,7 +127,7 @@
   cost:
     SalvageTicket: 400
   categories:
-  - MiningEquipment
+  - MiningWeapons # Far Horizons
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 2
@@ -139,7 +139,7 @@
   cost:
     SalvageTicket: 350
   categories:
-  - MiningEquipment
+  - MiningWeapons # Far Horizons
   conditions:
   - !type:BuyerAccessCondition
 
@@ -159,7 +159,7 @@
   cost:
     SalvageTicket: 300
   categories:
-    - MiningEquipment
+    - MiningWeapons # Far Horizons
   conditions:
     - !type:ListingLimitedStockCondition
       stock: 5
@@ -171,7 +171,7 @@
   cost:
     SalvageTicket: 300
   categories:
-    - MiningEquipment
+    - MiningWeapons # Far Horizons
   conditions:
     - !type:ListingLimitedStockCondition
       stock: 5
@@ -183,7 +183,7 @@
   cost:
     SalvageTicket: 300
   categories:
-    - MiningEquipment
+    - MiningWeapons # Far Horizons
   conditions:
     - !type:ListingLimitedStockCondition
       stock: 5
@@ -195,7 +195,7 @@
   cost:
     SalvageTicket: 400
   categories:
-  - MiningEquipment
+  - MiningMech # Far Horizons
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
@@ -207,7 +207,7 @@
   cost:
     SalvageTicket: 600
   categories:
-  - MiningEquipment
+  - MiningMech # Far Horizons
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
@@ -233,17 +233,18 @@
   conditions:
     - !type:BuyerAccessCondition
 
-- type: listing
-  id: VendorMiningShuttleGunKineticFlatpack
-  productEntity: ShuttleGunKineticFlatpack
-  cost:
-    SalvageTicket: 750
-  categories:
-    - MiningEquipment
-  conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 4
-    - !type:BuyerAccessCondition
+# FH removed
+# - type: listing
+#   id: VendorMiningShuttleGunKineticFlatpack
+#   productEntity: ShuttleGunKineticFlatpack
+#   cost:
+#     SalvageTicket: 750
+#   categories:
+#     - MiningEquipment
+#   conditions:
+#     - !type:ListingLimitedStockCondition
+#       stock: 4
+#     - !type:BuyerAccessCondition
 
 #- type: listing
 #  id: VendorMiningExpeditionEncryptionKey

@@ -693,6 +693,7 @@
     - item: WeaponGrapplingGun
     - item: BorgFireExtinguisher
     - item: BorgHandheldGPSBasic
+    - item: HandheldStationMapUnpowered
     - item: HandHeldMassScannerBorg
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: grappling-module }
@@ -1361,7 +1362,7 @@
   parent: [ BaseBorgModuleSyndicateCombat, BaseProviderBorgModule, BaseSyndicateContraband ] #FH
   id: BorgModuleSyndicateWeapon
   name: Weapon Cyborg Module #Far Horizons
-  description: a simple weapon module that comes with an Echis and energy dagger. # starlight
+  description: a simple weapon module that comes with a Viper ROW and energy dagger. # Far Horizons (previously edited by SL)
   components:
   - type: Sprite
     layers:
@@ -1369,7 +1370,7 @@
     - state: icon-syndicate
   - type: ItemBorgModule
     hands:
-    - item: WeaponPistolEchis
+    - item: WeaponPistolViperROW # Far Horizons
     - item: EnergyDaggerLoud
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: syndicate-weapon-module }
@@ -1450,7 +1451,7 @@
 - type: entity
   parent: [ BaseBorgModuleSyndicateCombat, BaseProviderBorgModule, BaseSyndicateContraband ] #Starlight L6 printing #FH
   id: BorgModuleL6C
-  name: L6C ROW Cyborg Module #Far Horizons
+  name: L6C MOW Cyborg Module #Far Horizons
   description: A weapons module that comes with an L6 and capacity to hold 2 spare magazines.
   components:
     - type: Sprite
@@ -1461,20 +1462,20 @@
       hands:
       - item: WeaponLightMachineGunL6C
       # starlight start - L6C uses ammo
-      - item: MagazineLightRifleBoxSP
+      - item: MagazineRifle762BoxSP #FH
         hand:
-          emptyRepresentative: MagazineLightRifleBoxSP
+          emptyRepresentative: MagazineRifle762BoxSP #FH
           emptyLabel: borg-slot-light-box-empty
           whitelist:
             tags:
-            - MagazineLightRifleBox
-      - item: MagazineLightRifleBoxSP
+            - MagazineRifle762Box #FH
+      - item: MagazineRifle762BoxSP #FH
         hand:
-          emptyRepresentative: MagazineLightRifleBoxSP
+          emptyRepresentative: MagazineRifle762BoxSP #FH
           emptyLabel: borg-slot-light-box-empty
           whitelist:
             tags:
-            - MagazineLightRifleBox
+            - MagazineRifle762Box #FH
       # starlight end
       - item: PinpointerSyndicateNuclear
     - type: BorgModuleIcon

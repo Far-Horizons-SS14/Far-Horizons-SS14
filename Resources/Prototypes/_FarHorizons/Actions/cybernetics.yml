@@ -28,7 +28,7 @@
 - type: entity
   id: ActionToggleCyberIFA30Left
   name: Toggle IFA-30
-  description: Toggle the left IFA-30
+  description: Toggle the left IFA-30. Press twice to toggle immediately.
   components:
     - type: Action
       useDelay: 5
@@ -37,12 +37,12 @@
         state: icon
       itemIconStyle: NoItem
     - type: InstantAction
-      event: !type:ToggleLimbEvent
+      event: !type:ToggleCyberlimbMenuEvent
 
 - type: entity
   id: ActionToggleCyberIFA30Right
   name: Toggle IFA-30
-  description: Toggle the right IFA-30
+  description: Toggle the right IFA-30. Press twice to toggle immediately.
   components:
     - type: Action
       useDelay: 5
@@ -51,4 +51,4 @@
         state: icon
       itemIconStyle: NoItem
     - type: InstantAction
-      event: !type:ToggleLimbEvent
+      event: !type:ToggleCyberlimbMenuEvent

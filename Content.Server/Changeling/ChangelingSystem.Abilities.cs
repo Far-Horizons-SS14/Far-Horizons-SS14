@@ -38,9 +38,9 @@ namespace Content.Server.Changeling;
 
 public sealed partial class ChangelingSystem : EntitySystem
 {
-    [Dependency] private readonly StatusEffectsSystem _statusEffect = default!;
-    [Dependency] private readonly ChangelingIdentitySystem _changelingIdentitySystem = default!;
-    [Dependency] private readonly BodySystem _body = default!; //FarHorizons
+    [Dependency] private StatusEffectsSystem _statusEffect = default!;
+    [Dependency] private ChangelingIdentitySystem _changelingIdentitySystem = default!;
+    [Dependency] private BodySystem _body = default!; //FarHorizons
 
     private const string PolytrinicAcidReagent = "PolytrinicAcid";
 
@@ -381,7 +381,7 @@ public sealed partial class ChangelingSystem : EntitySystem
             return;
 
         var target = args.Target;
-        var fakeArmblade = EntityManager.SpawnEntity(FakeArmbladePrototype, Transform(target).Coordinates);
+        var fakeArmblade = Spawn(FakeArmbladePrototype, Transform(target).Coordinates);
         if (!_hands.TryPickupAnyHand(target, fakeArmblade))
         {
             QueueDel(fakeArmblade);

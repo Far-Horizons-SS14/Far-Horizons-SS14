@@ -346,7 +346,7 @@ public sealed partial class StationSystem : SharedStationSystem
                 foreach (var job in comp.AvailableJobs) jobs.SetupAvailableJobs.Add(job.Key, [job.Value, job.Value]);
                 // from what I can tell the MappingDataNode doesn't actually need to have anything in it and from the looks of things seems to be primarily for setting up the entry in the first place.
                 // no idea why it's needed in the constructor but oh well
-                registry.Add("StationJobs", new EntityPrototype.ComponentRegistryEntry(jobs, new MappingDataNode()));
+                registry.Add("StationJobs", new EntityPrototype.ComponentRegistryEntry(jobs));
             }
 
             if (comp.EmergencyShuttleOverridePath is not null && comp.UseEmergencyShuttle) // no need to do this if its disabled anyway
@@ -355,11 +355,11 @@ public sealed partial class StationSystem : SharedStationSystem
                 {
                     EmergencyShuttlePath = new ResPath(comp.EmergencyShuttleOverridePath)
                 };
-                registry.Add("StationEmergencyShuttle", new EntityPrototype.ComponentRegistryEntry(shuttle, new MappingDataNode()));
+                registry.Add("StationEmergencyShuttle", new EntityPrototype.ComponentRegistryEntry(shuttle));
             }
         }
         
-        // var station = EntityManager.SpawnEntity(stationProtoId, MapCoordinates.Nullspace, registry);
+        // var station = Spawn(stationProtoId, MapCoordinates.Nullspace, registry);
         var station = CreateCustomStation(stationProtoIds, MapCoordinates.Nullspace, registry, comp);
         var data = EnsureComp<StationDataComponent>(station);
         RenameStation(station, MetaData(gridId).EntityName, false);
@@ -410,7 +410,7 @@ public sealed partial class StationSystem : SharedStationSystem
     public EntityUid InitializeNewStation(StationConfig stationConfig, IEnumerable<EntityUid>? gridIds, string? name = null)
     {
         // Use overrides for setup.
-        var station = EntityManager.SpawnEntity(stationConfig.StationPrototype, MapCoordinates.Nullspace, stationConfig.StationComponentOverrides);
+        var station = Spawn(stationConfig.StationPrototype, MapCoordinates.Nullspace, stationConfig.StationComponentOverrides);
 
         if (name is not null)
             RenameStation(station, name, false);

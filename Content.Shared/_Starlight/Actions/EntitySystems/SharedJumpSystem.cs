@@ -16,16 +16,16 @@ using Content.Shared.Charges.Systems;
 namespace Content.Shared._Starlight.Actions.EntitySystems;
 
 //idea taked from VigersRay
-public abstract class SharedJumpSystem : EntitySystem
+public abstract partial class SharedJumpSystem : EntitySystem
 {
-    [Dependency] private readonly SharedActionsSystem _action = default!;
-    [Dependency] private readonly ThrowingSystem _throwing = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly IMapManager _mapMan = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly ActionContainerSystem _actionContainer = default!;
-    [Dependency] private readonly SharedStunSystem _stun = default!;
-    [Dependency] private readonly SharedChargesSystem _chargesSystem = default!;
+    [Dependency] private SharedActionsSystem _action = default!;
+    [Dependency] private ThrowingSystem _throwing = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private ActionContainerSystem _actionContainer = default!;
+    [Dependency] private SharedStunSystem _stun = default!;
+    [Dependency] private SharedChargesSystem _chargesSystem = default!;
+    [Dependency] private SharedMapSystem _maps = default!;
 
     public override void Initialize()
     {
@@ -79,7 +79,7 @@ public abstract class SharedJumpSystem : EntitySystem
     }
 
     protected virtual bool TryReleaseGas(Entity<JumpComponent> ent, ref JetJumpActionEvent args)
-        => TryComp<GasTankComponent>(ent, out var gasTank) && gasTank.TotalMoles > args.MoleUsage;
+        => TryComp<GasTankComponent>(ent, out var gasTank) && gasTank.Air.TotalMoles > args.MoleUsage;
 
     private void OnJump(Entity<JumpComponent> ent, ref JetJumpActionEvent args)
     {
@@ -104,7 +104,7 @@ public abstract class SharedJumpSystem : EntitySystem
         var userTransform = Transform(target);
         var userMapCoords = _transform.GetMapCoordinates(userTransform);
 
-        if (args.FromGrid && !_mapMan.TryFindGridAt(userMapCoords, out _, out _)) return;
+        if (args.FromGrid && !_maps.TryFindGridAt(userMapCoords, out _, out _)) return;
 
         TryJump(performer, targetCoords, args, target, 15f, args.ToPointer, args.Sound, args.Distance);
     }

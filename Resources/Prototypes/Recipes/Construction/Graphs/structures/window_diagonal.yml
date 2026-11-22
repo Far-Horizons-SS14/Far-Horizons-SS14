@@ -45,9 +45,46 @@
             - material: Glass
               amount: 2
               doAfter: 3
+#FH - Start
+        - to: ShuttleWindowReinforcedDiagonal
+          steps:
+            - material: Steel
+              amount: 1
+              doAfter: 2
+            - material: Plasteel
+              amount: 1
+              doAfter: 2
+            - material: MetalRod
+              amount: 2
+              doAfter: 1
+            - material: ReinforcedPlasmaGlass
+              amount: 2
+              doAfter: 4
+
+        - to: ArmoredShuttleWindowDiagonal
+          steps:
+            - material: Steel
+              amount: 1
+              doAfter: 1
+            - material: Plasteel
+              amount: 1
+              doAfter: 1
+            - material: MetalRod
+              amount: 4
+              doAfter: 1
+            - material: ReinforcedUraniumGlass
+              amount: 2
+              doAfter: 4
+            - material: Steel
+              amount: 1
+              doAfter: 1
+            - material: Plasteel
+              amount: 1
+              doAfter: 1
+#FH - End
 
     - node: windowDiagonal
-      entity: WindowDiagonal
+      entity: WindowDiagonalGeneric # Far Horizons
       edges:
         - to: start
           completed:
@@ -62,7 +99,7 @@
               doAfter: 2
 
     - node: reinforcedWindowDiagonal
-      entity: ReinforcedWindowDiagonal
+      entity: ReinforcedWindowDiagonalGeneric # Far Horizons
       edges:
         - to: start
           completed:
@@ -108,7 +145,7 @@
               doAfter: 2
 
     - node: plasmaWindowDiagonal
-      entity: PlasmaWindowDiagonal
+      entity: PlasmaWindowDiagonalGeneric # Far Horizons
       edges:
         - to: start
           completed:
@@ -127,7 +164,7 @@
               doAfter: 3
 
     - node: reinforcedPlasmaWindowDiagonal
-      entity: ReinforcedPlasmaWindowDiagonal
+      entity: ReinforcedPlasmaWindowDiagonalGeneric #FH
       edges:
         - to: start
           completed:
@@ -150,7 +187,7 @@
               doAfter: 3
 
     - node: uraniumWindowDiagonal
-      entity: UraniumWindowDiagonal
+      entity: UraniumWindowDiagonalGeneric # Far Horizons
       edges:
         - to: start
           completed:
@@ -169,7 +206,7 @@
               doAfter: 3
 
     - node: reinforcedUraniumWindowDiagonal
-      entity: ReinforcedUraniumWindowDiagonal
+      entity: ReinforcedUraniumWindowDiagonalGeneric # Far Horizons
       edges:
         - to: start
           completed:
@@ -190,3 +227,96 @@
               doAfter: 2
             - tool: Anchoring
               doAfter: 3
+#FH - Start
+    - node: ShuttleWindowReinforcedDiagonal
+      entity: ShuttleWindowReinforcedDiagonalGeneric
+      edges:
+        - to: start
+          completed:
+            - !type:GivePrototype
+              prototype: SheetRPGlass1
+              amount: 2
+            - !type:GivePrototype
+              prototype: SheetPlasteel1
+              amount: 2
+            - !type:DeleteEntity {}
+          steps:
+            - tool: Welding
+              doAfter: 25 #Panel 1
+            - tool: Prying
+              doAfter: 5
+            - tool: Welding
+              doAfter: 25 #Panel 2
+            - tool: Prying
+              doAfter: 5
+            - tool: Welding
+              doAfter: 25 #Panel 3
+            - tool: Prying
+              doAfter: 5
+            - tool: Welding
+              doAfter: 25 #Panel 4
+            - tool: Prying
+              doAfter: 5
+            - tool: Welding
+              doAfter: 6
+            - tool: Screwing
+              doAfter: 2
+            - tool: Prying
+              doAfter: 3
+            - tool: Welding
+              doAfter: 5
+            - tool: Screwing
+              doAfter: 1
+            - tool: Prying
+              doAfter: 2
+            - tool: Welding
+              doAfter: 4
+            - tool: Anchoring
+              doAfter: 1
+
+    - node: ArmoredShuttleWindowDiagonal
+      entity: ShuttleWindowArmoredDiagonalGeneric
+      edges:
+        - to: start
+          completed:
+            - !type:GivePrototype
+              prototype: SheetRUGlass1
+              amount: 2
+            - !type:GivePrototype
+              prototype: SheetPlasteel1
+              amount: 2
+            - !type:DeleteEntity {}
+          steps:
+            - tool: Welding
+              doAfter: 25 #Panel 1
+            - tool: Prying
+              doAfter: 5
+            - tool: Welding
+              doAfter: 25 #Panel 2
+            - tool: Prying
+              doAfter: 5
+            - tool: Welding
+              doAfter: 25 #Panel 3
+            - tool: Prying
+              doAfter: 5
+            - tool: Welding
+              doAfter: 25 #Panel 4
+            - tool: Prying
+              doAfter: 5
+            - tool: Welding
+              doAfter: 6
+            - tool: Screwing
+              doAfter: 2
+            - tool: Prying
+              doAfter: 3
+            - tool: Welding
+              doAfter: 5
+            - tool: Screwing
+              doAfter: 1
+            - tool: Prying
+              doAfter: 2
+            - tool: Welding
+              doAfter: 4
+            - tool: Anchoring
+              doAfter: 1
+#FH - End

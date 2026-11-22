@@ -344,9 +344,6 @@
           - Cleanade
   - type: BorgModuleIcon
     icon: { sprite: _FarHorizons/Interface/Actions/actions_borg.rsi, state: adv-light-replacer-module }
-  - type: Tag
-    tags:
-    - BorgModuleJanitor
 
 - type: entity
   parent: [ BaseBorgModuleMining, BaseProviderBorgModule ]
@@ -361,6 +358,11 @@
   - type: ItemBorgModule
     hands:
     - item: BorgWeaponPKA
+    - hand:
+        emptyRepresentative: PKAUpgradeDamage
+        whitelist:
+          tags: 
+          - PKAUpgrade
     - item: RadioHandheldExpedition
   - type: BorgModuleIcon
     icon: { sprite: _FarHorizons/Interface/Actions/actions_borg.rsi, state: pka-module }
@@ -369,7 +371,7 @@
 - type: entity
   id: BasePassiveBorgModule
   parent: [ BaseBorgModule ]
-  name: Pasive Borg Module
+  name: Passive Borg Module
   abstract: true
   description: A passive module that control the cyborg's access.
   components:

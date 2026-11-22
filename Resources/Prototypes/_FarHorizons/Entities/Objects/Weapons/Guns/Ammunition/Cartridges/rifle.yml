@@ -1,0 +1,123 @@
+- type: entity
+  id: CartridgeRifle792SP
+  name: Cartridge (7.92 SP)
+  parent: BaseCartridgePistol
+  components:
+  - type: CartridgeAmmo
+    proto: BulletRifle792TraceSP
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#326ec8"
+  - type: Tag
+    tags:
+      - Cartridge
+      - CartridgeRifle792
+
+- type: entity
+  id: CartridgeRifle792HP
+  name: Cartridge (7.92 HP)
+  parent: CartridgeRifle792SP
+  components:
+  - type: CartridgeAmmo
+    proto: BulletRifle792TraceHP
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#000000"
+
+- type: entity
+  id: CartridgeRifle792FMJ
+  name: Cartridge (7.92 FMJ)
+  parent: CartridgeRifle792SP
+  components:
+  - type: CartridgeAmmo
+    proto: BulletRifle792TraceFMJ
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#B68F0E"
+
+- type: entity
+  id: CartridgeRifle792Incendiary
+  name: Cartridge (7.92 Incendiary)
+  parent: CartridgeRifle792SP
+  components:
+  - type: CartridgeAmmo
+    proto: BulletRifle792TraceIncendiary
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#BFC8CA"
+
+- type: entity
+  id: CartridgeRifle792Uranium
+  name: Cartridge (7.92 Uranium)
+  parent: CartridgeRifle792SP
+  components:
+  - type: CartridgeAmmo
+    proto: BulletRifle792TraceUranium
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#65fe08"
+
+- type: entity
+  id: CartridgeRifle792AP
+  name: Cartridge (7.92 AP)
+  parent: CartridgeRifle792SP
+  components:
+  - type: CartridgeAmmo
+    proto: BulletRifle792TraceAP
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#1A8C1A"
+
+- type: entity
+  id: CartridgeRifle792Practice
+  name: Cartridge (7.92 Practice)
+  parent: CartridgeRifle792SP
+  components:
+  - type: CartridgeAmmo
+    proto: BulletRifle792TracePractice
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#D86E2C"
+
+- type: entity
+  id: CartridgeRifle792Rubber
+  name: Cartridge (7.92 Rubber)
+  parent: CartridgeRifle792SP
+  components:
+  - type: CartridgeAmmo
+    proto: RubberBulletRifle792Trace
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#43c4f7"

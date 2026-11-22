@@ -5,8 +5,6 @@ using Content.Server.GameTicking.Rules;
 using Content.Server.Revolutionary.Components;
 using Robust.Shared.Random;
 using System.Linq;
-using Content.Shared.Objectives.Systems;
-using Content.Shared.Mind.Filters;
 
 namespace Content.Server.Objectives.Systems;
 
@@ -16,8 +14,8 @@ namespace Content.Server.Objectives.Systems;
 /// </summary>
 public sealed partial class PickObjectiveTargetSystem : EntitySystem
 {
-    [Dependency] private TargetObjectiveSystem _objective = default!;
-    [Dependency] private TargetSystem _target = default!;
+    [Dependency] private TargetObjectiveSystem _target = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
 
     public override void Initialize()
     {
@@ -25,16 +23,17 @@ public sealed partial class PickObjectiveTargetSystem : EntitySystem
 
         SubscribeLocalEvent<PickSpecificPersonComponent, ObjectiveAssignedEvent>(OnSpecificPersonAssigned);
         SubscribeLocalEvent<PickRandomPersonComponent, ObjectiveAssignedEvent>(OnRandomPersonAssigned);
-        SubscribeLocalEvent<PickRandomPersonComponent, MapInitEvent>(OnMapInit); // SL add
+        //SubscribeLocalEvent<PickRandomPersonComponent, MapInitEvent>(OnMapInit); // SL add
     }
 
+    // FH removed, not compatible with current objectives
     // SL start
-    private void OnMapInit(Entity<PickRandomPersonComponent> ent, ref MapInitEvent args)
-    {
-        // inject new filter blacklisting NoObjectiveTargetComponent
-        var filter = new BodyMindFilter { Whitelist = { Components = ["NoObjectiveTarget"] }, Inverted = true };
-        ent.Comp.Filters.Add(filter);
-    }
+    // private void OnMapInit(Entity<PickRandomPersonComponent> ent, ref MapInitEvent args)
+    // {
+    //     // inject new filter blacklisting NoObjectiveTargetComponent
+    //     var filter = new BodyMindFilter { Whitelist = { Components = ["NoObjectiveTarget"] }, Inverted = true };
+    //     ent.Comp.Filters.Add(filter);
+    // }
     // SL end
 
     private void OnSpecificPersonAssigned(Entity<PickSpecificPersonComponent> ent, ref ObjectiveAssignedEvent args)
@@ -63,7 +62,7 @@ public sealed partial class PickObjectiveTargetSystem : EntitySystem
             return;
         }
 
-        _objective.SetTarget(ent.Owner, targetComp.Target.Value);
+        _target.SetTarget(ent.Owner, targetComp.Target.Value);
     }
 
     private void OnRandomPersonAssigned(Entity<PickRandomPersonComponent> ent, ref ObjectiveAssignedEvent args)
@@ -80,12 +79,12 @@ public sealed partial class PickObjectiveTargetSystem : EntitySystem
             return;
 
         // couldn't find a target :(
-        if (_target.PickFromPool(ent.Comp.Pool, ent.Comp.Filters, args.MindId) is not {} picked)
+        if (_mind.PickFromPool(ent.Comp.Pool, args.MindId, ent.Comp.Conditions) is not {} picked)
         {
             args.Cancelled = true;
             return;
         }
 
-        _objective.SetTarget(ent, picked, target);
+        _target.SetTarget(ent, picked, target);
     }
 }

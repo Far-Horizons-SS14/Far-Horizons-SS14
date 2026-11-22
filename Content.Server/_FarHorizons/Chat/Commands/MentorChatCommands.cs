@@ -8,11 +8,11 @@ using Robust.Shared.Console;
 namespace Content.Server._FarHorizons.Chat.Commands
 {
     [AnyCommand]
-    internal sealed class MentorChatCommand : LocalizedCommands
+    internal sealed partial class MentorChatCommand : LocalizedCommands
     {
-        [Dependency] private readonly IChatManager _chatManager = default!;
-        [Dependency] private readonly IDiscordLinkManager _discordLink = default!;
-        [Dependency] private readonly IAdminManager _admin = default!;
+        [Dependency] private IChatManager _chatManager = default!;
+        [Dependency] private IDiscordLinkManager _discordLink = default!;
+        [Dependency] private IAdminManager _admin = default!;
 
         public override string Command => "msay";
 

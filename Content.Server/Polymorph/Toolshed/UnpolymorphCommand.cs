@@ -10,7 +10,7 @@ namespace Content.Server.Polymorph.Toolshed;
 ///     Undoes a polymorph, reverting the target to it's original form.
 /// </summary>
 [ToolshedCommand, AdminCommand(AdminFlags.Fun)]
-public sealed class UnpolymorphCommand : ToolshedCommand
+public sealed partial class UnpolymorphCommand : ToolshedCommand
 {
     private PolymorphSystem? _system;
 

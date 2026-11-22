@@ -743,7 +743,7 @@ public sealed partial class FaxSystem : EntitySystem
                 Logger.Info($"Admin {client.Name} has a back slot, sending fax to them.");
                 //generate the entity
                 var entityToSpawn = printout.PrototypeId;
-                if (EntityManager.TrySpawnInContainer(entityToSpawn, worn.Value, "storagebase", out var printed))
+                if (TrySpawnInContainer(entityToSpawn, worn.Value, "storagebase", out var printed))
                 {
                     if (TryComp<PaperComponent>(printed.Value, out var paper))
                     {

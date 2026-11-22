@@ -6,7 +6,7 @@ namespace Content.Shared._FarHorizons.StarSystem;
 
 public abstract partial class SharedStarSystemMapSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _protoMan = default!;
+    [Dependency] private IPrototypeManager _protoMan = default!;
 
     public List<Planet> GetPrettyPlanets(Entity<StarSystemMapComponent?> ent)
     {

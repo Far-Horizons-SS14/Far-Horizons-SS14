@@ -21,7 +21,7 @@
 - type: entity
   parent: [ClothingEyesHudBase, BaseSalvageContraband]
   id: ClothingEyesHudScrapper
-  name: Scrapper Objective HUD 
+  name: Salvage Objective HUD 
   description: A heads-up display that helps tracking down the mission objective for salvage.
   suffix: GSL
   components:
@@ -38,7 +38,7 @@
 - type: entity
   parent: [ClothingEyesHudBase, ShowMedicalIcons, BaseSalvageContraband]
   id: ClothingEyesHudScrapperMedical
-  name: Scrapper Medical HUD 
+  name: Salvage Medical HUD 
   description: A modified heads-up medical display with objective tracking. Trademarked by GSL.
   suffix: GSL
   components:
@@ -224,7 +224,6 @@
     sprite: _FarHorizons/Clothing/Eyes/Hud/NeoSol/brigmedichud.rsi
   - type: Clothing
     sprite: _FarHorizons/Clothing/Eyes/Hud/NeoSol/brigmedichud.rsi
-  - type: FlashImmunity
   - type: EyeProtection
     protectionTime: 5
   - type: ShowHealthBars
@@ -255,3 +254,30 @@
     - PetWearable
     - WhitelistChameleon
     - HudSecurity
+
+#region High Command
+- type: entity
+  parent: [ ClothingEyesBase, BaseCentcommContraband ]
+  id: ClothingEyesHudHighCommand
+  name: NSHC HUD
+  description: An innovative heads-up display that scans the humanoids in view and provides accurate data about their ID status, security records, and medical information.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Eyes/Hud/NeoSol/redswordoperative.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Eyes/Hud/NeoSol/redswordoperative.rsi
+  - type: ShowJobIcons
+  - type: ShowMindShieldIcons
+  - type: ShowCriminalRecordIcons
+  - type: ShowHealthBars
+    damageContainers:
+    - Biological
+  - type: ShowHealthIcons
+    damageContainers:
+    - Biological
+  - type: Tag
+    tags:
+    - HudMedical
+  - type: EyeProtection
+    protectionTime: 5

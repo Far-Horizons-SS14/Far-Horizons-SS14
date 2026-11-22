@@ -29,6 +29,7 @@ public sealed partial class ObjectivesSystem : SharedObjectivesSystem
 {
     [Dependency] private IConfigurationManager _cfg = default!;
     [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private GameTicker _gameTicker = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private AntagSelectionSystem _antag = default!;

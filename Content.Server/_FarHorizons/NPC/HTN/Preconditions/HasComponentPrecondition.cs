@@ -5,7 +5,7 @@ namespace Content.Server._FarHorizons.NPC.HTN.Preconditions;
 
 public sealed partial class HasComponentPrecondition : HTNPrecondition
 {
-    [Dependency] private readonly IEntityManager _entMan = default!;
+    [Dependency] private IEntityManager _entMan = default!;
 
     [DataField] public bool Invert;
     [DataField] public string Comp = "";

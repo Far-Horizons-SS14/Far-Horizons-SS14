@@ -1,10 +1,10 @@
 - type: entity
-  id: CartridgeLightRifleRubber
-  name: cartridge (.30 rifle rubber)
-  parent: BaseCartridgeLightRifleSP
+  id: CartridgeRifle762Rubber #FH
+  name: cartridge (7.62 rifle rubber) #FH
+  parent: BaseCartridgeRifle762SP #FH
   components:
   - type: CartridgeAmmo
-    proto: RubberBulletTrace
+    proto: RubberBulletRifleTrace #FH
   - type: Sprite
     layers:
       - state: base
@@ -14,13 +14,13 @@
         color: "#43c4f7"
 
 - type: entity
-  id: CartridgeLightRifleImprovised
-  name: improvised cartridge (.30 rifle)
+  id: CartridgeRifle762Improvised #FH
+  name: improvised cartridge (7.62 rifle) #FH
   description: A handmade rifle bullet, uses phosphorus as a propellent instead of gunpowder which makes it much less effective. 
-  parent: [BaseCartridgeLightRifleSP, BaseMinorContraband]
+  parent: [BaseCartridgeRifle762SP, BaseMinorContraband] #FH
   components:
   - type: CartridgeAmmo
-    proto: BulletLightRifleTraceImprovised
+    proto: BulletRifle762TraceImprovised #FH
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Ammunition/Casings/improvised_casing.rsi
     layers:
@@ -32,7 +32,7 @@
   - type: Tag
     tags:
       - Cartridge
-      - CartridgeLightRifleImprovised
+      - CartridgeRifle762Improvised #FH
   - type: Construction
-    graph: ImprovisedLightRifleBulletGraph
+    graph: ImprovisedRifle762BulletGraph #FH
     node: shell

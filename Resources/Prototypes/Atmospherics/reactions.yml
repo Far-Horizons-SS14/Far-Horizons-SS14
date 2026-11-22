@@ -11,7 +11,7 @@
 - type: gasReaction
   id: TritiumFire
   priority: -1
-  minimumTemperature: 773.149 # Far Horizons - increase tritium burn temperature to hydrogen autoignition temperature
+  minimumTemperature: 373.149 # Same as Atmospherics.FireMinimumTemperatureToExist
   minimumRequirements: # In this case, same as minimum mole count.
     Oxygen: 0.01
     Tritium: 0.01

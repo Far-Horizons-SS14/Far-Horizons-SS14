@@ -31,14 +31,16 @@
 - type: entity
   parent: [ CrateWeaponSecure, BaseSecurityContraband ]
   id: CrateTrackingImplants
-  name: tracking implants
-  description: Contains a handful of tracking implanters. Good for prisoners you'd like to release but still keep track of.
+  name: Tracking Implants (NT) #FH
+  description: Contains a handful of NanoTrasen tracking implanters. Good for prisoners you'd like to release but still keep track of.
   components:
   - type: EntityTableContainerFill
     containers:
       entity_storage:
         id: TrackingImplanter
         amount: 5
+  - type: AccessReader
+    access: [["Armory"]] #FH
 
 - type: entity
   parent: [ CrateWeaponSecure, BaseSecurityContraband ]
@@ -78,7 +80,7 @@
     containers:
       entity_storage: !type:AllSelector
         children:
-        - id: WeaponPistolMk78 #Far Horizons
+        - id: WeaponPistolMKT #Far Horizons
           amount: 2
         - id: MagazinePistolSP #Starlight
           amount: 2

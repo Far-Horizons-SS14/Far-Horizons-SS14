@@ -17,11 +17,11 @@ using Content.Shared.Starlight;
 namespace Content.Server._Starlight.Medical.Surgery;
 public sealed partial class OrganSystem : EntitySystem
 {
-    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
-    [Dependency] private readonly SharedActionsSystem _action = default!;
-    [Dependency] private readonly LanguageSystem _language = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private DamageableSystem _damageableSystem = default!;
+    [Dependency] private SharedActionsSystem _action = default!;
+    [Dependency] private LanguageSystem _language = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private IGameTiming _timing = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -50,9 +50,9 @@ public sealed partial class OrganSystem : EntitySystem
     {
         foreach (var comp in (ent.Comp.Components ?? []).Values)
         {
-            if (!EntityManager.HasComponent(args.Target, comp.Component.GetType()))
+            if (!HasComp(args.Target, comp.Component.GetType()))
             {
-                EntityManager.AddComponent(args.Target, comp.Component);
+                AddComp(args.Target, comp.Component);
                 UpdateEntity(args.Target, comp.Component, ent.Owner);
             }
         }
@@ -62,9 +62,9 @@ public sealed partial class OrganSystem : EntitySystem
     {
         foreach (var comp in (ent.Comp.Components ?? []).Values)
         {
-            if (EntityManager.HasComponent(args.Target, comp.Component.GetType()))
+            if (HasComp(args.Target, comp.Component.GetType()))
             {
-                EntityManager.RemoveComponent(args.Target, EntityManager.GetComponent(args.Target, comp.Component.GetType()));
+                RemComp(args.Target, EntityManager.GetComponent(args.Target, comp.Component.GetType()));
                 UpdateEntity(args.Target, comp.Component, ent.Owner);
             }
         }

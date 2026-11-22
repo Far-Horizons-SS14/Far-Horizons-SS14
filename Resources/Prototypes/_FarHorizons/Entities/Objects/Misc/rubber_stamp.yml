@@ -17,21 +17,6 @@
       sprite: _FarHorizons/Objects/Misc/stamps.rsi
       state: stamp-secret
 
-- type: entity
-  name: Corpsman Rubber Stamp
-  parent: [RubberStampBase, BaseSecurityContraband]
-  id: RubberStampCorpsman
-  suffix: NT
-  categories: [ DoNotMap ]
-  components:
-    - type: Stamp
-      stampedName: "Corpsman"
-      stampedColor: "#14568B"
-      stampState: "paper_stamp-corpsman"
-    - type: Sprite
-      sprite: _FarHorizons/Objects/Misc/stamps.rsi
-      state: stamp-corpsman
-
 #region NeoSol
 
 
@@ -115,7 +100,7 @@
   - type: Stamp
     stampedName: stamp-component-stamped-name-hos
     stampedColor: "#cc0000"
-    stampState: "paper_stamp-hos"
+    stampState: "paper_stamp-marshal"
   - type: Sprite
     state: stamp-hos
 
@@ -143,7 +128,7 @@
   - type: Stamp
     stampedName: stamp-component-stamped-name-constable
     stampedColor: "#5b0000"
-    stampState: "paper_stamp-warden"
+    stampState: "paper_stamp-constable"
   - type: Sprite
     state: stamp-warden
 
@@ -190,3 +175,153 @@
     stampState: "paper_stamp-syndicate"
   - type: Sprite
     state: stamp-syndicate
+
+- type: entity
+  name: Cybersun Ops & Admin Rubber Stamp
+  parent: RubberStampBase
+  id: RubberStampCOA
+  suffix: NS
+  categories: [ DoNotMap ]
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-coa
+    stampedColor: "#00CC00"
+    stampState: "paper_stamp-cap"
+  - type: Sprite
+    state: stamp-cap
+
+- type: entity
+  name: Gorlex Weapons & Security Rubber Stamp
+  parent: RubberStampBase
+  id: RubberStampGWS
+  suffix: NS
+  categories: [ DoNotMap ]
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-gws
+    stampedColor: "#FF0000"
+    stampState: "paper_stamp-hos"
+  - type: Sprite
+    state: stamp-hos
+
+- type: entity
+  name: Donk Co Intelligence Rubber Stamp
+  parent: RubberStampBase
+  id: RubberStampDCI
+  suffix: NS
+  categories: [ DoNotMap ]
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-dci
+    stampedColor: "#0000FF"
+    stampState: "paper_stamp-rd"
+  - type: Sprite
+    state: stamp-rd
+
+- type: entity
+  name: NSHC Department Stamps Box #Far Horizons
+  suffix: NS
+  parent: BoxCardboard
+  id: BoxStampsNSDepartments
+  components:
+    - type: Storage
+      maxItemSize: Small
+      grid:
+        - 0,0,4,4
+      whitelist:
+        components:
+          - Stamp
+    - type: EntityTableContainerFill
+      containers:
+        storagebase: !type:AllSelector
+          children:
+            - id: RubberStampSHC
+            - id: RubberStampCOA
+            - id: RubberStampGWS
+            - id: RubberStampDCI
+    - type: Sprite
+      sprite: _Starlight/Objects/Storage/boxes.rsi
+      layers:
+        - state: box-cc
+        - state: stamp-cc-departments
+
+
+- type: entity
+  name: NSHC Administrative Stamps Box
+  parent: BoxCardboard
+  id: BoxStampsHCAdministrative
+  components:
+    - type: Storage
+      maxItemSize: Small
+      grid:
+        - 0,0,4,4
+      whitelist:
+        components:
+          - Stamp
+    - type: EntityTableContainerFill
+      containers:
+        storagebase: !type:AllSelector
+          children:
+            - id: RubberStampAcknowledged
+            - id: RubberStampMissingStamps
+            - id: RubberStampIncorrectStamps
+            - id: RubberStampIncorrectForm
+            - id: RubberStampIncompleteForm
+            - id: RubberStampSentToATS
+            - id: RubberStampDeferToCommand
+            - id: RubberStampStandby
+            - id: RubberStampApproved
+            - id: RubberStampDenied
+    - type: Sprite
+      sprite: _Starlight/Objects/Storage/boxes.rsi
+      layers:
+        - state: box-cc
+        - state: stamp-cc-admin
+
+#region NanoTrasen Security
+
+
+- type: entity
+  name: Warden's Rubber Stamp
+  parent: [RubberStampBase, BaseSecurityContraband]
+  id: RubberStampWarden
+  suffix: NT
+  categories: [ DoNotMap ]
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-warden
+    stampedColor: "#003860"
+    stampState: "paper_stamp-warden"
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Misc/stamps.rsi
+    state: stamp-warden
+
+- type: entity
+  name: Head of Security's Rubber Stamp
+  parent: [RubberStampBase, BaseCommandContraband]
+  id: RubberStampHos
+  suffix: NT
+  categories: [ DoNotMap ]
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-hos
+    stampedColor: "#0060a5"
+    stampState: "paper_stamp-hos"
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Misc/stamps.rsi
+    state: stamp-hos
+
+- type: entity
+  name: Corpsman Rubber Stamp
+  parent: [RubberStampBase, BaseSecurityContraband]
+  id: RubberStampCorpsman
+  suffix: NT
+  categories: [ DoNotMap ]
+  components:
+    - type: Stamp
+      stampedName: "Corpsman"
+      stampedColor: "#14568B"
+      stampState: "paper_stamp-corpsman"
+    - type: Sprite
+      sprite: _FarHorizons/Objects/Misc/stamps.rsi
+      state: stamp-corpsman

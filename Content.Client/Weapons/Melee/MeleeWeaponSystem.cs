@@ -102,7 +102,7 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
 
         EntityCoordinates coordinates;
 
-        if (MapManager.TryFindGridAt(mousePos, out var gridUid, out _))
+        if (_map.TryFindGridAt(mousePos, out var gridUid, out _))
         {
             coordinates = TransformSystem.ToCoordinates(gridUid, mousePos);
         }
@@ -266,7 +266,7 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
         // an attack on a non-damageable grid as a miss
         if (target == null)
         {
-            if (MapManager.TryFindGridAt(mousePos, out var gridUid, out _))
+            if (_map.TryFindGridAt(mousePos, out var gridUid, out _))
                 target = gridUid;
             else
                 target = _map.GetMapOrInvalid(mousePos.MapId);

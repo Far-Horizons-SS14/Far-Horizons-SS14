@@ -1,4 +1,4 @@
-﻿using Content.Shared._Starlight.Chemistry.Components;
+using Content.Shared._Starlight.Chemistry.Components;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.FixedPoint;
@@ -6,26 +6,23 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared._Starlight.Chemistry;
 
-public sealed class SLSolutionRegenerationSystem : EntitySystem
+// This file has substantial FH-sourced modifications
+public sealed partial class SLSolutionRegenerationSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
-    public override void Initialize()
-    {
-        SubscribeLocalEvent<SolutionRegenerationComponent, SolutionChangedEvent>(OnSolutionChanged);
-    }
-
+    [SubscribeLocalEvent]
     private void OnSolutionChanged(Entity<SolutionRegenerationComponent> ent, ref SolutionChangedEvent args)
     {
-        //make sure the entity isnt terminating
-        if (TerminatingOrDeleted(ent))
-            return;
-            
-        // No component additions during client state application
-        if (_timing.ApplyingState)
+        if (TerminatingOrDeleted(ent) || LifeStage(ent) < EntityLifeStage.MapInitialized)
             return;
 
-        if (args.Solution.Comp.Solution.AvailableVolume <= FixedPoint2.Zero)
+        TryActivateRegeneration(ent, args.Solution.Comp);
+    }
+
+    private void TryActivateRegeneration(Entity<SolutionRegenerationComponent> ent, SolutionComponent solution)
+    {
+        if (_timing.ApplyingState || solution.Solution.AvailableVolume <= FixedPoint2.Zero)
             return;
 
         EnsureComp<SLActiveSolutionRegenerationComponent>(ent);

@@ -1,0 +1,15 @@
+- type: gameMap
+  id: NSHC2
+  isGrid: true # Did you know that centcomm is the only "game map" that isn't actually a map? Send help.
+  mapName: 'NeoSol High Command'
+  mapPath: /Maps/_FarHorizons/SHCs/NSHC2.yml
+  minPlayers: 10
+  stations:
+    centcomm:
+      stationProto: NeosolHighCommand
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: '{0} NeoSol High Command {1}'
+          nameGenerator:
+            !type:NeosolNameGenerator
+            prefixCreator: 'TG'

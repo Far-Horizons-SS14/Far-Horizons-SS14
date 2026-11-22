@@ -377,7 +377,7 @@ public sealed partial class SiliconLawSystem : SharedSiliconLawSystem
 }
 
 [ToolshedCommand, AdminCommand(AdminFlags.Admin)]
-public sealed class LawsCommand : ToolshedCommand
+public sealed partial class LawsCommand : ToolshedCommand
 {
     private SiliconLawSystem? _law;
 

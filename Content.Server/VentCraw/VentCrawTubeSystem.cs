@@ -16,14 +16,14 @@ using Robust.Shared.Map.Components;
 
 namespace Content.Server.VentCraw
 {
-    public sealed class VentCrawTubeSystem : EntitySystem
+    public sealed partial class VentCrawTubeSystem : EntitySystem
     {
-        [Dependency] private readonly SharedVentCrawableSystem _ventCrawableSystem = default!;
-        [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
-        [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
-        [Dependency] private readonly PopupSystem _popup = default!;
-        [Dependency] private readonly SharedMoverController _mover = default!;
-        [Dependency] private readonly SharedTransformSystem _transform = default!;
+        [Dependency] private SharedVentCrawableSystem _ventCrawableSystem = default!;
+        [Dependency] private SharedContainerSystem _containerSystem = default!;
+        [Dependency] private SharedDoAfterSystem _doAfterSystem = default!;
+        [Dependency] private PopupSystem _popup = default!;
+        [Dependency] private SharedMoverController _mover = default!;
+        [Dependency] private SharedTransformSystem _transform = default!;
 
         public override void Initialize()
         {

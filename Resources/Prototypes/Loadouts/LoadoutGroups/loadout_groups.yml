@@ -103,10 +103,10 @@
   - LighterGatcha #SL
   - MagicCrayon #SL
   - HappyHonk #SL
-  - leftripperarm #SL
-  - rightmechwrightarm #SL
-  - leftcargoleg #SL
-  - rightcargoleg #SL
+#  - leftripperarm #SL #FH - Removed cyberlimbs
+#  - rightmechwrightarm #SL
+#  - leftcargoleg #SL
+#  - rightcargoleg #SL
   - CigPackBub #SL
   - PillCanisterPsicodine #SL
   - ClothingDogTags # SL
@@ -1338,6 +1338,8 @@
   - HeadofSecurityHead
   - HeadofSecuritySheriff #Starlight
   - HeadofSecurityBeret
+  - DeputyHat #FH
+  - DeputyHelmet #FH
 
 - type: loadoutGroup
   id: HeadofSecurityJumpsuit
@@ -1353,6 +1355,7 @@
   - HeadofSecurityBlackSkirt
   - HeadofSecurityBlueJumpsuit
   - HeadofSecurityGreyJumpsuit
+  - DeputyUniform #FH
 
 - type: loadoutGroup
   id: HeadofSecurityNeck
@@ -1371,6 +1374,7 @@
   loadouts:
   - HeadofSecurityCoat
   - HeadofSecurityWinterCoat
+  - SheriffHOSCoat #FH
 
 - type: loadoutGroup
   id: HeadofSecurityJobTrinkets
@@ -1378,6 +1382,7 @@
   minLimit: 0
   loadouts:
   - SecStar
+  - DeputyBadge #FH
 
 - type: loadoutGroup
   id: WardenHead
@@ -1386,6 +1391,8 @@
   loadouts:
   - WardenHead
   - WardenBeret
+  - DeputyHat #FH
+  - DeputyHelmet #FH
 
 - type: loadoutGroup
   id: WardenJumpsuit
@@ -1393,6 +1400,7 @@
   loadouts:
   - WardenJumpsuit
   - WardenJumpskirt
+  - DeputyUniform #FH
 
 - type: loadoutGroup
   id: WardenOuterClothing
@@ -1402,6 +1410,7 @@
   loadouts:
   - WardenCoat
   - WardenArmoredWinterCoat
+  - DeputySheriffWardenCoat #FH
 
 - type: loadoutGroup
   id: WardenJobTrinkets
@@ -1409,6 +1418,7 @@
   minLimit: 0
   loadouts:
   - SecStar
+  - DeputyBadge #FH
 
 - type: loadoutGroup
   id: SecurityEyewear
@@ -1419,6 +1429,7 @@
   - DetectiveNoirGlasses
   - SecurityVisor #Far Horizons
   - SecurityPrescriptionGlasses #FH
+  - DeputyGlasses #FH
 
 - type: loadoutGroup
   id: BrigmedicHead
@@ -1427,16 +1438,16 @@
   loadouts:
   - BrigmedicBeret
   - SecurityHelmet
-#FH - Corpsman Removal
+  - DeputyHat #FH
+  - DeputyHelmet #FH
 
 - type: loadoutGroup
   id: BrigmedicJumpsuit
   name: loadout-group-brigmedic-jumpsuit
   loadouts:
   - JumpsuitBrigmedic
-#FH - Corpsman Removal
   - JumpskirtBrigmedic
-#FH - Corpsman Removal
+  - DeputyUniform #FH
 
 - type: loadoutGroup
   id: BrigmedicBackpack
@@ -1455,7 +1466,7 @@
   loadouts:
   - BrigmedicCoat
   - SecurityOfficerWintercoat
-#FH - Corpsman Removal
+  - DeputyBrigmedicCoat #FH
 
 - type: loadoutGroup
   id: BrigmedicEyewear
@@ -1466,6 +1477,7 @@
   - BrigmedicHud
   - BrigmedicEyePatchHud # Starlight
   - BrigmedicPrescriptionGlasses #FH
+  - DeputyMedicalGlasses #FH
 
 - type: loadoutGroup
   id: BrigmedicBelt
@@ -1474,15 +1486,15 @@
   maxLimit: 2 #FH
   loadouts:
   - BrigmedicRig
+  - MedicalRigDeputy #FH
   - BrigmedicBelt #Starlight
-#FH - Corpsman Removal
+  - MedicalBeltDeputy #FH
 
 - type: loadoutGroup
   id: BrigmedicGloves
   name: loadout-group-brigmedic-gloves
   loadouts:
   - Nitrile
-#FH - Corpsman Removal
 
 - type: loadoutGroup
   id: SecurityHead
@@ -1490,12 +1502,14 @@
   minLimit: 0
   loadouts:
   - SecurityHelmet
+  - DeputyHelmet #FH
   - SecurityHelmetPlate
   - SecurityHelmetStabproof
   - SecurityHelmetHeatAbsorbent
   - SecurityBeret
   - SecurityHat
   - TrooperHat
+  - DeputyHat #FH
 
 - type: loadoutGroup
   id: SecurityJumpsuit
@@ -1510,6 +1524,7 @@
   - TrooperUniform
   - SecurityJumpsuitBlue
   - SecurityTshirt #Starlight
+  - DeputyUniform #FH
 
 - type: loadoutGroup
   id: SecurityBackpack
@@ -1527,7 +1542,9 @@
   maxLimit: 2 #FH
   loadouts:
   - SecurityBelt
+  - DeputyBelt #FH
   - SecurityWebbing
+  - DeputyRig #FH
 
 - type: loadoutGroup
   id: SecurityOuterClothing
@@ -1541,8 +1558,10 @@
   - ArmorVestStab
   - ArmorVestHeatAbsorb
   - SecurityOfficerWintercoat
+  - DeputyCoat #FH
   - SecurityBomber #Starlight
   - WindbreakerSecurity #Starlight
+  - DeputyDuster #FH
 
 - type: loadoutGroup
   id: SecurityShoes
@@ -1551,6 +1570,7 @@
   - JackBoots
   - SecurityWinterBoots
   - HighHeelBootsFilled # 🌟Starlight🌟
+  - CombatShoes #FH
 
 - type: loadoutGroup
   id: SecurityPDA
@@ -1565,6 +1585,7 @@
   minLimit: 0
   loadouts:
   - SecStar
+  - DeputyBadge #FH
 
 - type: loadoutGroup
   id: DetectiveHead
@@ -1573,6 +1594,8 @@
   loadouts:
   - DetectiveFedora
   - DetectiveFedoraGrey
+  - DeputyHat #FH
+  - DeputyHelmet #FH
 
 - type: loadoutGroup
   id: DetectiveNeck
@@ -1590,6 +1613,7 @@
   - DetectiveJumpskirt
   - NoirJumpsuit
   - NoirJumpskirt
+  - DeputyUniform #FH
 
 - type: loadoutGroup
   id: DetectiveOuterClothing
@@ -1601,6 +1625,8 @@
   - DetectiveCoat
   - DetectiveCoatGrey
   - SecurityOfficerWintercoat
+  - DeputyDuster #FH
+  - DeputyCoat #FH
 
 - type: loadoutGroup
   id: DetectiveJobTrinkets
@@ -1608,6 +1634,7 @@
   minLimit: 0
   loadouts:
   - SecStar
+  - DeputyBadge #FH
 
 - type: loadoutGroup
   id: SecurityCadetJumpsuit

@@ -65,3 +65,91 @@
     range: 16
   - type: EntityTargetAction
     event: !type:CrimeCheckActionEvent
+
+- type: entity
+  parent: BasePDACartridge
+  id: WantedListCartridge
+  name: Wanted list cartridge
+  suffix: NT
+  description: A program to get a list of wanted persons.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Devices/cartridge.rsi
+    state: cart-sec
+  - type: Icon
+    sprite: _FarHorizons/Objects/Devices/cartridge.rsi
+    state: cart-sec
+  - type: UIFragment
+    ui: !type:WantedListUi
+  - type: Cartridge
+    programName: wanted-list-program-name
+    icon:
+      sprite: Objects/Misc/books.rsi
+      state: icon_magnifier
+  - type: WantedListCartridge
+  - type: StealTarget
+    stealGroup: WantedListCartridge
+
+- type: entity
+  parent: BasePDACartridge
+  id: WantedListCartridgeNS
+  name: Wanted list cartridge
+  suffix: NS
+  description: A program to get a list of wanted persons.
+  components:
+  - type: Sprite
+    state: cart-sec
+  - type: Icon
+    sprite: Objects/Devices/cartridge.rsi
+    state: cart-sec
+  - type: UIFragment
+    ui: !type:WantedListUi
+  - type: Cartridge
+    programName: wanted-list-program-name
+    icon:
+      sprite: Objects/Misc/books.rsi
+      state: icon_magnifier
+  - type: WantedListCartridge
+  - type: StealTarget
+    stealGroup: WantedListCartridge
+
+- type: entity
+  parent: BaseItem
+  id: FrontierBankCartridge
+  name: Frontier Bank
+  description: The most popular bank amongst spacers
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Devices/cartridge.rsi
+    state: fb_cartridge
+  - type: UIFragment
+    ui: !type:FrontierBankUi
+  - type: FrontierBankApp
+  - type: Cartridge
+    programName: frontier-bank-program-name
+    icon:
+      sprite: _FarHorizons/Interface/Misc/program_icons.rsi
+      state: fb_icon
+
+- type: entity
+  parent: BaseItem
+  id: GSLNowCartridge
+  name: GSL Now! cartridge
+  description: Fastest deliveries in the sector*
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Devices/cartridge.rsi
+    state: gsl_cartridge
+  - type: UIFragment
+    ui: !type:GSLNowUi
+  - type: GSLNowApp
+    orderCooldown: 300 # 5 minutes
+    failSound:
+      path: /Audio/Machines/buzz-two.ogg
+    successSound:
+      path: /Audio/Effects/Cargo/ping.ogg
+  - type: Cartridge
+    programName: gsl-now-program-name
+    icon:
+      sprite: _FarHorizons/Interface/Misc/program_icons.rsi
+      state: gsl_icon

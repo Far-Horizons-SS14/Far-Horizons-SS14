@@ -7,9 +7,9 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Client.Overlays;
 
-public sealed class ShowOjectiveIconsSystem : EquipmentHudSystem<ShowObjectiveIconsComponent>
+public sealed partial class ShowOjectiveIconsSystem : EquipmentHudSystem<ShowObjectiveIconsComponent>
 {
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
 
     public override void Initialize()
     {

@@ -12,7 +12,7 @@ namespace Content.Server.Xenoarchaeology.Artifact;
 /// Toolshed commands for manipulating xeno artifact.
 /// </summary>
 [ToolshedCommand, AdminCommand(AdminFlags.Debug)]
-public sealed class XenoArtifactCommand : ToolshedCommand
+public sealed partial class XenoArtifactCommand : ToolshedCommand
 {
     public static readonly EntProtoId ArtifactPrototype = "BaseXenoArtifact";
 
@@ -33,7 +33,7 @@ public sealed class XenoArtifactCommand : ToolshedCommand
     [CommandImplementation("printMatrix")]
     public string PrintMatrix([PipedArgument] EntityUid artifactEntitUid)
     {
-        var comp = EntityManager.GetComponent<XenoArtifactComponent>(artifactEntitUid);
+        var comp = Comp<XenoArtifactComponent>(artifactEntitUid);
 
         var nodeCount = comp.NodeVertices.Length;
 
@@ -76,7 +76,7 @@ public sealed class XenoArtifactCommand : ToolshedCommand
     public int TotalResearch([PipedArgument] EntityUid artifactEntityUid)
     {
         var artiSys = EntityManager.System<XenoArtifactSystem>();
-        var comp = EntityManager.GetComponent<XenoArtifactComponent>(artifactEntityUid);
+        var comp = Comp<XenoArtifactComponent>(artifactEntityUid);
 
         var sum = 0;
 
@@ -113,7 +113,7 @@ public sealed class XenoArtifactCommand : ToolshedCommand
     public void UnlockAllNodes([PipedArgument] EntityUid artifactEntityUid)
     {
         var artiSys = EntityManager.System<XenoArtifactSystem>();
-        var comp = EntityManager.GetComponent<XenoArtifactComponent>(artifactEntityUid);
+        var comp = Comp<XenoArtifactComponent>(artifactEntityUid);
 
         var nodes = artiSys.GetAllNodes((artifactEntityUid, comp));
         foreach (var node in nodes)

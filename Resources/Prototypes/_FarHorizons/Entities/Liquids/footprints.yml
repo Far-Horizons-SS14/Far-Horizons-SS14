@@ -1,0 +1,89 @@
+- type: footprintType
+  id: Human
+  rsiPath: /Textures/_FarHorizons/Mobs/footprints.rsi
+  rsiState: human
+  alternating: true
+
+- type: footprintType
+  id: Chicken
+  rsiPath: /Textures/_FarHorizons/Mobs/footprints.rsi
+  rsiState: chicken
+  alternating: true
+
+- type: footprintType
+  id: Animal
+  rsiPath: /Textures/_FarHorizons/Mobs/footprints.rsi
+  rsiState: animal
+  alternating: true
+
+- type: footprintType
+  id: Boot
+  rsiPath: /Textures/_FarHorizons/Mobs/footprints.rsi
+  rsiState: boot
+  alternating: true
+
+- type: footprintType
+  id: TireMono
+  rsiPath: /Textures/_FarHorizons/Mobs/footprints.rsi
+  rsiState: tire
+  alternating: false
+
+- type: footprintType
+  id: TireDual
+  rsiPath: /Textures/_FarHorizons/Mobs/footprints.rsi
+  rsiState: tire
+  alternating: true
+
+- type: footprintType
+  id: Diona
+  rsiPath: /Textures/_FarHorizons/Mobs/footprints.rsi
+  rsiState: what
+  alternating: false
+
+- type: footprintType
+  id: Insect
+  rsiPath: /Textures/_FarHorizons/Mobs/footprints.rsi
+  rsiState: insect
+  alternating: true
+
+- type: footprintType
+  id: Robot
+  rsiPath: /Textures/_FarHorizons/Mobs/footprints.rsi
+  rsiState: robot
+  alternating: true
+
+- type: footprintType
+  id: DraggingTrail
+  rsiPath: /Textures/_FarHorizons/Mobs/footprints.rsi
+  rsiState: dragging_trail
+  alternating: false
+
+- type: entity
+  name: Prints
+  id: FluidFootprintContainer
+  description: Prints from nearby liquid puddle
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    drawdepth: FloorTiles
+  - type: Clickable
+  - type: Transform
+    noRot: true
+    anchored: true
+  - type: IgnoresFingerprints
+  - type: FluidFootprintContainer
+    cleanEffect: PuddleSparkle
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      cleanFixture:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.2
+        mask:
+        - SlipLayer
+        layer:
+        - ItemMask
+        hard: false

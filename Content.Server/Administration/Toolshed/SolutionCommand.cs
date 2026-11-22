@@ -10,7 +10,7 @@ using Robust.Shared.Prototypes;
 namespace Content.Server.Administration.Toolshed;
 
 [ToolshedCommand, AdminCommand(AdminFlags.Debug)]
-public sealed class SolutionCommand : ToolshedCommand
+public sealed partial class SolutionCommand : ToolshedCommand
 {
     private SharedSolutionContainerSystem? _solutionContainer;
 

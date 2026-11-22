@@ -265,6 +265,7 @@
   parent: VendingMachine
   id: VendingMachineCart
   name: PTech
+  suffix: NT #FH
   description: PTech vending! Providing a ROBUST selection of PDAs, cartridges, and anything else a dull paper pusher needs!
   components:
   - type: VendingMachine
@@ -917,6 +918,7 @@
   parent: VendingMachine
   id: VendingMachineMedicalBase
   name: NanoMed Civilian
+  suffix: NT #FH
   description: It's a medical drug dispenser. Natural chemicals only!
   components:
   - type: VendingMachine
@@ -954,6 +956,7 @@
   parent: VendingMachineMedicalBase
   id: VendingMachineMedical
   name: NanoMed Plus
+  suffix: NT #FH
   components:
   - type: VendingMachine
     pack: NanoMedPlusInventory
@@ -1015,6 +1018,7 @@
   parent: VendingMachine
   id: VendingMachineSec
   name: SecTech
+  suffix: NT #FH
   description: A vending machine containing Security equipment. A label reads SECURITY PERSONNEL ONLY.
   components:
   - type: VendingMachine
@@ -1523,7 +1527,7 @@
   - type: Machine # Starlight-edit: Vending Machine boards
     board: VendingMachineSalvageCircuitboard # Starlight-edit: Vending Machine boards
   - type: Sprite
-    sprite: Structures/Machines/VendingMachines/mining.rsi
+    sprite: _FarHorizons/Structures/Machines/VendingMachines/mining.rsi #Far Horizons resprite
     layers:
     - state: "off"
       map: ["enum.VendingMachineVisualLayers.Base"]
@@ -2412,6 +2416,7 @@
   parent: VendingMachineWallmount
   id: VendingMachineWallMedicalCivilian
   name: NanoMed band-aid
+  suffix: NT #FH
   description: It's a wall-mounted medical equipment dispenser. Natural chemicals only!
   components:
   - type: VendingMachine
@@ -2445,6 +2450,7 @@
   parent: VendingMachineWallMedicalCivilian
   id: VendingMachineWallMedical
   name: NanoMed
+  suffix: NT #FH
   components:
   - type: VendingMachine
     pack: NanoMedInventory

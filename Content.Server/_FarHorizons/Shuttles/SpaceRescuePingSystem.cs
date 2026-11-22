@@ -10,12 +10,12 @@ using Robust.Shared.Timing;
 
 namespace Content.Server._FarHorizons.Shuttles;
 
-public sealed class SpaceRescuePingSystem : EntitySystem
+public sealed partial class SpaceRescuePingSystem : EntitySystem
 {
-    [Dependency] private readonly UserInterfaceSystem _ui = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly TransformSystem _transform = default!;
-    [Dependency] private readonly IEntityManager _entMan = default!;
+    [Dependency] private UserInterfaceSystem _ui = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private TransformSystem _transform = default!;
+    [Dependency] private IEntityManager _entMan = default!;
 
     public override void Initialize()
     {

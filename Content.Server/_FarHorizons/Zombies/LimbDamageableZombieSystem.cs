@@ -15,14 +15,14 @@ using Robust.Shared.Utility;
 
 namespace Content.Server._FarHorizons.Zombies;
 
-public sealed class LimbDamageableZombieSystem : EntitySystem
+public sealed partial class LimbDamageableZombieSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly LimbDamageSystem _limbDamage = default!;
-    [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly DeathgaspSystem _deathgasp = default!;
-    [Dependency] private readonly MobThresholdSystem _mobThreshold = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private LimbDamageSystem _limbDamage = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private DeathgaspSystem _deathgasp = default!;
+    [Dependency] private MobThresholdSystem _mobThreshold = default!;
 
     private static readonly ProtoId<OrganCategoryPrototype> _headCategory = "Head";
 
@@ -37,6 +37,8 @@ public sealed class LimbDamageableZombieSystem : EntitySystem
 
     private void OnZombified(Entity<LimbDamageableComponent> ent, ref EntityZombifiedEvent args)
     {
+        if (HasComp<LegacyZombieLockComponent>(ent)) return;
+
         var maybeHead = _limbDamage.GetAllDamageable(ent.AsNullable()).Where(p => p.Comp.Organ?.Category == _headCategory).FirstOrNull();
 
         if (maybeHead is not { } head)

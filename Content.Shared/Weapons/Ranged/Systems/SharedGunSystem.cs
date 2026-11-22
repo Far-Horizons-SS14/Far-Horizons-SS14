@@ -38,7 +38,7 @@ using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Content.Shared.VentCraw;
 using Content.Shared.Mech.Components; // Startlight-edit
-using Content.Shared._FarHorizons.Vehicles.Components; //FarHorizons
+using Content.Shared._FarHorizons.Vehicles; //FarHorizons
 
 #region Starlight
 using Content.Shared.Starlight.Utility;
@@ -60,7 +60,6 @@ public abstract partial class SharedGunSystem : EntitySystem
     [Dependency] protected DamageableSystem Damageable = default!;
     [Dependency] protected ExamineSystemShared Examine = default!;
     [Dependency] protected IGameTiming Timing = default!;
-    [Dependency] protected IMapManager MapManager = default!;
     [Dependency] protected IPrototypeManager ProtoManager = default!;
     [Dependency] protected IRobustRandom Random = default!;
     [Dependency] protected ISharedAdminLogManager Logs = default!;

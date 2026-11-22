@@ -18,7 +18,6 @@ using Content.Server.Roles;
 using Content.Server.Roles.Jobs;
 using Content.Server.Shuttles.Systems;
 using Content.Shared.Administration.Logs;
-using Content.Shared._FarHorizons.Body;
 using Content.Shared.Antag;
 using Content.Shared.Body;
 using Content.Shared.Clothing;
@@ -29,8 +28,6 @@ using Content.Shared.GameTicking.Components;
 using Content.Shared.Humanoid;
 using Content.Shared.Mind;
 using Content.Shared.Players;
-using Content.Shared.Preferences;
-using Content.Shared.Preferences.Loadouts;
 using Content.Shared.Random.Helpers;
 using Content.Shared.Roles;
 using Content.Shared.Nutrition.Components;
@@ -43,6 +40,13 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
+using Content.Server._FarHorizons.Factions;
+using Content.Shared._FarHorizons.Body;
+// Starlight Start
+using Content.Shared.Humanoid.Prototypes;
+using Content.Shared.Preferences;
+using Content.Shared.Preferences.Loadouts;
+// Starlight End
 using static Content.Server.Antag.Components.AntagSelectionTime;
 
 namespace Content.Server.Antag;
@@ -79,9 +83,10 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
     [Dependency] private MindSystem _mind = default!;
     [Dependency] private PlayTimeTrackingSystem _playTime = default!;
     [Dependency] private RoleSystem _role = default!;
-    [Dependency] private TransformSystem _transform = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private BodySystem _body = default!;
-    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IServerFactionManager _factions = default!; // Far Horizons
+    [Dependency] private IPrototypeManager _prototypeManager = default!; // Starlight
 
     // arbitrary random number to give late joining some mild interest.
     public const float LateJoinRandomChance = 0.5f;
@@ -166,7 +171,7 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         if (ent.Comp.Rule is not { } rule || ent.Comp.Definition is not { } proto)
             return;
 
-        if (!Proto.Resolve(proto, out var def))
+        if (!ProtoMan.Resolve(proto, out var def))
             return;
 
         if (!Exists(rule) || !RuleQuery.TryComp(rule, out var select))
@@ -322,7 +327,7 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
 
         foreach (var antag in gameRule.Comp.Antags)
         {
-            if (!Proto.Resolve(antag.Proto, out var proto))
+            if (!ProtoMan.Resolve(antag.Proto, out var proto))
                 continue;
 
             // We do it this way in case our resolve fails.
@@ -342,7 +347,7 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         var i = 0;
         foreach (var antag in gameRule.Comp.Antags)
         {
-            if (!Proto.Resolve(antag.Proto, out var definition))
+            if (!ProtoMan.Resolve(antag.Proto, out var definition))
                 continue;
 
             // We do it this way in case our resolve fails.
@@ -732,7 +737,7 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         foreach (var (proto, set) in gameRule.Comp.PreSelectedSessions)
         {
             // How did we even get here?
-            if (!Proto.Resolve(proto, out var def))
+            if (!ProtoMan.Resolve(proto, out var def))
                 continue;
 
             foreach (var session in set)

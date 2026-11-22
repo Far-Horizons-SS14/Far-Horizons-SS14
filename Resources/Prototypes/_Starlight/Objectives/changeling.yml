@@ -41,8 +41,8 @@
     - type: TargetObjective
       title: objective-condition-escape-identity-title
     - type: PickRandomPerson
-      filters: # Far Horizons - Only pick absorbable
-      - !type:BodyMindFilter
+      conditions: # Far Horizons - Only pick absorbable
+      - !type:BodyWhitelistCondition
         whitelist:
           components:
             - Absorbable

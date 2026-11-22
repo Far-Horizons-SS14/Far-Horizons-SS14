@@ -88,3 +88,4 @@ research-tree-node-cloning = Cloning Systems
 research-tree-node-vehicle-security-parts = Security Vehicle Parts
 research-tree-node-vehicle-basic-parts = Basic Vehicle Parts
 research-tree-node-vehicle-advanced-parts = Advanced Vehicle Parts
+research-tree-node-fusion-1 = Fusion Power Generation

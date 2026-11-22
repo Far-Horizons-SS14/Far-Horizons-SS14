@@ -46,6 +46,7 @@
   - AppearanceProtoKin
   - BaseMobProtoKin
   id: MobProtoKin
+  name: Urist McDuskin #pronounced Dusk-Kin
   components:
     - type: Bloodstream 
       bloodlossDamage:
@@ -58,7 +59,11 @@
         reagents:
           - ReagentId: ShadekinBlood
             Quantity: 300 
-  name: Urist McDuskin #pronounced Dusk-Kin
+    - type: FluidFootprintSpreader
+      footprint: Animal
+      footprintSize: 0.75
+      stepSpacing: 0.2
+      lateralOffset: 0.15
 
 # Organs
 

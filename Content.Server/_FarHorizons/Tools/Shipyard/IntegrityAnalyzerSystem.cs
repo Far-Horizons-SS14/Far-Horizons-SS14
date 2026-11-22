@@ -1,16 +1,12 @@
 using Content.Server.FarHorizons.Tools.Shipyard.Components;
 using Content.Shared.PowerCell;
 using Content.Shared.FarHorizons.Tools.Shipyard;
-using Content.Shared.Damage;
 using Content.Shared.DoAfter;
-using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Item.ItemToggle;
 using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.Mobs.Components;
-using Content.Shared.Popups;
-using Content.Shared.Traits.Assorted;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
@@ -19,15 +15,15 @@ using Content.Shared.Damage.Components;
 
 namespace Content.Server.FarHorizons.Tools.Shipyard.Systems;
 
-public sealed class IntegrityAnalyzerSystem : EntitySystem
+public sealed partial class IntegrityAnalyzerSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly PowerCellSystem _cell = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
-    [Dependency] private readonly ItemToggleSystem _toggle = default!;
-    [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
-    [Dependency] private readonly TransformSystem _transformSystem = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private PowerCellSystem _cell = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedDoAfterSystem _doAfterSystem = default!;
+    [Dependency] private ItemToggleSystem _toggle = default!;
+    [Dependency] private UserInterfaceSystem _uiSystem = default!;
+    [Dependency] private TransformSystem _transformSystem = default!;
 
     public override void Initialize()
     {
@@ -85,7 +81,7 @@ public sealed class IntegrityAnalyzerSystem : EntitySystem
         
         if (uid.Comp.DamageContainers != null 
             && injurableComponent.DamageContainer != null 
-            && !uid.Comp.DamageContainers.Contains(injurableComponent.DamageContainer))
+            && !uid.Comp.DamageContainers.Contains(injurableComponent.DamageContainer.Value))
             return;
 
         _audio.PlayPvs(uid.Comp.ScanningBeginSound, uid);

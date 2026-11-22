@@ -19,7 +19,8 @@ public sealed class PrototypeTests : GameTest
     public async Task TestAllServerPrototypesAreSerializable()
     {
         var pair = Pair;
-        var context = new PrototypeSaveTest.TestEntityUidContext();
+        var ser = pair.Server.ResolveDependency<ISerializationManager>();
+        var context = new PrototypeSaveTest.TestEntityUidContext(ser);
         await SaveThenValidatePrototype(pair.Server, "server", context);
     }
 
@@ -31,7 +32,8 @@ public sealed class PrototypeTests : GameTest
     public async Task TestAllClientPrototypesAreSerializable()
     {
         var pair = Pair;
-        var context = new PrototypeSaveTest.TestEntityUidContext();
+        var ser = pair.Server.ResolveDependency<ISerializationManager>();
+        var context = new PrototypeSaveTest.TestEntityUidContext(ser);
         await SaveThenValidatePrototype(pair.Client, "client", context);
     }
 
@@ -69,7 +71,8 @@ public sealed class PrototypeTests : GameTest
     public async Task ServerPrototypeSaveLoadSaveTest()
     {
         var pair = Pair;
-        var context = new PrototypeSaveTest.TestEntityUidContext();
+        var ser = pair.Server.ResolveDependency<ISerializationManager>();
+        var context = new PrototypeSaveTest.TestEntityUidContext(ser);
         await SaveLoadSavePrototype(pair.Server, context);
     }
 
@@ -80,7 +83,8 @@ public sealed class PrototypeTests : GameTest
     public async Task ClientPrototypeSaveLoadSaveTest()
     {
         var pair = Pair;
-        var context = new PrototypeSaveTest.TestEntityUidContext();
+        var ser = pair.Server.ResolveDependency<ISerializationManager>();
+        var context = new PrototypeSaveTest.TestEntityUidContext(ser);
         await SaveLoadSavePrototype(pair.Client, context);
     }
 

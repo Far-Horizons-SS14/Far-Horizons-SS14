@@ -43,6 +43,7 @@
     tags:
     - ForceNoFixRotations # Don't want the fixrotations command to target these
   - type: Door
+    performCollisionCheck: false #FH - Allows for forceful door closing.
     openDrawDepth: BlastDoors
     closedDrawDepth: BlastDoors
     bumpOpen: false

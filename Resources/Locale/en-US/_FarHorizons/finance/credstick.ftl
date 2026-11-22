@@ -1,0 +1,10 @@
+pda-credstick-slot-name = Credstick
+credstick-offer-transfer = Transfer Credits
+credstick-transfer-window-title = Transfer
+credstick-transfer-confirm = Offer
+credstick-transfer-cancel = Cancel
+credstick-transfer-alert-name = Incoming Transfer
+credstick-transfer-alert-description = Someone is offering credits to you. Click to accept.
+credstick-transfer-popup-offer = Offered credits transfer!
+credstick-transfer-popup-success = Credits transfer complete!
+credstick-transfer-popup-cancelled = Transfer cancelled by movement.

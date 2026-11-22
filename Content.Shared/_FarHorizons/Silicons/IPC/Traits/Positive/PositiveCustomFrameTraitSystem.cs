@@ -6,6 +6,7 @@ using Content.Shared.DoAfter;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Implants;
 using Content.Shared.Implants.Components;
+using Content.Shared.Mobs;
 using Content.Shared.PowerCell;
 using Content.Shared.PowerCell.Components;
 using Content.Shared.StatusEffectNew;
@@ -16,10 +17,10 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared._FarHorizons.Silicons.IPC.Traits.Positive;
 
-public sealed class CyborgModuleTraitSystem : IPCTraitSystem<CyborgModuleTraitComponent>
+public sealed partial class CyborgModuleTraitSystem : IPCTraitSystem<CyborgModuleTraitComponent>
 {
-    [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
+    [Dependency] private ItemSlotsSystem _itemSlots = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -77,10 +78,10 @@ public sealed class CyborgModuleTraitSystem : IPCTraitSystem<CyborgModuleTraitCo
     }
 }
 
-public sealed class OverclockingTraitSystem : IPCToggleActionTraitSystem<OverclockingTraitComponent, OverclockingTraitEvent>
+public sealed partial class OverclockingTraitSystem : IPCToggleActionTraitSystem<OverclockingTraitComponent, OverclockingTraitEvent>
 {
-    [Dependency] private readonly StatusEffectsSystem _status = default!;
-    [Dependency] private readonly PowerCellSystem _power = default!;
+    [Dependency] private StatusEffectsSystem _status = default!;
+    [Dependency] private PowerCellSystem _power = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -110,12 +111,14 @@ public sealed class OverclockingTraitSystem : IPCToggleActionTraitSystem<Overclo
             _status.TryRemoveStatusEffect(ent.Owner, "StatusEffectIPCFanDisabled");
         }
     }
+
+    protected override void OnDeath(Entity<OverclockingTraitComponent> ent, ref MobStateChangedEvent args) => base.OnDeath(ent, ref args);
 }
 
-public sealed class RepairNanitesTraitSystem : IPCToggleActionTraitSystem<RepairNanitesTraitComponent, RepairNanitesTraitEvent>
+public sealed partial class RepairNanitesTraitSystem : IPCToggleActionTraitSystem<RepairNanitesTraitComponent, RepairNanitesTraitEvent>
 {
-    [Dependency] private readonly PowerCellSystem _power = default!;
-    [Dependency] private readonly StatusEffectsSystem _status = default!;
+    [Dependency] private PowerCellSystem _power = default!;
+    [Dependency] private StatusEffectsSystem _status = default!;
     protected override void TraitInit(Entity<IPCBrainHolderComponent, RepairNanitesTraitComponent> ent)
     {
         base.TraitInit(ent);
@@ -151,11 +154,13 @@ public sealed class RepairNanitesTraitSystem : IPCToggleActionTraitSystem<Repair
             Dirty(ent.Owner, psdComp);
         }
     }
+
+    protected override void OnDeath(Entity<RepairNanitesTraitComponent> ent, ref MobStateChangedEvent args) => base.OnDeath(ent, ref args);
 }
 
-public sealed class BloodPoweredTraitSystem : IPCTraitSystem<BloodPoweredTraitComponent>
+public sealed partial class BloodPoweredTraitSystem : IPCTraitSystem<BloodPoweredTraitComponent>
 {
-    [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
+    [Dependency] private ItemSlotsSystem _itemSlots = default!;
     protected override void TraitInit(Entity<IPCBrainHolderComponent, BloodPoweredTraitComponent> ent)
     {
         if(!TryComp<IPCBatteryComponent>(ent.Owner, out var ipcBattery))
@@ -172,9 +177,9 @@ public sealed class BloodPoweredTraitSystem : IPCTraitSystem<BloodPoweredTraitCo
     }
 }
 
-public sealed class LanguageDatabaseTraitSystem : IPCTraitSystem<LanguageDatabaseTraitComponent>
+public sealed partial class LanguageDatabaseTraitSystem : IPCTraitSystem<LanguageDatabaseTraitComponent>
 {
-    [Dependency] private readonly SharedImplanterSystem _implanter = default!;
+    [Dependency] private SharedImplanterSystem _implanter = default!;
     protected override void TraitInit(Entity<IPCBrainHolderComponent, LanguageDatabaseTraitComponent> ent)
     {
         var implant = SpawnNextToOrDrop("LanguageDatabaseImplanter", ent.Owner);

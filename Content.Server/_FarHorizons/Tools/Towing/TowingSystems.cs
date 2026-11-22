@@ -15,11 +15,11 @@ using Content.Shared.Charges.Systems;
 namespace Content.Server._FarHorizons.Towing;
 public sealed partial class TowingSystem : EntitySystem
 {    
-    [Dependency] private readonly JointSystem _joint = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
-    [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
-    [Dependency] private readonly SharedChargesSystem _charges = default!;
+    [Dependency] private JointSystem _joint = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
+    [Dependency] private MovementSpeedModifierSystem _movementSpeed = default!;
+    [Dependency] private SharedChargesSystem _charges = default!;
     private static readonly string _hitchHook = "HitchHook";
     public override void Initialize()
     {
@@ -62,7 +62,7 @@ public sealed partial class TowingSystem : EntitySystem
         var used = args.Used.Value;
         args.Handled = true;
         
-        if(ent.Comp.FirstEnd == null || !EntityManager.EntityExists(ent.Comp.FirstEnd))
+        if(ent.Comp.FirstEnd == null || !Exists(ent.Comp.FirstEnd))
         {
             CreateJoint(used, target, ent.Comp);
         }

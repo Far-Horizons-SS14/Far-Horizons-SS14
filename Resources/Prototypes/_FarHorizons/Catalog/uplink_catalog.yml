@@ -340,11 +340,11 @@
 # Cybernetics
 
 - type: listing
-  id: UplinkHypoLeftClawsImplant 
-  name: uplink-hypo-claws-left-name 
+  id: UplinkHypoClawsImplant 
+  name: uplink-hypo-claws-name 
   description: uplink-hypo-claws-desc 
   icon: { sprite: _Starlight/Objects/Specific/Medical/implants.rsi, state: l_hand_implant_claws }
-  productEntity: CyberneticImplanterLeftHandImplantHypoClaws 
+  productEntity: CyberneticImplanterSyndicateHandImplantHypoClaws 
   discountCategory: usualDiscounts
   discountDownTo:
     Telecrystal: 5
@@ -354,25 +354,11 @@
   - UplinkCybernetics
 
 - type: listing
-  id: UplinkHypoRightClawsImplant 
-  name: uplink-hypo-claws-right-name 
-  description: uplink-hypo-claws-desc 
-  icon: { sprite: _Starlight/Objects/Specific/Medical/implants.rsi, state: r_hand_implant_claws }
-  productEntity: CyberneticImplanterRightHandImplantHypoClaws 
-  discountCategory: usualDiscounts
-  discountDownTo:
-    Telecrystal: 5
-  cost:
-    Telecrystal: 8
-  categories:
-  - UplinkCybernetics
-
-- type: listing
-  id: UplinkLeftArmCyberBunkerBreaker
-  name: uplink-bunker-breaker-arm-left-name 
+  id: UplinkArmCyberBunkerBreaker
+  name: uplink-bunker-breaker-arm-name 
   description: uplink-bunker-breaker-desc 
-  icon: { sprite:  _FarHorizons/Objects/Tools/limb_CIK.rsi, state: icon }
-  productEntity: CyberneticImplanterLeftArmCyberBunkerBreaker 
+  icon: { sprite:  _FarHorizons/Objects/Tools/syndicate_limb_CIK.rsi, state: icon }
+  productEntity: CyberneticImplanterSyndicateArmCyberBunkerBreaker 
   discountCategory: rareDiscounts
   discountDownTo:
     Telecrystal: 3
@@ -382,47 +368,15 @@
   - UplinkCybernetics
 
 - type: listing
-  id: UplinkRightArmCyberBunkerBreaker
-  name: uplink-bunker-breaker-arm-right-name 
-  description: uplink-bunker-breaker-desc 
-  icon: { sprite:  _FarHorizons/Objects/Tools/limb_CIK.rsi, state: icon }
-  productEntity: CyberneticImplanterRightArmCyberBunkerBreaker 
-  discountCategory: rareDiscounts
-  discountDownTo:
-    Telecrystal: 3
-  cost:
-    Telecrystal: 5
-  categories:
-  - UplinkCybernetics
-
-- type: listing
-  id: UplinkIFA30LeftArm
-  name: uplink-ifa30-left-arm-name
+  id: UplinkIFA30Arm
+  name: uplink-ifa30-arm-name
   description: uplink-ifa30-arms-desc
   icon:
     {
       sprite: /Textures/_FarHorizons/Objects/Weapons/Guns/SMGs/ifa30.rsi,
       state: icon,
     }
-  productEntity: BriefcaseWeaponIFA30LeftFilled
-  discountCategory: veryRareDiscounts
-  discountDownTo:
-    Telecrystal: 14
-  cost:
-    Telecrystal: 20
-  categories:
-    - UplinkCybernetics
-
-- type: listing
-  id: UplinkIFA30RightArm
-  name: uplink-ifa30-right-arm-name
-  description: uplink-ifa30-arms-desc
-  icon:
-    {
-      sprite: /Textures/_FarHorizons/Objects/Weapons/Guns/SMGs/ifa30.rsi,
-      state: icon,
-    }
-  productEntity: BriefcaseWeaponIFA30RightFilled
+  productEntity: BriefcaseWeaponIFA30Filled
   discountCategory: veryRareDiscounts
   discountDownTo:
     Telecrystal: 14

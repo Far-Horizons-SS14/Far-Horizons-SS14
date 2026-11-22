@@ -13,19 +13,15 @@ namespace Content.Server._FarHorizons.StarSystem;
 public sealed partial class StarSystemMapSystem : SharedStarSystemMapSystem
 {
 
-    [Dependency] private readonly GameTicker _ticker = default!;
-    [Dependency] private readonly IPrototypeManager _protoMan = default!;
-    [Dependency] private readonly IRobustRandom _rand = default!;
-    [Dependency] private readonly MapSystem _map = default!;
-    [Dependency] private readonly MetaDataSystem _metadata = default!;
-    [Dependency] private readonly TransformSystem _transform = default!;
+    [Dependency] private GameTicker _ticker = default!;
+    [Dependency] private IPrototypeManager _protoMan = default!;
+    [Dependency] private IRobustRandom _rand = default!;
+    [Dependency] private MapSystem _map = default!;
+    [Dependency] private MetaDataSystem _metadata = default!;
+    [Dependency] private TransformSystem _transform = default!;
 
-    public override void Initialize()
-    {
-        base.Initialize();
-        SubscribeLocalEvent<PostGameMapLoad>(OnPostMapLoad);
-    }
 
+    [SubscribeLocalEvent]
     private void OnPostMapLoad(PostGameMapLoad ev)
     {
         if (!_map.TryGetMap(ev.Map, out var mapUid)) return;

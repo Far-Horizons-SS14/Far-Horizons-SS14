@@ -5,8 +5,10 @@ using Content.Server.Power.EntitySystems;
 using Content.Server.Wires;
 using Content.Shared.Power;
 using Content.Shared.Wires;
-using Content.Shared._Starlight.Power.Components; // Starlight-edit
-using Content.Shared._Starlight.Power.EntitySystems; // Starlight-edit
+// Far Horizons start
+using Content.Shared._FarHorizons.Power.Components;
+using Content.Shared._FarHorizons.Power.EntitySystems;
+// Far Horizons end
 
 namespace Content.Server.Power;
 
@@ -28,16 +30,20 @@ public sealed partial class PowerWireAction : BaseWireAction
     {
         if (WiresSystem.TryGetData<int>(wire.Owner, PowerWireActionKey.MainWire, out var main)
             && main != wire.Id)
+        {
             return null;
-        
+        }
+
         if (AllWiresCut(wire.Owner)) // Starlight-edit
             return StatusLightState.Off; // Starlight-edit
-        else if (!AllWiresMended(wire.Owner) // Starlight-edit
+        if (!AllWiresMended(wire.Owner)
                 || WiresSystem.TryGetData<bool>(wire.Owner, PowerWireActionKey.Pulsed, out var pulsed)
                 && pulsed)
+        {
             return StatusLightState.BlinkingSlow;
+        }
 
-        return StatusLightState.On; // Starlight-edit
+        return AllWiresCut(wire.Owner) ? StatusLightState.Off : StatusLightState.On;
     }
 
     private bool AllWiresCut(EntityUid owner)
@@ -57,50 +63,61 @@ public sealed partial class PowerWireAction : BaseWireAction
     // Getting it from a dictionary is significantly more expensive.
     private void SetPower(EntityUid owner, bool pulsed)
     {
-        if (EntityManager.TryGetComponent(owner, out ApcPowerReceiverComponent? power)) // Starlight-edit: Powered Locker, All wizdens code in this if.
+        // Far Horizons start - Passive power is handled by a separate system for historical reasons.
+        if (EntityManager.TryGetComponent(owner, out PassivePowerComponent? passivePower))
         {
-            var receiverSys = EntityManager.System<PowerReceiverSystem>();
+            var passivePowerSystem = EntityManager.System<PassivePowerSystem>();
 
             if (pulsed)
             {
-                receiverSys.SetPowerDisabled(owner, true, power);
+                passivePowerSystem.SetPowered(owner, false, passivePower);
                 return;
             }
 
             if (AllWiresCut(owner))
-                receiverSys.SetPowerDisabled(owner, true, power);
+            {
+                passivePowerSystem.SetPowered(owner, false, passivePower);
+            }
             else
             {
                 if (WiresSystem.TryGetData<bool>(owner, PowerWireActionKey.Pulsed, out var isPulsed)
                     && isPulsed)
+                {
                     return;
+                }
 
-                receiverSys.SetPowerDisabled(owner, false, power);
+                passivePowerSystem.SetPowered(owner, true, passivePower);
             }
         }
-        // Starlight-start: Powered Locker
-        else if (EntityManager.TryGetComponent(owner, out PoweredLockerComponent? poweredLocker))
+        // Far Horizons end
+
+        if (!EntityManager.TryGetComponent(owner, out ApcPowerReceiverComponent? power))
         {
-            var lockerSys = EntityManager.System<PoweredLockerSystem>();
-            
-            if (pulsed)
+            return;
+        }
+
+        var receiverSys = EntityManager.System<PowerReceiverSystem>();
+
+        if (pulsed)
+        {
+            receiverSys.SetPowerDisabled(owner, true, power);
+            return;
+        }
+
+        if (AllWiresCut(owner))
+        {
+            receiverSys.SetPowerDisabled(owner, true, power);
+        }
+        else
+        {
+            if (WiresSystem.TryGetData<bool>(owner, PowerWireActionKey.Pulsed, out var isPulsed)
+                && isPulsed)
             {
-                lockerSys.TogglePower(owner, poweredLocker, false);
                 return;
             }
-            
-            if (AllWiresCut(owner))
-                lockerSys.TogglePower(owner, poweredLocker, false);
-            else
-            {
-                if (WiresSystem.TryGetData<bool>(owner, PowerWireActionKey.Pulsed, out var isPulsed)
-                    && isPulsed)
-                    return;
 
-                lockerSys.TogglePower(owner, poweredLocker, true);
-            }
+            receiverSys.SetPowerDisabled(owner, false, power);
         }
-        // Starlight-end: Powered Locker
     }
 
     private void SetWireCuts(EntityUid owner, bool isCut)

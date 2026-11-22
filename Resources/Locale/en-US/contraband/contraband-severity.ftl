@@ -21,25 +21,25 @@ contraband-examine-text-Major =
         *[item] [color=red]This item is considered major contraband.[/color]
         [reagent] [color=red]This reagent is considered major contraband.[/color]
     }
-
+#Far Horizons - Start - Changed to make faction neutral
 contraband-examine-text-GrandTheft =
     { $type ->
-        *[item] [color=red]This item is a highly valuable target for Syndicate agents![/color]
-        [reagent] [color=red]This reagent is a highly valuable target for Syndicate agents![/color]
+        *[item] [color=red]This item is a highly valuable target for insurgents![/color]
+        [reagent] [color=red]This reagent is a highly valuable target for insurgents![/color]
     }
-
+#Far Horizons - End
 contraband-examine-text-Highly-Illegal =
     { $type ->
         *[item] [color=crimson]This item is highly illegal contraband![/color]
         [reagent] [color=crimson]This reagent is highly illegal contraband![/color]
     }
-
+#Far Horizons - Start - Changed to make faction neutral
 contraband-examine-text-Syndicate =
     { $type ->
-        *[item] [color=crimson]This item is highly illegal Syndicate contraband![/color]
-        [reagent] [color=crimson]This reagent is highly illegal Syndicate contraband![/color]
+        *[item] [color=crimson]This item is highly illegal insurgent contraband![/color]
+        [reagent] [color=crimson]This reagent is highly illegal insurgent contraband![/color]
     }
-
+#Far Horizons - End
 contraband-examine-text-Magical =
     { $type ->
         *[item] [color=#b337b3]This item is highly illegal magical contraband![/color]

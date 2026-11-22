@@ -6,7 +6,7 @@ namespace Content.Client._Starlight.Combat.Effects.EntitySystems;
 /// <summary>
 /// Client-side implementation of the armor spark effect system.
 /// </summary>
-public sealed class ArmorSparkEffectSystem : SharedArmorSparkEffectSystem
+public sealed partial class ArmorSparkEffectSystem : SharedArmorSparkEffectSystem
 {
     protected override void SpawnSparkEffectAt(EntityCoordinates coordinates, string effectPrototype)
     {

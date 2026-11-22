@@ -147,8 +147,11 @@
   id: ClothingShoesBootsCowboyBlackCommieFilled
   parent:
   - ClothingShoesBootsCowboyBlack
-  - ClothingShoesBootsSecFilled
   suffix: USSP
   components:
   - type: ClothingSlowOnDamageModifier
     modifier: 0.5
+  - type: ContainerFill
+    containers:
+      item:
+      - Finka

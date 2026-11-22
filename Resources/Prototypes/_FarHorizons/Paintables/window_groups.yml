@@ -2,18 +2,178 @@
   id: Window
   time: 2
   cost: 1
-  defaultStyle: standard
+  defaultStyle: generic
   styles:
     nanotrasen: Window
-    standard: WindowStandard
-    neosol: WindowSyndie
+    generic: WindowGeneric
+    neosol: WindowNS
+
+- type: paintableGroup
+  id: WindowDiagonal
+  time: 2
+  cost: 1
+  defaultStyle: generic
+  styles:
+    nanotrasen: WindowDiagonal
+    generic: WindowDiagonalGeneric
+    neosol: WindowDiagonalNS
 
 - type: paintableGroup
   id: ReinforcedWindow
   time: 2
   cost: 1
-  defaultStyle: standard
+  defaultStyle: generic
   styles:
     nanotrasen: ReinforcedWindow
-    standard: ReinforcedWindowStandard
-    neosol: ReinforcedWindowSyndie
+    generic: ReinforcedWindowGeneric
+    neosol: ReinforcedWindowNS
+
+- type: paintableGroup
+  id: ReinforcedWindowDiagonal
+  time: 2
+  cost: 1
+  defaultStyle: generic
+  styles:
+    nanotrasen: ReinforcedWindowDiagonal
+    generic: ReinforcedWindowDiagonalGeneric
+    neosol: ReinforcedWindowDiagonalNS
+
+- type: paintableGroup
+  id: PlasmaWindow
+  time: 2
+  cost: 1
+  defaultStyle: generic
+  styles:
+    nanotrasen: PlasmaWindow
+    generic: PlasmaWindowGeneric
+    neosol: PlasmaWindowNS
+
+- type: paintableGroup
+  id: PlasmaWindowDiagonal
+  time: 2
+  cost: 1
+  defaultStyle: generic
+  styles:
+    nanotrasen: PlasmaWindowDiagonal
+    generic: PlasmaWindowDiagonalGeneric
+    neosol: PlasmaWindowDiagonalNS
+
+- type: paintableGroup
+  id: ReinforcedPlasmaWindow
+  time: 2
+  cost: 1
+  defaultStyle: generic
+  styles:
+    nanotrasen: ReinforcedPlasmaWindow
+    generic: ReinforcedPlasmaWindowGeneric
+    neosol: ReinforcedPlasmaWindowNS
+
+- type: paintableGroup
+  id: ReinforcedPlasmaWindowDiagonal
+  time: 2
+  cost: 1
+  defaultStyle: generic
+  styles:
+    nanotrasen: ReinforcedPlasmaWindowDiagonal
+    generic: ReinforcedPlasmaWindowDiagonalGeneric
+    neosol: ReinforcedPlasmaWindowDiagonalNS
+
+- type: paintableGroup
+  id: UraniumWindow
+  time: 2
+  cost: 1
+  defaultStyle: generic
+  styles:
+    nanotrasen: UraniumWindow
+    generic: UraniumWindowGeneric
+    neosol: UraniumWindowNS
+
+- type: paintableGroup
+  id: UraniumWindowDiagonal
+  time: 2
+  cost: 1
+  defaultStyle: generic
+  styles:
+    nanotrasen: UraniumWindowDiagonal
+    generic: UraniumWindowDiagonalGeneric
+    neosol: UraniumWindowDiagonalNS
+
+- type: paintableGroup
+  id: ReinforcedUraniumWindow
+  time: 2
+  cost: 1
+  defaultStyle: generic
+  styles:
+    nanotrasen: ReinforcedUraniumWindow
+    generic: ReinforcedUraniumWindowGeneric
+    neosol: ReinforcedUraniumWindowNS
+
+- type: paintableGroup
+  id: ReinforcedUraniumWindowDiagonal
+  time: 2
+  cost: 1
+  defaultStyle: generic
+  styles:
+    nanotrasen: ReinforcedUraniumWindowDiagonal
+    generic: ReinforcedUraniumWindowDiagonalGeneric
+    neosol: ReinforcedUraniumWindowDiagonalNS
+
+- type: paintableGroup
+  id: ShuttleWindow
+  time: 2
+  cost: 1
+  defaultStyle: generic
+  styles:
+    nanotrasen: ShuttleWindow
+    generic: ShuttleWindowGeneric
+    neosol: ShuttleWindowNS
+
+- type: paintableGroup
+  id: ShuttleWindowDiagonal
+  time: 2
+  cost: 1
+  defaultStyle: generic
+  styles:
+    nanotrasen: ShuttleWindowDiagonal
+    generic: ShuttleWindowDiagonalGeneric
+    neosol: ShuttleWindowDiagonalNS
+
+- type: paintableGroup
+  id: ShuttleWindowReinforced
+  time: 2
+  cost: 1
+  defaultStyle: generic
+  styles:
+    nanotrasen: ShuttleWindowReinforced
+    generic: ShuttleWindowReinforcedGeneric
+    neosol: ShuttleWindowReinforcedNS
+
+- type: paintableGroup
+  id: ShuttleWindowReinforcedDiagonal
+  time: 2
+  cost: 1
+  defaultStyle: generic
+  styles:
+    nanotrasen: ShuttleWindowReinforcedDiagonal
+    generic: ShuttleWindowReinforcedDiagonalGeneric
+    neosol: ShuttleWindowReinforcedDiagonalNS
+
+- type: paintableGroup
+  id: ShuttleWindowArmored
+  time: 2
+  cost: 1
+  defaultStyle: generic
+  styles:
+    nanotrasen: ShuttleWindowArmored
+    generic: ShuttleWindowArmoredGeneric
+    neosol: ShuttleWindowArmoredNS
+
+- type: paintableGroup
+  id: ShuttleWindowArmoredDiagonal
+  time: 2
+  cost: 1
+  defaultStyle: generic
+  styles:
+    nanotrasen: ShuttleWindowArmoredDiagonal
+    generic: ShuttleWindowArmoredDiagonalGeneric
+    neosol: ShuttleWindowArmoredDiagonalNS

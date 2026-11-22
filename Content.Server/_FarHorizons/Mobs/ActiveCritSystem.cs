@@ -5,7 +5,7 @@ using Content.Shared.Speech;
 
 namespace Content.Server._FarHorizons.Mobs;
 
-public sealed class ActiveCritSystem : SharedActiveCritSystem
+public sealed partial class ActiveCritSystem : SharedActiveCritSystem
 {
     public override void Initialize()
     {

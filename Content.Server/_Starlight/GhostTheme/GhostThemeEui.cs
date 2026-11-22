@@ -6,7 +6,7 @@ using Content.Shared.Starlight;
 
 namespace Content.Server.Ghost.Roles.UI;
 
-public sealed class GhostThemeEui : BaseEui
+public sealed partial class GhostThemeEui : BaseEui
 {
     private readonly GhostThemeSystem _ghostThemeSystem;
     private readonly HashSet<string> _availableThemes;

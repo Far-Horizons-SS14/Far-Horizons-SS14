@@ -7,21 +7,19 @@ using Content.Shared._FarHorizons.Body;
 using Content.Shared._Starlight.Language.Components;
 using Content.Shared.Body;
 using Content.Shared.Body.Components;
-using Content.Shared.GameTicking;
 using Content.Shared.Humanoid;
 using Content.Shared.NPC;
 using Content.Shared.NPC.Components;
 using Content.Shared.Species.Components;
 using Content.Shared.Traits.Assorted;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.Markdown.Mapping;
 using Robust.Shared.Utility;
 
 namespace Content.Server._FarHorizons.Body;
 public sealed partial class BrainTransferSystem : EntitySystem
 {
-    [Dependency] private readonly IComponentFactory _factory = default!;
-    [Dependency] private readonly MindSystem _mind = default!;
+    [Dependency] private IComponentFactory _factory = default!;
+    [Dependency] private MindSystem _mind = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -61,7 +59,7 @@ public sealed partial class BrainTransferSystem : EntitySystem
     {
         foreach(var component in _mindComponents)
         {
-            if (!EntityManager.TryGetComponent(args.Body, component, out var comp))
+            if (!TryComp(args.Body, component, out var comp))
                 continue;
 
             if (HasComp<NymphComponent>(args.Body) && ent.Comp.StoredComponents.ContainsKey(component.Name))
@@ -70,7 +68,7 @@ public sealed partial class BrainTransferSystem : EntitySystem
                 continue;
             }
 
-            ent.Comp.StoredComponents[component.Name] = new EntityPrototype.ComponentRegistryEntry(comp, new MappingDataNode());
+            ent.Comp.StoredComponents[component.Name] = new EntityPrototype.ComponentRegistryEntry(comp);
             RemComp(args.Body, comp);
         }
     }

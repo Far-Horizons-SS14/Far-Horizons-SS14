@@ -4,9 +4,9 @@ using Robust.Client.UserInterface;
 
 namespace Content.Client._FarHorizons.UI.Shipyard
 {
-    public sealed class ShipLabelerBoundUserInterface : BoundUserInterface
+    public sealed partial class ShipLabelerBoundUserInterface : BoundUserInterface
     {
-        [Dependency] private readonly IEntityManager _entManager = default!;
+        [Dependency] private IEntityManager _entManager = default!;
 
         [ViewVariables]
         private ShipLabelerWindow? _window;

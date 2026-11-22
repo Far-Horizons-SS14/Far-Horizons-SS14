@@ -14,11 +14,11 @@ namespace Content.Shared._FarHorizons.Weapons.Ranged.Systems;
 
 public sealed partial class BallisticAmmoDistributorSystem : EntitySystem
 {
-    [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
-    [Dependency] private readonly SharedDeviceLinkSystem _signal = default!;
-    [Dependency] private readonly SharedGunSystem _gunSystem = default!;
-    [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
-    [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
+    [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private SharedDeviceLinkSystem _signal = default!;
+    [Dependency] private SharedGunSystem _gunSystem = default!;
+    [Dependency] private SharedPopupSystem _popupSystem = default!;
+    [Dependency] private SharedTransformSystem _transformSystem = default!;
 
     private (float accumulator, float threshold) _updateTime = (0, 0.75f); // There is no reason this is like this other than I found it funny
 

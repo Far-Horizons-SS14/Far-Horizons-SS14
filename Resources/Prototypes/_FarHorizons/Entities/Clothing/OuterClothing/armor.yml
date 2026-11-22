@@ -129,12 +129,13 @@
   - type: Armor
     modifiers:
       flatReductions:
-        Slash: 2
-        Piercing: 3
+        Piercing: 2
+        Heat: 1
       coefficients:
-        Blunt: 0.85
-        Slash: 0.8
-        Piercing: 0.7
+        Blunt: 0.7
+        Slash: 0.6
+        Piercing: 0.75
+        Heat: 0.8
   - type: LimbArmor
     limbs:
       ArmRight: {}
@@ -157,16 +158,15 @@
   - type: Armor
     modifiers:
       flatReductions:
-        Slash: 2
         Piercing: 3
         Heat: 3
       coefficients:
-        Blunt: 0.85
-        Slash: 0.7
-        Piercing: 0.7
-        Heat: 0.7
-        Radiation: 0.7
-        Caustic: 0.7
+        Blunt: 0.65
+        Slash: 0.55
+        Piercing: 0.6
+        Heat: 0.75
+        Caustic: 0.8
+        Radiation: 0.75
   - type: LimbArmor
     limbs:
       ArmRight: {}
@@ -190,12 +190,13 @@
   - type: Armor
     modifiers:
       flatReductions:
-        Slash: 3
-        Piercing: 4
+        Piercing: 3
+        Heat: 2
       coefficients:
-        Blunt: 0.75
-        Slash: 0.65
-        Piercing: 0.6
+        Blunt: 0.65
+        Slash: 0.55
+        Piercing: 0.75
+        Heat: 0.75
   - type: LimbArmor
     limbs:
       ArmRight: {}
@@ -207,9 +208,6 @@
   - type: ClothingSpeedModifier
     walkModifier: 1
     sprintModifier: 0.85
-  - type: Construction
-    graph: SalvageHeavyArmorGoliath
-    node: salvageHeavyArmorGoliath
 
 - type: entity
   parent: ClothingOuterArmorSalvageHeavy
@@ -224,15 +222,14 @@
   - type: Armor
     modifiers:
       flatReductions:
-        Slash: 4
         Piercing: 4
-        Heat: 4
+        Heat: 3
       coefficients:
-        Blunt: 0.75
-        Slash: 0.6
+        Blunt: 0.6
+        Slash: 0.5
         Piercing: 0.6
-        Heat: 0.6
-        Caustic: 0.65
+        Heat: 0.65
+        Caustic: 0.7
         Radiation: 0.65
   - type: LimbArmor
     limbs:
@@ -240,6 +237,45 @@
       ArmLeft: {}
       LegRight: {}
       LegLeft: {}
+  - type: Construction
+    graph: SalvageHeavyArmorGoliath
+    node: salvageHeavyArmorGoliath
+
+- type: entity
+  parent: [BaseSalvageContraband, ClothingOuterVestWeb] #web vest so it should have some pockets for ammo
+  id: ClothingOuterVestWebSalvageMercGoliath
+  name: Goliath Salvage Web Vest #Far Horizons - The Great Capitalization Crusade
+  description: A versatile armored vest, popular among salvagers for its protective yet lightweight design.
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Clothing/OuterClothing/Vests/salvage_goliath.rsi
+    - type: Clothing
+      sprite: _FarHorizons/Clothing/OuterClothing/Vests/salvage_goliath.rsi
+    - type: Pierceable
+      level: Metal
+    - type: Armor
+      modifiers:
+        flatReductions:
+          Piercing: 5
+          Heat: 2
+        coefficients:
+          Blunt: 0.7
+          Slash: 0.7
+          Piercing: 0.6
+          Heat: 0.8
+          Caustic: 0.75
+      staminaModifier: 0.85
+    - type: LimbArmor # Far Horizons
+      limbs:
+        ArmRight: {}
+        ArmLeft: {}
+        LegRight: {}
+        LegLeft: {}
+    - type: ExplosionResistance
+      damageCoefficient: 0.9
+    - type: Construction
+      graph: WebVestGoliath
+      node: webVestGoliath
     
 #region ## NeoSol ##
 
@@ -733,3 +769,184 @@
       ArmLeft: {}
       LegRight: {}
       LegLeft: {}
+
+#region High Command
+- type: entity
+  parent: [ ClothingOuterArmorBaseCarapace, BaseCentcommContraband ]
+  id: ClothingOuterArmorHighCommandCarapace
+  name: High Command Carapace
+  suffix: NS
+  description: An armored chestpiece that provides protection whilst still offering maximum mobility and flexibility. Issued only to the station's finest.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/NeoSol/high_command_carapace.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/NeoSol/high_command_carapace.rsi
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon
+
+- type: entity
+  parent:
+    [ClothingOuterStorageBase, AllowSuitStorageClothing, BaseCentcommContraband]
+  id: ClothingOuterVestWebEliteHighCommand
+  name: High Command Elite Web Vest
+  suffix: NS
+  description: A synthetic armor vest redesignated for use by the High Command, webbing and heat resistant fibers included.
+  components:
+  - type: Sprite
+    sprite: Clothing/OuterClothing/Vests/elitevest.rsi
+  - type: Clothing
+    sprite: Clothing/OuterClothing/Vests/elitevest.rsi
+  - type: TemperatureProtection
+    heatingCoefficient: 0.1
+    coolingCoefficient: 0.1
+  - type: Armor
+    modifiers:
+      flatReductions:
+        Piercing: 5 
+        Heat: 4 
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.7
+        Heat: 0.3
+        Radiation: 0.5
+        Caustic: 0.5
+    staminaModifier: 0.35
+  - type: LimbArmor 
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      LegRight: {}
+      LegLeft: {}
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: FireProtection
+    reduction: 0.85
+
+
+#region ## NanoTrasen ##
+
+
+
+
+
+
+
+#region Lambda Raid Suit
+- type: entity
+  parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing, BaseSyndicateContraband ]
+  id: ClothingOuterArmorLambdaRaid
+  name: Lambda Raid Suit "Apollo"
+  suffix: NT
+  description: A very durable and reasonably flexible suit of armor for those missions, where speed is of utmost necessity. Incapable of space walks.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/hardliner_raid.rsi
+    layers:
+    - state: icon
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/hardliner_raid.rsi
+    clothingVisuals:
+      outerClothing:
+        - state: equipped-OUTERCLOTHING
+      outerClothing-vox:
+        - state: equipped-OUTERCLOTHING-vox
+      outerClothing-resomi:
+        - state: equipped-OUTERCLOTHING-resomi
+      outerClothing-avali:
+        - state: equipped-OUTERCLOTHING-avali
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      flatReductions:
+        Piercing: 5
+        Heat: 4 
+      coefficients:
+        Blunt: 0.45
+        Slash: 0.45
+        Piercing: 0.35
+        Heat: 0.3
+        Caustic: 0.5
+    staminaModifier: 0.1
+  - type: LimbArmor 
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      LegRight: {}
+      LegLeft: {}
+  - type: ExplosionResistance
+    damageCoefficient: 0.35
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 1.1
+  #Shoulder mounted flashlight
+  - type: ToggleableVisuals
+    spriteLayer: light
+    clothingVisuals:
+      outerClothing:
+        - state: equipped-OUTERCLOTHING-light
+      outerClothing-vox:
+        - state: equipped-OUTERCLOTHING-light-vox
+      outerClothing-resomi:
+        - state: equipped-OUTERCLOTHING-light-resomi
+      outerClothing-avali:
+        - state: equipped-OUTERCLOTHING-light-avali
+  - type: ItemTogglePointLight
+  - type: Appearance
+  - type: HandheldLight
+    addPrefix: false
+    blinkingBehaviourId: blinking
+    radiatingBehaviourId: radiating
+  - type: PointLight
+    enabled: false
+    color: white
+    radius: 5
+    energy: 2
+    lightMask: ConeSingle
+    autoRot: true
+    netsync: false
+  - type: LightBehaviour
+    behaviours:
+      - !type:FadeBehaviour
+        id: radiating
+        interpolate: Linear
+        maxDuration: 2.0
+        startValue: 3.0
+        endValue: 2.0
+        isLooped: true
+        reverseWhenFinished: true
+      - !type:PulseBehaviour
+        id: blinking
+        interpolate: Nearest
+        maxDuration: 1.0
+        startValue: 0.1
+        endValue: 2.0
+        isLooped: true
+  - type: Battery
+    maxCharge: 600
+    startingCharge: 600
+  - type: BatterySelfRecharger
+    autoRechargeRate: 2
+  - type: Item
+    size: Normal
+
+#region ## USSP ##
+- type: entity
+  parent: [ ClothingOuterArmorBaseCarapace, ClothingOuterWinterCoat, BaseSovietContraband ]
+  id: ClothingOuterArmorAdmiralCarapace
+  name: Admiral's Carapace
+  suffix: USSP
+  description: An armored chestpiece that provides protection whilst still offering maximum mobility and flexibility. Issued only to the station's finest.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/USSP/admiral_carapace.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/USSP/admiral_carapace.rsi
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon

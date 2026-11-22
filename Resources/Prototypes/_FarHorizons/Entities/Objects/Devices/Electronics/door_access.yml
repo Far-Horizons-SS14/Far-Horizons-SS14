@@ -45,6 +45,15 @@
   - type: AccessReader
     access: [["Magistrate"]]
 
+#Command/Armory
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsCommandArmory
+  suffix: Command/Armory, Locked
+  components:
+  - type: AccessReader
+    access: [["Command"], ["Armory"]]
+
 #Security without cadet
 - type: entity
   parent: DoorElectronics

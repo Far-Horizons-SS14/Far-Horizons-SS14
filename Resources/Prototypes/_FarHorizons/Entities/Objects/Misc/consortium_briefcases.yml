@@ -1,0 +1,94 @@
+- type: entity
+  parent: BaseStorageItem
+  id: ConsortiumBriefcaseBase
+  suffix: Consortium, Empty
+  description: Useful for carrying items in your hands.
+  abstract: true
+  components:
+  - type: Item
+    size: Ginormous
+  - type: Storage
+    grid:
+    - 0,0,5,3
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 8
+  - type: ItemPrice
+    priceCategory: clothing
+
+- type: entity
+  parent: BriefcaseBase
+  id: ConsortiumBriefcaseBrown
+  suffix: Consortium, Empty
+  name: brown briefcase
+  components:
+  - type: Sprite
+    sprite: Objects/Storage/Briefcases/briefcase_brown.rsi
+    state: icon
+  - type: Item
+    sprite: Objects/Storage/Briefcases/briefcase_brown.rsi
+ 
+- type: entity
+  parent: ConsortiumBriefcaseBrown
+  id: BriefcaseConsortium
+  suffix: Consortium, Empty
+  components:
+  - type: Item
+    size: Huge
+
+- type: entity
+  parent: [BaseStorageItem, BaseSyndicateContraband]
+  id: ConsortiumBriefcaseWeapon
+  name: Secure Weapon Case
+  suffix: Gun, Empty
+  description: Useful for aspiring mercenaries, whether you're fighting for a company, a nation or anyone else. Or just making a really big omelette.
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Storage/Briefcases/consortium_weapon_case_large.rsi
+    layers:
+    - state: icon
+      map: [ base ]
+    - state: locked
+      map: [ "enum.LockVisualLayers.Lock" ]
+      shader: unshaded
+    - state: unlocked
+      map: [ light ]
+      shader: unshaded
+  - type: Lock
+  - type: LockVisuals
+  - type: GenericVisualizer
+    visuals:
+      enum.StorageVisuals.Open:
+        base:
+          True: { state: icon-open }
+          False: { state: icon }
+        light:
+          True: { visible: true }
+          False: { visible: false }
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,3,1
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,3,1
+    - 0,3,4,5
+
+- type: entity
+  parent: ConsortiumBriefcaseWeapon
+  id: ConsortiumBriefcaseWeaponSmall
+  suffix: Gun, Small, Empty
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Storage/Briefcases/consortium_weapon_case_small.rsi
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,1,1
+  - type: Storage
+    maxItemSize: Large
+    grid:
+    - 0,0,5,1

@@ -6,7 +6,7 @@
   cost:
     SalvageTicket: 350
   categories:
-  - MiningEquipment
+  - MiningWeapons
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 5
@@ -18,11 +18,13 @@
   cost:
     SalvageTicket: 400
   categories:
-  - MiningEquipment
+  - MiningWeapons
   conditions:
   - !type:ListingLimitedStockCondition
-    stock: 4
+    stock: 8
   - !type:BuyerAccessCondition
+
+# vehicles
 
 - type: listing
   id: VendorVehicleSkeletonMotorcycleMining
@@ -30,8 +32,18 @@
   cost:
     SalvageTicket: 800
   categories:
-  - MiningEquipment
+  - MiningVehicles
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 2
+  - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorVehicleATV
+  productEntity: VehicleATVFilled
+  cost:
+    SalvageTicket: 300
+  categories:
+  - MiningVehicles
+  conditions:
   - !type:BuyerAccessCondition

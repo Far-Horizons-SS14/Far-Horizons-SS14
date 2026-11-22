@@ -6,7 +6,7 @@ using Robust.Client.Graphics;
 namespace Content.Client.Ghost.UI;
 
 [UsedImplicitly]
-public sealed class ReturnToBodyEui : BaseEui
+public sealed partial class ReturnToBodyEui : BaseEui
 {
     private readonly ReturnToBodyMenu _menu;
 

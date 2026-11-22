@@ -5,13 +5,13 @@ using Robust.Shared.Network;
 
 namespace Content.Client._FarHorizons.DiscordLink;
 
-public sealed class DiscordLinkManager: IDiscordLinkManagerShared
+public sealed partial class DiscordLinkManager: IDiscordLinkManagerShared
 {
     private string? _discordLink;
     private bool _isMentor;
     private AdditionalPermissionsTypes[] _permissions = [];
     
-    [Dependency] private readonly IClientNetManager _netMgr = default!;
+    [Dependency] private IClientNetManager _netMgr = default!;
     public void Initialize()
     {
         _netMgr.RegisterNetMessage<MsgDiscordLink>(OnGetDiscordLink);

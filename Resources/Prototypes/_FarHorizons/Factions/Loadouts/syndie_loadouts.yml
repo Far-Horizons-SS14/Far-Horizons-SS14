@@ -197,6 +197,36 @@
   equipment:
     head: ClothingHeadHatJanitorNS
 
+- type: loadout
+  id: DeputyHatRed
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: DeputyOfficer
+  equipment:
+    head: ClothingHeadHatSecurityDeputySyndi
+
+- type: loadout
+  id: DeputyHelmetRed
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: DeputyOfficer
+  equipment:
+    head: ClothingHeadHelmetSecurityDeputySyndi
+    
+- type: loadout
+  id: EnforcerPDA
+  equipment:
+    id: EnforcerPDA
+    
+- type: loadout
+  id: SeniorEnforcerPDA
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorOfficer
+  equipment:
+    id: SeniorEnforcerPDA
+
+
 #Botanist
 - type: loadout
   id: BotanistBandanaNS
@@ -1017,6 +1047,14 @@
   equipment:
     jumpsuit: ClothingUniformJumpskirtOverallsNS
 
+- type: loadout
+  id: DeputyUniformRed
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: DeputyOfficer
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSecDeputySyndi
+
 #Clown
 
 - type: loadout
@@ -1498,6 +1536,54 @@
   equipment:
     outerClothing: ClothingOuterCoatRedSword
 
+- type: loadout
+  id: DeputyDusterRed
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: DeputyOfficer
+  equipment:
+    outerClothing: ClothingOuterCoatDusterSecurityDeputySyndi
+
+- type: loadout
+  id: DeputyCoatRed
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: DeputyOfficer
+  equipment:
+    outerClothing: ClothingOuterWinterSecurityDeputySyndi
+
+- type: loadout
+  id: DeputyBrigmedicCoatRed
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: DeputyOfficer
+  equipment:
+    outerClothing: ClothingOuterWinterSecurityDeputyBrigmedicSyndi
+
+- type: loadout
+  id: DeputySheriffCorpsmanCoatRed
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: DeputyOfficer
+  equipment:
+    outerClothing: ClothingOuterWinterSecurityDeputySheriffCorpsmanSyndi
+
+- type: loadout
+  id: DeputySheriffWardenCoatRed
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: DeputyOfficer
+  equipment:
+    outerClothing: ClothingOuterWinterSecurityDeputySheriffWardenSyndi
+
+- type: loadout
+  id: SheriffHOSCoatRed
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: DeputyOfficer
+  equipment:
+    outerClothing: ClothingOuterWinterSecuritySheriffHoSSyndi
+
 #region Boots/Shoes
 
 - type: loadout
@@ -1592,11 +1678,11 @@
     pocket2: WeaponDominatorNS
 
 - type: loadout
-  id: SecurityPistolMk59
-  dummyEntity: WeaponPistolMk59
+  id: SecurityPistolMKS
+  dummyEntity: WeaponPistolMKS
   storage:
     back:
-    - WeaponPistolMk59
+    - WeaponPistolMKS
     - MagazinePistolSP
     - MagazinePistolRubber
     - MagazinePistolRubber
@@ -1616,6 +1702,16 @@
     - MagazinePistolSP
     - MagazinePistolSP
     - MagazinePistolRubber
+
+- type: loadout
+  id: LeverActionNS
+  dummyEntity: WeaponLeverActionNS
+  storage:
+    back:
+    - WeaponLeverActionNS
+    - SpeedLoaderMagnumLeverSP
+    - SpeedLoaderMagnumLeverSP
+    - SpeedLoaderMagnumLeverRubber
 
 # Silicons
 - type: roleLoadout

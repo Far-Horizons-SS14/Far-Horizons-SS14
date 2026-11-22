@@ -8,7 +8,7 @@ namespace Content.Server._FarHorizons.Body;
 
 public sealed partial class VitalOrganSystem : EntitySystem
 {
-    [Dependency] private readonly DamageableSystem _damage = default!;
+    [Dependency] private DamageableSystem _damage = default!;
 
     public override void Initialize()
     {

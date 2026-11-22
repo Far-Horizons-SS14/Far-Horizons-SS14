@@ -30,13 +30,13 @@ public sealed partial class MentorSystem : SharedMentorSystem
 {
     private const string RateLimitKey = "MentorHelp";
 
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly IAdminManager _adminManager = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly PlayerRateLimitManager _rateLimit = default!;
-    [Dependency] private readonly SharedTransformSystem _xform = default!;
-    [Dependency] private readonly ISharedAdminLogManager _alog = default!;
-    [Dependency] private readonly IDiscordLinkManager _discordLinkManager = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
+    [Dependency] private IAdminManager _adminManager = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private PlayerRateLimitManager _rateLimit = default!;
+    [Dependency] private SharedTransformSystem _xform = default!;
+    [Dependency] private ISharedAdminLogManager _alog = default!;
+    [Dependency] private IDiscordLinkManager _discordLinkManager = default!;
 
     private readonly Dictionary<Guid, MentorTicket> _tickets = [];
     private ISawmill _sawmill = default!;

@@ -12,7 +12,7 @@ using System.Linq;
 namespace Content.Server._Starlight.Language.Commands;
 
 [ToolshedCommand(Name = "language"), AdminCommand(AdminFlags.Admin)]
-public sealed class AdminLanguageCommand : ToolshedCommand
+public sealed partial class AdminLanguageCommand : ToolshedCommand
 {
     private LanguageSystem? _languages;
 

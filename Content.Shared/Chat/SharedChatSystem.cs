@@ -67,7 +67,7 @@ public abstract partial class SharedChatSystem : EntitySystem
     [Dependency] private INetManager _net = default!;
 
 #region Starlight
-    [Dependency] private readonly SharedLanguageSystem _language = default!;
+    [Dependency] private SharedLanguageSystem _language = default!;
 #endregion Starlight
 
     /// <summary>

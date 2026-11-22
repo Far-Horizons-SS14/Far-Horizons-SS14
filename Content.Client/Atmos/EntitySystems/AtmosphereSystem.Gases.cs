@@ -1,3 +1,4 @@
+using System.Numerics.Tensors;
 using System.Runtime.CompilerServices;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Reactions;
@@ -23,18 +24,18 @@ public sealed partial class AtmosphereSystem
         throw new NotImplementedException();
     }
 
-    public override bool IsMixtureFuel(GasMixture mixture, float epsilon = Atmospherics.Epsilon)
+    public override bool IsMixtureFuel(GasMixture mixture, float epsilon = 0.01f) // Far Horizons change default epsilon
     {
         var tmp = new float[Atmospherics.AdjustedNumberOfGases];
-        NumericsHelpers.Multiply(mixture.Moles, GasFuelMask, tmp);
-        return NumericsHelpers.HorizontalAdd(tmp) > epsilon;
+        TensorPrimitives.Multiply(mixture.Moles, GasFuelMask, tmp);
+        return TensorPrimitives.Max(tmp) > epsilon; // Far Horizons - switched sum to max
     }
 
-    public override bool IsMixtureOxidizer(GasMixture mixture, float epsilon = Atmospherics.Epsilon)
+    public override bool IsMixtureOxidizer(GasMixture mixture, float epsilon = 0.01f) // Far Horizons change default epsilon
     {
         var tmp = new float[Atmospherics.AdjustedNumberOfGases];
-        NumericsHelpers.Multiply(mixture.Moles, GasOxidizerMask, tmp);
-        return NumericsHelpers.HorizontalAdd(tmp) > epsilon;
+        TensorPrimitives.Multiply(mixture.Moles, GasOxidizerMask, tmp);
+        return TensorPrimitives.Max(tmp) > epsilon; // Far Horizons - switched sum to max
     }
 
     public override float GetMass(GasMixture mix)
@@ -55,7 +56,7 @@ public sealed partial class AtmosphereSystem
     protected override float GetHeatCapacityCalculation(float[] moles, bool space)
     {
         // Little hack to make space gas mixtures have heat capacity, therefore allowing them to cool down rooms.
-        if (space && MathHelper.CloseTo(NumericsHelpers.HorizontalAdd(moles), 0f))
+        if (space && MathHelper.CloseTo(TensorPrimitives.Sum(moles), 0f))
         {
             return Atmospherics.SpaceHeatCapacity;
         }
@@ -65,9 +66,9 @@ public sealed partial class AtmosphereSystem
         // though this isnt the hottest code path so it should be fine
         // the gc can eat a little as a treat
         var tmp = new float[moles.Length];
-        NumericsHelpers.Multiply(moles, GasMolarHeatCapacities, tmp);
+        TensorPrimitives.Multiply(moles, GasMolarHeatCapacities, tmp);
         // Adjust heat capacity by speedup, because this is primarily what
         // determines how quickly gases heat up/cool.
-        return MathF.Max(NumericsHelpers.HorizontalAdd(tmp), Atmospherics.MinimumHeatCapacity);
+        return MathF.Max(TensorPrimitives.Sum(tmp), Atmospherics.MinimumHeatCapacity);
     }
 }

@@ -1,0 +1,188 @@
+#region PPSh-59
+- type: entity
+  parent: BaseMagazinePistolSubMachineGun
+  id: BaseMagazinePistolSubMachineGunPPSH
+  name: PPSH Drum Magazine
+  abstract: true
+  description: Large 71-Round Drum magazine designed for the PPSh-59.
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+    capacity: 71
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Magazine/SMG/ppsh.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    size: Normal
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      right:
+      - state: inhand-right
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+  - type: Tag
+    tags:
+      - MagazineSMGPPSH
+
+- type: entity
+  parent: BaseMagazinePistolSubMachineGunPPSH
+  id: MagazinePistolSubMachineGunPPSHEmpty
+  name: PPSH Drum Magazine (SMG Any)
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Magazine/SMG/ppsh.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  parent: BaseMagazinePistolSubMachineGunPPSH
+  id: MagazinePistolSubMachineGunPPSHHP
+  name: PPSH Drum Magazine (SMG HP)
+  description: Large 71-Round Drum magazine designed for the PPSh-59. Loaded with Hollow-Point 9mm bullets, effective against unarmored targets.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistolHP
+    capacity: 71
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Magazine/SMG/ppsh.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: hp
+
+- type: entity
+  parent: BaseMagazinePistolSubMachineGunPPSH
+  id: MagazinePistolSubMachineGunPPSH
+  name: PPSH Drum Magazine (SMG SP)
+  description: Large 71-Round Drum magazine designed for the PPSh-59. Loaded with Soft-Point 9mm bullets, effective against lightly-armored targets.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistolSP
+    capacity: 71
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Magazine/SMG/ppsh.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: sp
+
+- type: entity
+  parent: BaseMagazinePistolSubMachineGunPPSH
+  id: MagazinePistolSubMachineGunPPSHFMJ
+  name: PPSH Drum Magazine (SMG FMJ)
+  description: Large 71-Round Drum magazine designed for the PPSh-59. Loaded with Full Metal Jacket 9mm bullets, effective against armored targets.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistolFMJ
+    capacity: 71
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Magazine/SMG/ppsh.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: fmj
+
+- type: entity
+  parent: BaseMagazinePistolSubMachineGunPPSH
+  id: MagazinePistolSubMachineGunPPSHIncendiary
+  name: PPSH Drum Magazine (SMG Incendiary)
+  description: Large 71-Round Drum magazine designed for the PPSh-59. Loaded with Self-Igniting 9mm bullets, effective against fleshy targets.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistolIncendiary
+    capacity: 71
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Magazine/SMG/ppsh.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: incendiary
+
+- type: entity
+  parent: BaseMagazinePistolSubMachineGunPPSH
+  id: MagazinePistolSubMachineGunPPSHUranium
+  name: PPSH Drum Magazine (SMG Uranium)
+  description: Large 71-Round Drum magazine designed for the PPSh-59. Loaded with Uranium-Core 9mm bullets, delivers radiation poisoning on contact.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistolUranium
+    capacity: 71
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Magazine/SMG/ppsh.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: uranium
+
+- type: entity
+  parent: BaseMagazinePistolSubMachineGunPPSH
+  id: MagazinePistolSubMachineGunPPSHAP
+  name: PPSH Drum Magazine (SMG AP)
+  description: Large 71-Round Drum magazine designed for the PPSh-59. Loaded with Armor-Piercing 9mm bullets, effective against heavily-armored targets.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistolAP
+    capacity: 71
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Magazine/SMG/ppsh.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: ap
+
+- type: entity
+  parent: BaseMagazinePistolSubMachineGunPPSH
+  id: MagazinePistolSubMachineGunPPSHPractice
+  name: PPSH Drum Magazine (SMG Practice)
+  description: Large 71-Round Drum magazine designed for the PPSh-59. Loaded with Chalk 9mm bullets, used for target practice.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistolPractice
+    capacity: 71
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Magazine/SMG/ppsh.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: practice
+
+- type: entity
+  parent: BaseMagazinePistolSubMachineGunPPSH
+  id: MagazinePistolSubMachineGunPPSHRubber
+  name: PPSH Drum Magazine (SMG Rubber)
+  description: Large 71-Round Drum magazine designed for the PPSh-59. Loaded with Rubber 9mm bullets, mostly harmless.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistolRubber
+    capacity: 71
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Magazine/SMG/ppsh.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: rubber

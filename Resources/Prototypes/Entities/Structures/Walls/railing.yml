@@ -29,10 +29,14 @@
 - type: entity
   parent: BaseRailing
   id: Railing
+  name: Railing #SL
+  suffix: Steel #SL
   components:
   - type: Sprite
+    sprite: _Starlight/Structures/Walls/railing.rsi #Starlight
     state: side
   - type: Icon
+    sprite: _Starlight/Structures/Walls/railing.rsi #Starlight
     state: side
   - type: Fixtures
     fixtures:
@@ -75,10 +79,14 @@
 - type: entity
   parent: BaseRailing
   id: RailingCorner
+  name: Railing #SL
+  suffix: Steel, Corner #SL
   components:
   - type: Sprite
+    sprite: _Starlight/Structures/Walls/railing.rsi #Starlight
     state: corner
   - type: Icon
+    sprite: _Starlight/Structures/Walls/railing.rsi #Starlight
     state: corner
   - type: Fixtures
     fixtures:
@@ -130,10 +138,14 @@
 - type: entity
   parent: BaseRailing
   id: RailingCornerSmall
+  name: Railing #SL
+  suffix: Steel, Corner Small #SL
   components:
   - type: Sprite
+    sprite: _Starlight/Structures/Walls/railing.rsi #Starlight
     state: corner_small
   - type: Icon
+    sprite: _Starlight/Structures/Walls/railing.rsi #Starlight
     state: corner_small
   - type: Fixtures
     fixtures:
@@ -176,10 +188,14 @@
 - type: entity
   parent: BaseRailing
   id: RailingRound
+  name: Railing #SL
+  suffix: Steel, Round #SL
   components:
   - type: Sprite
+    sprite: _Starlight/Structures/Walls/railing.rsi #Starlight
     state: round
   - type: Icon
+    sprite: _Starlight/Structures/Walls/railing.rsi #Starlight
     state: round
   - type: Fixtures
     fixtures:
