@@ -19,7 +19,7 @@ limb-status-slime-face-stucture-altered-inspect = disturbed facial stucture
 
 limb-status-diona-core-accessed-inspect = a small creature inside visible
 
-limb-status-pating-unscrewed-inspect = missing screws on the plating
+limb-status-plating-unscrewed-inspect = missing screws on the plating
 limb-status-plating-pried-inspect = missing parts of external plating
 limb-status-limb-powered-down-inspect = a power light completely dark
 limb-status-optics-powered-down-inspect = a power light completely dark

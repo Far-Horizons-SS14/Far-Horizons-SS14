@@ -33,7 +33,7 @@ limb-status-shadekin-core-accessed = Exposed Core
 
 limb-status-diona-core-accessed = Exposed Brain
 
-limb-status-pating-unscrewed = Missing External Screws
+limb-status-plating-unscrewed = Missing External Screws
 limb-status-plating-pried = Pried Open Plating
 limb-status-hydraulics-cut = Cut Hydraulics
 limb-status-pump-powered-down = Disabled Pump Power Supply
