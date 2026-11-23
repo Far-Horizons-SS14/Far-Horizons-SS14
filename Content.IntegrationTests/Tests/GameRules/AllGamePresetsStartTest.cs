@@ -2,15 +2,18 @@
 using System.Linq;
 using Content.IntegrationTests.Fixtures;
 using Content.IntegrationTests.Utility;
+using Content.Server._FarHorizons.Factions; // Far Horizons
 using Content.Server.Antag;
 using Content.Server.Antag.Components;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Presets;
+using Content.Server.Preferences.Managers; // Far Horizons
 using Content.Server.Shuttles.Components;
 using Content.Shared.Antag;
 using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
 using Content.Shared.Mind;
+using Content.Shared.Preferences; // Far Horizons
 using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
 
@@ -114,6 +117,28 @@ public sealed class AllGamePresetsStartTest : GameTest
         }
 
         await Pair.RunUntilSynced();
+
+        // Far Horizons start
+        // For the purpose of testing, if the preset requires a faction, we set the faction for the server and all players to that faction
+        if (preset.Faction is { } faction)
+        {
+            var factions = server.ResolveDependency<IServerFactionManager>();
+            var preferences = server.ResolveDependency<IServerPreferencesManager>();
+            var factionJob = (faction, SharedGameTicker.FallbackOverflowJob);
+            await server.WaitAssertion(() => Assert.That(factions.SetCurrentFaction(faction), Is.True));
+
+            foreach (var session in players)
+            {
+                await Pair.SetJobPriorities(session, new() { { factionJob, JobPriority.High } });
+                await server.WaitPost(() =>
+                {
+                    var profile = preferences.GetPreferences(session.UserId).Characters[0];
+                    preferences.SetProfile(session.UserId, 0,
+                        profile.WithJobPreferences([factionJob]).AsEnabled()).Wait();
+                });
+            }
+        }
+        // Far Horizons end
 
         // This also ensures that admin commands work properly :P
         await server.WaitPost(() =>
