@@ -1,0 +1,33 @@
+- type: antagSpecifier
+  abstract: true
+  parent: RestrictedAntag
+  id: BaseTraitorNS
+
+- type: antagSpecifier
+  parent: BaseTraitorNS
+  id: TraitorNS
+  prefRoles:
+  - Traitor
+  blacklist:
+    components:
+    - AntagImmune
+  mindRoles:
+  - MindRoleTraitorNS
+
+- type: antagSpecifier
+  parent: BaseTraitorNS
+  id: TraitorSleeperNS
+  prefRoles:
+  - TraitorSleeper
+  mindRoles:
+  - MindRoleTraitorSleeperNS
+
+- type: antagSpecifier
+  parent: BaseTraitorNS
+  id: TraitorReinforcementNS
+  prefRoles:
+  - Traitor
+  - GenericTeamAntagonist # Matters for Antag bans.
+  mindRoles:
+  - MindRoleTraitorReinforcementNS
+

@@ -47,7 +47,7 @@
     speciesOverride: Human
 
 - type: entity
-  parent: BaseLambdaRule
+  parent: [ BaseLambdaRule, BaseRoundstartAntagRule ]
   id: Lambda
   components:
   - type: GameRule
@@ -62,64 +62,17 @@
       children:
       - id: NukiePlanetSpawn # TODO - replace with blukie map
   - type: AntagSelection
-    selectionTime: PrePlayerSpawn
-    definitions:
-    - prefRoles: [ NukeopsCommander ]
-      fallbackRoles: [ Nukeops, NukeopsMedic ]
-      spawnerPrototype: SpawnPointNukeopsCommander
-      startingGear: ConsortiumCommanderGearFull
-      roleLoadout:
-      - RoleSurvivalLambda
-      components:
-      - type: NukeOperative
-        syndStatusIcon: ConsortiumFaction
-      - type: RandomMetadata
-        nameSegments:
-        - NamesSyndicateElite # TODO - replace with blue names??
-        nameFormat: name-format-nukie-commander
-      - type: NpcFactionMember
-        factions:
-        - Consortium
-      mindRoles:
-      - MindRoleLambdaCommander
-    - prefRoles: [ NukeopsMedic ]
-      fallbackRoles: [ Nukeops, NukeopsCommander ]
-      spawnerPrototype: SpawnPointNukeopsMedic
-      startingGear: ConsortiumOperativeMedicFull
-      roleLoadout:
-      - RoleSurvivalLambda
-      components:
-      - type: NukeOperative
-        syndStatusIcon: ConsortiumFaction
-      - type: RandomMetadata
-        nameSegments:
-        - NamesSyndicateNormal # TODO - replace with blue names??
-        nameFormat: name-format-nukie-agent
-      - type: NpcFactionMember
-        factions:
-        - Consortium
-      mindRoles:
-      - MindRoleLambdaMedic
-    - prefRoles: [ Nukeops ]
-      fallbackRoles: [ NukeopsCommander, NukeopsMedic ]
-      spawnerPrototype: SpawnPointNukeopsOperative
-      max: 4
+    antags:
+    - !type:FixedAntagCount
+      proto: ConsortiumCommander
+    - !type:FixedAntagCount
+      proto: ConsortiumMedic
+    - !type:LinearAntagCount
+      proto: ConsortiumOperative
       playerRatio: 16
-      startingGear: ConsortiumOperativeGearFull
-      roleLoadout:
-      - RoleSurvivalLambda
-      components:
-      - type: NukeOperative
-        syndStatusIcon: ConsortiumFaction
-      - type: RandomMetadata
-        nameSegments:
-        - NamesSyndicateNormal # TODO - replace with blue names??
-        nameFormat: name-format-nukie-operator
-      - type: NpcFactionMember
-        factions:
-        - Consortium
-      mindRoles:
-      - MindRoleLambda
+      range:
+        min: 1
+        max: 4
   - type: DynamicRuleCost
     cost: 200
 
@@ -150,7 +103,7 @@
     cost: 100
 
 - type: entity
-  parent: BaseTraitorRuleNS
+  parent: [ BaseTraitorRuleNS, BaseRoundstartAntagRule ]
   id: TraitorNS
   components:
   - type: GameRule
@@ -160,14 +113,10 @@
       min: 240
       max: 420
   - type: AntagSelection
-    selectionTime: IntraPlayerSpawn
-    definitions:
-    - prefRoles: [ Traitor ]
-      max: 8
+    antags:
+    - !type:LinearAntagCount
+      proto: TraitorNS
+      range:
+        min: 1
+        max: 8
       playerRatio: 10
-      blacklist:
-        components:
-        - AntagImmune
-      lateJoinAdditional: false
-      mindRoles:
-      - MindRoleTraitorNS
