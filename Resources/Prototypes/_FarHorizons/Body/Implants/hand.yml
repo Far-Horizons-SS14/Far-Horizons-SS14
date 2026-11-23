@@ -9,12 +9,12 @@
           type: CyberLimbSystemItemsRadial
     - type: LimbItemDeployer
       action: ActionToggleClaws
-      sound: ClawsUnsheathe
+      sound: /Audio/Items/unsheath.ogg
       handWhitelist:
         tags:
           - CyberHandItem
-      stateOn: l_ripper_arm_SURG
-      stateOff: l_ripper_arm
+      stateOn: z
+      stateOff: z
 
 - type: entity
   id: LeftHandImplantHypoClaws 
