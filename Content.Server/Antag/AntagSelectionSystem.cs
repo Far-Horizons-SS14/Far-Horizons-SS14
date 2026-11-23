@@ -111,6 +111,9 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
     /// </summary>
     private List<(Entity<AntagSelectionComponent> gameRule, AntagSpecifierPrototype antag, ICommonSession player)> _delayedAntags = [];
 
+    // Far Horizons - We need to explicitly delay until after LoadMapRule and DynamicRule because the scheduling of those rules is delayed on FH/SL to support nested gamerules better.
+    protected override Type[] StartedAfter => [typeof(LoadMapRuleSystem), typeof(DynamicRuleSystem)];
+
     /// <inheritdoc/>
     public override void Initialize()
     {

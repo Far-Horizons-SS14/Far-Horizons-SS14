@@ -24,13 +24,16 @@ public abstract partial class GameRuleSystem<T> : EntitySystem where T : ICompon
     [Dependency] protected EntityQuery<GameRuleComponent> GameRuleQuery = default!;
     [Dependency] protected EntityQuery<T> RuleQuery = default!;
 
+    // Far Horizons - allow rules to specify that they start after other given rules
+    protected virtual Type[]? StartedAfter => null;
+
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<RoundStartAttemptEvent>(OnStartAttempt); // Far Horizons
         SubscribeLocalEvent<T, GameRuleAddedEvent>(OnGameRuleAdded);
-        SubscribeLocalEvent<T, GameRuleStartedEvent>(OnGameRuleStarted);
+        SubscribeLocalEvent<T, GameRuleStartedEvent>(OnGameRuleStarted, after: StartedAfter); // Far Horizons - allow rules to specify that they start after other given rules
         SubscribeLocalEvent<T, GameRuleEndedEvent>(OnGameRuleEnded);
         SubscribeLocalEvent<RoundEndTextAppendEvent>(OnRoundEndTextAppend);
     }
