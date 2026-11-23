@@ -61,3 +61,9 @@ public enum SurgeryStepType
     Organic,
     Inorganic
 }
+
+[Serializable, NetSerializable]
+public enum SurgeryComputerUiKey : byte
+{
+    Key
+}

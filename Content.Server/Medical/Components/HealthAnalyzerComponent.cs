@@ -95,4 +95,6 @@ public sealed partial class HealthAnalyzerComponent : Component
     public TimeSpan TalkInterval = TimeSpan.FromSeconds(5);
 
     #endregion Starlight
+
+    [DataField, Access(Other = AccessPermissions.ReadWrite)] public Enum? UiKeyOverride = null; // Far Horizons
 }
