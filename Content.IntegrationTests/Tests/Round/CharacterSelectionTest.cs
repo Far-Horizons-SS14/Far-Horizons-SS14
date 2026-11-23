@@ -379,6 +379,9 @@ public sealed class CharacterSelectionTest
         await pair.Server.WaitPost(() => ticker.StartRound());
         await pair.RunTicksSync(30);
 
+        // Preselection happens at round start, but mind roles are only assigned after the rule's delay.
+        await PoolManager.WaitUntil(pair.Server, () => ticker.IsGameRuleActive(TraitorsMode));
+
         if (expectedCharacterProfile == null)
         {
             Assert.That(ticker.PlayerGameStatuses[pair.Client.User!.Value], Is.Not.EqualTo(PlayerGameStatus.JoinedGame));
@@ -386,7 +389,7 @@ public sealed class CharacterSelectionTest
         else
         {
             Assert.That(ticker.PlayerGameStatuses[pair.Client.User!.Value], Is.EqualTo(PlayerGameStatus.JoinedGame));
-            pair.AssertJob(data.ExpectedJob.Value, pair.Player!);
+            pair.AssertJob(data.ExpectedJob.Value, pair.Player!, isAntag: data.ExpectTraitor);
             var antagSystem = pair.Server.System<AntagSelectionSystem>();
             var roleSystem = pair.Server.System<RoleSystem>();
             var mindSystem = pair.Server.System<MindSystem>();
