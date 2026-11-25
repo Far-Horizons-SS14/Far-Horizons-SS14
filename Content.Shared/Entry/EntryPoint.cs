@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
+using Content.Shared._FarHorizons.Prototypes;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.Maps;
 using Robust.Shared;
@@ -33,11 +34,13 @@ namespace Content.Shared.Entry
 
         public override void Shutdown()
         {
+            ((PrototypeManager) _prototypeManager).LoadedData -= EntityNamePrototypeFilter.Apply; // Far Horizons
             _prototypeManager.PrototypesReloaded -= PrototypeReload;
         }
 
         public override void Init()
         {
+            ((PrototypeManager) _prototypeManager).LoadedData += EntityNamePrototypeFilter.Apply; // Far Horizons
             IgnorePrototypes();
         }
 
