@@ -23,14 +23,16 @@
         Primary: _Carpmosia/Structures/Piping/Atmospherics/pipe.rsi
         Secondary: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt1.rsi
         Tertiary: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt2.rsi
-        Quaternary: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt3.rsi
-        Quinary: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt4.rsi
+        # FH - 3 layers for now
+        # Quaternary: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt3.rsi 
+        # Quinary: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt4.rsi
     alternativePrototypes:
       Primary: GasPipeTankSubfloor
       Secondary: GasPipeTankSubfloorAlt1
       Tertiary: GasPipeTankSubfloorAlt2
-      Quaternary: GasPipeTankSubfloorAlt3
-      Quinary: GasPipeTankSubfloorAlt4
+      # FH - 3 layers for now
+      # Quaternary: GasPipeTankSubfloorAlt3
+      # Quinary: GasPipeTankSubfloorAlt4
   - type: StaticPrice
     price: 75
   - type: PipeAppearance
@@ -90,33 +92,35 @@
   - type: SandboxCopyOverride
     override: GasPipeTankSubfloor
 
-- type: entity
-  parent: [GasPipeLayerAlt3, GasPipeTankSubfloor]
-  id: GasPipeTankSubfloorAlt3
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    drawdepth: ThinPipeAlt3
-    sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt3.rsi
-  - type: Construction
-    graph: GasPipeTankSubfloor
-    node: tankAlt3
-  - type: SandboxCopyOverride
-    override: GasPipeTankSubfloor
 
-- type: entity
-  parent: [GasPipeLayerAlt4, GasPipeTankSubfloor]
-  id: GasPipeTankSubfloorAlt4
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    drawdepth: ThinPipeAlt4
-    sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt4.rsi
-  - type: Construction
-    graph: GasPipeTankSubfloor
-    node: tankAlt4
-  - type: SandboxCopyOverride
-    override: GasPipeTankSubfloor
+# FH - 3 layers for now
+# - type: entity
+#   parent: [GasPipeLayerAlt3, GasPipeTankSubfloor]
+#   id: GasPipeTankSubfloorAlt3
+#   categories: [ HideSpawnMenu ]
+#   components:
+#   - type: Sprite
+#     drawdepth: ThinPipeAlt3
+#     sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt3.rsi
+#   - type: Construction
+#     graph: GasPipeTankSubfloor
+#     node: tankAlt3
+#   - type: SandboxCopyOverride
+#     override: GasPipeTankSubfloor
+
+# - type: entity
+#   parent: [GasPipeLayerAlt4, GasPipeTankSubfloor]
+#   id: GasPipeTankSubfloorAlt4
+#   categories: [ HideSpawnMenu ]
+#   components:
+#   - type: Sprite
+#     drawdepth: ThinPipeAlt4
+#     sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt4.rsi
+#   - type: Construction
+#     graph: GasPipeTankSubfloor
+#     node: tankAlt4
+#   - type: SandboxCopyOverride
+#     override: GasPipeTankSubfloor
 
 # Subfloor gas tank END
 # Tall gas tank BEGIN
@@ -169,15 +173,17 @@
         enum.PipeVisualLayers.Pipe:
           Primary: _Carpmosia/Structures/Piping/Atmospherics/pipe.rsi
           Secondary: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt1.rsi
-          Tertiary: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt2.rsi
-          Quaternary: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt3.rsi
-          Quinary: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt4.rsi
+          Tertiary: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt2.rsi          
+          # FH - 3 layers for now
+          # Quaternary: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt3.rsi
+          # Quinary: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt4.rsi
       alternativePrototypes:
         Primary: GasPipeTankTall
         Secondary: GasPipeTankTallAlt1
         Tertiary: GasPipeTankTallAlt2
-        Quaternary: GasPipeTankTallAlt3
-        Quinary: GasPipeTankTallAlt4
+        # FH - 3 layers for now
+        # Quaternary: GasPipeTankTallAlt3
+        # Quinary: GasPipeTankTallAlt4
     - type: SubFloorHide
       blockInteractions: false
       blockAmbience: false
@@ -238,30 +244,31 @@
     - type: SandboxCopyOverride
       override: GasPipeTankTall
 
-- type: entity
-  parent: [GasPipeLayerAlt3, GasPipeTankTall]
-  id: GasPipeTankTallAlt3
-  categories: [ HideSpawnMenu ]
-  components:
-    - type: Sprite
-      sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt3.rsi
-    - type: Construction
-      graph: GasPipeTankTall
-      node: tankAlt3
-    - type: SandboxCopyOverride
-      override: GasPipeTankTall
+# FH - 3 layers for now
+# - type: entity
+#   parent: [GasPipeLayerAlt3, GasPipeTankTall]
+#   id: GasPipeTankTallAlt3
+#   categories: [ HideSpawnMenu ]
+#   components:
+#     - type: Sprite
+#       sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt3.rsi
+#     - type: Construction
+#       graph: GasPipeTankTall
+#       node: tankAlt3
+#     - type: SandboxCopyOverride
+#       override: GasPipeTankTall
 
-- type: entity
-  parent: [GasPipeLayerAlt4, GasPipeTankTall]
-  id: GasPipeTankTallAlt4
-  categories: [ HideSpawnMenu ]
-  components:
-    - type: Sprite
-      sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt4.rsi
-    - type: Construction
-      graph: GasPipeTankTall
-      node: tankAlt4
-    - type: SandboxCopyOverride
-      override: GasPipeTankTall
+# - type: entity
+#   parent: [GasPipeLayerAlt4, GasPipeTankTall]
+#   id: GasPipeTankTallAlt4
+#   categories: [ HideSpawnMenu ]
+#   components:
+#     - type: Sprite
+#       sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt4.rsi
+#     - type: Construction
+#       graph: GasPipeTankTall
+#       node: tankAlt4
+#     - type: SandboxCopyOverride
+#       override: GasPipeTankTall
 
 # Tall gas tank END
