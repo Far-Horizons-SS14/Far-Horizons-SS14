@@ -27,3 +27,6 @@ id-card-access-group-research = Research
 id-card-access-group-security = Security
 id-card-access-group-service = Service
 id-card-access-group-high-command = High Command
+
+#Misc
+id-card-access-level-abductor = Abductor

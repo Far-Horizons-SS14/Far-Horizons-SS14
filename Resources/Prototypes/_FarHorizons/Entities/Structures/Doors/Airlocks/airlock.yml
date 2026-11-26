@@ -1,0 +1,51 @@
+- type: entity
+  parent: Airlock
+  id: AirlockAbductor
+  name: Airlock
+  suffix: Abductor
+  components:
+  - type: Sprite
+    sprite: Structures/Doors/Airlocks/Standard/xenoborg.rsi
+  - type: Paintable
+    group: null
+  - type: ContainerFill
+    containers:
+      board: [ BaseDoorElectronicsAbductor ]
+  - type: AccessReader
+    access: [["Abductor"]]
+    allowAbductor: true
+
+- type: entity
+  parent: AirlockGlass
+  id: AirlockAbductorGlass
+  name: Glass Airlock
+  suffix: Abductor
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Glass/xenoborg.rsi
+  - type: Paintable
+    group: null
+  - type: ContainerFill
+    containers:
+      board: [ BaseDoorElectronicsAbductor ]
+  - type: AccessReader
+    access: [["Abductor"]]
+    allowAbductor: true
+
+- type: entity
+  parent: AirlockAbductor
+  id: AirlockAbductorLocked
+  suffix: Abductor, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsAbductor ]
+
+- type: entity
+  parent: AirlockAbductorGlass
+  id: AirlockAbductorGlassLocked
+  suffix: Abductor, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsAbductor ]

@@ -419,3 +419,11 @@
   components:
   - type: AccessReader
     access: [["NSHighCommand"]]
+
+- type: entity
+  parent: BaseDoorElectronicsAbductor
+  id: DoorElectronicsAbductor
+  suffix: Locked
+  components:
+  - type: AccessReader
+    access: [["Abductor"]]

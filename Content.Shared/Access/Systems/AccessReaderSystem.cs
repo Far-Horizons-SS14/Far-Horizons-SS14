@@ -37,6 +37,7 @@ public sealed partial class AccessReaderSystem : EntitySystem
     [Dependency] private SharedStationRecordsSystem _recordsSystem = default!;
 
     private static readonly ProtoId<TagPrototype> PreventAccessLoggingTag = "PreventAccessLogging";
+    private static readonly ProtoId<TagPrototype> AbductorTag = "Abductor"; //FH
 
     public override void Initialize()
     {
@@ -210,12 +211,15 @@ public sealed partial class AccessReaderSystem : EntitySystem
         if (!reader.Enabled)
             return true;
 
-        //Starlight start
-        var @event = new AccessReadEvent();
-        RaiseLocalEvent(user, ref @event);
-        if (@event.Denied)
-            return false;
-        //Starlight end
+        if (!(reader.AllowAbductor && _tag.HasTag(user, AbductorTag))) //FH - Allow abductors to use devices
+        {
+            //Starlight start
+            var @event = new AccessReadEvent();
+            RaiseLocalEvent(user, ref @event);
+            if (@event.Denied)
+                return false;
+            //Starlight end
+        }
 
         var accessSources = FindPotentialAccessItems(user);
         var access = FindAccessTags(user, accessSources);

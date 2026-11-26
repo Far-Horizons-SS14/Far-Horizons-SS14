@@ -1,0 +1,11 @@
+- type: entity
+  parent: BaseAPC
+  id: APCAbductor
+  suffix: Basic, 50kJ, Abductor
+  components:
+  - type: Battery
+    maxCharge: 50000
+    startingCharge: 50000
+  - type: AccessReader
+    access: [["Abductor"]]
+    allowAbductor: true
