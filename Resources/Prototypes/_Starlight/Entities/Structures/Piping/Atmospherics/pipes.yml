@@ -68,8 +68,8 @@
   - type: Construction
     graph: GasPipeTankSubfloor
     node: tankAlt1
-  - type: SandboxCopyOverride
-    override: GasPipeTankSubfloor
+  # - type: SandboxCopyOverride # FH - Not scope-creeping a port of SL 5811, maybe later
+  #   override: GasPipeTankSubfloor
 
 - type: entity
   parent: [GasPipeLayerAlt2, GasPipeTankSubfloor]
@@ -82,8 +82,8 @@
   - type: Construction
     graph: GasPipeTankSubfloor
     node: tankAlt2
-  - type: SandboxCopyOverride
-    override: GasPipeTankSubfloor
+  # - type: SandboxCopyOverride # FH - Not scope-creeping a port of SL 5811, maybe later
+  #   override: GasPipeTankSubfloor
 
 
 # FH - 3 layers for now
@@ -217,8 +217,8 @@
     - type: Construction
       graph: GasPipeTankTall
       node: tankAlt1
-    - type: SandboxCopyOverride
-      override: GasPipeTankTall
+    # - type: SandboxCopyOverride # FH - Not scope-creeping a port of SL 5811, maybe later
+    #   override: GasPipeTankTall
 
 - type: entity
   parent: [GasPipeLayerAlt2, GasPipeTankTall]
@@ -230,8 +230,8 @@
     - type: Construction
       graph: GasPipeTankTall
       node: tankAlt2
-    - type: SandboxCopyOverride
-      override: GasPipeTankTall
+    # - type: SandboxCopyOverride # FH - Not scope-creeping a port of SL 5811, maybe later
+    #   override: GasPipeTankTall
 
 # FH - 3 layers for now
 # - type: entity
