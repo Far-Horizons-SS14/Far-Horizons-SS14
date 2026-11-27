@@ -321,8 +321,12 @@ namespace Content.Client.Construction
                 for (var i = 0; i < sprite.AllLayers.Count(); i++)
                 {
                     sprite.LayerSetShader(i, "unshaded");
+                    _sprite.LayerSetVisible((ghost.Value, sprite), i, true);
+                    _sprite.LayerSetOffset((ghost.Value, sprite), i, // Starlight: Fix offset not being copied
+                        targetSprite.Offset + ((SpriteComponent.Layer)targetSprite[i]).Offset); // Starlight
                 }
 
+                sprite.NoRotation = targetSprite.NoRotation; // Starlight: Fix NoRotation also being ignored.
                 Del(dummy);
             }
             else
