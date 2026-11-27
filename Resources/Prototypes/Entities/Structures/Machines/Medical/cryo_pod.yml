@@ -1,7 +1,7 @@
 ﻿- type: entity
   parent: [BaseStructure, ConstructibleMachine] # Not a BaseMachinePowered since we don't want the anchorable component
   id: CryoPod
-  name: Cryo Pod  #FH CRUSADE
+  name: cryo pod
   description: A special machine intended to create a safe environment for the use of chemicals that react in cold environments.
   components:
   - type: Sprite
@@ -130,7 +130,7 @@
 - type: entity
   parent: BaseMachine
   id: CryoPodDestroyed
-  name: Destroyed Cryo Pod  #FH CRUSADE
+  name: destroyed cryo pod
   description: A cryo pod that has seen better days. It's entirely inoperable; not good for anything but scrap.
   components:
   - type: Sprite

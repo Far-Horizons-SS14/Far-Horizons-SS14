@@ -1,6 +1,6 @@
 # Hacky for the stress test so don't even consider adding to this
 - type: entity
-  name: Burrower #Far Horizons - The Great Capitalization Crusade
+  name: burrower
   suffix: XenoAlien #Far Horizons
   id: MobXeno
   parent: SimpleSpaceMobBase
@@ -150,7 +150,7 @@
     speechVerb: LargeMob
 
 - type: entity
-  name: Praetorian #Far Horizons - The Great Capitalization Crusade
+  name: praetorian
   suffix: XenoAlien #Far Horizons
   parent: MobXeno
   id: MobXenoPraetorian
@@ -197,7 +197,7 @@
         - MobLayer
 
 - type: entity
-  name: Drone #Far Horizons - The Great Capitalization Crusade
+  name: drone
   suffix: XenoAlien #Far Horizons
   parent: MobXeno
   id: MobXenoDrone
@@ -244,7 +244,7 @@
         - MobLayer
 
 - type: entity
-  name: Queen #Far Horizons - The Great Capitalization Crusade
+  name: queen
   suffix: XenoAlien #Far Horizons
   parent: MobXeno
   id: MobXenoQueen
@@ -346,7 +346,7 @@
     - CannotSuicide
 
 - type: entity
-  name: Ravager #Far Horizons #Far Horizons - The Great Capitalization Crusade
+  name: ravager
   suffix: XenoAlien #Far Horizons
   parent: MobXeno
   id: MobXenoRavager
@@ -393,7 +393,7 @@
         - MobLayer
 
 - type: entity
-  name: Runner #Far Horizons #Far Horizons - The Great Capitalization Crusade
+  name: runner
   suffix: XenoAlien #Far Horizons
   parent: MobXeno
   id: MobXenoRunner
@@ -433,7 +433,7 @@
         - MobLayer
 
 - type: entity
-  name: Rouny #Far Horizons - The Great Capitalization Crusade
+  name: rouny
   suffix: Meme, XenoAlien #Far Horizons
   parent: MobXenoRunner
   id: MobXenoRouny
@@ -449,7 +449,7 @@
       amount: 3
 
 - type: entity
-  name: Spitter #Far Horizons - The Great Capitalization Crusade
+  name: spitter
   suffix: XenoAlien #Far Horizons
   parent: MobXeno
   id: MobXenoSpitter
@@ -507,7 +507,7 @@
         - MobLayer
 
 - type: entity
-  name: Space Adder #Far Horizons
+  name: space adder
   parent: SimpleSpaceMobBase
   id: MobPurpleSnake
   description: A menacing purple snake from Kepler-283c.
@@ -585,7 +585,7 @@
         Quantity: 30
 
 - type: entity
-  name: Space Adder #Far Horizons
+  name: space adder
   parent: MobPurpleSnake
   id: MobSmallPurpleSnake
   suffix: small

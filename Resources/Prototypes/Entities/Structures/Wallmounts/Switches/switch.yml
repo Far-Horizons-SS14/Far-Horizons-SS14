@@ -1,7 +1,7 @@
 - type: entity
   parent: BaseWallmountMetallic
   id: SignalSwitch
-  name: Signal Switch #FH
+  name: signal switch
   description: It's a switch for toggling power to things.
   components:
   - type: WallMount
@@ -54,7 +54,7 @@
 - type: entity
   parent: BaseWallmountMetallic
   id: SignalButton
-  name: Signal Button #FH
+  name: signal button
   description: It's a button for activating something.
   components:
   - type: WallMount
@@ -106,7 +106,7 @@
 - type: entity
   parent: BaseWallmountMetallic
   id: ApcNetSwitch
-  name: APC Net Switch #FH
+  name: apc net switch
   description: It's a switch for toggling lights that are connected to the same apc.
   components:
   - type: WallMount
@@ -133,7 +133,7 @@
 - type: entity
   parent: SignalSwitch
   id: SignalSwitchDirectional
-  name: Signal Switch #FH
+  name: signal switch
   suffix: directional
   components:
   - type: WallMount
@@ -145,7 +145,7 @@
 - type: entity
   parent: SignalButton
   id: SignalButtonDirectional
-  name: Signal Button #FH
+  name: signal button
   suffix: directional
   components:
   - type: WallMount
@@ -157,7 +157,7 @@
 - type: entity
   parent: ApcNetSwitch
   id: ApcNetSwitchDirectional
-  name: APC Net Switch #FH
+  name: apc net switch
   suffix: directional
   components:
   - type: WallMount
@@ -171,7 +171,7 @@
 - type: entity
   parent: SignalButtonDirectional
   id: LockableButton
-  name: Lockable Button #FH
+  name: lockable button
   categories: [ HideSpawnMenu ]
   components:
   - type: Appearance

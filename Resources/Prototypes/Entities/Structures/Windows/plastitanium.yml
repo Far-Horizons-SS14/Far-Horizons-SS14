@@ -2,7 +2,7 @@
   id: PlastitaniumWindowBase
   parent: BaseStructure
   abstract: true
-  name: Plastitanium Window #FH CRUSADE
+  name: plastitanium window
   description: Don't smudge up the glass down there.
   placement:
     mode: SnapgridCenter
@@ -50,7 +50,7 @@
 - type: entity
   id: PlastitaniumWindowSquareBase
   abstract: true
-  name: Plastitanium Window #FH CRUSADE
+  name: plastitanium window
   parent: PlastitaniumWindowBase
   components:
   - type: Sprite
@@ -75,7 +75,7 @@
 
 - type: entity
   id: PlastitaniumWindowIndestructible
-  name: Plastitanium Window #FH CRUSADE
+  name: plastitanium window
   parent: PlastitaniumWindowSquareBase
   suffix: indestructible
   components:
@@ -84,7 +84,7 @@
 
 - type: entity
   id: PlastitaniumWindow
-  name: Plastitanium Window #FH CRUSADE
+  name: plastitanium window
   parent: PlastitaniumWindowSquareBase
   components:
   - type: Destructible
@@ -129,7 +129,7 @@
 - type: entity
   id: PlastitaniumWindowDiagonalBase
   abstract: true
-  name: Plastitanium Window #FH CRUSADE
+  name: plastitanium window
   parent: PlastitaniumWindowBase
   suffix: diagonal
   components:
@@ -170,7 +170,7 @@
 
 - type: entity
   id: PlastitaniumWindowDiagonalIndestructible
-  name: Plastitanium Window #FH CRUSADE
+  name: plastitanium window
   parent: PlastitaniumWindowDiagonalBase
   suffix: diagonal, indestructible
   components:
@@ -179,7 +179,7 @@
 
 - type: entity
   id: PlastitaniumWindowDiagonal
-  name: Plastitanium Window #FH CRUSADE
+  name: plastitanium window
   parent: PlastitaniumWindowDiagonalBase
   suffix: diagonal
   components:

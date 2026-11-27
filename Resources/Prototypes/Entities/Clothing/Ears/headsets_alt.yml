@@ -2,7 +2,7 @@
   abstract: true
   parent: ClothingHeadset
   id: ClothingHeadsetAlt
-  name: Headset #Far Horizons - The Great Capitalization Crusade
+  name: headset
   description: An updated, modular intercom that fits over the head. Takes encryption keys.
   components:
   - type: Sprite
@@ -13,7 +13,7 @@
 - type: entity
   parent: ClothingHeadsetAlt
   id: ClothingHeadsetAltCargo
-  name: Quartermaster's Over-Ear Headset #Far Horizons - The Great Capitalization Crusade
+  name: quartermaster's over-ear headset
   components:
   - type: ContainerFill
     containers:
@@ -33,7 +33,7 @@
 - type: entity
   parent: [ClothingHeadsetAlt, BaseCommandContraband]
   id: ClothingHeadsetAltCommand
-  name: Command Over-Ear Headset #Far Horizons - The Great Capitalization Crusade
+  name: command over-ear headset
   components:
   - type: ContainerFill
     containers:
@@ -50,7 +50,7 @@
 - type: entity
   parent: [ClothingHeadsetAlt, BaseCommandContraband]
   id: ClothingHeadsetAltEngineering
-  name: Chief Engineer's Over-Ear Headset #Far Horizons - The Great Capitalization Crusade
+  name: chief engineer's over-ear headset
   components:
   - type: ContainerFill
     containers:
@@ -69,7 +69,7 @@
 - type: entity
   parent: [ClothingHeadsetAlt, BaseCommandContraband]
   id: ClothingHeadsetAltMedical
-  name: Chief Medical Officer's Over-Ear Headset #Far Horizons - The Great Capitalization Crusade
+  name: chief medical officer's over-ear headset
   components:
   - type: ContainerFill
     containers:
@@ -90,7 +90,7 @@
 - type: entity
   parent: [ClothingHeadsetAlt, BaseCommandContraband]
   id: ClothingHeadsetAltSecurity
-  name: Head Of Security's Over-Ear Headset #Far Horizons - The Great Capitalization Crusade
+  name: head of security's over-ear headset
   components:
   - type: ContainerFill
     containers:
@@ -109,7 +109,7 @@
 - type: entity
   parent: [ClothingHeadsetAlt, BaseCommandContraband]
   id: ClothingHeadsetAltScience
-  name: Research Director's Over-Ear Headset #Far Horizons - The Great Capitalization Crusade
+  name: research director's over-ear headset
   components:
   - type: ContainerFill
     containers:
@@ -128,7 +128,7 @@
 - type: entity
   parent: [ClothingHeadsetAlt, BaseSyndicateContraband]
   id: ClothingHeadsetAltSyndicate
-  name: Blood-Red Over-Ear Headset #Far Horizons - The Great Capitalization Crusade
+  name: blood-red over-ear headset
   description: An updated, modular syndicate intercom that fits over the head and takes encryption keys (there are 5 key slots.).
   components:
   - type: Headset
@@ -149,7 +149,7 @@
 - type: entity
   parent: ClothingHeadsetAlt
   id: ClothingHeadsetAltFreelancer
-  name: Freelancer's Over-Ear Headset #Far Horizons - The Great Capitalization Crusade
+  name: freelancer's over-ear headset
   components:
     - type: Headset
     - type: EncryptionKeyHolder
@@ -166,7 +166,7 @@
 - type: entity
   parent: [ClothingHeadsetAlt, BaseMagicalContraband]
   id: ClothingHeadsetAltWizard
-  name: Wizard's Over-Ear Headset #Far Horizons - The Great Capitalization Crusade
+  name: wizard's over-ear headset
   components:
     - type: Headset
     - type: EncryptionKeyHolder

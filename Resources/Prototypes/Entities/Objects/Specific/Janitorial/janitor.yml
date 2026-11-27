@@ -1,6 +1,6 @@
 - type: entity
   parent: [SolutionMopLarge, BaseItem]
-  name: Mop #Far Horizons
+  name: mop
   id: MopItem
   description: A mop that can't be stopped, viscera cleanup detail awaits.
   components:
@@ -71,7 +71,7 @@
 
 - type: entity
   parent: MopItem
-  name: Advanced Mop #Far Horizons
+  name: advanced mop
   id: AdvMopItem
   description: Motorized mop that has a bigger reservoir and quickly replaces reagents inside with water. Automatic Clown Countermeasure not included.
   components:
@@ -103,7 +103,7 @@
         - MopAdv
 
 - type: entity
-  name: Wet Floor Sign #Far Horizons
+  name: wet floor sign
   id: WetFloorSign
   parent: ClothingOuterBase
   description: Caution! Wet Floor!
@@ -196,7 +196,7 @@
     - WetFloorSign
 
 - type: entity
-  name: Plunger #Far Horizons
+  name: plunger
   id: Plunger
   parent: BaseItem
   description: A plunger with a red plastic suction-cup and a wooden handle. Used to unclog drains.
@@ -261,7 +261,7 @@
       Wood: 100
 
 - type: entity
-  name: Golden Plunger #Far Horizons
+  name: golden plunger
   id: GoldenPlunger
   parent: Plunger
   description: A plunger with a plastic suction cup coated in a thin layer of gold given as a token of appreciation for years of service. Still used to unclog drains.
@@ -307,7 +307,7 @@
 - type: entity
   parent: [SolutionMopSmall, BaseItem]
   id: RagItem
-  name: Damp Rag #Far Horizons
+  name: damp rag
   description: For cleaning up messes, you suppose.
   components:
     - type: Sprite
@@ -353,7 +353,7 @@
 - type: entity
   parent: BaseItem
   id: WireBrush
-  name: Wire Brush #Far Horizons
+  name: wire brush
   description: A bristly steel wire brush, perfect for scraping away even the toughest patches of rust.
   components:
   - type: Sprite
@@ -389,7 +389,7 @@
 - type: entity
   parent: WireBrush
   id: WireBrushElectrical
-  name: Electrical Wire Brush #Far Horizons
+  name: electrical wire brush
   description: A bristly steel wire brush with a moving head, allowing for a way easier time cleaning.
   components:
   - type: Tool

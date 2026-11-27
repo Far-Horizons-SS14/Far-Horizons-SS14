@@ -29,7 +29,7 @@
 - type: entity
   parent: ClothingEyesHudBase
   id: ClothingEyesHudDiagnostic
-  name: Diagnostic HUD #Far Horizons - The Great Capitalization Crusade
+  name: diagnostic hud
   description: A heads-up display capable of analyzing the integrity and status of robotics and exosuits. Made out of see-borg-ium.
   components:
   - type: Sprite
@@ -46,7 +46,7 @@
 - type: entity
   parent: [ClothingEyesHudBase, ShowMedicalIcons]
   id: ClothingEyesHudMedical
-  name: Medical HUD #Far Horizons - The Great Capitalization Crusade
+  name: medical hud
   description: A heads-up display that scans the humanoids in view and provides accurate data about their health status.
   components:
   - type: Sprite
@@ -62,7 +62,7 @@
 - type: entity
   parent: [ClothingEyesHudBase, ShowSecurityIcons, BaseSecurityContraband]
   id: ClothingEyesHudSecurity
-  name: Security HUD #Far Horizons - The Great Capitalization Crusade
+  name: security hud
   description: A heads-up display that scans the humanoids in view and provides accurate data about their ID status and security records.
   components:
   - type: Sprite
@@ -78,7 +78,7 @@
 - type: entity
   parent: [ClothingEyesHudBase, BaseCommandContraband]
   id: ClothingEyesHudCommand
-  name: Administration HUD #Far Horizons - The Great Capitalization Crusade
+  name: administration hud
   description: A heads-up display that scans the humanoids in view and provides accurate data about their ID status.
   components:
   - type: Sprite
@@ -94,7 +94,7 @@
 - type: entity
   parent: ClothingEyesHudBase
   id: ClothingEyesHudBeer
-  name: Beer Goggles #Far Horizons - The Great Capitalization Crusade
+  name: beer goggles
   description: A pair of sunHud outfitted with apparatus to scan reagents, as well as providing an innate understanding of liquid viscosity while in motion.
   components:
   - type: Sprite
@@ -111,7 +111,7 @@
 - type: entity
   parent: [SolutionFood, SolutionSmall, ClothingEyesHudBase]
   id: ClothingEyesHudFriedOnion # It's been too long since I've had good onion rings...
-  name: Fried Onion Goggles #Far Horizons - The Great Capitalization Crusade
+  name: fried onion goggles
   description: Filler
   components:
   - type: Sprite
@@ -133,7 +133,7 @@
 - type: entity
   parent: ClothingEyesHudBase
   id: ClothingEyesHudOnionBeer
-  name: Thungerst Goggles #Far Horizons - The Great Capitalization Crusade
+  name: thungerst goggles
   description: Filler
   components:
   - type: Sprite
@@ -146,7 +146,7 @@
 - type: entity
   parent: [ClothingEyesHudBase, ShowMedicalIcons]
   id: ClothingEyesHudMedOnion
-  name: Medonion HUD #Far Horizons - The Great Capitalization Crusade
+  name: medonion hud
   description: Filler
   components:
   - type: Sprite
@@ -158,7 +158,7 @@
 - type: entity
   parent: [ClothingEyesHudBase, ShowMedicalIcons]
   id: ClothingEyesHudMedOnionBeer
-  name: Medthungerst HUD #Far Horizons - The Great Capitalization Crusade
+  name: medthungerst hud
   description: Filler
   components:
   - type: Sprite
@@ -171,7 +171,7 @@
 - type: entity
   parent: [ClothingEyesHudBase, ShowSecurityIcons, ShowMedicalIcons, BaseSecurityCommandContraband]
   id: ClothingEyesHudMedSec
-  name: Medsec HUD #Far Horizons - The Great Capitalization Crusade
+  name: medsec hud
   description: An eye display that looks like a mixture of medical and security huds.
   components:
   - type: Sprite
@@ -185,7 +185,7 @@
 - type: entity
   parent: [ClothingEyesHudBase, ShowSecurityIcons, ShowMedicalIcons]
   id: ClothingEyesHudMultiversal
-  name: Multiversal HUD #Far Horizons - The Great Capitalization Crusade
+  name: multiversal hud
   description: Filler
   components:
   - type: Sprite
@@ -201,7 +201,7 @@
 - type: entity
   parent: [ClothingEyesHudBase, ShowSecurityIcons, ShowMedicalIcons]
   id: ClothingEyesHudOmni
-  name: Omni HUD #Far Horizons - The Great Capitalization Crusade
+  name: omni hud
   description: Filler
   components:
   - type: Sprite
@@ -219,7 +219,7 @@
 - type: entity
   parent: [ClothingEyesHudBase, ShowSecurityIcons, BaseSyndicateContraband]
   id: ClothingEyesHudSyndicate
-  name: Syndicate Visor #Far Horizons - The Great Capitalization Crusade
+  name: syndicate visor
   description: The syndicate's professional head-up display, designed for better detection of humanoids and their subsequent elimination.
   components:
   - type: Sprite
@@ -235,7 +235,7 @@
 - type: entity
   parent: [ClothingEyesHudBase, ShowSecurityIcons, BaseSyndicateContraband]
   id: ClothingEyesHudSyndicateAgent
-  name: Syndicate Medical Visor #Far Horizons - The Great Capitalization Crusade
+  name: syndicate medical visor
   description: The Syndicate corpsman's professional heads-up display, designed for quick diagnosis of their team's status.
   components:
   - type: Sprite
@@ -261,7 +261,7 @@
 - type: entity
   parent: [ClothingEyesHudMedical, ClothingHeadEyeBaseFlippable]
   id: ClothingEyesEyepatchHudMedical
-  name: Medical HUD Eyepatch #Far Horizons - The Great Capitalization Crusade
+  name: medical hud eyepatch
   description: A heads-up display that scans the humanoids in view and provides accurate data about their health status. For true patriots.
   components:
   - type: Sprite
@@ -277,12 +277,12 @@
 - type: entity
   parent: [ClothingEyesEyepatchHudMedical, ClothingHeadEyeBaseFlipped]
   id: ClothingEyesEyepatchHudMedicalFlipped
-  name: Medical HUD Eyepatch #Far Horizons - The Great Capitalization Crusade
+  name: medical hud eyepatch
 
 - type: entity
   parent: [ClothingEyesHudSecurity, ClothingHeadEyeBaseFlippable]
   id: ClothingEyesEyepatchHudSecurity
-  name: Security HUD Eyepatch #Far Horizons - The Great Capitalization Crusade
+  name: security hud eyepatch
   description: A heads-up display that scans the humanoids in view and provides accurate data about their ID status and security records. For true patriots.
   components:
   - type: Sprite
@@ -298,12 +298,12 @@
 - type: entity
   parent: [ClothingEyesEyepatchHudSecurity,  ClothingHeadEyeBaseFlipped]
   id: ClothingEyesEyepatchHudSecurityFlipped
-  name: Security HUD Eyepatch #Far Horizons - The Great Capitalization Crusade
+  name: security hud eyepatch
 
 - type: entity
   parent: [ClothingEyesHudBeer, ClothingHeadEyeBaseFlippable]
   id: ClothingEyesEyepatchHudBeer
-  name: Beer HUD Eyepatch #Far Horizons - The Great Capitalization Crusade
+  name: beer hud eyepatch
   description: A pair of sunHud outfitted with apparatus to scan reagents, as well as providing an innate understanding of liquid viscosity while in motion. For true patriots.
   components:
   - type: Sprite
@@ -314,12 +314,12 @@
 - type: entity
   parent: [ClothingEyesEyepatchHudBeer, ClothingHeadEyeBaseFlipped]
   id: ClothingEyesEyepatchHudBeerFlipped
-  name: Beer HUD Eyepatch #Far Horizons - The Great Capitalization Crusade
+  name: beer hud eyepatch
 
 - type: entity
   parent: [ClothingEyesHudDiagnostic, ClothingHeadEyeBaseFlippable]
   id: ClothingEyesEyepatchHudDiag
-  name: Diagnostic HUD Eyepatch #Far Horizons - The Great Capitalization Crusade
+  name: diagnostic hud eyepatch
   description: A heads-up display capable of analyzing the integrity and status of robotics and exosuits. Made out of see-borg-ium.
   components:
   - type: Sprite
@@ -330,4 +330,4 @@
 - type: entity
   parent: [ClothingEyesEyepatchHudDiag, ClothingHeadEyeBaseFlipped]
   id: ClothingEyesEyepatchHudDiagFlipped
-  name: Diagnostic HUD Eyepatch #Far Horizons - The Great Capitalization Crusade
+  name: diagnostic hud eyepatch

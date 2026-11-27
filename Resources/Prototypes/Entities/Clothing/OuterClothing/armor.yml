@@ -7,7 +7,7 @@
   abstract: true
   parent: [ ClothingOuterBaseMedium, AllowSuitStorageClothing ]
   id: ClothingOuterArmorBase
-  name: Armor Vest #Far Horizons - The Great Capitalization Crusade
+  name: armor vest
   description: A standard Type I armored vest that provides decent protection against most types of damage.
   components:
   - type: Sprite
@@ -62,7 +62,7 @@
 - type: entity
   parent: [ BaseSecurityBartenderContraband, ClothingOuterArmorBasic ]
   id: ClothingOuterArmorBasicSlim
-  name: Armor Vest #Far Horizons - The Great Capitalization Crusade
+  name: armor vest
   suffix: Slim #Far Horizons - The Great Capitalization Crusade
   description: A slim Type I armored vest that provides decent protection against most types of damage.
   components:
@@ -74,7 +74,7 @@
 - type: entity
   parent: ClothingOuterArmorBasic
   id: ClothingOuterArmorBulletproof
-  name: Bulletproof Vest #Far Horizons - The Great Capitalization Crusade
+  name: bulletproof vest
   suffix: NT #Far Horizons - Dual Station Clarity
   description: A Type III heavy bulletproof vest that excels in protecting the wearer against traditional projectile weaponry and explosives to a minor extent.
   components:
@@ -108,7 +108,7 @@
 - type: entity
   parent: ClothingOuterArmorBasic
   id: ClothingOuterArmorReflective
-  name: Reflective Vest #Far Horizons - The Great Capitalization Crusade
+  name: reflective vest
   suffix: NT #Far Horizons - Dual Station Clarity
   description: An armored vest with advanced shielding to protect against energy weapons.
   components:
@@ -146,7 +146,7 @@
 - type: entity
   parent: [ClothingOuterArmorBasic, BaseSecurityContraband]
   id: ClothingOuterVestDetective
-  name: Detective's Vest #Far Horizons - The Great Capitalization Crusade
+  name: detective's vest
   suffix: NT #Far Horizons - Dual Station Clarity
   description: A hard-boiled private investigator's armored vest.
   components:
@@ -200,7 +200,7 @@
 - type: entity
   parent: [ClothingOuterArmorBaseCarapace, BaseCommandContraband]
   id: ClothingOuterArmorCaptainCarapace
-  name: Captain's Carapace #Far Horizons - The Great Capitalization Crusade
+  name: captain's carapace
   suffix: NT #Far Horizons - Dual Station Clarity
   description: An armored chestpiece that provides protection whilst still offering maximum mobility and flexibility. Issued only to the station's finest.
   components:
@@ -215,7 +215,7 @@
 - type: entity
   parent: [ClothingOuterArmorBaseCarapace, BaseCentcommContraband]
   id: ClothingOuterArmorCentcommCarapace
-  name: Centcomm Carapace #Far Horizons - The Great Capitalization Crusade
+  name: centcomm carapace
   suffix: NT #Far Horizons - Dual Station Clarity
   description: An armored chestpiece that provides protection whilst still offering maximum mobility and flexibility. Issued only to centcomm officials and agents.
   components:
@@ -228,7 +228,7 @@
 - type: entity
   parent: [ClothingOuterArmorBase, ClothingOuterStorageBase, BaseSyndicateContraband]
   id: ClothingOuterVestWeb
-  name: Web Vest #Far Horizons - The Great Capitalization Crusade
+  name: web vest
   suffix: NS #Far Horizons - Dual Station Clarity
   description: A synthetic armor vest. This one has added webbing and ballistic plates.
   components:
@@ -264,7 +264,7 @@
 - type: entity
   parent: [ClothingOuterArmorBase, ClothingOuterStorageBase, BaseSyndicateContraband]
   id: ClothingOuterVestWebElite
-  name: Elite Web Vest #Far Horizons - The Great Capitalization Crusade
+  name: elite web vest
   suffix: NS #Far Horizons - Dual Station Clarity
   description: A synthetic armor vest. This one has added webbing and heat resistant fibers.
   components:
@@ -310,7 +310,7 @@
 - type: entity
   parent: [ BaseMajorContraband, ClothingOuterVestWeb] #web vest so it should have some pockets for ammo
   id: ClothingOuterVestWebMerc
-  name: Mercenary Web Vest #Far Horizons - The Great Capitalization Crusade
+  name: mercenary web vest
   description: A high-quality armored vest made from a hard synthetic material. It's surprisingly flexible and light, despite formidable armor plating.
   components:
   - type: Sprite
@@ -340,7 +340,7 @@
 - type: entity
   parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing, BaseSyndicateContraband ]
   id: ClothingOuterArmorRaid
-  name: Syndicate Raid Suit #Far Horizons - The Great Capitalization Crusade
+  name: syndicate raid suit
   suffix: NS #Far Horizons - Dual Station Clarity
   description: A flexible and well-armored suit, made for speed, with a powerful shoulder mounted flashlight manufactured in the Gorlex Marauder's iconic blood-red color scheme, it does not protect its wearer from space.
   components:
@@ -436,7 +436,7 @@
 - type: entity
   parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing, BaseSecurityContraband]
   id: ClothingOuterArmorRiot
-  name: Riot Suit #Far Horizons - The Great Capitalization Crusade
+  name: riot suit
   suffix: NT #Far Horizons - Dual Station Clarity
   description: A suit of semi-flexible polycarbonate body armor with heavy padding to protect against melee attacks. Perfect for fighting delinquents around the station.
   components:
@@ -470,7 +470,7 @@
 - type: entity
   parent: [ ClothingOuterBaseLarge, BaseMajorContraband, AllowSuitStorageClothing ]
   id: ClothingOuterArmorCult
-  name: Acolyte Armor #Far Horizons - The Great Capitalization Crusade
+  name: acolyte armor
   description: An evil-looking piece of cult armor, made of bones.
   components:
   - type: Sprite
@@ -500,7 +500,7 @@
 - type: entity
   parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing]
   id: ClothingOuterArmorHeavy
-  name: Heavy Armor Suit #Far Horizons - The Great Capitalization Crusade
+  name: heavy armor suit
   description: A heavily armored suit that protects against excessive damage.
   components:
   - type: Sprite
@@ -533,7 +533,7 @@
 - type: entity
   parent: ClothingOuterArmorHeavy
   id: ClothingOuterArmorHeavyGreen
-  name: Green Heavy Armor Suit #Far Horizons - The Great Capitalization Crusade
+  name: green heavy armor suit
   description: A heavily armored suit with green accents that protects against excessive damage.
   components:
   - type: Sprite
@@ -544,7 +544,7 @@
 - type: entity
   parent: ClothingOuterArmorHeavy
   id: ClothingOuterArmorHeavyRed
-  name: Red Heavy Armor Suit #Far Horizons - The Great Capitalization Crusade
+  name: red heavy armor suit
   description: A heavily armored suit with red accents that protects against excessive damage.
   components:
   - type: Sprite
@@ -555,7 +555,7 @@
 - type: entity
   parent: ClothingOuterArmorHeavy
   id: ClothingOuterArmorMagusblue
-  name: Blue Magus Armor #Far Horizons - The Great Capitalization Crusade
+  name: blue magus armor
   description: An blue armored suit that provides good protection.
   components:
   - type: Sprite
@@ -566,7 +566,7 @@
 - type: entity
   parent: ClothingOuterArmorHeavy
   id: ClothingOuterArmorMagusred
-  name: Red Magus Armor #Far Horizons - The Great Capitalization Crusade
+  name: red magus armor
   description: A red armored suit that provides good protection.
   components:
   - type: Sprite
@@ -577,7 +577,7 @@
 - type: entity
   parent: [ ClothingOuterBaseLarge, BaseMajorContraband, AllowSuitStorageClothing ]
   id: ClothingOuterArmorChangeling
-  name: Chitinous Armor #Far Horizons - The Great Capitalization Crusade
+  name: chitinous armor
   description: Inflates the changeling's body into an all-consuming chitinous mass of armor.
   components:
   - type: Sprite
@@ -615,7 +615,7 @@
 - type: entity
   parent: [ ClothingOuterBaseLarge, BaseMajorContraband, AllowSuitStorageClothing ]
   id: ClothingOuterArmorBone
-  name: Bone Armor #Far Horizons - The Great Capitalization Crusade
+  name: bone armor
   description: Sits on you like a second skin.
   components:
   - type: Sprite
@@ -654,7 +654,7 @@
 - type: entity
   parent: [ ClothingOuterBaseLarge, BaseMajorContraband, AllowSuitStorageClothing ]
   id: ClothingOuterArmorPodWars
-  name: Ironclad II Armor #Far Horizons - The Great Capitalization Crusade
+  name: ironclad II armor
   description: A repurposed suit of ironclad II armor, a relic of the pod wars.
   components:
   - type: Sprite
@@ -686,7 +686,7 @@
 - type: entity
   parent: ClothingOuterArmorBase
   id: CardArmour
-  name: Cardboard Armour #Far Horizons - The Great Capitalization Crusade
+  name: cardboard armour
   description: A medieval chestpiece built from cardboard.
   components:
   - type: Sprite
