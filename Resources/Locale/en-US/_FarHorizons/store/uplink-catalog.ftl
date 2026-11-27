@@ -58,6 +58,7 @@ uplink-ammo-bundle-desc-fh = Reloading! Contains 4-5 magazines and one canister 
 
 uplink-nightvision-eyes-desc-fh = Allows you to see in the dark but makes you more vulnerable to flashes. 
 uplink-thermalvision-eyes-desc-fh = Allows you to see in the dark and detect creatures through walls but makes you more vulnerable to flashes. 
+uplink-mantis-blade-arms-name-fh = Mantis Blade Arm
 uplink-mantis-blade-arms-desc-fh = Originally used as a simple construction tool, now turned into hidden blades that can extend from your arm while still keeping its destructive prying skill. Truly a sight to behold. 
 uplink-advanced-claws-desc-fh = A cybernetic implant for hands. Allows an agent to extend sharp plasteel claws at will, and hide them away just as quickly. 
 uplink-forensics-implant-desc-fh = A cybernetic implant for hands. Removes an agent's fingerprints so as to not leave evidence of a crime. Does not work through gloves. 

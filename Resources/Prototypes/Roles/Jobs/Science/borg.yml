@@ -10,7 +10,6 @@
     role: JobBorg
     time: 5h
   weight: 10
-  canBeAntag: false
   icon: JobIconStationAi
   supervisors: job-supervisors-rd
   jobEntity: StationAiBrain
@@ -31,7 +30,6 @@
   requirements:
     - !type:OverallPlaytimeRequirement
       time: 10h
-  canBeAntag: false
   icon: JobIconBorg
   supervisors: job-supervisors-rd
   jobEntity: PlayerBorgChassis # Starlight edit

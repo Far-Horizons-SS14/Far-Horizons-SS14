@@ -27,7 +27,7 @@ public sealed class StationPowerTests : GameTest
         "FHCog",
         "FHFland",
         "FHManor",
-        // "FHMeta", - currently broken, fix later and reenable
+        "FHMeta",
         "FHOasis",
         "FHOmega",
         "FHCore",

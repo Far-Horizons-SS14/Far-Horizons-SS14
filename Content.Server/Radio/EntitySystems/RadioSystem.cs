@@ -41,7 +41,6 @@ namespace Content.Server.Radio.EntitySystems;
 /// <summary>
 ///     This system handles intrinsic radios and the general process of converting radio messages into chat messages.
 /// </summary>
-/// Far Horizons - made partial
 public sealed partial class RadioSystem : EntitySystem
 {
     [Dependency] private INetManager _netMan = default!;

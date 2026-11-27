@@ -46,7 +46,7 @@ namespace Content.Server.NPC.Systems;
 /// <summary>
 /// Handles utility queries for NPCs.
 /// </summary>
-public sealed partial class NPCUtilitySystem : EntitySystem // Far Horizons made partial
+public sealed partial class NPCUtilitySystem : EntitySystem
 {
     [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private ContainerSystem _container = default!;

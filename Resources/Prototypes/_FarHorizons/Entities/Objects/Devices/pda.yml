@@ -18,6 +18,16 @@
     accentVColor: "#447987"
   - type: Icon
     state: pda-medical
+  - type: CartridgeLoader
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - MedTekProCartridge
+      - NanoChatCartridge
+      - FrontierBankCartridge
+      - GSLNowCartridge
 
 - type: entity
   parent: BaseMedicalPDA
@@ -38,6 +48,16 @@
     accentVColor: "#B34200"
   - type: Icon
     state: pda-seniorphysician
+  - type: CartridgeLoader
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - MedTekProCartridge
+      - NanoChatCartridge
+      - FrontierBankCartridge
+      - GSLNowCartridge
 
 #Reps/BSO
 
@@ -286,6 +306,8 @@
         type: InstrumentBoundUserInterface
       enum.HealthAnalyzerUiKey.Key:
         type: HealthAnalyzerBoundUserInterface
+      enum.SurgeryComputerUiKey.Key:
+        type: SurgeryComputerBoundUserInterface
   - type: Tag
     tags:
     - DoorBumpOpener
@@ -429,6 +451,8 @@
         type: InstrumentBoundUserInterface
       enum.HealthAnalyzerUiKey.Key:
         type: HealthAnalyzerBoundUserInterface
+      enum.SurgeryComputerUiKey.Key:
+        type: SurgeryComputerBoundUserInterface
       enum.IntegrityAnalyzerUiKey.Key:
         type: IntegrityAnalyzerBoundUserInterface
   - type: Tag
@@ -587,6 +611,16 @@
     accentHColor: "#919119"
   - type: Icon
     state: pda-medicaldirector
+  - type: CartridgeLoader
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - MedTekProCartridge
+      - NanoChatCartridge
+      - FrontierBankCartridge
+      - GSLNowCartridge
 
 - type: entity
   parent: BaseNeoSolPDA
@@ -1073,6 +1107,16 @@
     accentVColor: "#447987"
   - type: Icon
     state: pda-medical
+  - type: CartridgeLoader
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - MedTekProCartridge
+      - NanoChatCartridge
+      - FrontierBankCartridge
+      - GSLNowCartridge
 
 - type: entity
   parent: BaseNeoSolMedicalPDA
@@ -1243,7 +1287,7 @@
     - NanoTaskCartridge
     - NewsReaderCartridge
     - WantedListCartridgeNS
-    - MedTekCartridge
+    - MedTekProCartridge
     - NanoChatCartridge
     - FrontierBankCartridge
     - GSLNowCartridge
@@ -1683,7 +1727,7 @@
     preinstalled:
       - NotekeeperCartridge
       - NanoTaskCartridge
-      - MedTekCartridge
+      - MedTekProCartridge
       - NanoChatCartridge
       - FrontierBankCartridge
       - GSLNowCartridge

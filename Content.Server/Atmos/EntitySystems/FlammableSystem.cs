@@ -50,8 +50,8 @@ namespace Content.Server.Atmos.EntitySystems
         [Dependency] private UseDelaySystem _useDelay = default!;
         [Dependency] private AudioSystem _audio = default!;
         [Dependency] private IRobustRandom _random = default!;
-        [Dependency] private LimbDamageSystem _limbDamage = default!; // Far Horizons
         [Dependency] private IGameTiming _timing = default!;
+        [Dependency] private LimbDamageSystem _limbDamage = default!; // Far Horizons
 
         private EntityQuery<InventoryComponent> _inventoryQuery;
         private EntityQuery<PhysicsComponent> _physicsQuery;

@@ -20,7 +20,7 @@ concurrency:
 jobs:  
   yaml-lint:
     if: "!contains(github.event.pull_request.labels.*.name, 'automated pr') && github.actor != 'github-actions[bot]' && github.event.pull_request.draft == false"
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
 
     steps:
       - uses: actions/checkout@v4
@@ -29,7 +29,7 @@ jobs:
   
   unit-tests:
     if: "!contains(github.event.pull_request.labels.*.name, 'automated pr') && github.actor != 'github-actions[bot]' && github.event.pull_request.draft == false"
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
 
     steps:
       - uses: actions/checkout@v4
@@ -38,7 +38,8 @@ jobs:
   
   integration-tests:
     if: "!contains(github.event.pull_request.labels.*.name, 'automated pr') && github.actor != 'github-actions[bot]' && github.event.pull_request.draft == false"
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
+    timeout-minutes: 25 # if it's stuck for so long - it's not completing 
 
     steps:
       - uses: actions/checkout@v4
@@ -51,7 +52,7 @@ jobs:
           sudo mkswap $SWAP_PATH
           sudo swapon $SWAP_PATH
       - uses: ./.github/actions/setup-test-env
-      - run: dotnet test --no-build -c DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj --settings .farhorizons/.integrationtests --logger "trx;LogFileName=results.trx"
+      - run: dotnet test --no-build -c DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj --settings .farhorizons/.integrationtests --logger "trx;LogFileName=results.trx" --blame-hang --blame-hang-timeout 10m --blame-hang-dump-type full
         env:
           DOTNET_gcServer: "1"
       - if: (!cancelled())
@@ -68,7 +69,7 @@ jobs:
   
   build-release:
     if: "!contains(github.event.pull_request.labels.*.name, 'automated pr') && github.actor != 'github-actions[bot]' && github.event.pull_request.draft == false"
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     steps:
       - uses: actions/checkout@v4
       - run: git submodule update --init --recursive

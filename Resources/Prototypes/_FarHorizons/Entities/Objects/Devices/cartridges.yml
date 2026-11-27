@@ -153,3 +153,22 @@
     icon:
       sprite: _FarHorizons/Interface/Misc/program_icons.rsi
       state: gsl_icon
+
+- type: entity
+  parent: BasePDACartridge
+  id: MedTekProCartridge
+  name: MedTek Pro cartridge
+  description: A program that provides both medical diagnostic and surgery guidance.
+  components:
+    - type: Sprite
+      state: cart-med
+    - type: Icon
+      sprite: Objects/Devices/cartridge.rsi
+      state: cart-med
+    - type: Cartridge
+      programName: med-tek-pro-program-name
+      icon:
+        sprite: Objects/Specific/Medical/healthanalyzer.rsi
+        state: icon
+    - type: MedTekCartridge
+      uiKeyOverride: enum.SurgeryComputerUiKey.Key

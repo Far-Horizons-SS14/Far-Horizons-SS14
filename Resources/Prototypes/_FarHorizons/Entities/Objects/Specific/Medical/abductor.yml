@@ -1,0 +1,35 @@
+- type: entity
+  parent: BaseItem
+  id: HandheldSurgeryComputer
+  name: Handheld Surgery Computer
+  suffix: DO NOT MAP
+  categories: [ DoNotMap ]
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Medical/healthanalyzer.rsi
+    layers:
+    - state: icon
+    - state: analyzer
+      shader: unshaded
+  - type: Item
+    heldPrefix: analyzer
+  - type: ActivatableUI
+    key: enum.SurgeryComputerUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.SurgeryComputerUiKey.Key:
+        type: SurgeryComputerBoundUserInterface
+  - type: ItemToggle
+    onUse: false
+  - type: HealthAnalyzer
+    uiKeyOverride: enum.SurgeryComputerUiKey.Key
+    scanningEndSound:
+      path: "/Audio/Items/Medical/healthscanner.ogg"
+  - type: Tag
+    tags:
+    - DiscreteHealthAnalyzer
+  - type: GuideHelp
+    guides:
+    - MedicalDoctor
+  - type: ItemPrice 
+    fallbackPrice: 50

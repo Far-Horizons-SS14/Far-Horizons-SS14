@@ -209,7 +209,7 @@ public sealed partial class AccessReaderSystem : EntitySystem
 
         if (!reader.Enabled)
             return true;
-
+        
         //Starlight start
         var @event = new AccessReadEvent();
         RaiseLocalEvent(user, ref @event);

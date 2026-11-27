@@ -9,7 +9,7 @@ using Robust.Shared.Map;
 namespace Content.Client.Decals.Overlays;
 
 [Virtual]
-public partial class DecalPlacementOverlay : Overlay
+public partial class DecalPlacementOverlay : Overlay // Starlight - unsealed so the ghost can override it
 {
     [Dependency] private IEyeManager _eyeManager = default!;
     [Dependency] private IInputManager _inputManager = default!;

@@ -38,7 +38,6 @@ public sealed partial class SiliconLawSystem : SharedSiliconLawSystem
     [Dependency] private SharedContainerSystem _container = default!;
     [Dependency] private IEntityManager _entMan = default!; // Starlight
 
-
     private static readonly ProtoId<SiliconLawsetPrototype> DefaultCrewLawset = "Crewsimov";
 
     /// <inheritdoc/>

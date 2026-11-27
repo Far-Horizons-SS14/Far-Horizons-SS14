@@ -29,7 +29,11 @@ store-caregory-spellbook-events = Event Spells
 store-ling-category-combat = Combat
 store-ling-category-sting = Stings
 store-ling-category-utility = Utility
+
 # Nukie Delivery
 store-category-nukie-delivery = Offers
 
-store-category-languages = Languages
+# Changeling
+store-category-combat = Combat
+store-category-utility = Utility
+store-category-stealth = Stealth

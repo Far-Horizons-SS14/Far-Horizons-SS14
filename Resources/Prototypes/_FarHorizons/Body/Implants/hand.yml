@@ -1,29 +1,45 @@
 - type: entity
+  id: BaseClawImplant
+  parent: BaseEntityHandImplant
+  abstract: true
+  components:
+    - type: UserInterface
+      interfaces:
+        enum.LimbItemToggleMenuUiKey.Key:
+          type: CyberLimbSystemItemsRadial
+    - type: LimbItemDeployer
+      action: ActionToggleClaws
+      sound: /Audio/Items/unsheath.ogg
+      handWhitelist:
+        tags:
+          - CyberHandItem
+      stateOn: z
+      stateOff: z
+
+- type: entity
   id: LeftHandImplantHypoClaws 
   name: Left Hand HypoClaws Implant 
   description: Gives you retractable Hypo Claws!
-  parent: BaseEntityHandImplant
+  parent: BaseClawImplant
   components:
   - type: Sprite
     state: l_hand_implant_claws 
   - type: Organ 
     category: HandLeftImplant 
-  - type: FunctionalOrgan
-    comps:
-    - type: InherentAction
-      action: ActionRetractableItemHypoClaws
+  - type: LimbItemStorage
+    items:
+      - HypoClaws
 
 - type: entity
   id: RightHandImplantHypoClaws 
   name: Right Hand HypoClaws Implant 
   description: Gives you retractable Hypo Claws!
-  parent: BaseEntityHandImplant
+  parent: BaseClawImplant
   components:
   - type: Sprite
     state: r_hand_implant_claws 
   - type: Organ 
     category: HandRightImplant 
-  - type: FunctionalOrgan
-    comps:
-    - type: InherentAction
-      action: ActionRetractableItemHypoClaws
+  - type: LimbItemStorage
+    items:
+      - HypoClaws

@@ -21,7 +21,6 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server.Anomaly.Effects;
 
-// Far Horizons - made partial
 public sealed partial class InnerBodyAnomalySystem : SharedInnerBodyAnomalySystem
 {
     [Dependency] private IAdminLogManager _adminLog = default!;

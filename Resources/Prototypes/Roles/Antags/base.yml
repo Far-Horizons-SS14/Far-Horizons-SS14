@@ -1,0 +1,116 @@
+﻿- type: antagSpecifier
+  abstract: true
+  id: BaseAntagSpecifier
+  jobBlacklist:
+  - CentralCommandOfficial
+  - DeathSquad
+  - ERTLeader
+  - ERTChaplain
+  - ERTEngineer
+  - ERTSecurity
+  - ERTMedical
+  - ERTJanitor
+  - CBURN
+  # Far Horizons start
+  - CC-CADOfficial
+  - CC-CIDOfficial
+  - CC-CSDOfficial
+  - CentralCommandOperator
+  - HC-COAOfficial
+  - HC-DCIOfficial
+  - HC-GWSOfficial
+  - HighCommandOfficial
+  - NanoTrasenSpecialForces
+  - NTNCBlueshield
+  # Far Horizons end
+  blacklist:
+    components:
+    - AntagImmune
+
+# Command
+- type: antagSpecifier
+  abstract: true
+  parent: BaseAntagSpecifier
+  id: CommandBlacklistedAntag
+  jobBlacklist:
+  - Captain
+  - HeadOfPersonnel
+  - HeadOfSecurity
+  - ChiefMedicalOfficer
+  - ResearchDirector
+  - ChiefEngineer
+  - Quartermaster
+  # Far Horizons start
+  - BlueShield
+  - Magistrate
+  - NanoTrasenRepresentative
+  # Far Horions end
+
+# Borgs
+- type: antagSpecifier
+  abstract: true
+  parent: BaseAntagSpecifier
+  id: CyborgBlacklistedAntag
+  jobBlacklist:
+  - StationAi
+  - Borg
+
+# Learner Roles
+- type: antagSpecifier
+  abstract: true
+  parent: BaseAntagSpecifier
+  id: InternBlacklistedAntag
+  jobBlacklist:
+  - SecurityCadet
+  - MedicalIntern
+  - ResearchAssistant
+  - TechnicalAssistant
+  - Visitor
+
+# Security
+- type: antagSpecifier
+  abstract: true
+  parent: BaseAntagSpecifier
+  id: SecurityBlacklistedAntag
+  jobBlacklist:
+  - HeadOfSecurity
+  - Warden
+  - Detective
+  - SecurityOfficer
+  - SecurityCadet
+# Far Horizons start
+  - Brigmedic
+  - Corpsman
+  - SecBorg
+# Far Horizons end
+
+# Far Horizons start
+# Law
+- type: antagSpecifier
+  abstract: true
+  parent: BaseAntagSpecifier
+  id: LawBlacklistedAntag
+  jobBlacklist:
+  - Magistrate
+  - IAA
+
+# Salvage
+- type: antagSpecifier
+  abstract: true
+  parent: BaseAntagSpecifier
+  id: SalvageBlacklistedAntag
+  jobBlacklist:
+  - SalvageLead
+  - SalvageSpecialist
+
+# Far Horizons end
+
+- type: antagSpecifier
+  abstract: true
+  parent: [ CommandBlacklistedAntag, SecurityBlacklistedAntag, LawBlacklistedAntag, SalvageBlacklistedAntag ] # FH - Add Law and Salvage
+  id: MindshieldRestrictedAntag
+
+- type: antagSpecifier
+  abstract: true
+  parent: [ MindshieldRestrictedAntag, CyborgBlacklistedAntag, InternBlacklistedAntag ]
+  id: RestrictedAntag

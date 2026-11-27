@@ -5,7 +5,6 @@
   components:
   - type: Sharp
   - type: MeleeWeapon
-    mustBeEquippedToUse: true
     wideAnimationRotation: 90
     soundHit:
       collection: AlienClaw
@@ -25,12 +24,6 @@
   - type: Tool
     qualities:
     - Slicing
-  - type: Clothing
-    slots: [gloves]
-    equipSound:
-      collection: ClawsUnsheathe # Placeholder
-    unequipSound:
-      collection: ClawsSheathe # Placeholder
 
 - type: entity
   name: advanced claws

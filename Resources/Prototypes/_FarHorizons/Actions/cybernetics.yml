@@ -1,28 +1,17 @@
 - type: entity
   parent: BaseAction
-  id: ActionRetractableItemHypoClaws
-  name: Hypo Claws
+  id: ActionToggleClaws
+  name: Toggle Claws
   description: Extend or retract your claws!
   components:
   - type: Action
-    useDelay: 1
-    raiseOnAction: true
-    itemIconStyle: BigAction
+    useDelay: 5
     icon:
       sprite: _Starlight/Actions/implants.rsi
       state: toggle_claws
+    itemIconStyle: NoItem
   - type: InstantAction
-    event: !type:OnRetractableItemActionEvent
-  - type: RetractableItemAction
-    spawnedPrototype: HypoClaws
-    spawnInHand: false
-    slot: gloves
-    requiredSlots: GLOVES
-    summonSounds:
-      collection: ClawsUnsheathe
-    retractSounds:
-      collection: ClawsSheathe
-    isCybernetic: true
+    event: !type:ToggleCyberlimbMenuEvent
 
 #technically I dont need this, but I really dont like the look of the default icon
 - type: entity

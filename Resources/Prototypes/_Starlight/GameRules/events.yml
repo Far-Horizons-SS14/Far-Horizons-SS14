@@ -1,5 +1,88 @@
+- type: antagSpecifier
+  id: AbductorScientist
+  pickPlayer: false
+  spawnerPrototype: AbductorScientistSpawner
+  startingGear: AbductorScientistGear
+  briefing:
+    text: abductor-role-greeting
+    color: Green
+    sound: /Audio/_Starlight/Misc/abductor.ogg
+  components:
+  - type: Abductor
+  - type: Muted
+  - type: AbductorScientist
+  - type: ActionGrant
+    actions:
+    - ActionReturnToShip
+  - type: Tag
+    tags:
+    - Abductor
+    - AbductorScientist
+    - CanPilot
+  - type: NpcFactionMember
+    factions:
+    - Abductor
+  mindRoles:
+  - MindRoleScientistAbductor
+
+- type: antagSpecifier
+  id: AbductorAgent
+  pickPlayer: false
+  spawnerPrototype: AbductorAgentSpawner
+  startingGear: AbductorAgentGear
+  briefing:
+    text: abductor-role-greeting
+    color: Green
+    sound: /Audio/_Starlight/Misc/abductor.ogg
+  components:
+  - type: Abductor
+  - type: Muted
+  - type: AbductorAgent
+  - type: ActionGrant
+    actions:
+    - ActionReturnToShip
+  - type: Tag
+    tags:
+    - Abductor
+    - CanPilot
+  - type: NpcFactionMember
+    factions:
+    - Abductor
+  mindRoles:
+  - MindRoleAgentAbductor
+
+- type: antagSpecifier
+  id: DerelictBorgi
+  pickPlayer: false
+  spawnerPrototype: SpawnPointGhostDerelictBorgi
+
+- type: antagSpecifier
+  id: DerelictPurrfusCyborg
+  pickPlayer: false
+  spawnerPrototype: SpawnPointGhostDerelictPurrfusCyborg
+
+- type: antagSpecifier
+  id: XenoBorgHeavyDerelict
+  pickPlayer: false
+  spawnerPrototype: SpawnPointGhostXenoBorgHeavyDerelict
+
+- type: antagSpecifier
+  id: XenoBorgEngiDerelict
+  pickPlayer: false
+  spawnerPrototype: SpawnPointGhostXenoborgEngiDerelict
+
+- type: antagSpecifier
+  id: XenoborgScoutDerelict
+  pickPlayer: false
+  spawnerPrototype: SpawnPointGhostXenoborgScoutDerelict
+
+- type: antagSpecifier
+  id: XenoBorgStealthDerelict
+  pickPlayer: false
+  spawnerPrototype: SpawnPointGhostXenoborgStealthDerelict
+
 - type: entity
-  parent: BaseGameRule
+  parent: BaseAntagGhostRoleRule
   id: AbductorsSpawn
   components:
   - type: StationEvent
@@ -13,58 +96,11 @@
   - type: AntagLoadProfileRule
     speciesHardOverride: Abductor
   - type: AntagSelection
-    definitions:
-    - spawnerPrototype: AbductorScientistSpawner
-      min: 1
-      max: 1
-      pickPlayer: false
-      startingGear: AbductorScientistGear
-      briefing:
-        text: abductor-role-greeting
-        color: Green
-        sound: /Audio/_Starlight/Misc/abductor.ogg
-      components:
-      - type: Abductor
-      - type: Muted
-      - type: AbductorScientist
-      - type: ActionGrant
-        actions:
-        - ActionReturnToShip
-      - type: Tag
-        tags:
-          - Abductor
-          - AbductorScientist
-          - CanPilot
-      - type: NpcFactionMember
-        factions:
-        - Abductor
-      mindRoles:
-      - MindRoleScientistAbductor #FH
-    - spawnerPrototype: AbductorAgentSpawner
-      min: 1
-      max: 1
-      pickPlayer: false
-      startingGear: AbductorAgentGear
-      briefing:
-        text: abductor-role-greeting
-        color: Green
-        sound: /Audio/_Starlight/Misc/abductor.ogg
-      components:
-      - type: Abductor
-      - type: Muted
-      - type: AbductorAgent
-      - type: ActionGrant
-        actions:
-        - ActionReturnToShip
-      - type: Tag
-        tags:
-          - Abductor
-          - CanPilot
-      - type: NpcFactionMember
-        factions:
-        - Abductor
-      mindRoles:
-      - MindRoleAgentAbductor #FH
+    antags:
+    - !type:FixedAntagCount
+      proto: AbductorScientist
+    - !type:FixedAntagCount
+      proto: AbductorAgent
   # Far Horizons start
   # The order of thise is important, startup events get executed from bottom up
   # Loading map after loading ghost roles leads to bugs
@@ -266,7 +302,7 @@
     - id: AbductorsSpawn
 
 - type: entity
-  parent: BaseGameRule
+  parent: BaseAntagGhostRoleRule
   id: DerelictBorgiSpawn
   components:
     - type: StationEvent
@@ -280,11 +316,9 @@
     - type: AntagSpawner
       prototype: DerelictBorgiChassis
     - type: AntagSelection
-      definitions:
-        - spawnerPrototype: SpawnPointGhostDerelictBorgi
-          min: 1
-          max: 1
-          pickPlayer: false
+      antags:
+      - !type:FixedAntagCount
+        proto: DerelictBorgi
           
 # Security Shuttle
 - type: entity
@@ -318,7 +352,7 @@
 #     applyCharacterProfile: true
 #   - type: AntagSelection
 #     selectionTime: PrePlayerSpawn
-#     definitions:
+#     antags:
 #     - prefRoles: [ Brighteye ]
 #       playerRatio: 1
 #       spawnerPrototype: SpawnPointGhostBrighteye
@@ -363,7 +397,7 @@
 # Derelict Cyborgs
 
 - type: entity
-  parent: BaseGameRule
+  parent: BaseAntagGhostRoleRule
   id: DerelictPurrfusCyborgSpawn
   components:
   - type: StationEvent
@@ -377,14 +411,12 @@
   - type: AntagSpawner
     prototype: PlayerPurrfusBorgDerelictGhostRole
   - type: AntagSelection
-    definitions:
-    - spawnerPrototype: SpawnPointGhostDerelictPurrfusCyborg
-      min: 1
-      max: 1
-      pickPlayer: false
+    antags:
+    - !type:FixedAntagCount
+      proto: DerelictPurrfusCyborg
       
 - type: entity
-  parent: BaseGameRule
+  parent: BaseAntagGhostRoleRule
   id: XenoBorgHeavyDerelictSpawn
   components:
     - type: StationEvent
@@ -398,14 +430,12 @@
     - type: AntagSpawner
       prototype: PlayerXenoBorgHeavyDerelictGhostRole
     - type: AntagSelection
-      definitions:
-        - spawnerPrototype: SpawnPointGhostXenoBorgHeavyDerelict
-          min: 1
-          max: 1
-          pickPlayer: false
+      antags:
+      - !type:FixedAntagCount
+        proto: XenoBorgHeavyDerelict
           
 - type: entity
-  parent: BaseGameRule
+  parent: BaseAntagGhostRoleRule
   id: XenoBorgEngiDerelictSpawn
   components:
     - type: StationEvent
@@ -419,14 +449,12 @@
     - type: AntagSpawner
       prototype: PlayerXenoBorgEngiDerelictGhostRole
     - type: AntagSelection
-      definitions:
-        - spawnerPrototype: SpawnPointGhostXenoborgEngiDerelict
-          min: 1
-          max: 1
-          pickPlayer: false
+      antags:
+      - !type:FixedAntagCount
+        proto: XenoBorgEngiDerelict
 
 - type: entity
-  parent: BaseGameRule
+  parent: BaseAntagGhostRoleRule
   id: XenoborgScoutDerelictSpawn
   components:
     - type: StationEvent
@@ -440,14 +468,12 @@
     - type: AntagSpawner
       prototype: PlayerXenoborgScoutDerelictGhostRole
     - type: AntagSelection
-      definitions:
-        - spawnerPrototype: SpawnPointGhostXenoborgScoutDerelict
-          min: 1
-          max: 1
-          pickPlayer: false
+      antags:
+      - !type:FixedAntagCount
+        proto: XenoborgScoutDerelict
           
 - type: entity
-  parent: BaseGameRule
+  parent: BaseAntagGhostRoleRule
   id: XenoBorgStealthDerelictSpawn
   components:
     - type: StationEvent
@@ -461,9 +487,7 @@
     - type: AntagSpawner
       prototype: PlayerXenoborgStealthDerelictGhostRole
     - type: AntagSelection
-      definitions:
-        - spawnerPrototype: SpawnPointGhostXenoborgStealthDerelict
-          min: 1
-          max: 1
-          pickPlayer: false
+      antags:
+      - !type:FixedAntagCount
+        proto: XenoBorgStealthDerelict
  

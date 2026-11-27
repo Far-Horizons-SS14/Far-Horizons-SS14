@@ -62,7 +62,6 @@ public sealed partial class MechSystem : SharedMechSystem
     [Dependency] private SharedPointLightSystem _light = default!;
     [Dependency] private IGameTiming Timing = default!;
 
-
     private static readonly ProtoId<ToolQualityPrototype> PryingQuality = "Prying";
 
     /// <inheritdoc/>

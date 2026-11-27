@@ -144,13 +144,13 @@ public sealed partial class ChangelingSystem : EntitySystem
             var blood = originalBlood.Clone();
             blood.ScaleTo(originalBlood.Volume);
             var ferroAcid = new ReagentQuantity("FerrochromicAcid", originalBlood.Volume);
-        
+
             _blood.ChangeBloodReagents(target, new Solution([ferroAcid]));
             _blood.SpillAllSolutions(target);
             _blood.ChangeBloodReagents(target, blood);
         }
         // Starlight edit end
-        
+
         EnsureComp<AbsorbedComponent>(target);
 
         var popup = Loc.GetString("changeling-absorb-end-self-ling");
@@ -199,7 +199,7 @@ public sealed partial class ChangelingSystem : EntitySystem
 
         var target = args.Target;
         if (TryComp<ChangelingIdentityComponent>(uid, out var identityStorage))
-            _changelingIdentitySystem.CloneToPausedMap((uid, identityStorage), target);
+            _changelingIdentitySystem.GrantIdentity((uid, identityStorage), target);
         _popup.PopupEntity(Loc.GetString("changeling-sting", ("target", Identity.Entity(target, EntityManager))), uid, uid);
 
     }
@@ -321,7 +321,7 @@ public sealed partial class ChangelingSystem : EntitySystem
     }
 
     private void OnToggleStrainedMuscles(EntityUid uid, ChangelingComponent comp, ref ToggleStrainedMusclesEvent args) => ToggleStrainedMuscles(uid, comp);
-    
+
     private void ToggleStrainedMuscles(EntityUid uid, ChangelingComponent comp)
     {
         if (!comp.StrainedMusclesActive)

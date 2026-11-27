@@ -14,7 +14,7 @@ namespace Content.Client.Lobby.UI
     {
         [Dependency] private IClientConsoleHost _consoleHost = default!;
         [Dependency] private IConfigurationManager _configurationManager = default!;
-        
+
         private string _serverName = string.Empty;
 
         public LobbyGui()

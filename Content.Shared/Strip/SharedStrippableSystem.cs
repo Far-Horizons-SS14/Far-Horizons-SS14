@@ -121,7 +121,7 @@ public abstract partial class SharedStrippableSystem : EntitySystem
         if (TryComp<CuffableComponent>(uid, out var cuffable))
         {
             var entity = new Entity<CuffableComponent>(uid, cuffable);
-            if (_cuffableSystem.IsCuffed(entity))
+            if (_cuffableSystem.IsCuffed(entity.AsNullable()))
             {
                 ev.Multiplier *= 0.5f; // Make stripping twice as fast if cuffed
             }
@@ -862,7 +862,7 @@ public abstract partial class SharedStrippableSystem : EntitySystem
         RaiseLocalEvent(targetPlayer, ref targetEv);
 
         // Starlight: Check if target is cuffed to reduce strip time
-        if (TryComp<CuffableComponent>(targetPlayer, out var cuffable) && _cuffableSystem.IsCuffed(new Entity<CuffableComponent>(targetPlayer, cuffable), true))
+        if (TryComp<CuffableComponent>(targetPlayer, out var cuffable) && _cuffableSystem.IsCuffed((targetPlayer, cuffable), true))
         {
             var reducedTime = TimeSpan.FromSeconds(targetEv.Time.TotalSeconds * 0.5);
             return (reducedTime, targetEv.Stealth);

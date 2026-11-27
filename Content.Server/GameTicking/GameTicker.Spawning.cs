@@ -155,16 +155,14 @@ namespace Content.Server.GameTicking
                 );
 
                 // If the player is preselected for antags, filter out profiles that aren't requesting these antags.
-                var antags = _antagSelection.GetPreSelectedAntags(playerSession);
-                if (antags.Count > 0)
+                var antagSpecifiers = _antagSelection.GetPreSelectedAntagSpecifiers(playerSession);
+                if (antagSpecifiers.Count > 0)
                 {
-                    // For each antag definition, make sure that at least one of the AntagPrototypes is in
-                    // the character's preferences.
-                    foreach (var antagSet in antags)
-                    {
-                        filteredPlayerProfiles =
-                            filteredPlayerProfiles.Where(profile => antagSet.Overlaps(profile.AntagPreferences));
-                    }
+                    // One profile must opt into every assigned specifier. This is a bit weird, but for allatonce if antags
+                    // aren't mutually exclusive one player can get assigned multiple, in which case they need to have a
+                    // profile that opts into all of them.
+                    filteredPlayerProfiles = filteredPlayerProfiles.Where(profile =>
+                        antagSpecifiers.All(antagSpecifier => antagSpecifier.PrefRoles.Any(profile.AntagPreferences.Contains)));
                 }
 
                 var finalPlayerProfiles = filteredPlayerProfiles.ToList();

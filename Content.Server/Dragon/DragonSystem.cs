@@ -36,7 +36,7 @@ public sealed partial class DragonSystem : EntitySystem
     [Dependency] private SharedMapSystem _map = default!;
     [Dependency] private MobStateSystem _mobState = default!;
     [Dependency] private TurfSystem _turf = default!;
-    [Dependency] private GibbingSystem _gibbing = default!; // Far Horizons
+    [Dependency] private GibbingSystem _gibbing = default!;
     [Dependency] private DamageableSystem _damageable = default!; // FH
     [Dependency] private SmokeSystem _smoke = default!;
 

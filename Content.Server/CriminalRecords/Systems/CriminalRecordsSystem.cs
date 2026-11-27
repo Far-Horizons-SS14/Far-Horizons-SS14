@@ -34,7 +34,7 @@ public sealed partial class CriminalRecordsSystem : SharedCriminalRecordsSystem
     [Dependency] private StationRecordsSystem _records = default!;
     [Dependency] private StationSystem _station = default!;
     [Dependency] private CartridgeLoaderSystem _cartridge = default!;
-    [Dependency] private ActivatableUISystem _activatableUISystem = default!; //FH
+    [Dependency] private ActivatableUISystem _activatableUISystem = default!; //FarHorizons
 
     public override void Initialize()
     {
