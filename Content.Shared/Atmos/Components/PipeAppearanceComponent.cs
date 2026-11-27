@@ -9,4 +9,9 @@ public sealed partial class PipeAppearanceComponent : Component
     public SpriteSpecifier.Rsi[] Sprite = [new(new("Structures/Piping/Atmospherics/pipe.rsi"), "pipeConnector"),
         new(new("Structures/Piping/Atmospherics/pipe_alt1.rsi"), "pipeConnector"),
         new(new("Structures/Piping/Atmospherics/pipe_alt2.rsi"), "pipeConnector")];
+
+    // Starlight BEGIN
+    // Extra sprite layers to tint with PipeColorVisuals.Color.
+    [DataField] public HashSet<Enum> ExtraColoredLayers = new();
+    // Starlight End
 }
