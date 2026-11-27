@@ -33,28 +33,9 @@
     roundEndBehavior: Nothing
     greetSoundNotification: /Audio/_FarHorizons/Ambience/Antag/lambda_start.ogg
   - type: AntagSelection
-    definitions:
-    - spawnerPrototype: SpawnPointLoneNukeOperative
-      min: 1
-      max: 1
-      prefRoles: [ Nukeops ]
-      pickPlayer: false
-      startingGear: ConsortiumLoneOperativeGearFull
-      roleLoadout:
-      - RoleSurvivalLambda
-      components:
-      - type: NukeOperative
-        syndStatusIcon: ConsortiumFaction
-      - type: RandomMetadata
-        nameSegments:
-        - NamesSyndicatePrefix
-        - NamesSyndicateNormal # TODO - replace with blue names??
-        nameFormat: name-format-nukie-generic
-      - type: NpcFactionMember
-        factions:
-        - Consortium
-      mindRoles:
-      - MindRoleLambdaLoneops
+    antags:
+    - !type:FixedAntagCount
+      proto: LambdaLoneOp
   # The order of thise is important, startup events get executed from bottom up
   # Loading map after loading ghost roles leads to bugs
   # Yes, it is stupid
@@ -81,14 +62,10 @@
     faction: FactionSyndicate
   - type: AlertLevelInterceptionRule
   - type: AntagSelection
-    definitions:
-    - prefRoles: [ TraitorSleeper ]
-      fallbackRoles: [ Traitor ]
-      min: 1
-      max: 2
+    antags:
+    - !type:LinearAntagCount
+      proto: TraitorSleeperNS
       playerRatio: 10
-      blacklist:
-        components:
-        - AntagImmune
-      mindRoles:
-      - MindRoleTraitorSleeperNS
+      range:
+        min: 1
+        max: 2

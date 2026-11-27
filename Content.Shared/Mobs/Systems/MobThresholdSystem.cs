@@ -11,7 +11,6 @@ using Robust.Shared.GameStates;
 
 namespace Content.Shared.Mobs.Systems;
 
-// Far Horizons - made partial
 public sealed partial class MobThresholdSystem : EntitySystem
 {
     [Dependency] private MobStateSystem _mobStateSystem = default!;

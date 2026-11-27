@@ -3,6 +3,7 @@ using Content.Server.Atmos.EntitySystems;
 using Content.Server.Chat.Managers;
 using Content.Shared.GameTicking.Components;
 using Robust.Server.GameObjects;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
@@ -20,13 +21,19 @@ public abstract partial class GameRuleSystem<T> : EntitySystem where T : ICompon
     [Dependency] private MapSystem _map = default!;
     [Dependency] private IServerFactionManager _factions = default!; // Far Horizons
 
+    [Dependency] protected EntityQuery<GameRuleComponent> GameRuleQuery = default!;
+    [Dependency] protected EntityQuery<T> RuleQuery = default!;
+
+    // Far Horizons - allow rules to specify that they start after other given rules
+    protected virtual Type[]? StartedAfter => null;
+
     public override void Initialize()
     {
         base.Initialize();
 
-        SubscribeLocalEvent<RoundStartAttemptEvent>(OnStartAttempt);
+        SubscribeLocalEvent<RoundStartAttemptEvent>(OnStartAttempt); // Far Horizons
         SubscribeLocalEvent<T, GameRuleAddedEvent>(OnGameRuleAdded);
-        SubscribeLocalEvent<T, GameRuleStartedEvent>(OnGameRuleStarted);
+        SubscribeLocalEvent<T, GameRuleStartedEvent>(OnGameRuleStarted, after: StartedAfter); // Far Horizons - allow rules to specify that they start after other given rules
         SubscribeLocalEvent<T, GameRuleEndedEvent>(OnGameRuleEnded);
         SubscribeLocalEvent<RoundEndTextAppendEvent>(OnRoundEndTextAppend);
     }
@@ -81,33 +88,33 @@ public abstract partial class GameRuleSystem<T> : EntitySystem where T : ICompon
 
     private void OnGameRuleAdded(EntityUid uid, T component, ref GameRuleAddedEvent args)
     {
-        if (!TryComp<GameRuleComponent>(uid, out var ruleData))
+        if (!GameRuleQuery.TryComp(uid, out var ruleData))
             return;
+
         Added(uid, component, ruleData, args);
     }
 
     private void OnGameRuleStarted(EntityUid uid, T component, ref GameRuleStartedEvent args)
     {
-        if (!TryComp<GameRuleComponent>(uid, out var ruleData))
+        if (!GameRuleQuery.TryComp(uid, out var ruleData))
             return;
+
         Started(uid, component, ruleData, args);
     }
 
     private void OnGameRuleEnded(EntityUid uid, T component, ref GameRuleEndedEvent args)
     {
-        if (!TryComp<GameRuleComponent>(uid, out var ruleData))
+        if (!GameRuleQuery.TryComp(uid, out var ruleData))
             return;
+
         Ended(uid, component, ruleData, args);
     }
 
     private void OnRoundEndTextAppend(RoundEndTextAppendEvent ev)
     {
-        var query = AllEntityQuery<T>();
-        while (query.MoveNext(out var uid, out var comp))
+        var query = QueryAllRules();
+        while (query.MoveNext(out var uid, out var comp, out var ruleData))
         {
-            if (!TryComp<GameRuleComponent>(uid, out var ruleData))
-                continue;
-
             AppendRoundEndText(uid, comp, ruleData, ref ev);
         }
     }

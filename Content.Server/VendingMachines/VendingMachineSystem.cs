@@ -62,6 +62,7 @@ namespace Content.Server.VendingMachines
             // Because im gonna loose this shit with calling from client
             SubscribeLocalEvent<VendingMachineComponent, BoundUIOpenedEvent>(OnUiOpened);
         }
+
         private void OnVendingPrice(EntityUid uid, VendingMachineComponent component, ref PriceCalculationEvent args)
         {
             var price = 0.0;

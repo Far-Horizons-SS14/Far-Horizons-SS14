@@ -1,22 +1,22 @@
 - type: entity
-  id: BaseKudzu
   abstract: true
+  id: BaseKudzu
   placement:
     mode: SnapgridCenter
     snap:
-      - Wall
+    - Wall
   components:
-    - type: Appearance
-    - type: Transform
-      anchored: true
-    - type: Physics
-    - type: Kudzu
-    - type: GrowingKudzu
-    - type: ActiveEdgeSpreader
-    - type: EdgeSpreader
-      id: Kudzu
-    - type: SpeedModifierContacts
-      affectAirborne: true
+  - type: Appearance
+  - type: Transform
+    anchored: true
+  - type: Physics
+  - type: Kudzu
+  - type: GrowingKudzu
+  - type: ActiveEdgeSpreader
+  - type: EdgeSpreader
+    id: Kudzu
+  - type: SpeedModifierContacts
+    affectAirborne: true
 
 - type: entity
   parent: [ BaseKudzu, SolutionFood ]
@@ -106,77 +106,84 @@
     - Ruminant
 
 - type: entity
-  id: WeakKudzu
   parent: Kudzu
+  id: WeakKudzu
   suffix: Weak
   components:
-    - type: Kudzu
-      spreadChance: 0.3
+  - type: Kudzu
+    spreadChance: 0.3
+
+- type: entityTable
+  id: kudzuStructureTable
+  table: !type:GroupSelector
+    children:
+    - id: LightTree
+      weight: 6
+    - id: CrystalCyan
 
 - type: entity
+  parent: Kudzu
   id: KudzuFlowerFriendly
   name: floral carpet
-  suffix: Friendly, Floral Anomaly
   description: A colorful carpet of flowers sprawling in every direction. You're not sure whether to take it down or leave it up.
-  parent: Kudzu
+  suffix: Friendly, Floral Anomaly
   components:
-    - type: Sprite
-      drawdepth: HighFloorObjects
-      sprite: Objects/Misc/kudzuflower.rsi
-      state: kudzu_11
-    - type: Kudzu
-      spriteVariants: 5
-      spreadChance: 0.01
-    - type: SpeedModifierContacts
-      walkSpeedModifier: 0.8
-      sprintSpeedModifier: 0.8
-      blacklist:
-        components:
-        - IgnoreKudzu
-    - type: RandomSpawner
-      deleteSpawnerAfterSpawn: false
-      rareChance: 0.15
-      offset: 0.2
-      chance: 0.05
-      prototypes:
-      - LightTree #TODO: transform into EntityTable with weight
-      - LightTree
-      - LightTree
-      - LightTree
-      - LightTree
-      - LightTree
-      - CrystalCyan
-      rarePrototypes:
-      - AnomalyFloraBulb
-    - type: Tag
-      tags:
-      - Ruminant
+  - type: Sprite
+    drawdepth: HighFloorObjects
+    sprite: Objects/Misc/kudzuflower.rsi
+    state: kudzu_11
+  - type: Kudzu
+    spriteVariants: 5
+    spreadChance: 0.01
+  - type: SpeedModifierContacts
+    walkSpeedModifier: 0.8
+    sprintSpeedModifier: 0.8
+    blacklist:
+      components:
+      - IgnoreKudzu
+  - type: EntityTableSpawner
+    table: !type:GroupSelector
+      children:
+      - id: AnomalyFloraBulb
+        weight: 0.15
+      - !type:NestedSelector
+        tableId: kudzuStructureTable
+        weight: 0.85
+        prob: 0.05
+    deleteSpawnerAfterSpawn: false
+    offset: 0.2
+  - type: Tag
+    tags:
+    - Ruminant
 
 - type: entity
+  parent: KudzuFlowerFriendly
   id: KudzuFlowerAngry
   suffix: Angry, Floral Anomaly
-  parent: KudzuFlowerFriendly
   components:
-    - type: Kudzu
-      spreadChance: 0.2
-    - type: RandomSpawner
-      chance: 0.05
-      rarePrototypes:
-      - AnomalyFloraBulb
-      - AnomalyFloraBulb
-      - MobLuminousEntity
-      - MobLuminousObject
-      - MobLuminousPerson
+  - type: Kudzu
+    spreadChance: 0.2
+  - type: EntityTableSpawner
+    table: !type:GroupSelector
+      children:
+      - !type:NestedSelector
+        tableId: kudzuStructureTable
+        weight: 0.85
+        prob: 0.05
+      - !type:GroupSelector
+        weight: 0.15
+        children:
+        - id: AnomalyFloraBulb
+          weight: 2
+        - id: MobLuminousEntity
+        - id: MobLuminousObject
+        - id: MobLuminousPerson
 
 - type: entity
-  parent: [BaseKudzu, SolutionFood]
+  parent: [ BaseKudzu, SolutionFood ]
   id: FleshKudzu
   name: tendons
   description: A rapidly growing cluster of meaty tendons. WHY ARE YOU STOPPING TO LOOK AT IT?!
-  placement:
-    mode: SnapgridCenter
-    snap:
-      - Wall
   components:
   - type: MeleeSound
     soundGroups:
@@ -269,49 +276,52 @@
     - Ruminant
 
 - type: entity
-  name: dark haze
-  id: ShadowKudzu
   parent: [ BaseKudzu, BaseShadow ]
+  id: ShadowKudzu
+  name: dark haze
   components:
-    - type: Physics
-      canCollide: false
-    - type: Occluder
-    - type: Sprite
-      drawdepth: Effects
-      sprite: Effects/spookysmoke.rsi
-      layers:
-      - state: spookysmoke
-        color: "#793a80dd"
-        map: [base]
-    - type: Kudzu
-      growthTickChance: 0.2
-      spreadChance: 0.99
-    - type: RandomSpawner
-      deleteSpawnerAfterSpawn: false
-      rareChance: 0.05
-      offset: 0.2
-      chance: 0.45
-      prototypes:
-      - ShadowBasaltRandom
-      rarePrototypes:
-      - ShadowPortal
-      - ShadowKudzuLootSpawner
-    - type: Tag
-      tags:
-        - HideContextMenu
-        - SpookyFog
-    - type: OptionsVisualizer
-      visuals:
-        base:
-        - options: Default
-          data: { state: spookysmoke }
-        - options: ReducedMotion
-          data: { state: spookysmoke_static }
+  - type: Physics
+    canCollide: false
+  - type: Occluder
+  - type: Sprite
+    drawdepth: Effects
+    sprite: Effects/spookysmoke.rsi
+    layers:
+    - state: spookysmoke
+      color: "#793a80dd"
+      map: [base]
+  - type: Kudzu
+    growthTickChance: 0.2
+    spreadChance: 0.99
+  - type: EntityTableSpawner
+    table: !type:GroupSelector
+      children:
+      - id: ShadowBasaltRandom
+        weight: 0.95
+        prob: 0.45
+      - !type:GroupSelector
+        weight: 0.05
+        children:
+        - id: ShadowPortal
+        - id: ShadowKudzuLootSpawner # Also has its own offset
+    deleteSpawnerAfterSpawn: false
+    offset: 0.2
+  - type: Tag
+    tags:
+    - HideContextMenu
+    - SpookyFog
+  - type: OptionsVisualizer
+    visuals:
+      base:
+      - options: Default
+        data: { state: spookysmoke }
+      - options: ReducedMotion
+        data: { state: spookysmoke_static }
 
 - type: entity
-  name: haze
-  id: ShadowKudzuWeak
   parent: ShadowKudzu
+  id: ShadowKudzuWeak
+  name: haze
   components:
-    - type: Kudzu
-      spreadChance: 0 #appears during pulsation. It shouldnt spreading.
+  - type: Kudzu
+    spreadChance: 0 #appears during pulsation. It shouldnt spreading.

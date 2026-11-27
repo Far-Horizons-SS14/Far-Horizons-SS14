@@ -29,13 +29,13 @@ public sealed partial class CluwneSystem : EntitySystem
 
     [Dependency] private PopupSystem _popupSystem = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private IRobustRandom _robustRandom = default!;
     [Dependency] private SharedStunSystem _stunSystem = default!;
     [Dependency] private DamageableSystem _damageableSystem = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private ChatSystem _chat = default!;
     [Dependency] private AutoEmoteSystem _autoEmote = default!;
     [Dependency] private NameModifierSystem _nameMod = default!;
-    [Dependency] private IRobustRandom _random = default!;
     [Dependency] private NpcFactionSystem _faction = default!;
 
     [Dependency] private OutfitSystem _outfitSystem = default!;
@@ -127,13 +127,13 @@ public sealed partial class CluwneSystem : EntitySystem
 
         args.Handled = _chat.TryPlayEmoteSound(ent.Owner, EmoteSounds, args.Emote);
 
-        if (_random.Prob(ent.Comp.GiggleRandomChance))
+        if (_robustRandom.Prob(ent.Comp.GiggleRandomChance))
         {
             _audio.PlayPvs(ent.Comp.SpawnSound, ent.Owner);
             _chat.TrySendInGameICMessage(ent.Owner, Loc.GetString(ent.Comp.GiggleEmote), InGameICChatType.Emote, ChatTransmitRange.Normal);
         }
 
-        else if (_random.Prob(ent.Comp.KnockChance))
+        else if (_robustRandom.Prob(ent.Comp.KnockChance))
         {
             _audio.PlayPvs(ent.Comp.KnockSound, ent.Owner);
             _stunSystem.TryUpdateParalyzeDuration(ent.Owner, TimeSpan.FromSeconds(ent.Comp.ParalyzeTime));

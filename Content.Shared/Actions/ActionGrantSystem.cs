@@ -5,7 +5,6 @@ namespace Content.Shared.Actions;
 /// <summary>
 /// <see cref="ActionGrantComponent"/>
 /// </summary>
-/// Far Horizons - made partial
 public sealed partial class ActionGrantSystem : EntitySystem
 {
     [Dependency] private SharedActionsSystem _actions = default!;

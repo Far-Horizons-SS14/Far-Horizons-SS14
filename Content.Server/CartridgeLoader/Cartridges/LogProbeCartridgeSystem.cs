@@ -15,7 +15,7 @@ using Robust.Shared.Random;
 
 namespace Content.Server.CartridgeLoader.Cartridges;
 
-public sealed partial class LogProbeCartridgeSystem : EntitySystem // CD - Made partial
+public sealed partial class LogProbeCartridgeSystem : EntitySystem
 {
     [Dependency] private CartridgeLoaderSystem _cartridge = default!;
     [Dependency] private IGameTiming _timing = default!;

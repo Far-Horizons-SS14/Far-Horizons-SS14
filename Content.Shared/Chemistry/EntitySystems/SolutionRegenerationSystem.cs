@@ -44,7 +44,7 @@ public sealed partial class SolutionRegenerationSystem : EntitySystem
         // Starlight start
         var time = _timing.CurTime;
         var query = EntityQueryEnumerator<SLActiveSolutionRegenerationComponent, SolutionRegenerationComponent, SolutionComponent>();
-        while (query.MoveNext(out var uid, out _, out var regen, out var solutionComp))
+        while (query.MoveNext(out var uid, out _, out var regen, out var solution))
         {
             if (time < regen.NextRegenTime)
                 continue;
@@ -54,7 +54,7 @@ public sealed partial class SolutionRegenerationSystem : EntitySystem
             regen.NextRegenTime = time + regen.Duration;
             // Needs to be networked and dirtied so that the client can reroll it during prediction
             Dirty(uid, regen);
-            var amount = FixedPoint2.Min(solutionComp.Solution.AvailableVolume, regen.Generated.Volume);
+            var amount = FixedPoint2.Min(solution.Solution.AvailableVolume, regen.Generated.Volume);
             if (amount <= FixedPoint2.Zero)
             {
                 RemCompDeferred<SLActiveSolutionRegenerationComponent>(uid);
@@ -67,7 +67,7 @@ public sealed partial class SolutionRegenerationSystem : EntitySystem
                 ? regen.Generated
                 : regen.Generated.Clone().SplitSolution(amount);
 
-            _solutionContainer.TryAddSolution((uid, solutionComp), generated); // FH - swap to solutionEnt.Value
+            _solutionContainer.TryAddSolution((uid, solution), generated);
         }
     }
 }

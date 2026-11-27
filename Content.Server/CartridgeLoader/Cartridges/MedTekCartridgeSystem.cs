@@ -7,6 +7,7 @@ namespace Content.Server.CartridgeLoader.Cartridges;
 public sealed partial class MedTekCartridgeSystem : EntitySystem
 {
     [Dependency] private CartridgeLoaderSystem _cartridgeLoaderSystem = default!;
+
     public override void Initialize()
     {
         base.Initialize();

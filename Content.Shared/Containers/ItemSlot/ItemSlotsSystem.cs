@@ -35,6 +35,7 @@ namespace Content.Shared.Containers.ItemSlots
         [Dependency] private SharedHandsSystem _handsSystem = default!;
         [Dependency] private SharedAudioSystem _audioSystem = default!;
         [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
+
         public override void Initialize()
         {
             base.Initialize();
