@@ -74,7 +74,7 @@
   components: &subfloorAlt1
     - type: Sprite
       drawdepth: ThinPipeAlt1
-      sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt1.rsi
+      sprite: Structures/Piping/Atmospherics/pipe_alt1.rsi # FH - 3 layers
 
 - type: entity
   parent: [GasPipeLayerAlt2, GasPipeTankSubfloorFilledPlasma1500]
@@ -83,7 +83,7 @@
   components: &subfloorAlt2
     - type: Sprite
       drawdepth: ThinPipeAlt2
-      sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt2.rsi
+      sprite: Structures/Piping/Atmospherics/pipe_alt2.rsi # FH - 3 layers
 
 # FH - 3 layers
 # - type: entity
@@ -271,7 +271,7 @@
   categories: [ HideSpawnMenu ]
   components: &tallAlt1
     - type: Sprite
-      sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt1.rsi
+      sprite: Structures/Piping/Atmospherics/pipe_alt1.rsi # FH - 3 layers
 
 - type: entity
   parent: [GasPipeLayerAlt2, GasPipeTankTallFilledPlasma3000]
@@ -279,7 +279,7 @@
   categories: [ HideSpawnMenu ]
   components: &tallAlt2
     - type: Sprite
-      sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt2.rsi
+      sprite: Structures/Piping/Atmospherics/pipe_alt2.rsi # FH - 3 layers
 
 # FH - 3 layers
 # - type: entity

@@ -7,7 +7,7 @@
   suffix: Frezon
   components:
     - type: Sprite
-      sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe.rsi
+      sprite: Structures/Piping/Atmospherics/pipe.rsi # FH - 3 layers
       drawdepth: ThinPipe
       layers:
         - state: pipeHalf
@@ -76,7 +76,7 @@
   components: &subfloorAlt1
     - type: Sprite
       drawdepth: ThinPipeAlt1
-      sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt1.rsi
+      sprite: Structures/Piping/Atmospherics/pipe_alt1.rsi # FH - 3 layers
 
 - type: entity
   parent: [GasPipeLayerAlt2, GasPipeTankSubfloorFilledFrezon1500]
@@ -85,7 +85,7 @@
   components: &subfloorAlt2
     - type: Sprite
       drawdepth: ThinPipeAlt2
-      sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt2.rsi
+      sprite: Structures/Piping/Atmospherics/pipe_alt2.rsi # FH - 3 layers
 
 # FH - 3 layers
 # - type: entity
@@ -271,7 +271,7 @@
   categories: [ HideSpawnMenu ]
   components: &tallAlt1
     - type: Sprite
-      sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt1.rsi
+      sprite: Structures/Piping/Atmospherics/pipe_alt1.rsi # FH - 3 layers
 
 - type: entity
   parent: [GasPipeLayerAlt2, GasPipeTankTallFilledFrezon3000]
@@ -279,7 +279,7 @@
   categories: [ HideSpawnMenu ]
   components: &tallAlt2
     - type: Sprite
-      sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt2.rsi
+      sprite: Structures/Piping/Atmospherics/pipe_alt2.rsi # FH - 3 layers
 
 # FH - 3 layers
 # - type: entity
