@@ -86,13 +86,6 @@ public sealed partial class AccessReaderComponent : Component
     [DataField]
     public bool BreakOnAccessBreaker = true;
 
-    //FH Start
-    /// <summary>
-    /// Allows Abductors to use access restricted entities
-    /// </summary>
-    [DataField] public bool AllowAbductor;
-    //FH end
-
     /// <summary>
     /// The examination text associated with this component.
     /// </summary>

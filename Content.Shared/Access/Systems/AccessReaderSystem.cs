@@ -211,15 +211,13 @@ public sealed partial class AccessReaderSystem : EntitySystem
         if (!reader.Enabled)
             return true;
 
-        if (!(reader.AllowAbductor && _tag.HasTag(user, AbductorTag))) //FH - Allow abductors to use devices
-        {
-            //Starlight start
-            var @event = new AccessReadEvent();
-            RaiseLocalEvent(user, ref @event);
-            if (@event.Denied)
-                return false;
-            //Starlight end
-        }
+        
+        //Starlight start
+        var @event = new AccessReadEvent();
+        RaiseLocalEvent(user, ref @event);
+        if (@event.Denied)
+            return false;
+        //Starlight end
 
         var accessSources = FindPotentialAccessItems(user);
         var access = FindAccessTags(user, accessSources);
