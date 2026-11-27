@@ -23,3 +23,15 @@
     accessGroups:
     - AllAccess
     - AllAccessNS
+
+- type: entity
+  id: BaseDoorElectronicsAbductor
+  parent: BaseElectronics
+  name: Abductor Door Elecronics
+  description: An electronics board used in doors and airlocks.
+  components:
+    - type: DoorElectronics
+      # FarHorizons Start
+      accessGroups:
+      - Abductor
+      # FarHorizons End

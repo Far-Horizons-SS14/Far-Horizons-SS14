@@ -21,12 +21,12 @@ public abstract partial class SharedAbductorSystem : EntitySystem
     {
         SubscribeLocalEvent<AbductorExperimentatorComponent, EntInsertedIntoContainerMessage>(OnInsertedContainer);
         SubscribeLocalEvent<AbductorExperimentatorComponent, EntRemovedFromContainerMessage>(OnRemovedContainer);
-        SubscribeLocalEvent<AbductorComponent, AccessReadEvent>(OnAccessRead);
+//        SubscribeLocalEvent<AbductorComponent, AccessReadEvent>(OnAccessRead); //FH
         
         base.Initialize();
     }
 
-    private void OnAccessRead(Entity<AbductorComponent> ent, ref AccessReadEvent args) => args.Denied = true;
+//    private void OnAccessRead(Entity<AbductorComponent> ent, ref AccessReadEvent args) => args.Denied = true; //FH
 
     private void OnRemovedContainer(Entity<AbductorExperimentatorComponent> ent, ref EntRemovedFromContainerMessage args)
     {
