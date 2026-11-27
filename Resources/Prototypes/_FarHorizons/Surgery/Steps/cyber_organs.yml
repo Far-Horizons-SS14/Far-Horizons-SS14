@@ -163,6 +163,9 @@
   name: Insert Pump
   baseTime: 3
   popup: surgery-cyber-implant-pump-popup-message
+  icon: 
+    sprite: _FarHorizons/Mobs/Species/IPC/organs.rsi
+    state: heart-off
   conditions:
     - !type:SurgeryLimbHasStatus
       statuses: 
@@ -250,6 +253,9 @@
   name: Insert Optics
   baseTime: 3
   popup: surgery-cyber-implant-optics-popup-message
+  icon: 
+    sprite: _FarHorizons/Mobs/Species/IPC/organs.rsi
+    state: eyeball-l
   conditions:
     - !type:SurgeryLimbHasStatus
       statuses: 
@@ -337,6 +343,9 @@
   name: Insert Vocalizer
   baseTime: 3
   popup: surgery-cyber-implant-vocalizer-popup-message
+  icon: 
+    sprite: _FarHorizons/Mobs/Species/IPC/organs.rsi
+    state: tongue
   conditions:
     - !type:SurgeryLimbHasStatus
       statuses: 

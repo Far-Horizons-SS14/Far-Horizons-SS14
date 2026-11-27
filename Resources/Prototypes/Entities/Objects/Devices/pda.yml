@@ -124,6 +124,8 @@
         type: InstrumentBoundUserInterface
       enum.HealthAnalyzerUiKey.Key:
         type: HealthAnalyzerBoundUserInterface
+      enum.SurgeryComputerUiKey.Key: # Far Horizons
+        type: SurgeryComputerBoundUserInterface  # Far Horizons
       enum.IntegrityAnalyzerUiKey.Key: #FarHorizons
         type: IntegrityAnalyzerBoundUserInterface #FarHorizons
   - type: RemoteStore # PDAs can access uplinks so they need this component.
@@ -824,6 +826,18 @@
     accentHColor: "#919119" #FH
   - type: Icon
     state: pda-cmo
+  # Far Horizons start
+  - type: CartridgeLoader
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - MedTekProCartridge
+      - NanoChatCartridge
+      - FrontierBankCartridge
+      - GSLNowCartridge
+  # Far Horizons end
 
 - type: entity
   parent: BaseMedicalPDA
@@ -1077,7 +1091,7 @@
       - NewsReaderCartridge
       - LogProbeCartridge
       - WantedListCartridge
-      - MedTekCartridge
+      - MedTekProCartridge # Far Horzions
       - AstroNavCartridge
       - HullSenseCartridge #FarHorizons
       - FrontierBankCartridge # Far Horzions
@@ -1250,7 +1264,7 @@
     preinstalled:
       - NotekeeperCartridge
       - NanoTaskCartridge
-      - MedTekCartridge
+      - MedTekProCartridge # Far Horzions
       - NanoChatCartridge # CD
       - FrontierBankCartridge # Far Horzions
       - GSLNowCartridge # Far Horizons
@@ -1505,7 +1519,7 @@
     - NanoTaskCartridge
     - NewsReaderCartridge
     - WantedListCartridge
-    - MedTekCartridge
+    - MedTekProCartridge # Far Horzions
     - NanoChatCartridge # CD
     - FrontierBankCartridge # Far Horzions
     - GSLNowCartridge # Far Horizons
@@ -1733,6 +1747,8 @@
         type: InstrumentBoundUserInterface
       enum.HealthAnalyzerUiKey.Key:
         type: HealthAnalyzerBoundUserInterface
+      enum.SurgeryComputerUiKey.Key: # Far Horizons
+        type: SurgeryComputerBoundUserInterface  # Far Horizons
       enum.ChameleonUiKey.Key:
         type: ChameleonBoundUserInterface
 

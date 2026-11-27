@@ -1,4 +1,5 @@
 hull-sense-program-name = HullSense
+med-tek-pro-program-name = MedTek Pro
 
 # Frontier Bank
 frontier-bank-program-name = Frontier Bank

@@ -126,7 +126,7 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
         if (!uid.Comp.Silent)
             _audio.PlayPvs(uid.Comp.ScanningEndSound, uid);
 
-        OpenUserInterface(args.User, uid);
+        OpenUserInterface(args.User, uid, uid.Comp.UiKeyOverride ?? HealthAnalyzerUiKey.Key); // Far Horizons
         BeginAnalyzingEntity(uid, args.Target.Value);
         args.Handled = true;
     }
@@ -158,13 +158,15 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
             _toggle.TryDeactivate(uid.Owner);
     }
 
-    private void OpenUserInterface(EntityUid user, EntityUid analyzer)
+    // Far Horizons start
+    private void OpenUserInterface(EntityUid user, EntityUid analyzer, Enum key)
     {
-        if (!_uiSystem.HasUi(analyzer, HealthAnalyzerUiKey.Key))
+        if (!_uiSystem.HasUi(analyzer, key))
             return;
 
-        _uiSystem.OpenUi(analyzer, HealthAnalyzerUiKey.Key, user);
+        _uiSystem.OpenUi(analyzer, key, user);
     }
+    // Far Horizons end
 
     /// <summary>
     /// Mark the entity as having its health analyzed, and link the analyzer to it
@@ -219,16 +221,18 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
     /// <param name="scanMode">True makes the UI show ACTIVE, False makes the UI show INACTIVE</param>
     public void UpdateScannedUser(EntityUid healthAnalyzer, EntityUid target, bool scanMode)
     {
-        if (!_uiSystem.HasUi(healthAnalyzer, HealthAnalyzerUiKey.Key)
-            || !TryComp<HealthAnalyzerComponent>(healthAnalyzer, out var healthComp))
+        // Far Horizons start
+        if (!TryComp<HealthAnalyzerComponent>(healthAnalyzer, out var healthComp) ||
+            !_uiSystem.HasUi(healthAnalyzer, healthComp.UiKeyOverride ?? HealthAnalyzerUiKey.Key))
             return;
+        // Far Horizons end
 
         var uiState = GetHealthAnalyzerUiState(target, (healthAnalyzer, healthComp), scanMode);
         uiState.ScanMode = scanMode;
 
         _uiSystem.ServerSendUiMessage(
             healthAnalyzer,
-            HealthAnalyzerUiKey.Key,
+            healthComp.UiKeyOverride ?? HealthAnalyzerUiKey.Key, // Far Horizons
             new HealthAnalyzerScannedUserMessage(uiState)
         );
     }

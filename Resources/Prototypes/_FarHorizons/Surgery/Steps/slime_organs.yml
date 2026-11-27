@@ -28,6 +28,9 @@
   name: Implant Lungs
   baseTime: 3
   popup: surgery-implant-lungs-popup-message
+  icon: 
+    sprite: Mobs/Species/Slime/organs.rsi
+    state: lung-l
   conditions:
     - !type:SurgeryLimbHasStatus
       statuses: 
@@ -113,6 +116,9 @@
   name: Implant Sentient Core
   baseTime: 3
   popup: surgery-slime-implant-core-popup-message
+  icon: 
+    sprite: Mobs/Species/Slime/organs.rsi
+    state: brain
   conditions:
     - !type:SurgeryLimbHasStatus
       statuses: 

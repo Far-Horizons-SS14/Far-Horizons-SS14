@@ -67,7 +67,17 @@ public sealed partial class VitalOrganComponent : Component
             { "Bloodloss", 125 },
             { "Asphyxiation", 75}    // Just enough to kill
         }
-    }; 
+    };
+
+    [DataField] public TimeSpan? KillDelay = null;
+}
+
+[RegisterComponent]
+public sealed partial class DelayedVitalOrganDeathComponent : Component
+{
+    [ViewVariables] public TimeSpan? DieAt = null;
+    [ViewVariables] public DamageSpecifier? Damage = null;
+    [ViewVariables] public HashSet<ProtoId<OrganCategoryPrototype>> CausedBy = new();
 }
 
 [RegisterComponent]

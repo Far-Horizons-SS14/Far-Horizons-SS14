@@ -747,12 +747,13 @@
   - type: Speech
   - type: BodyScanner
   - type: HealthAnalyzer
+    uiKeyOverride: enum.SurgeryComputerUiKey.Key # Far Horizons
     talk: true
   - type: ActivatableUI
-    key: enum.HealthAnalyzerUiKey.Key
+    key: enum.SurgeryComputerUiKey.Key # Far Horizons
   - type: UserInterface
     interfaces:
-      enum.HealthAnalyzerUiKey.Key:
+      enum.SurgeryComputerUiKey.Key: # Far Horizons
         type: SurgeryComputerBoundUserInterface # Far Horizons
       enum.ResearchClientUiKey.Key:
         type: ResearchClientBoundUserInterface

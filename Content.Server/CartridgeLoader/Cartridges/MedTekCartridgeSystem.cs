@@ -18,8 +18,11 @@ public sealed partial class MedTekCartridgeSystem : EntitySystem
 
     private void OnCartridgeAdded(Entity<MedTekCartridgeComponent> ent, ref CartridgeAddedEvent args)
     {
-        EnsureComp<HealthAnalyzerComponent>(args.Loader);
-        EnsureComp<MedTekAnalyzerComponent>(args.Loader); //FH-Edit
+        // Far Horizons start
+        var comp = EnsureComp<HealthAnalyzerComponent>(args.Loader);
+        comp.UiKeyOverride = ent.Comp.UiKeyOverride;
+        EnsureComp<MedTekAnalyzerComponent>(args.Loader);
+        // Far Horizons end
     }
 
     private void OnCartridgeRemoved(Entity<MedTekCartridgeComponent> ent, ref CartridgeRemovedEvent args)

@@ -30,6 +30,9 @@
   name: Implant Eye Implant
   baseTime: 3
   popup: surgery-implant-eye-implant-popup-message
+  icon: 
+    sprite: _Starlight/Objects/Specific/Medical/implants.rsi
+    state: eye_implant_medical
   conditions:
     - !type:SurgeryLimbHasStatus
       statuses: 
@@ -75,6 +78,9 @@
   name: Implant Left Hand Implant
   baseTime: 3
   popup: surgery-implant-hand-implant-popup-message
+  icon: 
+    sprite: _Starlight/Objects/Specific/Medical/implants.rsi
+    state: l_hand_implant_claws
   conditions:
     - !type:SurgeryLimbHasStatus
       statuses: 
@@ -120,6 +126,9 @@
   name: Implant Right Hand Implant
   baseTime: 3
   popup: surgery-implant-hand-implant-popup-message
+  icon: 
+    sprite: _Starlight/Objects/Specific/Medical/implants.rsi
+    state: r_hand_implant_claws
   conditions:
     - !type:SurgeryLimbHasStatus
       statuses: 
