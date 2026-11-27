@@ -61,8 +61,9 @@
         Primary: GasPipeTankSubfloorFilledFrezon1500
         Secondary: GasPipeTankSubfloorFilledFrezon1500Alt1
         Tertiary: GasPipeTankSubfloorFilledFrezon1500Alt2
-        Quaternary: GasPipeTankSubfloorFilledFrezon1500Alt3
-        Quinary: GasPipeTankSubfloorFilledFrezon1500Alt4
+        # FH - 3 layers
+        # Quaternary: GasPipeTankSubfloorFilledFrezon1500Alt3
+        # Quinary: GasPipeTankSubfloorFilledFrezon1500Alt4
     - type: PipePrefill
       targetPressure: 1500
     - type: SandboxCopyOverride
@@ -86,23 +87,24 @@
       drawdepth: ThinPipeAlt2
       sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt2.rsi
 
-- type: entity
-  parent: [GasPipeLayerAlt3, GasPipeTankSubfloorFilledFrezon1500]
-  id: GasPipeTankSubfloorFilledFrezon1500Alt3
-  categories: [ HideSpawnMenu ]
-  components: &subfloorAlt3
-    - type: Sprite
-      drawdepth: ThinPipeAlt3
-      sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt3.rsi
+# FH - 3 layers
+# - type: entity
+#   parent: [GasPipeLayerAlt3, GasPipeTankSubfloorFilledFrezon1500]
+#   id: GasPipeTankSubfloorFilledFrezon1500Alt3
+#   categories: [ HideSpawnMenu ]
+#   components: &subfloorAlt3
+#     - type: Sprite
+#       drawdepth: ThinPipeAlt3
+#       sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt3.rsi
 
-- type: entity
-  parent: [GasPipeLayerAlt4, GasPipeTankSubfloorFilledFrezon1500]
-  id: GasPipeTankSubfloorFilledFrezon1500Alt4
-  categories: [ HideSpawnMenu ]
-  components: &subfloorAlt4
-    - type: Sprite
-      drawdepth: ThinPipeAlt4
-      sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt4.rsi
+# - type: entity
+#   parent: [GasPipeLayerAlt4, GasPipeTankSubfloorFilledFrezon1500]
+#   id: GasPipeTankSubfloorFilledFrezon1500Alt4
+#   categories: [ HideSpawnMenu ]
+#   components: &subfloorAlt4
+#     - type: Sprite
+#       drawdepth: ThinPipeAlt4
+#       sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt4.rsi
 
 # Subfloor gas tank (1500kPa) END
 # Subfloor gas tank (3000kPa) BEGIN
@@ -117,8 +119,9 @@
         Primary: GasPipeTankSubfloorFilledFrezon3000
         Secondary: GasPipeTankSubfloorFilledFrezon3000Alt1
         Tertiary: GasPipeTankSubfloorFilledFrezon3000Alt2
-        Quaternary: GasPipeTankSubfloorFilledFrezon3000Alt3
-        Quinary: GasPipeTankSubfloorFilledFrezon3000Alt4
+        # FH - 3 layers
+        # Quaternary: GasPipeTankSubfloorFilledFrezon3000Alt3
+        # Quinary: GasPipeTankSubfloorFilledFrezon3000Alt4
     - type: PipePrefill
       targetPressure: 3000
     - type: SandboxCopyOverride
@@ -136,17 +139,18 @@
   categories: [ HideSpawnMenu ]
   components: *subfloorAlt2
 
-- type: entity
-  parent: [GasPipeLayerAlt3, GasPipeTankSubfloorFilledFrezon3000]
-  id: GasPipeTankSubfloorFilledFrezon3000Alt3
-  categories: [ HideSpawnMenu ]
-  components: *subfloorAlt3
+# FH - 3 layers
+# - type: entity
+#   parent: [GasPipeLayerAlt3, GasPipeTankSubfloorFilledFrezon3000]
+#   id: GasPipeTankSubfloorFilledFrezon3000Alt3
+#   categories: [ HideSpawnMenu ]
+#   components: *subfloorAlt3
 
-- type: entity
-  parent: [GasPipeLayerAlt4, GasPipeTankSubfloorFilledFrezon3000]
-  id: GasPipeTankSubfloorFilledFrezon3000Alt4
-  categories: [ HideSpawnMenu ]
-  components: *subfloorAlt4
+# - type: entity
+#   parent: [GasPipeLayerAlt4, GasPipeTankSubfloorFilledFrezon3000]
+#   id: GasPipeTankSubfloorFilledFrezon3000Alt4
+#   categories: [ HideSpawnMenu ]
+#   components: *subfloorAlt4
 
 # Subfloor gas tank (3000kPa) END
 # Subfloor gas tank (4500kPa) BEGIN
@@ -161,8 +165,9 @@
         Primary: GasPipeTankSubfloorFilledFrezon4500
         Secondary: GasPipeTankSubfloorFilledFrezon4500Alt1
         Tertiary: GasPipeTankSubfloorFilledFrezon4500Alt2
-        Quaternary: GasPipeTankSubfloorFilledFrezon4500Alt3
-        Quinary: GasPipeTankSubfloorFilledFrezon4500Alt4
+        # FH - 3 layers
+        # Quaternary: GasPipeTankSubfloorFilledFrezon4500Alt3
+        # Quinary: GasPipeTankSubfloorFilledFrezon4500Alt4
     - type: PipePrefill
       targetPressure: 4500
     - type: SandboxCopyOverride
@@ -180,17 +185,18 @@
   categories: [ HideSpawnMenu ]
   components: *subfloorAlt2
 
-- type: entity
-  parent: [GasPipeLayerAlt3, GasPipeTankSubfloorFilledFrezon4500]
-  id: GasPipeTankSubfloorFilledFrezon4500Alt3
-  categories: [ HideSpawnMenu ]
-  components: *subfloorAlt3
+# FH - 3 layers
+# - type: entity
+#   parent: [GasPipeLayerAlt3, GasPipeTankSubfloorFilledFrezon4500]
+#   id: GasPipeTankSubfloorFilledFrezon4500Alt3
+#   categories: [ HideSpawnMenu ]
+#   components: *subfloorAlt3
 
-- type: entity
-  parent: [GasPipeLayerAlt4, GasPipeTankSubfloorFilledFrezon4500]
-  id: GasPipeTankSubfloorFilledFrezon4500Alt4
-  categories: [ HideSpawnMenu ]
-  components: *subfloorAlt4
+# - type: entity
+#   parent: [GasPipeLayerAlt4, GasPipeTankSubfloorFilledFrezon4500]
+#   id: GasPipeTankSubfloorFilledFrezon4500Alt4
+#   categories: [ HideSpawnMenu ]
+#   components: *subfloorAlt4
 
 # Subfloor gas tank (4500kPa) END
 # Subfloor gas tank (9000kPa) BEGIN
@@ -205,8 +211,9 @@
         Primary: GasPipeTankSubfloorFilledFrezon9000
         Secondary: GasPipeTankSubfloorFilledFrezon9000Alt1
         Tertiary: GasPipeTankSubfloorFilledFrezon9000Alt2
-        Quaternary: GasPipeTankSubfloorFilledFrezon9000Alt3
-        Quinary: GasPipeTankSubfloorFilledFrezon9000Alt4
+        # FH - 3 layers
+        # Quaternary: GasPipeTankSubfloorFilledFrezon9000Alt3
+        # Quinary: GasPipeTankSubfloorFilledFrezon9000Alt4
     - type: PipePrefill
       targetPressure: 9000
     - type: SandboxCopyOverride
@@ -224,17 +231,18 @@
   categories: [ HideSpawnMenu ]
   components: *subfloorAlt2
 
-- type: entity
-  parent: [GasPipeLayerAlt3, GasPipeTankSubfloorFilledFrezon9000]
-  id: GasPipeTankSubfloorFilledFrezon9000Alt3
-  categories: [ HideSpawnMenu ]
-  components: *subfloorAlt3
+# FH - 3 layers
+# - type: entity
+#   parent: [GasPipeLayerAlt3, GasPipeTankSubfloorFilledFrezon9000]
+#   id: GasPipeTankSubfloorFilledFrezon9000Alt3
+#   categories: [ HideSpawnMenu ]
+#   components: *subfloorAlt3
 
-- type: entity
-  parent: [GasPipeLayerAlt4, GasPipeTankSubfloorFilledFrezon9000]
-  id: GasPipeTankSubfloorFilledFrezon9000Alt4
-  categories: [ HideSpawnMenu ]
-  components: *subfloorAlt4
+# - type: entity
+#   parent: [GasPipeLayerAlt4, GasPipeTankSubfloorFilledFrezon9000]
+#   id: GasPipeTankSubfloorFilledFrezon9000Alt4
+#   categories: [ HideSpawnMenu ]
+#   components: *subfloorAlt4
 
 # Subfloor gas tank (9000kPa) END
 # Tall gas tank (3000kPa) BEGIN
@@ -249,8 +257,9 @@
         Primary: GasPipeTankTallFilledFrezon3000
         Secondary: GasPipeTankTallFilledFrezon3000Alt1
         Tertiary: GasPipeTankTallFilledFrezon3000Alt2
-        Quaternary: GasPipeTankTallFilledFrezon3000Alt3
-        Quinary: GasPipeTankTallFilledFrezon3000Alt4
+        # FH - 3 layers
+        # Quaternary: GasPipeTankTallFilledFrezon3000Alt3
+        # Quinary: GasPipeTankTallFilledFrezon3000Alt4
     - type: PipePrefill
       targetPressure: 3000
     - type: SandboxCopyOverride
@@ -272,21 +281,22 @@
     - type: Sprite
       sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt2.rsi
 
-- type: entity
-  parent: [GasPipeLayerAlt3, GasPipeTankTallFilledFrezon3000]
-  id: GasPipeTankTallFilledFrezon3000Alt3
-  categories: [ HideSpawnMenu ]
-  components: &tallAlt3
-    - type: Sprite
-      sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt3.rsi
+# FH - 3 layers
+# - type: entity
+#   parent: [GasPipeLayerAlt3, GasPipeTankTallFilledFrezon3000]
+#   id: GasPipeTankTallFilledFrezon3000Alt3
+#   categories: [ HideSpawnMenu ]
+#   components: &tallAlt3
+#     - type: Sprite
+#       sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt3.rsi
 
-- type: entity
-  parent: [GasPipeLayerAlt4, GasPipeTankTallFilledFrezon3000]
-  id: GasPipeTankTallFilledFrezon3000Alt4
-  categories: [ HideSpawnMenu ]
-  components: &tallAlt4
-    - type: Sprite
-      sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt4.rsi
+# - type: entity
+#   parent: [GasPipeLayerAlt4, GasPipeTankTallFilledFrezon3000]
+#   id: GasPipeTankTallFilledFrezon3000Alt4
+#   categories: [ HideSpawnMenu ]
+#   components: &tallAlt4
+#     - type: Sprite
+#       sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt4.rsi
 
 # Tall gas tank (3000kPa) END
 # Tall gas tank (4500kPa) BEGIN
@@ -301,8 +311,9 @@
         Primary: GasPipeTankTallFilledFrezon4500
         Secondary: GasPipeTankTallFilledFrezon4500Alt1
         Tertiary: GasPipeTankTallFilledFrezon4500Alt2
-        Quaternary: GasPipeTankTallFilledFrezon4500Alt3
-        Quinary: GasPipeTankTallFilledFrezon4500Alt4
+        # FH - 3 layers
+        # Quaternary: GasPipeTankTallFilledFrezon4500Alt3
+        # Quinary: GasPipeTankTallFilledFrezon4500Alt4
     - type: PipePrefill
       targetPressure: 4500
     - type: SandboxCopyOverride
@@ -320,17 +331,18 @@
   categories: [ HideSpawnMenu ]
   components: *tallAlt2
 
-- type: entity
-  parent: [GasPipeLayerAlt3, GasPipeTankTallFilledFrezon4500]
-  id: GasPipeTankTallFilledFrezon4500Alt3
-  categories: [ HideSpawnMenu ]
-  components: *tallAlt3
+# FH - 3 layers
+# - type: entity
+#   parent: [GasPipeLayerAlt3, GasPipeTankTallFilledFrezon4500]
+#   id: GasPipeTankTallFilledFrezon4500Alt3
+#   categories: [ HideSpawnMenu ]
+#   components: *tallAlt3
 
-- type: entity
-  parent: [GasPipeLayerAlt4, GasPipeTankTallFilledFrezon4500]
-  id: GasPipeTankTallFilledFrezon4500Alt4
-  categories: [ HideSpawnMenu ]
-  components: *tallAlt4
+# - type: entity
+#   parent: [GasPipeLayerAlt4, GasPipeTankTallFilledFrezon4500]
+#   id: GasPipeTankTallFilledFrezon4500Alt4
+#   categories: [ HideSpawnMenu ]
+#   components: *tallAlt4
 
 # Tall gas tank (4500kPa) END
 # Tall gas tank (9000kPa) BEGIN
@@ -345,8 +357,9 @@
         Primary: GasPipeTankTallFilledFrezon9000
         Secondary: GasPipeTankTallFilledFrezon9000Alt1
         Tertiary: GasPipeTankTallFilledFrezon9000Alt2
-        Quaternary: GasPipeTankTallFilledFrezon9000Alt3
-        Quinary: GasPipeTankTallFilledFrezon9000Alt4
+        # FH - 3 layers
+        # Quaternary: GasPipeTankTallFilledFrezon9000Alt3
+        # Quinary: GasPipeTankTallFilledFrezon9000Alt4
     - type: PipePrefill
       targetPressure: 9000
     - type: SandboxCopyOverride
@@ -364,16 +377,17 @@
   categories: [ HideSpawnMenu ]
   components: *tallAlt2
 
-- type: entity
-  parent: [GasPipeLayerAlt3, GasPipeTankTallFilledFrezon9000]
-  id: GasPipeTankTallFilledFrezon9000Alt3
-  categories: [ HideSpawnMenu ]
-  components: *tallAlt3
+# FH - 3 layers
+# - type: entity
+#   parent: [GasPipeLayerAlt3, GasPipeTankTallFilledFrezon9000]
+#   id: GasPipeTankTallFilledFrezon9000Alt3
+#   categories: [ HideSpawnMenu ]
+#   components: *tallAlt3
 
-- type: entity
-  parent: [GasPipeLayerAlt4, GasPipeTankTallFilledFrezon9000]
-  id: GasPipeTankTallFilledFrezon9000Alt4
-  categories: [ HideSpawnMenu ]
-  components: *tallAlt4
+# - type: entity
+#   parent: [GasPipeLayerAlt4, GasPipeTankTallFilledFrezon9000]
+#   id: GasPipeTankTallFilledFrezon9000Alt4
+#   categories: [ HideSpawnMenu ]
+#   components: *tallAlt4
 
 # Tall gas tank (9000kPa) END

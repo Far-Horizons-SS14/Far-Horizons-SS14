@@ -17,11 +17,12 @@
     - to: tankAlt2
       steps: *subfloorBuildSteps
 
-    - to: tankAlt3
-      steps: *subfloorBuildSteps
+    # FH - 3 layers
+    # - to: tankAlt3
+    #   steps: *subfloorBuildSteps
 
-    - to: tankAlt4
-      steps: *subfloorBuildSteps
+    # - to: tankAlt4
+    #   steps: *subfloorBuildSteps
 
   - node: tank
     entity: GasPipeTankSubfloor
@@ -53,17 +54,18 @@
     - !type:SetAnchor
     edges: *subfloorBuildEdges
 
-  - node: tankAlt3
-    entity: GasPipeTankSubfloorAlt3
-    actions:
-    - !type:SetAnchor
-    edges: *subfloorBuildEdges
+  # FH - 3 layers
+  # - node: tankAlt3
+  #   entity: GasPipeTankSubfloorAlt3
+  #   actions:
+  #   - !type:SetAnchor
+  #   edges: *subfloorBuildEdges
 
-  - node: tankAlt4
-    entity: GasPipeTankSubfloorAlt4
-    actions:
-    - !type:SetAnchor
-    edges: *subfloorBuildEdges
+  # - node: tankAlt4
+  #   entity: GasPipeTankSubfloorAlt4
+  #   actions:
+  #   - !type:SetAnchor
+  #   edges: *subfloorBuildEdges
 
 # Subfloor gas tank END
 # Tall gas tank START
@@ -88,11 +90,12 @@
         - to: tankAlt2
           steps: *tallBuildSteps
 
-        - to: tankAlt3
-          steps: *tallBuildSteps
+        # FH - 3 layers
+        # - to: tankAlt3
+        #   steps: *tallBuildSteps
 
-        - to: tankAlt4
-          steps: *tallBuildSteps
+        # - to: tankAlt4
+        #   steps: *tallBuildSteps
 
     - node: tank
       entity: GasPipeTankTall
@@ -131,16 +134,17 @@
         - !type:SetAnchor
       edges: *tallDeconEdges
 
-    - node: tankAlt3
-      entity: GasPipeTankTallAlt3
-      actions:
-        - !type:SetAnchor
-      edges: *tallDeconEdges
+    # FH - 3 layers
+    # - node: tankAlt3
+    #   entity: GasPipeTankTallAlt3
+    #   actions:
+    #     - !type:SetAnchor
+    #   edges: *tallDeconEdges
 
-    - node: tankAlt4
-      entity: GasPipeTankTallAlt4
-      actions:
-        - !type:SetAnchor
-      edges: *tallDeconEdges
+    # - node: tankAlt4
+    #   entity: GasPipeTankTallAlt4
+    #   actions:
+    #     - !type:SetAnchor
+    #   edges: *tallDeconEdges
 
 # Tall gas tank END
