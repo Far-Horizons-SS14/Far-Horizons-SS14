@@ -326,6 +326,10 @@
         - MachineLayer
   - type: StationAIShuntThrough # Starlight
   - type: StationAIShunt #FH-Edit: Without this the AIShuntActionEvent never triggers.
+  # Far Horizons start
+  - type: SmartGridLoad
+    priority: EssentialSystems
+  # Far Horizons end
 
 - type: entity
   parent: BorgCharger
