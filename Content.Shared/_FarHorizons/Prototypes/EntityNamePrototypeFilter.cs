@@ -26,6 +26,17 @@ public static class EntityNamePrototypeFilter
                 continue;
 
             var titleCase = CultureInfo.InvariantCulture.TextInfo.ToTitleCase(name.Value);
+
+            // Catch cases like "9mm" and "50th" where we have letters immediately after a digit
+            // by just using the casing from the original name for those letters.
+            for (var i = 1; i < name.Value.Length; i++)
+            {
+                if (char.IsDigit(name.Value[i - 1]) && char.IsLetter(name.Value[i]))
+                {
+                    titleCase = titleCase.Remove(i, 1).Insert(i, name.Value[i].ToString());
+                }
+            }
+
             if (titleCase == name.Value)
                 continue;
 
