@@ -14,6 +14,8 @@ using Robust.Shared.Serialization.Markdown.Sequence;
 using Robust.Shared.Serialization.Markdown.Value;
 using Robust.UnitTesting;
 
+#nullable enable
+
 namespace Content.Tests.Shared._FarHorizons.Prototypes;
 
 [TestFixture(UnitTestProject.Server)]
@@ -33,6 +35,9 @@ public sealed class EntityNamePrototypeFilterTest(UnitTestProject project) : Rob
     [TestCase("double-barreled shotgun", "Double-Barreled Shotgun")]
     [TestCase("  oxygen   tank  ", "  Oxygen   Tank  ")]
     [TestCase("", "")]
+    [TestCase("9mm cartridge", "9mm Cartridge")]
+    [TestCase("50th anniversary vintage reprint", "50th Anniversary Vintage Reprint")]
+    [TestCase("PG-7VL grenade", "PG-7VL Grenade")]
     public void TitleCasesEntityNames(string input, string expected)
     {
         var document = Parse($"- type: entity\n  id: Test\n  name: \"{input}\"\n");
@@ -41,6 +46,7 @@ public sealed class EntityNamePrototypeFilterTest(UnitTestProject project) : Rob
         var start = name.Start;
         var end = name.End;
         var culture = CultureInfo.CurrentCulture;
+        ValueDataNode? intermediate = null;
         try
         {
             // The rule of thumb when testing anything with casing... test it twice, in Turkish!
@@ -48,6 +54,7 @@ public sealed class EntityNamePrototypeFilterTest(UnitTestProject project) : Rob
             // InvariantCulture, but it's good practice.
             CultureInfo.CurrentCulture = CultureInfo.GetCultureInfo("tr-TR");
             EntityNamePrototypeFilter.Apply(document);
+            intermediate = prototype.Get<ValueDataNode>("name");
             EntityNamePrototypeFilter.Apply(document);
         }
         finally
@@ -58,9 +65,14 @@ public sealed class EntityNamePrototypeFilterTest(UnitTestProject project) : Rob
         var result = prototype.Get<ValueDataNode>("name");
         Assert.Multiple(() =>
         {
+            Assert.That(intermediate.Value, Is.EqualTo(expected));
+            Assert.That(intermediate.Start, Is.EqualTo(start));
+            Assert.That(intermediate.End, Is.EqualTo(end));
+
             Assert.That(result.Value, Is.EqualTo(expected));
             Assert.That(result.Start, Is.EqualTo(start));
             Assert.That(result.End, Is.EqualTo(end));
+
             Assert.That(name.Value, Is.EqualTo(input));
         });
     }
