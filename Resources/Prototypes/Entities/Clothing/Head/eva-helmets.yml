@@ -2,7 +2,7 @@
 - type: entity
   parent: ClothingHeadEVAHelmetBase
   id: ClothingHeadHelmetEVA
-  name: EVA Helmet #Far Horizons - The Great Capitalization Crusade
+  name: EVA helmet
   description: An old-but-gold helmet designed for extravehicular activites. Infamous for making security officers paranoid.
   components:
   - type: Sprite
@@ -19,7 +19,7 @@
 - type: entity
   parent: ClothingHeadEVAHelmetBase
   id: ClothingHeadHelmetEVALarge
-  name: EVA Helmet #Far Horizons - The Great Capitalization Crusade
+  name: EVA helmet
   description: An old-but-gold helmet designed for extravehicular activites.
   components:
   - type: Sprite
@@ -36,7 +36,7 @@
 - type: entity
   parent: [ ClothingHeadEVAHelmetBase, BaseSyndicateContraband ]
   id: ClothingHeadHelmetSyndicate
-  name: Syndicate EVA Helmet #Far Horizons - The Great Capitalization Crusade
+  name: syndicate EVA helmet
   description: A simple, stylish EVA helmet. Designed for maximum humble space-badassery.
   components:
   - type: Sprite
@@ -50,7 +50,7 @@
 - type: entity
   parent: ClothingHeadEVAHelmetBase
   id: ClothingHeadHelmetCosmonaut
-  name: Cosmonaut Helmet #Far Horizons - The Great Capitalization Crusade
+  name: cosmonaut helmet
   description: Ancient design, but advanced manufacturing. #Description here originally started with " A deceptively well armored space helmet." Potentially had armor values in SS13 that weren't brought over?
   components:
   - type: Sprite
@@ -62,7 +62,7 @@
 - type: entity
   parent: ClothingHeadEVAHelmetBase
   id: ClothingHeadHelmetAncient
-  name: NTSRA Void Helmet #Far Horizons - The Great Capitalization Crusade
+  name: NTSRA void helmet
   description: An ancient space helmet, designed by the NTSRA branch of CentComm.
   components:
   - type: Sprite
@@ -74,7 +74,7 @@
 - type: entity
   parent: [ ClothingHeadSuitWithLightBase, ClothingHeadEVAHelmetBase ] #Despite acting like a hardsuit helmet, since it inherits from EVA Helmet, it goes here.
   id: ClothingHeadHelmetVoidParamed
-  name: Paramedic Void Helmet #Far Horizons - The Great Capitalization Crusade
+  name: paramedic void helmet
   description: A void helmet made for paramedics.
   categories: [ HideSpawnMenu ]
   components:

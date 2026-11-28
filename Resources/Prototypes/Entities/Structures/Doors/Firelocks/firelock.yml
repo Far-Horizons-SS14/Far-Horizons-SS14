@@ -2,7 +2,7 @@
   id: BaseFirelock
   abstract: true
   parent: [ BaseStructure, BaseStructureDissolvable ] # Starlight-edit
-  name: Firelock #Far Horizons
+  name: firelock
   suffix: NT #Far Horizons
   description: Apply crowbar.
   components:
@@ -172,7 +172,7 @@
 - type: entity
   id: FirelockGlass
   parent: Firelock
-  name: Glass Firelock #Far Horizons
+  name: glass firelock
   suffix: NT, Glass #Far Horizons
   components:
     - type: StationAiWhitelist
@@ -200,7 +200,7 @@
 - type: entity
   id: FirelockEdge
   parent: Firelock
-  name: Firelock #Far Horizons
+  name: firelock
   suffix: NT, Edge #Far Horizons
   components:
     - type: StationAiWhitelist

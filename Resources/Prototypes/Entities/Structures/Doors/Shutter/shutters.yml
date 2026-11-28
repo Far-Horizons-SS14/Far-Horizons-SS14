@@ -1,7 +1,7 @@
 - type: entity
   id: BaseShutter
   parent: [ BaseStructure, BaseStructureDissolvable ] # Starlight-edit
-  name: Shutter #FH CRUSADE
+  name: shutter
   abstract: true
   description: One shudders to think about what might be behind this shutter.
   placement:
@@ -137,7 +137,7 @@
 - type: entity
   id: ShuttersRadiation
   parent: [BaseDeltaPressureGlass, BaseShutter]
-  name: Radiation Shutters #FH CRUSADE
+  name: radiation shutters
   description: Why did they make these shutters radioactive?
   components:
   - type: Sprite
@@ -175,7 +175,7 @@
 - type: entity
   id: ShuttersWindow
   parent: [BaseDeltaPressureGlass, BaseShutter]
-  name: Window Shutters #FH CRUSADE
+  name: window shutters
   description: The Best (TM) place to see your friends explode!
   components:
   - type: Sprite
@@ -211,7 +211,7 @@
 - type: entity
   id: ShuttersFrame
   parent: BaseStructureDynamic
-  name: Shutter Frame #FH CRUSADE
+  name: shutter frame
   description: A frame for constructing a shutter.
   components:
   - type: Sprite

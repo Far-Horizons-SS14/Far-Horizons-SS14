@@ -1,7 +1,7 @@
 - type: entity
   id: KitchenReagentGrinder
   parent: [ BaseMachinePowered, SmallConstructibleMachine ]
-  name: Reagent Grinder #FH
+  name: reagent grinder
   description: From BlenderTech. Will It Blend? Let's find out!
   components:
   - type: ReagentGrinder
@@ -89,7 +89,7 @@
 - type: entity
   parent: [SolutionToolGinormous, Recycler] #too different so different parent
   id: ReagentGrinderIndustrial
-  name: Industrial Reagent Grinder #FH
+  name: industrial reagent grinder
   description: An industrial reagent grinder.
   components:
   - type: MaterialReclaimer

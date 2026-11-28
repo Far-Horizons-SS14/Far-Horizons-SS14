@@ -147,7 +147,7 @@
     - Belt
 
 - type: entity
-  name: Svalinn Laser Pistol #Far Horizons - The Great Capitalization Crusade
+  name: svalinn laser pistol
   parent: [BaseWeaponPowerCellSmall, BaseSecurityContraband]
   id: WeaponLaserSvalinn
   description: A cheap and widely used laser pistol.
@@ -176,7 +176,7 @@
     - LaserWeapon
 
 - type: entity
-  name: Retro Laser Blaster #Far Horizons - The Great Capitalization Crusade
+  name: retro laser blaster
   parent: [BaseWeaponBatterySmall, BaseMajorContraband]
   id: WeaponLaserGun
   description: A weapon using light amplified by the stimulated emission of radiation.
@@ -205,7 +205,7 @@
     - LaserWeapon
 
 - type: entity
-  name: Makeshift Laser Pistol #Far Horizons - The Great Capitalization Crusade
+  name: makeshift laser pistol
   parent: [BaseWeaponBatterySmall, BaseMinorContraband]
   id: WeaponMakeshiftLaser
   description: Better pray it won't burn your hands off.
@@ -239,7 +239,7 @@
     - LaserWeapon
 
 - type: entity
-  name: Tesla Gun #Far Horizons - The Great Capitalization Crusade
+  name: tesla gun
   parent: [BaseWeaponBattery, BaseMajorContraband]
   id: WeaponTeslaGun
   description: The power of the primordial element of lightning in your hands.
@@ -279,7 +279,7 @@
 #  description: Favoured by Nanotrasen Security for being cheap and easy to use.
 
 - type: entity
-  name: Practice Laser Carbine #Far Horizons - The Great Capitalization Crusade
+  name: practice laser carbine
   parent: [WeaponLaserCarbine, BaseGunWieldable] #FH
   id: WeaponLaserCarbinePractice
   description: This modified laser carbine fires nearly harmless beams in the 40-watt range, for target practice.
@@ -406,7 +406,7 @@
 #     startingCharge: 40000
 
 - type: entity
-  name: Laser Cannon #Far Horizons - The Great Capitalization Crusade
+  name: laser cannon
   parent: [BaseWeaponBattery, BaseGunWieldable, BaseSecurityContraband]
   id: WeaponLaserCannon
   description: A heavy duty, high powered laser weapon.
@@ -442,7 +442,7 @@
     - TurretCompatibleWeapon
 
 - type: entity
-  name: Portable Particle Decelerator #Far Horizons - The Great Capitalization Crusade
+  name: portable particle decelerator
   parent: [BaseWeaponBattery, BaseEngineeringContraband]
   id: WeaponParticleDecelerator
   description: A portable particle decelerator capable of decomposing a tesla or singularity.
@@ -473,7 +473,7 @@
       startingCharge: 10000
 
 - type: entity
-  name: X-Ray Cannon #Far Horizons - The Great Capitalization Crusade
+  name: x-ray cannon
   parent: [BaseWeaponBattery, BaseGunWieldable, BaseSecurityContraband]
   id: WeaponXrayCannon
   description: An experimental weapon that uses concentrated x-ray energy against its target.
@@ -505,7 +505,7 @@
   - type: Appearance
 
 - type: entity
-  name: Practice Disabler #Far Horizons - The Great Capitalization Crusade
+  name: practice disabler
   parent: BaseWeaponBatterySmall
   id: WeaponDisablerPractice
   description: A self-defense weapon that exhausts organic targets, weakening them until they collapse. This one has been undertuned for cadets making it mostly harmless.
@@ -589,7 +589,7 @@
   - type: PacifismAllowedGun
 
 - type: entity
-  name: Disabler SMG #Far Horizons - The Great Capitalization Crusade
+  name: disabler SMG
   parent: [BaseWeaponBattery, BaseSecurityContraband]
   id: WeaponDisablerSMG
   description: Advanced weapon that exhausts organic targets, weakening them until they collapse.
@@ -630,7 +630,7 @@
   - type: PacifismAllowedGun
 
 - type: entity
-  name: Taser #Far Horizons - The Great Capitalization Crusade
+  name: taser
   parent: [BaseWeaponBatterySmall, BaseSecurityContraband]
   id: WeaponTaser
   description: A low-capacity, energy-based stun gun used by security teams to subdue targets at close range.
@@ -669,7 +669,7 @@
   - type: PacifismAllowedGun
 
 - type: entity
-  name: Elite Taser #Far Horizons - The Great Capitalization Crusade
+  name: elite taser
   parent: [ BaseCentcommContraband, WeaponTaser ]
   id: WeaponTaserSuper
   suffix: ADMEME
@@ -686,7 +686,7 @@
     fireCost: 200
 
 - type: entity
-  name: Antique Laser Pistol #Far Horizons - The Great Capitalization Crusade
+  name: antique laser pistol
   parent: [BaseWeaponBatterySmall, BaseGrandTheftContraband]
   id: WeaponAntiqueLaser
   description: This is an antique laser pistol. All craftsmanship is of the highest quality. It is decorated with a mahogany grip and chrome filigree. The object menaces with spikes of energy. On the item is an image of a captain and a clown. The clown is dead. The captain is striking a heroic pose.
@@ -730,7 +730,7 @@
     # not putting a BlockMovement component here cause that's funny.
 
 - type: entity
-  name: Advanced Laser Pistol #Far Horizons - The Great Capitalization Crusade
+  name: advanced laser pistol
   parent: [BaseWeaponBatterySmall, BaseSecurityContraband]
   id: WeaponAdvancedLaser
   description: An experimental high-energy laser pistol with a self-charging nuclear battery.
@@ -770,7 +770,7 @@
     - LaserWeapon
 
 - type: entity
-  name: C.H.I.M.P. Handcannon #Far Horizons - The Great Capitalization Crusade
+  name: C.H.I.M.P. handcannon
   parent: [BaseWeaponBatterySmall, BaseScienceContraband]
   id: WeaponPistolCHIMP
   description: Just because it's a little C.H.I.M.P. doesn't mean it can't punch like an A.P.E.
@@ -837,7 +837,7 @@
       fireCost: 100
 
 - type: entity
-  name: Eye Of A Behonker #Far Horizons - The Great Capitalization Crusade
+  name: eye of a behonker
   parent: BaseWeaponBatterySmall
   id: WeaponBehonkerLaser
   description: The eye of a behonker, it fires a laser when squeezed.
@@ -915,7 +915,7 @@
 #    startingCharge: 1200
 
 - type: entity
-  name: Temperature Gun #Far Horizons - The Great Capitalization Crusade
+  name: temperature gun
   parent: [BaseWeaponBattery, BaseGunWieldable, BaseSecurityContraband]
   id: WeaponTemperatureGun
   description: An advanced gun that shoots body-temperature-changing beams. This probably constitutes as some kind of war crime.
@@ -961,7 +961,7 @@
 - type: entity
   parent: [WeaponAdvancedLaser, BaseXenoborgContraband]
   id: WeaponLaserGunXenoborg
-  name: Xenoborg Laser Gun #Far Horizons - The Great Capitalization Crusade
+  name: xenoborg laser gun
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Battery/xenoborg_laser_gun.rsi
@@ -974,7 +974,7 @@
 - type: entity
   parent: [WeaponLaserCannon, BaseXenoborgContraband]
   id: WeaponLaserCannonXenoborg
-  name: Xenoborg Laser Cannon #Far Horizons - The Great Capitalization Crusade
+  name: xenoborg laser cannon
   components:
   - type: BatteryAmmoProvider
     proto: RedHeavyLaser

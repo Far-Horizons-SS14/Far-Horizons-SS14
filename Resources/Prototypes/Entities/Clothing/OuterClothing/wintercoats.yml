@@ -1,7 +1,7 @@
 - type: entity
   parent: ClothingOuterStorageEdible
   id: ClothingOuterWinterCoat
-  name: Winter Coat #Far Horizons - The Great Capitalization Crusade
+  name: winter coat
   description: A heavy jacket made from 'synthetic' animal furs.
   components:
   - type: Sprite
@@ -40,7 +40,7 @@
 - type: entity
   parent: ClothingOuterWinterCoat
   id: ClothingOuterWinterCoatToggleable
-  name: Winter Coat With Hood #Far Horizons - The Great Capitalization Crusade
+  name: winter coat with hood
   categories: [ HideSpawnMenu ]
   components:
   - type: ToggleableClothing
@@ -55,7 +55,7 @@
 - type: entity
   parent: ClothingOuterWinterCoatToggleable
   id: ClothingOuterWinterAtmos
-  name: Atmospherics Winter Coat #Far Horizons - The Great Capitalization Crusade
+  name: atmospherics winter coat
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/WinterCoats/coat.rsi
@@ -78,7 +78,7 @@
 - type: entity
   parent: [ClothingOuterWinterCoatToggleable, AllowSuitStorageClothing]
   id: ClothingOuterWinterBar
-  name: Bartender Winter Coat #Far Horizons - The Great Capitalization Crusade
+  name: bartender winter coat
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/WinterCoats/coat.rsi
@@ -116,7 +116,7 @@
 - type: entity
   parent: [ClothingOuterWinterCoatToggleable, BaseCommandContraband, AllowSuitStorageClothing]
   id: ClothingOuterWinterCap
-  name: Captain's Winter Coat #Far Horizons - The Great Capitalization Crusade
+  name: captain's winter coat
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/WinterCoats/coat.rsi
@@ -154,7 +154,7 @@
 - type: entity
   parent: ClothingOuterWinterCoatToggleable
   id: ClothingOuterWinterCargo
-  name: Cargo Winter Coat #Far Horizons - The Great Capitalization Crusade
+  name: cargo winter coat
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/WinterCoats/coat.rsi
@@ -177,7 +177,7 @@
 - type: entity
   parent: [ClothingOuterWinterCoatToggleable, BaseCommandContraband]
   id: ClothingOuterWinterCE
-  name: Chief Engineer's Winter Coat #Far Horizons - The Great Capitalization Crusade
+  name: chief engineer's winter coat
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/WinterCoats/coat.rsi
@@ -200,7 +200,7 @@
 - type: entity
   parent: [ ClothingOuterWinterCoatToggleable, BaseCentcommContraband ]
   id: ClothingOuterWinterCentcom
-  name: CentComm Winter Coat #Far Horizons - The Great Capitalization Crusade
+  name: CentComm winter coat
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/WinterCoats/coat.rsi
@@ -223,7 +223,7 @@
 - type: entity
   parent: ClothingOuterWinterCoat
   id: ClothingOuterWinterChef
-  name: Chef's Freezer Coat #Far Horizons - The Great Capitalization Crusade
+  name: chef's freezer coat
   description: A coat specifically designed for work inside cold storage, sorely needed by cold-blooded lizard chefs.
   components:
   - type: Sprite
@@ -245,7 +245,7 @@
 - type: entity
   parent: ClothingOuterWinterCoatToggleable
   id: ClothingOuterWinterChem
-  name: Chemistry Winter Coat #Far Horizons - The Great Capitalization Crusade
+  name: chemistry winter coat
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/WinterCoats/coat.rsi
@@ -283,7 +283,7 @@
 - type: entity
   parent: [ClothingOuterWinterCoatToggleable, BaseCommandContraband]
   id: ClothingOuterWinterCMO
-  name: Chief Medical Officer's Winter Coat #Far Horizons - The Great Capitalization Crusade
+  name: chief medical officer's winter coat
   components:
   - type: Sprite
     sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/cmo.rsi #Far Horizons
@@ -323,7 +323,7 @@
 - type: entity
   parent: ClothingOuterWinterCoat
   id: ClothingOuterWinterClown
-  name: Clown Winter Coat #Far Horizons - The Great Capitalization Crusade
+  name: clown winter coat
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/WinterCoats/coatclown.rsi
@@ -333,7 +333,7 @@
 - type: entity
   parent: ClothingOuterWinterCoatToggleable
   id: ClothingOuterWinterEngi
-  name: Engineering Winter Coat #Far Horizons - The Great Capitalization Crusade
+  name: engineering winter coat
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/WinterCoats/coat.rsi
@@ -356,7 +356,7 @@
 - type: entity
   parent: ClothingOuterWinterCoatToggleable
   id: ClothingOuterWinterGen
-  name: Genetics Winter Coat #Far Horizons - The Great Capitalization Crusade
+  name: genetics winter coat
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/WinterCoats/coat.rsi
@@ -394,7 +394,7 @@
 - type: entity
   parent: [ClothingOuterWinterCoatToggleable, BaseCommandContraband]
   id: ClothingOuterWinterHoP
-  name: Head Of Personnel's Winter Coat #Far Horizons - The Great Capitalization Crusade
+  name: head of personnel's winter coat
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/WinterCoats/coat.rsi
@@ -419,7 +419,7 @@
 - type: entity
   parent: [ClothingOuterArmorHoS, ClothingOuterWinterCoatToggleable, BaseSecurityCommandContraband]
   id: ClothingOuterWinterHoS
-  name: Head Of Security's Armored Winter Coat #Far Horizons - The Great Capitalization Crusade
+  name: head of security's armored winter coat
   description: A sturdy, utilitarian winter coat designed to protect a head of security from any brig-bound threats and hypothermic events.
   components:
   - type: Sprite
@@ -438,7 +438,7 @@
 - type: entity
   parent: [ClothingOuterWinterCoatToggleable, BaseSecurityCommandContraband]
   id: ClothingOuterWinterHoSUnarmored
-  name: Head Of Security's Winter Coat #Far Horizons - The Great Capitalization Crusade
+  name: head of security's winter coat
   description: A sturdy coat, a warm coat, but not an armored coat.
   components:
   - type: Sprite
@@ -462,7 +462,7 @@
 - type: entity
   parent: ClothingOuterWinterCoatToggleable
   id: ClothingOuterWinterHydro
-  name: Hydroponics Winter Coat #Far Horizons - The Great Capitalization Crusade
+  name: hydroponics winter coat
   components:
   - type: Sprite
     sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/plant.rsi #Far Horizons
@@ -485,7 +485,7 @@
 - type: entity
   parent: ClothingOuterWinterCoatToggleable
   id: ClothingOuterWinterJani
-  name: Janitorial Winter Coat #Far Horizons - The Great Capitalization Crusade
+  name: janitorial winter coat
   components:
   - type: Sprite
     sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/janitor.rsi #Far Horizons
@@ -523,7 +523,7 @@
 - type: entity
   parent: ClothingOuterWinterCoatToggleable
   id: ClothingOuterWinterMed
-  name: Medical Winter Coat #Far Horizons - The Great Capitalization Crusade
+  name: medical winter coat
   components:
   - type: Sprite
     sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/medical.rsi #Far Horizons
@@ -563,7 +563,7 @@
 - type: entity
   parent: ClothingOuterWinterCoatToggleable
   id: ClothingOuterWinterMime
-  name: Mime Winter Coat #Far Horizons - The Great Capitalization Crusade
+  name: mime winter coat
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/WinterCoats/coat.rsi
@@ -586,7 +586,7 @@
 - type: entity
   parent: ClothingOuterWinterCoatToggleable
   id: ClothingOuterWinterMiner
-  name: Mining Winter Coat #Far Horizons - The Great Capitalization Crusade
+  name: mining winter coat
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/WinterCoats/coat.rsi
@@ -609,7 +609,7 @@
 - type: entity
   parent: ClothingOuterWinterCoatToggleable
   id: ClothingOuterWinterPara
-  name: Paramedic Winter Coat #Far Horizons - The Great Capitalization Crusade
+  name: paramedic winter coat
   components:
   - type: Sprite
     sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/paramedic.rsi #Far Horizons
@@ -649,7 +649,7 @@
 - type: entity
   parent: [ClothingOuterWinterCoatToggleable, BaseCommandContraband]
   id: ClothingOuterWinterQM
-  name: Quartermaster's Winter Coat #Far Horizons - The Great Capitalization Crusade
+  name: quartermaster's winter coat
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/WinterCoats/coat.rsi
@@ -673,7 +673,7 @@
 - type: entity
   parent: [ClothingOuterWinterCoatToggleable, BaseCommandContraband]
   id: ClothingOuterWinterRD
-  name: Research Director's Winter Coat #Far Horizons - The Great Capitalization Crusade
+  name: research director's winter coat
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/WinterCoats/coat.rsi
@@ -711,7 +711,7 @@
 - type: entity
   parent: ClothingOuterWinterCoatToggleable
   id: ClothingOuterWinterRobo
-  name: Robotics Winter Coat #Far Horizons - The Great Capitalization Crusade
+  name: robotics winter coat
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/WinterCoats/coat.rsi
@@ -735,7 +735,7 @@
 - type: entity
   parent: ClothingOuterWinterCoatToggleable
   id: ClothingOuterWinterSci
-  name: Science Winter Coat #Far Horizons - The Great Capitalization Crusade
+  name: science winter coat
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/WinterCoats/coat.rsi
@@ -773,7 +773,7 @@
 - type: entity
   parent: [ClothingOuterWinterCoatToggleable, BaseSecurityContraband, AllowSuitStorageClothing]
   id: ClothingOuterWinterSec
-  name: Security Winter Coat #Far Horizons - The Great Capitalization Crusade
+  name: security winter coat
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/WinterCoats/coat.rsi
@@ -814,7 +814,7 @@
 - type: entity
   parent: ClothingOuterWinterCoatToggleable
   id: ClothingOuterWinterViro
-  name: Virology Winter Coat #Far Horizons - The Great Capitalization Crusade
+  name: virology winter coat
   components:
   - type: Sprite
     sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/viro.rsi #Far Horizons
@@ -854,7 +854,7 @@
 - type: entity
   parent: [ClothingOuterArmorWarden, ClothingOuterWinterCoatToggleable, BaseSecurityContraband]
   id: ClothingOuterWinterWarden
-  name: Warden's Armored Winter Coat #Far Horizons - The Great Capitalization Crusade
+  name: warden's armored winter coat
   description: A sturdy, utilitarian winter coat designed to protect a warden from any brig-bound threats and hypothermic events.
   components:
   - type: Sprite
@@ -873,7 +873,7 @@
 - type: entity
   parent: [ClothingOuterWinterCoatToggleable, BaseSecurityContraband]
   id: ClothingOuterWinterWardenUnarmored
-  name: Warden's Winter Coat #Far Horizons - The Great Capitalization Crusade
+  name: warden's winter coat
   description: A sturdy coat, a warm coat, but not an armored coat.
   components:
   - type: Sprite
@@ -897,7 +897,7 @@
 - type: entity
   parent: [ClothingOuterWinterCoatToggleable, BaseSyndicateContraband]
   id: ClothingOuterWinterSyndieCap
-  name: Syndicate's Winter Coat #Far Horizons - The Great Capitalization Crusade
+  name: syndicate's winter coat
   description: "The syndicate's winter coat is made of durable fabric, with gilded patterns, and coarse wool."
   components:
   - type: Sprite
@@ -922,7 +922,7 @@
 - type: entity
   parent: [ BaseSyndicateContraband, ClothingOuterWinterWarden ]
   id: ClothingOuterWinterSyndieCapArmored
-  name: Syndicate's Armored Winter Coat #Far Horizons - The Great Capitalization Crusade
+  name: syndicate's armored winter coat
   description: "The syndicate's armored winter coat is made of durable fabric, with gilded patterns, and coarse wool."
   components:
   - type: Sprite
@@ -936,7 +936,7 @@
 - type: entity
   parent: [ClothingOuterWinterCoatToggleable, BaseSyndicateContraband]
   id: ClothingOuterWinterSyndie
-  name: Syndicate's Winter Coat #Far Horizons - The Great Capitalization Crusade
+  name: syndicate's winter coat
   description: Insulated winter coat, looks like a merch from "Syndieland".
   components:
   - type: Sprite
@@ -960,7 +960,7 @@
 - type: entity
   parent: ClothingOuterWinterCoat
   id: ClothingOuterWinterMusician
-  name: Musician's Winter Coat #Far Horizons - The Great Capitalization Crusade
+  name: musician's winter coat
   description: An oversized, plasticine space tuxedo that'll have people asking "do you know me?"
   components:
   - type: Sprite
@@ -971,7 +971,7 @@
 - type: entity
   parent: ClothingOuterWinterCoatToggleable
   id: ClothingOuterWinterWeb
-  name: Web Winter Coat #Far Horizons - The Great Capitalization Crusade
+  name: web winter coat
   description: Feels like the inside of a cocoon, not that this would make you less afraid of being in one.
   components:
   - type: Sprite
@@ -1012,7 +1012,7 @@
 - type: entity
   parent: ClothingOuterWinterCoatToggleable
   id: ClothingOuterWinterColorBlack
-  name: Black Winter Coat #Far Horizons - The Great Capitalization Crusade
+  name: black winter coat
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/WinterCoats/coat.rsi
@@ -1043,7 +1043,7 @@
 - type: entity
   parent: ClothingOuterWinterCoatToggleable
   id: ClothingOuterWinterColorPurple
-  name: Purple Winter Coat #Far Horizons - The Great Capitalization Crusade
+  name: purple winter coat
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/WinterCoats/coat.rsi
@@ -1074,7 +1074,7 @@
 - type: entity
   parent: ClothingOuterWinterCoatToggleable
   id: ClothingOuterWinterColorRed
-  name: Red Winter Coat #Far Horizons - The Great Capitalization Crusade
+  name: red winter coat
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/WinterCoats/coat.rsi
@@ -1105,7 +1105,7 @@
 - type: entity
   parent: ClothingOuterWinterCoatToggleable
   id: ClothingOuterWinterColorBlue
-  name: Blue Winter Coat #Far Horizons - The Great Capitalization Crusade
+  name: blue winter coat
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/WinterCoats/coat.rsi
@@ -1136,7 +1136,7 @@
 - type: entity
   parent: ClothingOuterWinterCoatToggleable
   id: ClothingOuterWinterColorBrown
-  name: Brown Winter Coat #Far Horizons - The Great Capitalization Crusade
+  name: brown winter coat
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/WinterCoats/coat.rsi
@@ -1167,7 +1167,7 @@
 - type: entity
   parent: ClothingOuterWinterCoatToggleable
   id: ClothingOuterWinterColorGray
-  name: Gray Winter Coat #Far Horizons - The Great Capitalization Crusade
+  name: gray winter coat
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/WinterCoats/coat.rsi
@@ -1198,7 +1198,7 @@
 - type: entity
   parent: ClothingOuterWinterCoatToggleable
   id: ClothingOuterWinterColorGreen
-  name: Green Winter Coat #Far Horizons - The Great Capitalization Crusade
+  name: green winter coat
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/WinterCoats/coat.rsi
@@ -1229,7 +1229,7 @@
 - type: entity
   parent: ClothingOuterWinterCoatToggleable
   id: ClothingOuterWinterColorLightBrown
-  name: Light Brown Winter Coat #Far Horizons - The Great Capitalization Crusade
+  name: light brown winter coat
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/WinterCoats/coat.rsi
@@ -1260,7 +1260,7 @@
 - type: entity
   parent: ClothingOuterWinterCoatToggleable
   id: ClothingOuterWinterColorOrange
-  name: Orange Winter Coat #Far Horizons - The Great Capitalization Crusade
+  name: orange winter coat
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/WinterCoats/coat.rsi
@@ -1291,7 +1291,7 @@
 - type: entity
   parent: ClothingOuterWinterCoatToggleable
   id: ClothingOuterWinterColorWhite
-  name: White Winter Coat #Far Horizons - The Great Capitalization Crusade
+  name: white winter coat
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/WinterCoats/coat.rsi
@@ -1322,7 +1322,7 @@
 - type: entity
   parent: ClothingOuterWinterCoatToggleable
   id: ClothingOuterWinterColorYellow
-  name: Yellow Winter Coat #Far Horizons - The Great Capitalization Crusade
+  name: yellow winter coat
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/WinterCoats/coat.rsi

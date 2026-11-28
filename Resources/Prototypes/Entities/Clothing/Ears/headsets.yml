@@ -2,7 +2,7 @@
   abstract: true
   parent: Clothing
   id: ClothingHeadset
-  name: Headset #Far Horizons - The Great Capitalization Crusade
+  name: headset
   description: An updated, modular intercom that fits over the head. Takes encryption keys.
   components:
   - type: ContainerContainer
@@ -38,7 +38,7 @@
 - type: entity
   parent: ClothingHeadset
   id: ClothingHeadsetCargo
-  name: Cargo Headset #Far Horizons - The Great Capitalization Crusade
+  name: cargo headset
   description: A headset used by supply employees.
   components:
   - type: ContainerFill
@@ -55,7 +55,7 @@
 - type: entity
   parent: ClothingHeadsetCargo
   id: ClothingHeadsetMining
-  name: Mining Headset #Far Horizons - The Great Capitalization Crusade
+  name: mining headset
   description: Headset used by shaft miners.
   components:
   - type: Sprite
@@ -66,7 +66,7 @@
 - type: entity
   parent: [ClothingHeadsetCargo, BaseCommandContraband]
   id: ClothingHeadsetQM
-  name: QM Headset #Far Horizons - The Great Capitalization Crusade
+  name: qm headset
   description: A headset used by the quartermaster.
   components:
   - type: ContainerFill
@@ -85,7 +85,7 @@
 - type: entity
   parent: [ ClothingHeadset, BaseCentcommContraband ]
   id: ClothingHeadsetCentCom
-  name: CentComm Headset #Far Horizons - The Great Capitalization Crusade
+  name: CentComm headset
   description: A headset used by the upper echelons of Nanotrasen.
   components:
   - type: ContainerFill
@@ -105,7 +105,7 @@
 - type: entity
   parent: [ClothingHeadset, BaseCommandContraband]
   id: ClothingHeadsetCommand
-  name: Command Headset #Far Horizons - The Great Capitalization Crusade
+  name: command headset
   description: A headset with a commanding channel.
   components:
   - type: ContainerFill
@@ -123,7 +123,7 @@
 - type: entity
   parent: ClothingHeadset
   id: ClothingHeadsetEngineering
-  name: Engineering Headset #Far Horizons - The Great Capitalization Crusade
+  name: engineering headset
   description: A headset for engineers to chat while the station burns around them.
   components:
   - type: ContainerFill
@@ -139,7 +139,7 @@
 - type: entity
   parent: [ClothingHeadsetEngineering, BaseCommandContraband]
   id: ClothingHeadsetCE
-  name: CE Headset #Far Horizons - The Great Capitalization Crusade
+  name: ce headset
   description: A headset for the chief engineer to ignore all emergency calls on.
   components:
   - type: ContainerFill
@@ -155,7 +155,7 @@
 - type: entity
   parent: ClothingHeadset
   id: ClothingHeadsetMedical
-  name: Medical Headset #Far Horizons - The Great Capitalization Crusade
+  name: medical headset
   description: A headset for the trained staff of the medbay.
   components:
   - type: ContainerFill
@@ -171,7 +171,7 @@
 - type: entity
   parent: [ClothingHeadsetMedical, BaseCommandContraband]
   id: ClothingHeadsetCMO
-  name: CMO Headset #Far Horizons - The Great Capitalization Crusade
+  name: cmo headset
   description: A headset used by the CMO.
   components:
   - type: ContainerFill
@@ -187,7 +187,7 @@
 - type: entity
   parent: ClothingHeadset
   id: ClothingHeadsetScience
-  name: Science Headset #Far Horizons - The Great Capitalization Crusade
+  name: science headset
   description: A sciency headset. Like usual.
   components:
   - type: ContainerFill
@@ -203,7 +203,7 @@
 - type: entity
   parent: ClothingHeadsetScience
   id: ClothingHeadsetMedicalScience
-  name: Medical Research Headset #Far Horizons - The Great Capitalization Crusade
+  name: medical research headset
   description: A headset that is a result of the mating between medical and science.
   components:
   - type: ContainerFill
@@ -219,7 +219,7 @@
 - type: entity
   parent: ClothingHeadsetScience
   id: ClothingHeadsetRobotics
-  name: Robotics Headset #Far Horizons - The Great Capitalization Crusade
+  name: robotics headset
   description: Made specifically for the roboticists, who cannot decide between departments.
   components:
   - type: ContainerFill
@@ -235,7 +235,7 @@
 - type: entity
   parent: [ClothingHeadsetScience, BaseCommandContraband]
   id: ClothingHeadsetRD
-  name: RD Headset #Far Horizons - The Great Capitalization Crusade
+  name: rd headset
   description: Lamarr used to love chewing on this...
   components:
   - type: ContainerFill
@@ -251,7 +251,7 @@
 - type: entity
   parent: [ClothingHeadset, BaseSecurityLawyerContraband]
   id: ClothingHeadsetSecurity
-  name: Security Headset #Far Horizons - The Great Capitalization Crusade
+  name: security headset
   description: This is used by your elite security force.
   components:
   - type: ContainerFill
@@ -290,7 +290,7 @@
 - type: entity
   parent: ClothingHeadset
   id: ClothingHeadsetService
-  name: Service Headset #Far Horizons - The Great Capitalization Crusade
+  name: service headset
   description: Headset used by the service staff, tasked with keeping the station full, happy and clean.
   components:
   - type: ContainerFill
@@ -306,7 +306,7 @@
 - type: entity
   parent: ClothingHeadset
   id: ClothingHeadsetFreelance
-  name: Freelancer Headset #Far Horizons - The Great Capitalization Crusade
+  name: freelancer headset
   description: This is used by a roaming group of freelancers.
   components:
     - type: ContainerFill
@@ -321,7 +321,7 @@
 - type: entity
   parent: [ClothingHeadset, BaseMagicalContraband]
   id: ClothingHeadsetWizard
-  name: Wizard Headset #Far Horizons - The Great Capitalization Crusade
+  name: wizard headset
   description: A headset used by the dreaded space wizards.
   components:
     - type: ContainerFill
@@ -337,7 +337,7 @@
 - type: entity
   parent: [ClothingHeadset, BaseMajorContraband]
   id: ClothingHeadsetNinja
-  name: Green Headset #Far Horizons - The Great Capitalization Crusade
+  name: green headset
   description: Who could refuse to wear this stylish black and green headset?
   components:
   - type: Sprite

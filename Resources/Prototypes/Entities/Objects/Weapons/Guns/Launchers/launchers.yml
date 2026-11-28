@@ -99,7 +99,7 @@
 - type: entity
   parent: [ BaseWeaponLauncher, BaseMajorContraband ]
   id: WeaponLauncherHydra
-  name: Hydra #Far Horizons - The Great Capitalization Crusade
+  name: hydra
   description: PLOOP... FSSSSSS...
   components:
   - type: Sprite
@@ -186,7 +186,7 @@
   - type: Appearance
 
 - type: entity
-  name: Multiple Rocket Launcher #Far Horizons - The Great Capitalization Crusade
+  name: multiple rocket launcher
   parent: [BaseWeaponLauncher]
   id: WeaponLauncherMultipleRocket
   description: A modified ancient rocket-propelled grenade launcher.
@@ -235,7 +235,7 @@
   - type: Appearance
 
 - type: entity
-  name: Pirate Cannon #Far Horizons - The Great Capitalization Crusade
+  name: pirate cannon
   parent: BaseWeaponLauncher
   id: WeaponLauncherPirateCannon
   description: Kaboom!
@@ -267,7 +267,7 @@
         path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
 
 - type: entity
-  name: Tether Gun #Far Horizons - The Great Capitalization Crusade
+  name: tether gun
   parent:
   - BaseItem
   - PowerCellSlotMediumItem
@@ -309,7 +309,7 @@
             False: { visible: false }
 
 - type: entity
-  name: Force Gun #Far Horizons - The Great Capitalization Crusade
+  name: force gun
   parent:
     - BaseItem
     - PowerCellSlotMediumItem
@@ -357,7 +357,7 @@
                 False: { visible: false }
 
 - type: entity
-  name: Grappling Gun #Far Horizons - The Great Capitalization Crusade
+  name: grappling gun
   parent: BaseItem
   id: WeaponGrapplingGun
   components:
@@ -399,7 +399,7 @@
 
 # Admeme
 - type: entity
-  name: Tether Gun #Far Horizons - The Great Capitalization Crusade
+  name: tether gun
   parent: BaseItem
   id: WeaponTetherGunAdmin
   suffix: Admeme
@@ -440,7 +440,7 @@
             False: { visible: false }
 
 - type: entity
-  name: Force Gun #Far Horizons - The Great Capitalization Crusade
+  name: force gun
   parent: BaseItem
   id: WeaponForceGunAdmin
   suffix: Admeme
@@ -484,7 +484,7 @@
             False: { visible: false }
 
 - type: entity
-  name: Meteor Launcher #Far Horizons - The Great Capitalization Crusade
+  name: meteor launcher
   parent: WeaponLauncherMultipleRocket
   id: WeaponLauncherAdmemeMeteorLarge
   suffix: Admeme
@@ -494,7 +494,7 @@
     proto: MeteorMedium
 
 - type: entity
-  name: Immovable Rod Launcher #Far Horizons - The Great Capitalization Crusade
+  name: immovable rod launcher
   parent: WeaponLauncherAdmemeMeteorLarge
   id: WeaponLauncherAdmemeImmovableRodSlow
   suffix: Admeme
